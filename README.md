@@ -1,2 +1,2 @@
-# Negociapp2
-Reafactor Negociapp
+# StartIonicCordova
+Start Project for Ionic Cordova
