@@ -1,20 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding login background-image">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1 class="ion-text-center login__title">NegociApp</h1>
+  <article class="login__welcome ion-text-center">
+    <p class="ion-text-center login__welcome__text">Bienvenido a NegociApp</p>
+    <p class="login__welcome__text">
+      una gran comunidad de servicios
+      y arriendos en tu ciudad</p>
+  </article>
+  <p class="login__welcome__text-form ion-text-center">Ingresa tus datos personales</p>
+  
+<div class="form-container">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-select name="tip_ide" [(ngModel)]="registerData.tip_ide" class="login-select" placeholder="Tipo de identificación">
+    <ion-select-option value="Cedula">Cédula de ciudadanía</ion-select-option>
+    <ion-select-option value="Cedula Extranjeria">Cédula de extranjería</ion-select-option>
+    <ion-select-option value="Pasaporte">Pasaporte</ion-select-option>
+  </ion-select>
+
+  <ion-input type="number" id="num_ide" [(ngModel)]="registerData.num_ide" (focusout)="verificarExistencia()" 
+    class="login__input" fill="outline" placeholder="Número de identificacion"></ion-input>
+  <ion-input class="login__input" fill="outline" placeholder="Nombres y apellidos" id="name" [(ngModel)]="registerData.name"></ion-input>
+  <ion-input class="login__input" fill="outline" placeholder="Correo" id="email" [(ngModel)]="registerData.email"></ion-input>
+      
+  <ion-select name="city" [(ngModel)]="registerData.city" class="login-select select-city" placeholder="Ciudad">
+    <ion-select-option value="Cartagena">Cartagena</ion-select-option>
+    <ion-select-option value="Barranquilla">Barranquilla</ion-select-option>
+    <ion-select-option value="Montería">Montería</ion-select-option>
+    <ion-select-option value="Santa Marta">Santa Marta</ion-select-option>
+    <ion-select-option value="Sincelejo">Sincelejo</ion-select-option>      
+    <ion-select-option value="Riohacha">Riohacha</ion-select-option>
+    <ion-select-option value="Valledupar">Valledupar</ion-select-option>      
+  </ion-select> 
+
+  <ion-input class="login__input" fill="outline" placeholder="Número contacto" name="contact" [(ngModel)]="registerData.contact"></ion-input>
+  <ion-button class="login-submit" (click)="next()" shape="round" color="secondary">
+    Siguiente <ion-icon class="register-icon" src="/assets/btn-registro.svg"></ion-icon>
+  </ion-button>
+  
+</div>
+  <!-- <ion-button class="login-submit" (click)="borrarmetodo()" shape="round" color="secondary">
+    Borrar
+  </ion-button> -->
 </ion-content>
