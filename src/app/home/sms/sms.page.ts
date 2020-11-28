@@ -23,10 +23,55 @@ export class SmsPage implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-		const code = this.aleatorio(1000, 9999);
+		this.generateCode();
+  }
+
+  generateCode(){
+    const code = this.aleatorio(1000, 9999);
 		this.remoteCode = code;
 		Swal.fire('', 'Negociapp, su codigo de verificacion es: ' + code, 'success')
   }
+
+  addNumber(number) {
+		if (number === 'BCK') {
+			if (this.number4 !== '') {
+				this.number4 = '';
+				return;
+			}
+			if (this.number3 !== '') {
+				this.number3 = '';
+				return;
+			}
+			if (this.number2 !== '') {
+				this.number2 = '';
+				return;
+			}
+			if (this.number1 !== '') {
+				this.number1 = '';
+				return;
+			}
+
+		} else {
+			if (this.number1 === '') {
+				this.number1 = number;
+				return;
+			}
+			if (this.number2 === '') {
+				this.number2 = number;
+				return;
+			}
+			if (this.number3 === '') {
+				this.number3 = number;
+				return;
+			}
+			if (this.number4 === '') {
+				this.number4 = number;
+				this.validateSMS();
+				return;
+			}
+		}
+	}
+
 
   async validateSMS() {
 		const code = this.number1 + this.number2 + this.number3 + this.number4;
