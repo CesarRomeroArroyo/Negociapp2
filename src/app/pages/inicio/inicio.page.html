@@ -1,0 +1,31 @@
+<app-header [menu]="true"></app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <div class="content">
+    <div class="welcome">
+      <h1>¡Hola!</h1>
+      <article class="info">
+        <p class="text">Diego Ramirez</p>
+        <p class="text">Bienvenido a NegociApp</p>
+        <p class="text">¿Qué estas buscando?</p>
+      </article>
+    </div>
+    <div class="links">
+      <button class="button" (click)="redirecTo('service')">
+        <span>Servicios</span>
+        <ion-icon src="/assets/icon/btn_inicio_servicio.svg">
+        </ion-icon>
+      </button>
+      <button class="button" (click)="redirecTo('rent')">
+        <span>Alquiler</span>
+        <ion-icon src="/assets/icon/btn_inicio_alquiler.svg">
+        </ion-icon>
+      </button>
+      <button class="button" (click)="redirecTo('shop')">
+        <span>Tienda Digital</span>
+        <ion-icon src="/assets/products_icon.svg">
+        </ion-icon>
+      </button>
+    </div>
+  </div>
+</ion-content>

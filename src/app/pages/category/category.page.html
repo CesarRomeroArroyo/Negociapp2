@@ -1,0 +1,37 @@
+<app-header [secondMessage]="urlPath"></app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="template">
+  <div class="content">
+    <div class="content__welcome">
+      <div class="text">
+        {{template.title}}
+      </div>
+      <div class="icon">
+        <ion-icon 
+          name="key-outline" 
+          [src]="template.icono">
+        </ion-icon>
+      </div>
+    </div>
+    <div class="content__items">
+      <div class="content__items__item" [routerLink]="['/search-products-rent']">
+        <div class="text">
+          {{template.item1}}
+        </div>
+        <ion-icon name="search"></ion-icon>
+      </div>
+      <div class="content__items__item" [routerLink]="['/offer-product-rent']">
+        <div class="text">
+          {{template.item2}}
+        </div>
+        <ion-icon name="pricetag"></ion-icon>
+      </div>
+      <div class="content__items__item" [routerLink]="['/history/rent']">
+        <div class="text">
+          {{template.item3}}
+        </div>
+        <ion-icon name="cube"></ion-icon>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,53 @@
+@import '../../../theme/mixin.scss';
+
+.content {
+  width: 100%;
+
+  .welcome {
+    margin: 16px 0px;
+
+    >h1 {
+      margin: 0px;
+      font-size: 48px;
+      color: var(--ion-color-secondary);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .info {
+      color: var(--ion-color-light);;
+      text-align: center;
+
+      .text {
+        margin: 0;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .links {
+    width: 100%;
+    padding: 0px 32px;
+
+    .button {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      font-size: 24px;
+      background: var(--ion-color-secondary);
+      color: var(--ion-color-light);
+      @include flex(center, space-between);
+
+      >span {
+        flex: auto;
+      }
+
+      >ion-icon {
+        height: 70px;
+        width: 70px;
+      }
+    }
+  }
+
+}

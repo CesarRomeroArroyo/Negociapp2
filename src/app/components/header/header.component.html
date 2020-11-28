@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar [style.--background]="colorHeader">
+    <ion-buttons slot="start" class="home-element">
+      <ng-container *ngIf="!menu; else menuPage">
+        <ion-icon 
+          *ngIf="!close; else closeM"
+          [style.color]="colorBack"
+          name="arrow-back" 
+          size="large" 
+          (click)="goToBack()">
+        </ion-icon>
+        <ng-template #closeM>
+          <ion-icon 
+            [style.color]="colorBack" 
+            size="large" 
+            name="close-outline"
+            (click)="closeModal()">
+          </ion-icon>
+        </ng-template>
+      </ng-container>
+      <ng-template #menuPage>
+        <ion-menu-button></ion-menu-button>
+      </ng-template>
+    </ion-buttons>
+    <ion-title [style.color]="colorText">
+      {{text}}
+      <p>{{secondMessage}}</p>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="home-element" [routerLink]="['/misdatos']">
+        <ion-icon 
+          [style.border]="colorBorderIcon"
+          class="profile-icon" 
+          src="../../../assets/btn-profile_black.svg"
+          *ngIf="colorIconBlack; else white">
+        </ion-icon>
+        <ng-template #white>
+          <ion-icon 
+            [style.border]="colorBorderIcon"
+            class="profile-icon" 
+            src="../../../assets/btn-profile_white.svg">
+        </ion-icon>
+        </ng-template>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

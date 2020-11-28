@@ -10,6 +10,22 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  public appPages = [
+    {
+      title: 'Mis datos',
+      url: '/misdatos',
+      icon: '/assets/btn-profile_white.svg',
+      class: 'profile-icon'
+    },
+    {
+      title: 'Configuracion MIDER',
+      url: '/configuracion',
+      icon: '/assets/btn-menu_conf.svg',
+      class: 'config-icon'
+    }
+  ];
+
   constructor(
     private platform: Platform
   ) {
@@ -17,14 +33,14 @@ export class AppComponent {
   }
 
   async initializeApp() {
-    const {SplashScreen, StatusBar } = Plugins;
+    const { SplashScreen, StatusBar } = Plugins;
     try {
       await SplashScreen.hide();
-      await StatusBar.setStyle({style: StatusBarStyle.Light});
-      if(this.platform.is('android')){
-        StatusBar.setBackgroundColor({color: '#CDCDCD'});
+      await StatusBar.setStyle({ style: StatusBarStyle.Light });
+      if (this.platform.is('android')) {
+        StatusBar.setBackgroundColor({ color: '#CDCDCD' });
       }
-    } catch(err){
+    } catch (err) {
       console.log('This is a normal Browser', err);
     }
   }
