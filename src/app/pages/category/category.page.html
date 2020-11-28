@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="content__items">
-      <div class="content__items__item" [routerLink]="['/search-products-rent']">
+      <div class="content__items__item" (click)="redirecTo('form')">
         <div class="text">
           {{template.item1}}
         </div>

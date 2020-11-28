@@ -5,7 +5,7 @@ export const CategoryURL = {
 }
 export const CategoryPath = {
     Service: 'Servicios',
-    Rent: 'Renta',
+    Rent: 'Alquiler',
     Shop: 'Tienda Digital',
 }
 export const dataTemplate = [

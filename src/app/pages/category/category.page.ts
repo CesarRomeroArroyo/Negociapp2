@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CategoryURL, CategoryPath, dataTemplate, Template } from './models/category.model';
 
@@ -13,7 +13,9 @@ export class CategoryPage implements OnInit {
   public url: string;
   public template: Template;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.url = this.route.snapshot.paramMap.get('category');
@@ -29,6 +31,10 @@ export class CategoryPage implements OnInit {
       case CategoryURL.Shop:
         return CategoryPath.Shop;
     }
+  }
+
+  public redirecTo(path: string): void {
+    this.router.navigate([`category/${this.url}/${path}`]);
   }
 
 }

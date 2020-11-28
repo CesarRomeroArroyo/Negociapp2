@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CategoryPage } from './category.page';
+import { FormPage } from './form.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoryPage
-  },
-  {
-    path: 'form',
-    loadChildren: () => import('./form/form.module').then( m => m.FormPageModule)
+    component: FormPage
   }
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CategoryPageRoutingModule {}
+export class FormPageRoutingModule {}
