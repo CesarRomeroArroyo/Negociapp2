@@ -1,0 +1,135 @@
+.content {
+	background: white;
+	position: relative;
+	top: 80px;
+	width: 100%;
+	&__title {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+		height: 105px;
+		background: white;
+		color: #022999;
+		&__text {
+			display: flex;
+    		align-items: center;
+			font-size: 22px;
+		}
+		&__active {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			width: 100%;
+			padding-right: 16px;
+		}
+		label {
+			font-size: 11px;
+		}
+	}
+	&__button{
+		height: 42px;
+		color:white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		margin-top: 30px;
+		margin-bottom: 35px;
+		&__submit {
+			--background: #2449f2;
+		}
+	}
+	&__body {
+		width: 100%;
+		height: auto;
+		background: white;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		padding: 20px;
+		position: relative;
+		margin: auto;
+		margin-top: 16px;
+		border-radius: 12px;
+		&__block {
+			width: 100%;
+			background: rgba($color: #000000, $alpha: 0.4);
+			position: absolute;
+			top: 0px;
+			bottom: 0;
+			left: 0px;
+			z-index: 998;
+		}
+	}
+	&__form {
+		width: 100%;
+		color: black;
+		display: flex;
+		justify-content: center;
+		&__hv {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #2449f2;
+			width: 100%;
+			height: 50px;
+			margin-top: 16px;
+			margin-bottom: 10px;
+			font-family: Ubuntu;
+		}
+		&__input {
+			width: 100%;
+			margin-bottom: 16px;
+
+			&__label {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				font-size: 18px;
+				margin-bottom: 5px;
+				color: #3692ff;
+			}
+			&__categories {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border: 2px solid #3692ff;
+				padding: 5px;
+				border-radius: 30px;
+				width: 100%;
+				height: auto;
+				margin-top: 10px;
+
+				&__options {
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+					flex-wrap: wrap;
+				}
+			}
+		}
+	}
+}
+
+.buttom{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: 42px;
+	border-radius: 50px;
+	background: #2449f2;
+	font-size: 20px;
+	justify-content: center;
+}
+
+ion-chip {
+	background:rgba($color: #52bccf, $alpha: 0.4);
+	color: #2449f2
+}
