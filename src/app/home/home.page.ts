@@ -60,24 +60,23 @@ export class HomePage  implements OnInit{
     this.registerData['miderv'] = {estado: false, categorias: [], niveles:[], rut:''};
     this.firebaseService.guardarDatos('usuario-app', this.registerData);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.registerData));
-    this.router.navigateByUrl('/page2');
+    this.router.navigateByUrl('/home/bienvenida');
   }
 
-  verificarExistencia() {
-    this.tempo = this.firebaseService.obtenerByContactoID(this.registerData.num_ide).subscribe((data) => {
-      if(data.length > 0){
-        this.flag = true;
-        localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
-        localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));
-        Swal.fire(
-          '',
-          'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!',
-          'success'
-        )
-        localStorage.setItem('NEGOCIAPP_RELOGGED', JSON.stringify(true));
-        this.router.navigateByUrl('/page2');
-      }
-    });
+  async verificarExistencia() {
+    var data = await this.firebaseService.obtenerByContactoIDPromise(this.registerData.num_ide);
+    if(data.length > 0){
+      this.flag = true;
+      localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
+      localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));
+      Swal.fire(
+        '',
+        'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!',
+        'success'
+      )
+      localStorage.setItem('NEGOCIAPP_RELOGGED', JSON.stringify(true));
+      this.router.navigateByUrl('/home/bienvenida');
+    }
   }
 
 }

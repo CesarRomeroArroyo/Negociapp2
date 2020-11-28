@@ -6,6 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'bienvenida',
+    loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
+  },
+  {
+    path: 'celular',
+    loadChildren: () => import('./celular/celular.module').then( m => m.CelularPageModule)
+  },
+  {
+    path: 'sms',
+    loadChildren: () => import('./sms/sms.module').then( m => m.SmsPageModule)
   }
 ];
 

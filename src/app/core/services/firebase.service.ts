@@ -68,6 +68,17 @@ export class FirebaseService {
     );
   }
 
+  async obtenerByContactoIDPromise(id, show?) {
+    const returnData = [];
+    const data = await this.db.collection('usuario-app', ref => ref.where('num_ide', '==', id)).get().toPromise();
+    data.forEach(info => {
+      const d = info.data();
+      d.id = info.id;
+      returnData.push(d);
+    });
+    return returnData;
+  }
+
   async obtenerIdPromise(tabla, id, show?) {
     const returnData = [];
     const data = await this.db.collection(tabla, ref => ref.where('id', '==', id)).get().toPromise();
