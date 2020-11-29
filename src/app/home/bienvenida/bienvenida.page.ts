@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./bienvenida.page.scss'],
 })
 export class BienvenidaPage implements OnInit {
-  user= {name:''};
+  user = { name: '' };
   constructor(
     private router: Router
   ) { }
@@ -16,7 +16,7 @@ export class BienvenidaPage implements OnInit {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
   }
 
-  next(){
+  next() {
     this.router.navigateByUrl('/home/celular');
   }
 

@@ -17,17 +17,17 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
     path: 'mider',
     loadChildren: () => import('./pages/mider/mider.module').then( m => m.MiderPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
 ];
 

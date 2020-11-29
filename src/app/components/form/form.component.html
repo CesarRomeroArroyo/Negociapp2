@@ -1,0 +1,132 @@
+<form [formGroup]="form">
+  <!-- Name -->
+  <ion-input 
+    [ngClass]="{'invalid': validateinput('name')}"
+    class="input"
+    placeholder="Nombre del producto"
+    formControlName="name">
+  </ion-input>
+  <!-- Type -->
+  <ion-select 
+    *ngIf="category === service"
+    formControlName="type"
+    placeholder="Seleccionar tipo de servicio"
+    icon="caret-down-outline"
+    [ngClass]="{'invalid': validateinput('type')}">
+    <ion-select-option 
+      *ngFor="let tipo of types" 
+      [value]="tipo.value">
+      {{tipo.text}}
+    </ion-select-option>
+  </ion-select>
+  <!-- Quantity -->
+  <input 
+  *ngIf="category === rent"
+    [ngClass]="{'invalid': validateinput('quantity')}"
+    class="input"
+    placeholder="Cantidad"
+    formControlName="quantity"
+  >
+  <!-- Time -->
+  <ion-input
+  *ngIf="category === rent"
+    [ngClass]="{'invalid': validateinput('time')}" 
+    class="input"
+    placeholder="tiempo"
+    formControlName="time">
+  </ion-input>
+  <!-- TimeFor -->
+  <ion-radio-group 
+    *ngIf="category === rent"
+    [ngClass]="{'invalid': validateinput('timeFor')}" 
+    class="radio-groud" 
+    formControlName="timeFor">
+      <ion-item lines="none" *ngFor="let item of timeForArray">
+        <ion-label class="label">{{item}}</ion-label>
+        <ion-radio 
+          [value]="item">
+        </ion-radio>
+      </ion-item>
+  </ion-radio-group>
+  <!-- State -->
+  <ion-list lines="none" *ngIf="category === shop">
+    <ion-radio-group formControlName="state">
+      <ion-label>Estado del producto</ion-label>
+      <ion-item>
+        <ion-radio slot="start" value="Nuevo"></ion-radio>
+        <ion-input disabled="true" class="content__form__input__radio">
+          Nuevo
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-radio slot="start" value="Usado"></ion-radio>
+        <ion-input disabled="true" class="content__form__input__radio">
+          Usado
+        </ion-input>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <!-- Categories -->
+  <ion-button 
+    type="button"
+    fill="clear"
+    class="input select button"
+    (click)="showCategoria()">
+      Agregar Categorias
+    <ion-icon name="caret-down-outline"></ion-icon>
+  </ion-button>
+  <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
+  <div class="categories" *ngIf="categories.length > 0">
+    <div class="categories__options">
+      <ion-chip *ngFor="let category of categories; let i = index">
+        <ion-label>{{category}}</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+  <!-- Photos -->
+  <ion-button 
+    fill="clear"
+    type="button"
+    class="input button" 
+    (click)="showPhotos(5, 'REQUEST_PRODUCTS')">
+      Subir Fotos
+  </ion-button>
+  <!-- Description -->
+  <ion-textarea 
+    [ngClass]="{'invalid': validateinput('description')}"
+    type="text" 
+    class="text-area" 
+    placeholder="Indica tu necesidad" 
+    formControlName="description">
+  </ion-textarea>
+  <!-- ValueMask -->
+  <input 
+    [ngClass]="{'invalid': validateinput('valueMask')}"
+    class="input" 
+    placeholder="Valor dispuesto a pagar" 
+    name="valor"
+    autocomplete="off"
+    formControlName="valueMask"
+  >
+  <!-- Buttons -->
+  <ng-container *ngIf="true; else updateTemplate">
+    <div class="submit">
+      <ion-button
+        type="submit"
+        shape="round"
+        (click)="create()">
+          Crear
+      </ion-button>
+    </div>
+  </ng-container>
+  <ng-template #updateTemplate>
+    <div class="submit">
+      <ion-button
+        type="submit"
+        shape="round"
+        (click)="update()">
+          Actualizar
+      </ion-button>
+    </div>
+  </ng-template>
+</form>

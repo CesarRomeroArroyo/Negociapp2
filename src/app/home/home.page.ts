@@ -10,7 +10,7 @@ const { Geolocation, Device } = Plugins;
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage  implements OnInit{
+export class HomePage implements OnInit {
   services = false;
   registerData: any = {};
   images = [];
@@ -18,30 +18,30 @@ export class HomePage  implements OnInit{
   numCC = 0;
   numPic = 0;
   numHV = 0;
-  flag: boolean = false;
+  flag = false;
   tempo: any;
   constructor(
     private router: Router,
     private firebaseService: FirebaseService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.registerData['prestador']=true;
-    this.registerData['service']=true;
-    this.registerData['rent']=true;
-    this.registerData['shop']=true;
+    this.registerData.prestador = true;
+    this.registerData.service = true;
+    this.registerData.rent = true;
+    this.registerData.shop = true;
     this.obtenerCoordenadas();
   }
 
-  async obtenerCoordenadas(){
+  async obtenerCoordenadas() {
     const coordinates = await Geolocation.getCurrentPosition();
-    this.registerData['lat']= coordinates.coords.latitude;
-    this.registerData['lng']= coordinates.coords.longitude;
+    this.registerData.lat = coordinates.coords.latitude;
+    this.registerData.lng = coordinates.coords.longitude;
   }
 
-  async next(){
+  async next() {
     if (!this.registerData.tip_ide || !this.registerData.num_ide ||
-      !this.registerData.name || !this.registerData.email  || !this.registerData.contact || !this.registerData.city) {
+      !this.registerData.name || !this.registerData.email || !this.registerData.contact || !this.registerData.city) {
       Swal.fire(
         '',
         'Faltan datos, por favor incluye toda tu información',
@@ -49,23 +49,23 @@ export class HomePage  implements OnInit{
       )
       return;
     }
-    var cc=0;
+    const cc = 0;
     const info = await Device.getInfo();
-    this.registerData['uniqueid'] = info.uuid;
-    this.registerData['onesignal'] = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
-    this.registerData['active'] = true;
-    this.registerData['nameToSearch'] = this.registerData['name'].toLowerCase();
-    this.registerData['miders'] = {estado: false, categorias: [], niveles:[], rut:''};
-    this.registerData['midera'] = {estado: false, categorias: [], niveles:[], rut:''};
-    this.registerData['miderv'] = {estado: false, categorias: [], niveles:[], rut:''};
-    this.firebaseService.guardarDatos('usuario-app', this.registerData);
+    this.registerData.uniqueid = info.uuid;
+    this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
+    this.registerData.active = true;
+    this.registerData.nameToSearch = this.registerData.name.toLowerCase();
+    this.registerData.miders = { estado: false, categorias: [], niveles: [], rut: '' };
+    this.registerData.midera = { estado: false, categorias: [], niveles: [], rut: '' };
+    this.registerData.miderv = { estado: false, categorias: [], niveles: [], rut: '' };
+    this.firebaseService.save('usuario-app', this.registerData);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.registerData));
     this.router.navigateByUrl('/home/bienvenida');
   }
 
   async verificarExistencia() {
-    var data = await this.firebaseService.obtenerByContactoIDPromise(this.registerData.num_ide);
-    if(data.length > 0){
+    const data = await this.firebaseService.obtenerByContactoIDPromise(this.registerData.num_ide);
+    if (data.length > 0) {
       this.flag = true;
       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
       localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));

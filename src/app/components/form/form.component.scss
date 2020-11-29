@@ -1,0 +1,113 @@
+@import '../../../theme/mixin.scss';
+
+form {
+  width: 100%;
+  margin-top: 16px;
+  padding: 0px 24px;
+
+  .input {
+    width: 100%;
+    margin: 0 auto;
+    background: var(--ion-color-blue-light);
+    border: 1px solid var(--ion-color-primary);
+    color: var(--ion-color-primary);
+    border-radius: 1.5em;
+    margin-bottom: 16px;
+    padding: 10px 0px 8px 8px;
+
+    &.invalid {
+      border: 1px solid var(--ion-color-danger);
+    }
+
+    &.select {
+      margin-bottom: 16px;
+      @include flex(center, $direction: row-reverse);
+
+      ion-icon {
+        position: absolute;
+        right: 0px;
+      }
+    }
+
+    &.button {
+      padding: 0px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  }
+
+  .span {
+    padding: 0px 6px;
+    width: 100%;
+    color: var(--ion-color-danger);
+    font-size: 12px;
+    position: relative;
+    bottom: 16px;
+  }
+
+  .radio-groud {
+    width: 100%;
+    margin-bottom: 16px;
+    @include flex(center, center);
+
+    .label {
+      margin-right: 11px;
+    }
+
+    &.invalid {
+      border-bottom: 1px solid var(--ion-color-danger);
+    }
+  }
+
+  .text-area {
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 1.5em;
+    text-align: center;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+
+    &.invalid {
+      border: 1px solid var(--ion-color-danger);
+    }
+  }
+
+  .submit {
+    width: 100%;
+    margin: 16px 0px;
+    @include flex(center, center);
+  }
+
+  ion-select {
+    --placeholder-opacity: 1;
+    --padding-end: 16px;
+    background: var(--ion-color-blue-light);
+    color: var(--ion-color-primary);
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 1.5em;
+    margin-bottom: 16px;
+
+    &::part(icon) {
+      opacity: 1;
+    }
+
+    &.invalid {
+      border: 1px solid var(--ion-color-danger);
+    }
+  }
+
+}
+
+.categories {
+  border: 2px dashed #7a7a7a;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  @include flex(center, center, column);
+
+  &__options {
+    flex-wrap: wrap;
+    @include flex(center, center);
+  }
+}

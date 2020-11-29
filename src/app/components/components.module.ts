@@ -5,10 +5,13 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { MideraComponent } from './configuracion/midera/midera.component';
+import { FormComponent } from './form/form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   HeaderComponent,
-  MideraComponent
+  MideraComponent,
+  FormComponent
 ];
 
 @NgModule({
@@ -16,6 +19,8 @@ const components = [
   imports: [
     IonicModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule
   ],
   exports: components
