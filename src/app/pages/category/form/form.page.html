@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>form</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
 
-<ion-content>
-
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <div class="content">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button 
+            class="tab" 
+            (click)="tabSelected(1)" 
+            [ngClass]="{'active': tab === 1}">
+              <p>{{message}}</p>
+              <img src="../../../assets/icon_servicios.png">
+          </button>
+          <button 
+            class="tab" 
+            [ngClass]="{'active' : tab === 2}"
+            (click)="tabSelected(2)">
+              <p>{{messageTwo}}</p>
+              <img src="../../../assets/mis_servicios.png">
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

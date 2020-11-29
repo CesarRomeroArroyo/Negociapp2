@@ -35,15 +35,11 @@ export const dataTemplate = [
     }
 ];
 
-/**
- * Interfaces
- */
-
- export interface Template {
+export interface Template {
     title: string;
     icono: string;
     type: string;
     item1: string;
     item2: string;
     item3: string;
- }
+}
