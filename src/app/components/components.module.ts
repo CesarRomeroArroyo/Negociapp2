@@ -8,11 +8,13 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { HeaderComponent } from './header/header.component';
 import { MideraComponent } from './configuracion/midera/midera.component';
 import { FormComponent } from './form/form.component';
+import { MycardsComponent } from './mycards/mycards.component';
 
 const components = [
   HeaderComponent,
   MideraComponent,
-  FormComponent
+  FormComponent,
+  MycardsComponent
 ];
 
 @NgModule({

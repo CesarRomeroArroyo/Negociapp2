@@ -110,6 +110,19 @@ export class FirebaseService {
     );
   }
 
+  public obtenerForObsevable(tabla: string, firstQuery: string, secondQuery): Observable<any> {
+    this.itemsCollection = this.db.collection(tabla, ref => ref.where(firstQuery, '==', secondQuery));
+    return this.itemsCollection.snapshotChanges().pipe(
+      map(data => {
+        return data.map(d => {
+          const retorno = d.payload.doc.data();
+          retorno.id = d.payload.doc.id;
+          return retorno;
+        });
+      })
+    );
+  }
+
   public save(tabla: string, data): Promise<string | boolean> {
     this.itemsCollection = this.db.collection<any>(tabla);
     return this.itemsCollection.add(JSON.parse(JSON.stringify(data))).then(

@@ -6,7 +6,7 @@ const { Geolocation } = Plugins;
 import Swal from 'sweetalert2';
 
 import { DataForm, Photo } from '../../models/form.model';
-import { FormsAbstract } from './abstract/form.abstact';
+import { FormsAbstract } from '../abstract/form.abstact';
 
 import { UniqueService } from 'src/app/core/services/unique.service';
 import { FirebaseService } from 'src/app/core/services/firebase.service';

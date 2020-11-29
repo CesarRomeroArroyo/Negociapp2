@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 
 import { CategoryURL } from 'src/app/models/category.model';
-import { CollectionsBd } from 'src/app/models/form.model';
+import { CollectionsBd, imgStorage } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 
 export abstract class FormsAbstract {
@@ -31,6 +31,10 @@ export abstract class FormsAbstract {
     return this.category === CategoryURL.Service ? CollectionsBd.Service :
       this.category === CategoryURL.Rent ? CollectionsBd.Rent :
         this.category === CategoryURL.Shop ? CollectionsBd.Shop : null;
+  }
+
+  get imgDefault(): string {
+    return imgStorage.Default;
   }
 
 }

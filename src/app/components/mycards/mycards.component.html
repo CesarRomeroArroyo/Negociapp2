@@ -1,0 +1,57 @@
+<div class="cards" *ngIf="list">
+  <div class="message" *ngIf="list.length === 0">
+    <h6 class="text">{{'Sin productos' | uppercase}}</h6>
+  </div>
+  <div class="card" *ngFor="let item of list">
+    <div class="object-circle">
+      <div class="gradient"></div>
+      <div class="circle" *ngIf="item.offerit?.length > 0">
+        {{item.offerit.length}}
+      </div>
+      <img 
+        class="img" 
+        [src]="item.photos[0].dataUrl"
+        *ngIf="item.photos.length > 0; else imgDefaultTemplate">
+      <ng-template #imgDefaultTemplate>
+        <img 
+          class="img"
+          [src]="imgDefault">
+      </ng-template>
+    </div>
+    <div class="content-text">
+      <span class="title">{{item.name}}</span>
+      <div class="lineTwo">
+        <span>
+          <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}
+        </span>
+        <span>
+          <ion-icon name="location"></ion-icon>
+          {{user.city}}
+        </span>
+        <span>Nuevo/Usado</span>
+      </div>
+    </div>
+    <div class="buttons" *ngIf="buttons(item)">
+      <div class="button" (click)="selectOffer(item)">Ofertas</div>
+      <div class="button" (click)="goToEdit(item)">Editar</div>
+      <div class="button" (click)="goToDelete(item)">Eliminar</div>
+    </div>
+    <div 
+      class="buttons" 
+      *ngIf="buttonToCalificar(item)"
+      (click)="goTocalificar(item)">
+        <div class="button complete">
+          Calificar
+        </div>
+    </div>
+    <div 
+      class="buttons" 
+      *ngIf="buttonCheck(item)">
+        <div class="button complete">
+          <ion-icon name="checkmark"></ion-icon>
+          Calificacion Realizada 
+          <ion-icon name="checkmark"></ion-icon>
+        </div>
+    </div>
+  </div>
+</div>

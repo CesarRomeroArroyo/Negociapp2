@@ -32,8 +32,14 @@
     <app-formComponent 
       [category]="category" 
       (showCategories)="showModalCategories = $event"
-      (showPhotos)="showModalPhotos = $event">
+      (showPhotos)="showModalPhotos = $event"
+      *ngIf="tab === 1; else MyItem">
     </app-formComponent>
+    <ng-template #MyItem>
+      <app-mycards 
+        [category]="category">
+      </app-mycards>
+    </ng-template>
   </div>
 </ion-content>
 
