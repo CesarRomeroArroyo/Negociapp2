@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
@@ -18,6 +18,7 @@ export class FormComponent extends FormsAbstract implements OnInit {
 
   @Input() public categories: string[] = ['Hola'];
   @Input() public photos: string[] = [];
+  @Output() public showCategories = new EventEmitter<boolean>();
 
   public form: FormGroup;
   public data: DataForm;
@@ -75,8 +76,6 @@ export class FormComponent extends FormsAbstract implements OnInit {
   public validateinput(param: string): boolean {
     return this.form.get(param).invalid && this.form.get(param).touched;
   }
-
-  public showCategoria(): void { }
 
   public showPhotos(): void { }
 

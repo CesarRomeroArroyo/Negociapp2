@@ -13,6 +13,7 @@ export class FormPage implements OnInit {
 
   public tab = 1;
   public category: string;
+  public showModalCategories = false;
 
   constructor(private route: ActivatedRoute) { }
 

@@ -8,6 +8,7 @@ import { FormPageRoutingModule } from './form-routing.module';
 
 import { FormPage } from './form.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { ModalsModule } from 'src/app/modals/modals.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ReactiveFormsModule,
     IonicModule,
     ComponentsModule,
+    ModalsModule,
     FormPageRoutingModule
   ],
   declarations: [FormPage]

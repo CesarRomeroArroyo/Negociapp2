@@ -29,6 +29,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <app-formComponent [category]="category"></app-formComponent>
+    <app-formComponent 
+      [category]="category" 
+      (showCategories)="this.showModalCategories = $event">
+    </app-formComponent>
   </div>
 </ion-content>
+
+<app-categories-modal *ngIf="showModalCategories" (show)="this.showModalCategories = $event"></app-categories-modal>
