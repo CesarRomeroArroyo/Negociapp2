@@ -49,22 +49,26 @@ export class FileManagerService {
     return this.estado.asObservable();
   }
 
-  uploadImageBase64(file: string, filepath): void {
+  public async uploadImageBase64(file: string, filepath): Promise<any> {
     this.estado.next(true);
     this.fileReference = this.storage.ref(filepath);
-    const image = 'data:image/jpg;base64,' + file;
-    const task = this.storage.ref(filepath).putString(image, 'data_url');
+    const loading = await this.loadingController.create({
+      message: 'Espere por favor, Cargando la Imagen...'
+    });
+    await loading.present();
+    const task = this.storage.ref(filepath).putString(file, 'data_url');
     this.uploadProgress = task.percentageChanges();
-    task.snapshotChanges().pipe(
+    return task.snapshotChanges().pipe(
       finalize(() => {
         // this.uploadURL = fileRef.getDownloadURL();
         this.estado.next(false);
+        loading.dismiss();
       })
-    ).subscribe();
+    ).toPromise()
   }
 
-  getUrlFileInfo(path) {
-    return this.storage.ref(path).getDownloadURL();
+  public async getUrlFileInfo(path: string): Promise<string> {
+    return this.storage.ref(path).getDownloadURL().toPromise();
   }
 
 }

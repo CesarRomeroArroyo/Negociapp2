@@ -43,3 +43,8 @@ export interface OfferUser {
   days?: number;
   conditions?: string;
 }
+
+export interface Photo {
+  filepath: string;
+  dataUrl: string;
+}

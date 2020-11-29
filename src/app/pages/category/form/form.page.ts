@@ -14,6 +14,7 @@ export class FormPage implements OnInit {
   public tab = 1;
   public category: string;
   public showModalCategories = false;
+  public showModalPhotos = false;
 
   constructor(private route: ActivatedRoute) { }
 

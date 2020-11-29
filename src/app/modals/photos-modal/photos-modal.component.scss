@@ -1,0 +1,58 @@
+@import '../../../theme/mixin.scss';
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  color: var(--ion-color-dark);
+  background: var(--background-opacity);
+  @include flex(center, center);
+}
+
+.modal {
+  width: 85%;
+  height: 90%;
+  border-radius: 10px;
+  background: var(--ion-color-light);
+}
+
+.header {
+  padding: 16px;
+  @include flex(stretch, space-between);
+
+  >span {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
+}
+
+.message {
+  padding: 0px 16px;
+  --padding-start: 0;
+}
+
+.content-photos {
+  width: 100%;
+  height: 72%;
+  margin-top: 16px;
+  padding: 0px 16px;
+  overflow-y: scroll;
+  @include flex(center, flex-start, column);
+
+  img {
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  ion-img {
+    margin-bottom: 16px;
+
+    &::part(image) {
+      border-radius: 10px;
+    }
+  }
+}

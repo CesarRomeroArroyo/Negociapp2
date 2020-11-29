@@ -1,3 +1,16 @@
-<p>
-  photos-modal works!
-</p>
+<div class="container">
+  <div class="modal">
+    <div class="header">
+      <span>Fotos</span>
+      <ion-icon name="close" (click)="showModal.emit(false)"></ion-icon>
+    </div>
+    <ion-item class="message" (click)="takePic()">
+      <span>Clic para tomar una foto</span>
+      <ion-icon name="camera" slot="end"></ion-icon>
+    </ion-item>
+    <div class="content-photos">
+      <ng-container *ngFor="let photo of photos; let i = index;">
+        <ion-img [src]="photo.dataUrl" (click)="deletePhoto(photo)"></ion-img>
+      </ng-container>
+    </div>
+  </div>
