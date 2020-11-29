@@ -14,13 +14,13 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Mis datos',
-      url: '/misdatos',
+      url: '/perfil',
       icon: '/assets/btn-profile_white.svg',
       class: 'profile-icon'
     },
     {
       title: 'Configuracion MIDER',
-      url: '/configuracion',
+      url: '/mider',
       icon: '/assets/btn-menu_conf.svg',
       class: 'config-icon'
     }

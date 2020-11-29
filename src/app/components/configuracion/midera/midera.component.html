@@ -1,0 +1,49 @@
+<div class="content">
+	<div class="content__title">
+		<div class="content__title__text">MIDER-A <ion-toggle color="primary" [(ngModel)]="user.midera.estado" (ionChange)="miderStatus()">
+		</ion-toggle></div>
+		<label>Miembro de la Red de Arriendos</label>
+		<div class="content__title__active">
+			
+		</div>
+	</div>
+	<div class="content__body">
+		<div class="content__body__block" *ngIf="user.midera.estado === false"></div>
+		<div class="content__form__input">
+			<div class="content__form__input__label">
+				<img src="../../../../assets/icon/icon_category-perfilldpi.png"  style="width: 8%; height: 68%; margin-right:9px;" /> Mis categorias</div>
+			
+			<div class="content__form__input__categories">
+				<ion-chip (click)="showCategoria()">
+					<ion-label>Agregar Categorias</ion-label>
+					<ion-icon name="add"></ion-icon>
+				</ion-chip>
+				<div class="content__form__input__categories__options">
+					<ion-chip *ngFor="let category of user.midera.categorias">
+						<ion-label>{{category}}</ion-label>
+					</ion-chip>
+				</div>
+			</div>
+		</div>
+		<div class="content__button">
+			<div class="buttom" (click)="showCategoria()"><img src="../../../../assets/icon/icon_category-perfillbco.svg" style="width: 21%; height: 60%;"/>agregar</div>
+		</div>
+			<ion-list>
+				<ion-item *ngFor="let nivel of nivelArriendo">
+				  <ion-label>{{nivel.name}}</ion-label>
+				  <input type="checkbox" name="nivel.name" [value]="nivel.name"  
+				  (click)="pushNivel(nivel.name)" [checked]="selectLevel(nivel.name)">
+				</ion-item>
+			  </ion-list>
+
+		<div class="content__form__hv" (click)="showFiles(1)">
+			<ion-icon name="attach-outline"></ion-icon>
+			<span *ngIf="numRUT === 0">Tap para subir tu RUT.</span>
+			<span *ngIf="numRUT !== 0">{{numRUT}} archivo subido de 1 posible.</span>
+		</div>
+		<div class="content__button__submit">
+			<ion-button  class="content__button__submit" expand="block" size="large" (click)="next()">Guardar</ion-button>
+			<!--<ion-button expand="block" color="danger" size="large" (click)="searchUsers()">Borrar Usuarios</ion-button>-->
+		</div>
+	</div>
+</div>

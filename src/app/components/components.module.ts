@@ -4,9 +4,11 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
+import { MideraComponent } from './configuracion/midera/midera.component';
 
 const components = [
-  HeaderComponent
+  HeaderComponent,
+  MideraComponent
 ];
 
 @NgModule({

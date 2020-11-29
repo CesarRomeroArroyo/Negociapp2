@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryURL } from '../../models/category.model';
 
@@ -7,9 +7,14 @@ import { CategoryURL } from '../../models/category.model';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class InicioPage {
+export class InicioPage implements OnInit {
+  user: any;
 
   constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+  }
 
   get service(): string {
     return CategoryURL.Service;

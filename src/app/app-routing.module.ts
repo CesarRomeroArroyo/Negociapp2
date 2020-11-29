@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -8,16 +8,26 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule)
+    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'category/:category',
-    loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryPageModule)
+    loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'mider',
+    loadChildren: () => import('./pages/mider/mider.module').then( m => m.MiderPageModule)
   },
 ];
 
