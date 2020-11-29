@@ -31,9 +31,12 @@
     </ion-grid>
     <app-formComponent 
       [category]="category" 
-      (showCategories)="this.showModalCategories = $event">
+      (showCategories)="showModalCategories = $event">
     </app-formComponent>
   </div>
 </ion-content>
 
-<app-categories-modal *ngIf="showModalCategories" (show)="this.showModalCategories = $event"></app-categories-modal>
+<app-categories-modal 
+  (showModal)="showModalCategories = $event"
+  *ngIf="showModalCategories">
+</app-categories-modal>

@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="header">
       <span>Categorías</span>
-      <ion-icon name="close" (click)="close()"></ion-icon>
+      <ion-icon name="close" (click)="showModal.emit(false)"></ion-icon>
     </div>
     <div class="container-input">
       <ion-input 
@@ -16,9 +16,15 @@
       <ion-list>
         <ion-item 
           type="submit"
-          *ngFor="let category of categories">
+          *ngFor="let category of categoriesTem"
+          (click)="pushCategory(category.value)">
           <ion-label>{{category.text}}</ion-label>
-          <ion-checkbox color="secondary" slot="end" mode="ios" [value]="category.value"></ion-checkbox>
+          <ion-checkbox 
+            color="secondary" 
+            slot="end" 
+            mode="ios"
+            [checked]="selectCategory(category.value)">
+          </ion-checkbox>
         </ion-item>
       </ion-list>
     </div>

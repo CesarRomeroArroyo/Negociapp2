@@ -8,6 +8,7 @@ const { Geolocation } = Plugins;
 
 import { DataForm } from '../../models/form.model';
 import { FormsAbstract } from './abstract/form.abstact';
+import { StateApp } from 'src/app/core/services/state.service';
 
 @Component({
   selector: 'app-formComponent',
@@ -16,9 +17,9 @@ import { FormsAbstract } from './abstract/form.abstact';
 })
 export class FormComponent extends FormsAbstract implements OnInit {
 
-  @Input() public categories: string[] = ['Hola'];
+  @Input() public categories: string[] = [];
   @Input() public photos: string[] = [];
-  @Output() public showCategories = new EventEmitter<boolean>();
+  @Output() public showCategories = new EventEmitter<string>();
 
   public form: FormGroup;
   public data: DataForm;
@@ -27,13 +28,17 @@ export class FormComponent extends FormsAbstract implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private firebase: FirebaseService,
-    private uniqueId: UniqueService) {
+    private uniqueId: UniqueService,
+    private subject: StateApp) {
     super();
   }
 
   public async ngOnInit() {
     this.initForm();
     await this.getTypes();
+    this.subject.getObservable().subscribe(data => {
+      if (data.categories) this.categories = data.categories;
+    });
   }
 
   public initForm(data?: DataForm): void {
