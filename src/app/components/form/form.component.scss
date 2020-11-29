@@ -45,6 +45,17 @@ form {
     bottom: 16px;
   }
 
+  ion-list {
+    margin-bottom: 16px;
+    ion-radio-group {
+      width: 100%;
+      ion-item {
+        --border-width: 0 0 1px 0;
+        --border-color: var(--ion-color-primary)
+      }
+    }
+  }
+
   .radio-groud {
     width: 100%;
     margin-bottom: 16px;

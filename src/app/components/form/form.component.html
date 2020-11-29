@@ -24,6 +24,7 @@
   *ngIf="category === rent"
     [ngClass]="{'invalid': validateinput('quantity')}"
     class="input"
+    [textMask]="{mask: numberMask}"
     placeholder="Cantidad"
     formControlName="quantity"
   >
@@ -54,13 +55,13 @@
       <ion-label>Estado del producto</ion-label>
       <ion-item>
         <ion-radio slot="start" value="Nuevo"></ion-radio>
-        <ion-input disabled="true" class="content__form__input__radio">
+        <ion-input disabled="true">
           Nuevo
         </ion-input>
       </ion-item>
       <ion-item>
         <ion-radio slot="start" value="Usado"></ion-radio>
-        <ion-input disabled="true" class="content__form__input__radio">
+        <ion-input disabled="true">
           Usado
         </ion-input>
       </ion-item>
@@ -103,6 +104,7 @@
   <input 
     [ngClass]="{'invalid': validateinput('valueMask')}"
     class="input" 
+    [textMask]="{mask: numberMask}"
     placeholder="Valor dispuesto a pagar" 
     name="valor"
     autocomplete="off"

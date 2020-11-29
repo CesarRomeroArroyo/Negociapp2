@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { UniqueService } from 'src/app/core/services/unique.service';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 import { Plugins } from '@capacitor/core';
-import Swal from 'sweetalert2';
 const { Geolocation } = Plugins;
+import Swal from 'sweetalert2';
 
 import { DataForm } from '../../models/form.model';
 import { FormsAbstract } from './abstract/form.abstact';
+
+import { UniqueService } from 'src/app/core/services/unique.service';
+import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 
 @Component({
@@ -24,6 +26,9 @@ export class FormComponent extends FormsAbstract implements OnInit {
   public form: FormGroup;
   public data: DataForm;
   public types: any[] = [];
+  public numberMask = createNumberMask({
+    prefix: '',
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -103,12 +108,14 @@ export class FormComponent extends FormsAbstract implements OnInit {
         lng: coordinates.coords.longitude,
         oneSignalRequest: this.user.onesignal,
       }
+      delete dataForm.valueMask;
       this.firebase.save(this.saveFormDataCollection, dataForm).then(() => {
         Swal.fire('', 'Datos almacenados correctamente', 'success');
         /**
          * TODO: One signal Pendiente
          */
         this.form.reset();
+        this.subject.setData({ categories: [] });
       }).catch(err => {
         Swal.fire('Error', err.message, 'error');
       });
