@@ -62,7 +62,15 @@ export class AppComponent  implements OnInit  {
 			this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
 			this.oneSignal.handleNotificationReceived().subscribe(() => {
 				// do something when notification is received
-			});
+      });
+
+      /* Asi se debe enviar los mensajes
+      this.oneSignal.sendDirectMessage(
+                  user.onesignal,
+                  'Hay un nuevo servicio que concuerda con tus categorias.',
+                  { idunico, target: 'request-services', type: 'redirect' }
+                );
+      */ 
 
 			this.oneSignal.handleNotificationOpened().subscribe((data) => {
 				// do something when a notification is opened

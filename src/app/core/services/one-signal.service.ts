@@ -34,10 +34,10 @@ export class OneSignalService {
 	}
 
 	async redirectTo(data){
-			if(data.target == 'request-services'){
-				const item = await this.firebase.obtenerUniqueIdPromise('request-services', data.idunico);
-				//sse debe subir esta info a un servicio para que pueda ser tomada luego la idea es guardar el item
-				this.router.navigate(['/'+data.target+'/']);
-			}
+		if(data.target === 'request-services'){
+			const item = await this.firebase.obtenerUniqueIdPromise('request-services', data.idunico);
+			//sse debe subir esta info a un servicio para que pueda ser tomada luego la idea es guardar el item
+			this.router.navigate(['/'+data.target+'/']);
+		}
 	}
 }
