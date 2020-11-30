@@ -31,27 +31,17 @@
         <span>Nuevo/Usado</span>
       </div>
     </div>
-    <div class="buttons" *ngIf="buttons(item)">
-      <div class="button" (click)="selectOffer(item)">Ofertas</div>
-      <div class="button" (click)="goToEdit(item)">Editar</div>
-      <div class="button" (click)="goToDelete(item)">Eliminar</div>
-    </div>
-    <div 
-      class="buttons" 
-      *ngIf="buttonToCalificar(item)"
-      (click)="goTocalificar(item)">
-        <div class="button complete">
-          Calificar
-        </div>
-    </div>
-    <div 
-      class="buttons" 
-      *ngIf="buttonCheck(item)">
-        <div class="button complete">
-          <ion-icon name="checkmark"></ion-icon>
-          Calificacion Realizada 
-          <ion-icon name="checkmark"></ion-icon>
-        </div>
-    </div>
+    <ng-container *ngIf="!isOffers; else offersTemplate">
+      <div class="buttons" *ngIf="buttons(item)">
+        <div class="button" (click)="selectOffer(item)">Ofertas</div>
+        <div class="button" (click)="goToEdit(item)">Editar</div>
+        <div class="button" (click)="goToDelete(item)">Eliminar</div>
+      </div>
+    </ng-container>
+    <ng-template #offersTemplate>
+      <div class="buttons">
+        <div class="button" [class.isOffer]="isOffers">Detalles</div>
+      </div>
+    </ng-template>
   </div>
 </div>

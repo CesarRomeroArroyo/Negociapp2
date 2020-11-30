@@ -19,29 +19,26 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   public list: DataForm[];
   public subscription: Subscription;
 
-  @Input() public pathProposal: string;
-  @Input() public pathEdit: string;
   @Input() public type: string;
+  @Input() isOffers = false;
   @Output() public tab = new EventEmitter<number>();
 
   constructor(
     private firebase: FirebaseService,
-    private state: StateApp,
     private router: Router) {
     super();
   }
 
   ngOnInit() {
-    this.getUser();
-    this.getListUser();
+    if(!this.isOffers){
+      this.getListUser();
+    } else {
+      this.getOffers();
+    }
   }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
-  }
-
-  public getUser(): void {
-    this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
   }
 
   public buttons(item): boolean {
@@ -54,32 +51,24 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
         return true;
     }
   }
-  public buttonToCalificar(item): boolean {
-    if (item.close) {
-      if (item.close && item.rate === 1)
-        return true;
-    }
-    if (item.cerrado) {
-      if (item.cerrado && item.rate === 1)
-        return true;
-    }
-  }
-  public buttonCheck(item): boolean {
-    if (item.close) {
-      if (item.close && item.rate === 2)
-        return true;
-    }
-    if (item.cerrado) {
-      if (item.cerrado && item.rate === 2)
-        return true;
-    }
-  }
 
   public getListUser(): void {
     this.subscription = this.firebase.obtenerForObsevable(
       this.collectionDataBD,
       CollectionsBd.UserRequest,
       this.user.uniqueid).subscribe(data => this.list = data);
+  }
+
+  public getOffers() {
+    this.firebase.obtener(this.collectionDataBD).subscribe(data => {
+      const Alloffers  = data;
+      const offerA = Alloffers.filter((offer) => {
+        return !offer.userOffers.includes(this.user.uniqueid) && offer.userRequest !== this.user.uniqueid
+        && offer?.close === false;
+      });
+      data?.length > 0 ? this.list = offerA : this.list = [];
+      console.log(this.list);
+    });
   }
 
   public selectOffer(item: DataForm): void {
@@ -117,11 +106,6 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
         }
       }
     });
-  }
-
-  public goTocalificar(item: any): void {
-    this.state.setData({ elementRate: item });
-    this.router.navigate([`/ratePage/${this.type}`]);
   }
 
 }
