@@ -82,7 +82,9 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
       this.user.uniqueid).subscribe(data => this.list = data);
   }
 
-  public selectOffer(item: DataForm): void { }
+  public selectOffer(item: DataForm): void {
+    this.router.navigate([`/category/${this.category}/form/offers/${item.uniqueid}`]);
+  }
 
   public goToEdit(item: DataForm): void {
     if (item.offerit.length === 0) {
