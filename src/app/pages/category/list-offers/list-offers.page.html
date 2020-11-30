@@ -1,0 +1,33 @@
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <div class="content">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button 
+            class="tab" 
+            (click)="tab = 1" 
+            [ngClass]="{'active': tab === 1}">
+              <p>Ofertar</p>
+              <img src="../../../assets/icon_servicios.png">
+          </button>
+          <button 
+            class="tab" 
+            [ngClass]="{'active' : tab === 2}"
+            (click)="tab = 2">
+              <p>Mis ofertas</p>
+              <img src="../../../assets/mis_servicios.png">
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

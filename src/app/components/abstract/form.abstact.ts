@@ -6,14 +6,11 @@ import { User } from 'src/app/models/user.model';
 
 export abstract class FormsAbstract {
 
-  @Input() public category: string;
-  public timeForArray: string[] = [
-    'Horas',
-    'Dias',
-    'Meses'
-  ];
-  public invalid = false;
   public user: User = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+  public timeForArray: string[] = ['Horas', 'Dias', 'Meses'];
+  public invalid = false;
+
+  @Input() public category: string;
 
   get service(): string {
     return CategoryURL.Service;

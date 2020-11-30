@@ -1,0 +1,84 @@
+@import '../../../../theme/mixin.scss';
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.content {
+  width: 100%;
+  margin-top: 16px;
+  @include flex(center, flex-start, column);
+
+  ion-grid {
+    width: 100%;
+    padding: 0px;
+
+    ion-row {
+      ion-col {
+        @include flex(center, space-around);
+
+        .tab {
+          width: 48%;
+          height: 30px;
+          border-radius: 20px;
+          color: var(--ion-color-light);
+          background: var(--ion-color-primary);
+          @include flex(center, center);
+
+          &:nth-child(2) {
+            background: var(--ion-color-secondary);
+          }
+
+          p {
+            margin: 0px;
+            padding: 0px;
+            width: 80%;
+          }
+
+          img {
+            height: 18px;
+            width: 18px;
+          }
+
+          &.active {
+            @include box-shadow-black();
+          }
+        }
+      }
+    }
+  }
+
+  app-formComponent {
+    width: 100%;
+  }
+
+  app-mycards {
+    width: 100%
+  }
+}
+
+.footer {
+  z-index: 2;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-size: 25px;
+  color: var(--ion-color-primary);
+  margin-bottom: 16px;
+  padding: 0px 16px;
+  @include flex(center, center);
+
+  .input {
+    margin: 0 auto;
+    align-items: center;
+    background: var(--ion-color-blue-light);
+    --color: var(--ion-color-primary);
+    border: 1px solid var(--ion-color-primary);
+    border-radius: 1.5em;
+    @include box-shadow-black();
+
+    ion-icon {
+      margin-left: 8px;
+    }
+  }
+}

@@ -20,13 +20,13 @@
         </div>
         <ion-icon name="search"></ion-icon>
       </div>
-      <div class="content__items__item" [routerLink]="['/offer-product-rent']">
+      <div class="content__items__item" (click)="redirecTo('list-offers')">
         <div class="text">
           {{template.item2}}
         </div>
         <ion-icon name="pricetag"></ion-icon>
       </div>
-      <div class="content__items__item" [routerLink]="['/history/rent']">
+      <div class="content__items__item">
         <div class="text">
           {{template.item3}}
         </div>

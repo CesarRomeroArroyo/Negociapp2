@@ -20,10 +20,8 @@ export class FormPage implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(url => {
-      this.category = url.category;
-      if (url.idunique) this.idunique = url.idunique;
-    });
+    this.category = this.route.snapshot.paramMap.get('category');
+    this.idunique = this.route.snapshot.paramMap.get('idunique');
   }
 
   get secondMessageHeader(): string {
