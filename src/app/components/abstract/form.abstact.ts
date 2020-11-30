@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 
-import { CategoryURL } from 'src/app/models/category.model';
+import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { CollectionsBd, imgStorage } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 
@@ -28,6 +28,17 @@ export abstract class FormsAbstract {
     return this.category === CategoryURL.Service ? CollectionsBd.Service :
       this.category === CategoryURL.Rent ? CollectionsBd.Rent :
         this.category === CategoryURL.Shop ? CollectionsBd.Shop : null;
+  }
+
+  get secondMessageHeader(): string {
+    switch (this.category) {
+      case CategoryURL.Service:
+        return CategoryPath.Service;
+      case CategoryURL.Rent:
+        return CategoryPath.Rent;
+      case CategoryURL.Shop:
+        return CategoryPath.Shop;
+    }
   }
 
   get imgDefault(): string {

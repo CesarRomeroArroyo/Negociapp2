@@ -19,8 +19,11 @@
     </div>
     <span class="info">ofertas Recibidas</span>
     <div class="list">
-      <ng-container *ngFor="let element of [2,2]">
-        <app-offers-received></app-offers-received>
+      <ng-container *ngFor="let element of item.offerit; let i = index">
+        <app-offers-received
+          [element]="element"
+          [index]="i">
+        </app-offers-received>
       </ng-container>
     </div>
   </div>

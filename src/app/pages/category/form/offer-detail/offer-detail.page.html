@@ -1,0 +1,20 @@
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <div class="content">
+    <div class="name_detail">
+      <app-offers-received></app-offers-received>
+    </div>
+    <span class="info">Datos de Solicitud</span>
+    <app-card-detail></app-card-detail>
+    <span class="info">Datos de Oferta</span>
+    <app-card-detail></app-card-detail>
+  </div>
+</ion-content>

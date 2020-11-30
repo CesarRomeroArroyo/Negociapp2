@@ -29,18 +29,6 @@ export class OffersPage extends FormsAbstract implements OnInit {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
     this.item = dataForm[0];
-    console.log(this.item);
-  }
-
-  get secondMessageHeader(): string {
-    switch (this.category) {
-      case CategoryURL.Service:
-        return CategoryPath.Service;
-      case CategoryURL.Rent:
-        return CategoryPath.Rent;
-      case CategoryURL.Shop:
-        return CategoryPath.Shop;
-    }
   }
 
 }
