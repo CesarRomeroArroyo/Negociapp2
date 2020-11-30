@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" *ngIf="form">
   <!-- Name -->
   <ion-input 
     [ngClass]="{'invalid': validateinput('name')}"
@@ -111,7 +111,7 @@
     formControlName="valueMask"
   >
   <!-- Buttons -->
-  <ng-container *ngIf="true; else updateTemplate">
+  <ng-container *ngIf="!idunique; else updateTemplate">
     <div class="submit">
       <ion-button
         type="submit"

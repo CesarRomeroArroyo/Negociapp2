@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'form',
     loadChildren: () => import('./form/form.module').then( m => m.FormPageModule)
+  },
+  {
+    path: 'form/:idunique',
+    loadChildren: () => import('./form/form.module').then( m => m.FormPageModule)
   }
 ];
 

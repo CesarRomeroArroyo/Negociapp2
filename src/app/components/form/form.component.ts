@@ -12,6 +12,9 @@ import { UniqueService } from 'src/app/core/services/unique.service';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
+import { element } from 'protractor';
+import { ArrayType } from '@angular/compiler';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-formComponent',
@@ -20,13 +23,13 @@ import { FileManagerService } from 'src/app/core/services/file-manager.service';
 })
 export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
-  @Input() public categories: string[] = [];
-  @Input() public photos: Photo[] = [];
+  @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
 
+  public categories: string[] = [];
+  public photos: Photo[] = [];
   public form: FormGroup;
-  public data: DataForm;
   public types: any[] = [];
   public numberMask = createNumberMask({
     prefix: '',
@@ -37,20 +40,34 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     private firebase: FirebaseService,
     private uniqueId: UniqueService,
     private state: StateApp,
-    private fileManager: FileManagerService,) {
+    private fileManager: FileManagerService,
+    public loadingController: LoadingController) {
     super();
   }
 
   public async ngOnInit() {
     this.initForm();
     await this.getTypes();
+    if (this.idunique) {
+      this.getDataUpdate();
+    }
     this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
     });
   }
+
   public ngOnDestroy() {
     this.resetForm();
+  }
+
+  public async getDataUpdate(): Promise<void> {
+    const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.idunique);
+    const data: DataForm = dataForm[0];
+    this.initForm(data);
+    console.log(data);
+    this.state.setData({ categories: data.categories });
+    this.state.setData({ photos: data.photos });
   }
 
   public initForm(data?: DataForm): void {
@@ -60,7 +77,8 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
           name: ['' || data?.name, Validators.required],
           type: ['' || data?.type, Validators.required],
           description: ['' || data?.description],
-          valueMask: ['' || data?.valueMask, Validators.required],
+          valueMask: ['' || data?.value, Validators.required],
+          id: ['' || data?.id],
         });
         break;
       }
@@ -71,7 +89,8 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
           time: ['' || data?.time, Validators.required],
           timeFor: ['' || data?.timeFor, Validators.required],
           description: ['' || data?.description],
-          valueMask: ['' || data?.valueMask, Validators.required],
+          valueMask: ['' || data?.value, Validators.required],
+          id: ['' || data?.id],
         });
         break;
       }
@@ -80,7 +99,8 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
           name: ['' || data?.name, Validators.required],
           state: ['' || data?.state, Validators.required],
           description: ['' || data?.description],
-          valueMask: ['' || data?.valueMask, Validators.required],
+          valueMask: ['' || data?.value, Validators.required],
+          id: ['' || data?.id],
         });
       }
     }
@@ -100,12 +120,12 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       const price = priceMask.replace(/,/g, '');
       const coordinates = await Geolocation.getCurrentPosition();
       if (this.photos.length > 0) {
-        this.photos.forEach(async (element) => {
+        this.photos.forEach(async (item) => {
           const idunique = this.uniqueId.uniqueId();
           const path = `${this.user.uniqueid}/${this.category}/${idunique}`;
-          await this.fileManager.uploadImageBase64(element.dataUrl, path);
-          element.filepath = path;
-          element.dataUrl = await this.fileManager.getUrlFileInfo(path);
+          await this.fileManager.uploadImageBase64(item.dataUrl, path);
+          item.filepath = path;
+          item.dataUrl = await this.fileManager.getUrlFileInfo(path);
         });
       }
       setTimeout(() => {
@@ -124,7 +144,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
           oneSignalRequest: this.user.onesignal,
         }
         delete dataForm.valueMask;
-        this.firebase.save(this.saveFormDataCollection, dataForm).then(() => {
+        this.firebase.save(this.collectionDataBD, dataForm).then(() => {
           Swal.fire('', 'Datos almacenados correctamente', 'success');
           /**
            * TODO: One signal Pendiente
@@ -138,12 +158,62 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     }
   }
 
-  public update(): void { }
+  public async update(): Promise<void> {
+    if (this.validators()) {
+      const loading = await this.loadingController.create({
+        message: 'Actualizando Datos...',
+      });
+      await loading.present();
+      if (this.photos.length > 0) {
+        const arrayTemp = this.photos.filter(item => {
+          return item.dataUrl.indexOf('data:image/') !== -1;
+        });
+        if (arrayTemp.length > 0) {
+          arrayTemp.forEach(async (item, index) => {
+            const idunique = this.uniqueId.uniqueId();
+            const path = `${this.user.uniqueid}/${this.category}/${idunique}`;
+            item.filepath = path;
+            await this.fileManager.uploadImageBase64(item.dataUrl, path);
+            await this.fileManager.getUrlFileInfo(path).then(url => item.dataUrl = url);
+            if ((index + 1) === arrayTemp.length) {
+              this.updateData(loading);
+            }
+          });
+        } else {
+          this.updateData(loading);
+        }
+      } else {
+        this.updateData(loading);
+      }
+    }
+  }
+
+  private updateData(loading?: HTMLIonLoadingElement): void {
+    setTimeout(() => {
+      const priceMask = this.form.get('valueMask').value;
+      const price = priceMask.replace(/,/g, '');
+      const dataForm: DataForm = {
+        ...this.form.value,
+        categories: this.categories,
+        photos: this.photos,
+        value: price,
+      }
+      delete dataForm.valueMask;
+      this.firebase.actualizarDatos(this.collectionDataBD, dataForm, this.form.get('id').value).then(() => {
+        Swal.fire('', 'Datos actualizados correctamente', 'success');
+        this.resetForm();
+        window.history.back();
+        loading.dismiss();
+      }).catch(err => {
+        Swal.fire('Error', err.message, 'error');
+      });
+    }, 2000);
+  }
 
   private validators(): boolean {
-    Object.values(this.form.controls).forEach(element => {
-      if (element instanceof FormControl) {
-        element.markAsTouched();
+    Object.values(this.form.controls).forEach(item => {
+      if (item instanceof FormControl) {
+        item.markAsTouched();
       }
     });
     this.categories.length === 0 ? this.invalid = true : this.invalid = false;

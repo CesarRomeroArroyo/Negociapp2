@@ -9,7 +9,7 @@
 
 <ion-content fullscreen="true" scroll-y="true" scroll-x="false">
   <div class="content">
-    <ion-grid>
+    <ion-grid *ngIf="!idunique">
       <ion-row>
         <ion-col>
           <button 
@@ -31,6 +31,7 @@
     </ion-grid>
     <app-formComponent 
       [category]="category" 
+      [idunique]="idunique"
       (showCategories)="showModalCategories = $event"
       (showPhotos)="showModalPhotos = $event"
       *ngIf="tab === 1; else MyItem">

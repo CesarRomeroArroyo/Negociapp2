@@ -77,7 +77,7 @@ export class FirebaseService {
 
   public async obtenerUniqueIdPromise(tabla, id): Promise<any[]> {
     const returnData = [];
-    const data = await this.db.collection(tabla, ref => ref.where('idunico', '==', id)).get().toPromise();
+    const data = await this.db.collection(tabla, ref => ref.where('uniqueid', '==', id)).get().toPromise();
     data.forEach(info => {
       const d = info.data();
       d.id = info.id;

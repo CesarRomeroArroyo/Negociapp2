@@ -77,29 +77,16 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
 
   public getListUser(): void {
     this.subscription = this.firebase.obtenerForObsevable(
-      this.saveFormDataCollection,
+      this.collectionDataBD,
       CollectionsBd.UserRequest,
       this.user.uniqueid).subscribe(data => this.list = data);
   }
 
-  public selectOffer(item: DataForm): void {
-    switch (this.type) {
-      case 'service':
-        this.state.setData({ productService: item });
-        break;
-      case 'rent':
-        this.state.setData({ productRent: item });
-        break;
-      case 'shop':
-        this.state.setData({ productShop: item });
-        break;
-    }
-    this.router.navigate([`${this.pathProposal}`]);
-  }
+  public selectOffer(item: DataForm): void { }
 
-  public goToEdit(item: any): void {
+  public goToEdit(item: DataForm): void {
     if (item.offerit.length === 0) {
-      this.router.navigate([`${this.pathEdit}/${item.uniqueid}`]);
+      this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
     } else {
       Swal.fire(
         '',
@@ -123,7 +110,7 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
     }).then(result => {
       if (result.value) {
         if (item.offerit.length === 0) {
-          this.firebase.eliminarDatos(this.saveFormDataCollection, item.id);
+          this.firebase.eliminarDatos(this.collectionDataBD, item.id);
           this.tab.emit(1);
         }
       }

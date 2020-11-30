@@ -52,17 +52,12 @@ export class FileManagerService {
   public async uploadImageBase64(file: string, filepath): Promise<any> {
     this.estado.next(true);
     this.fileReference = this.storage.ref(filepath);
-    const loading = await this.loadingController.create({
-      message: 'Espere por favor, Cargando la Imagen...'
-    });
-    await loading.present();
     const task = this.storage.ref(filepath).putString(file, 'data_url');
     this.uploadProgress = task.percentageChanges();
     return task.snapshotChanges().pipe(
       finalize(() => {
         // this.uploadURL = fileRef.getDownloadURL();
         this.estado.next(false);
-        loading.dismiss();
       })
     ).toPromise()
   }

@@ -27,7 +27,7 @@ export abstract class FormsAbstract {
     return CategoryURL.Shop;
   }
 
-  get saveFormDataCollection(): string {
+  get collectionDataBD(): string {
     return this.category === CategoryURL.Service ? CollectionsBd.Service :
       this.category === CategoryURL.Rent ? CollectionsBd.Rent :
         this.category === CategoryURL.Shop ? CollectionsBd.Shop : null;

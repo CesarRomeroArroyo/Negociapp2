@@ -15,12 +15,14 @@ export class FormPage implements OnInit {
   public category: string;
   public showModalCategories = false;
   public showModalPhotos = false;
+  public idunique: string;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(url => {
       this.category = url.category;
+      if (url.idunique) this.idunique = url.idunique;
     });
   }
 
