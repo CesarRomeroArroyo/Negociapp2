@@ -7,6 +7,21 @@
   [colorIconBlack]="false">
 </app-header>
 
-<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
-
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
+  <div class="content">
+    <div class="header">
+      <ion-img [src]="imgDeal"></ion-img>
+      <span class="info">Solicitud 001</span>
+      <div class="text">
+        <span>{{item.name}}</span>
+        <span>Mi presupuesto: <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span></span>
+      </div>
+    </div>
+    <span class="info">ofertas Recibidas</span>
+    <div class="list">
+      <ng-container *ngFor="let element of [2,2]">
+        <app-offers-received></app-offers-received>
+      </ng-container>
+    </div>
+  </div>
 </ion-content>

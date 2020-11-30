@@ -9,12 +9,14 @@ import { HeaderComponent } from './header/header.component';
 import { MideraComponent } from './configuracion/midera/midera.component';
 import { FormComponent } from './form/form.component';
 import { MycardsComponent } from './mycards/mycards.component';
+import { OffersReceivedComponent } from './offers-received/offers-received.component';
 
 const components = [
   HeaderComponent,
   MideraComponent,
   FormComponent,
-  MycardsComponent
+  MycardsComponent,
+  OffersReceivedComponent
 ];
 
 @NgModule({

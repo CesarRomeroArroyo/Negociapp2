@@ -16,6 +16,7 @@ export class OffersPage extends FormsAbstract implements OnInit {
 
   public category: string;
   public uniqueid: string;
+  public item: DataForm;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,8 +28,8 @@ export class OffersPage extends FormsAbstract implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
-    const data: DataForm = dataForm[0];
-    console.log(data);
+    this.item = dataForm[0];
+    console.log(this.item);
   }
 
   get secondMessageHeader(): string {

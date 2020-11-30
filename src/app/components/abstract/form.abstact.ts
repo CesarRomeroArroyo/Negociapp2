@@ -34,4 +34,12 @@ export abstract class FormsAbstract {
     return imgStorage.Default;
   }
 
+  get imgDeal(): string {
+    return imgStorage.Deal;
+  }
+
+  get iconDeal(): string {
+    return imgStorage.iconDeal;
+  }
+
 }

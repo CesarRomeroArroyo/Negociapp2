@@ -10,3 +10,39 @@ ion-content {
   @include flex(center, flex-start, column);
 
 }
+
+.header {
+  margin-top: 16px;
+  @include flex(center, center, column);
+
+  ion-image {
+    width: 70%;
+  }
+
+  .text {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--ion-color-medium);
+    @include flex(center, center, column);
+
+    span {
+      .value {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+      }
+    }
+  }
+}
+
+.info {
+  margin-top: 16px;
+  padding: 4px 12px;
+  border-radius: 30px;
+  color: var(--ion-color-light);
+  background: var(--ion-color-primary);
+}
+
+.list {
+  margin-top: 16px;
+  width: 75%;
+}
