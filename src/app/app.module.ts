@@ -16,6 +16,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AngularFireAuth
+    AngularFireAuth,
+    OneSignal
   ],
   bootstrap: [AppComponent]
 })
