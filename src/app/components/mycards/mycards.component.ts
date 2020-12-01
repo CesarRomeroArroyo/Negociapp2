@@ -56,7 +56,6 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
         && offer?.close === false;
       });
       data?.length > 0 ? this.list = offerA : this.list = [];
-      console.log(this.list);
     });
   }
 

@@ -1,20 +1,12 @@
 @import '../../../theme/mixin.scss';
 
 .card {
-  width: 100%;
-  margin-bottom: 24px;
+  width: 90%;
+  margin: 0px auto 16px;
   background: var(--ion-color-light);
   border-radius: 10px;
   @include flex(center, flex-end, column);
   @include box-shadow-card();
-
-  .img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
 
   .buttons {
     width: 100%;
@@ -52,19 +44,7 @@
 
 .object-circle {
   position: relative;
-  height: 140px;
-
-  .circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    position: absolute;
-    right: -12px;
-    top: -1rem;
-    background: var(--ion-color-danger);
-    color: var(--ion-color-light);
-    @include flex(center, center);
-  }
+  height: 180px;
 
   .gradient {
     &::after {
@@ -73,27 +53,37 @@
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8) 100%);
       z-index: 1;
       opacity: 0.7;
-      height: 140px;
+      height: 180px;
       width: 100%;
+      border-radius: 10px;
     }
+  }
+
+  .img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
   }
 }
 
 .content-text {
   z-index: 1;
   position: absolute;
-  width: 100%;
-  padding: 0px 32px;
-  margin-bottom: 3.2rem;
+  width: 85%;
+  height: 15%;
+  margin-bottom: 8px;
   color: var(--ion-color-light);
   font-size: 12px;
-  @include flex($direction: column);
+  @include flex(stretch, center, column);
 
   .title {
+    margin-bottom: 4px;
     font-weight: bold;
   }
 
   .lineTwo {
+    margin-bottom: 4px;
     @include flex($justifyContent: space-between);
   }
 
@@ -101,7 +91,10 @@
     @include flex($justifyContent: space-between);
 
     .conditions {
-      padding: 4px 6px;
+      height: fit-content;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: bold;
       color: var(--ion-color-primary);
       background: var(--ion-color-light);
     }

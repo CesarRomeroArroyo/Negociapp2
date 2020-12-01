@@ -16,6 +16,10 @@ ion-content {
   border-radius: 30px;
   color: var(--ion-color-light);
   background: var(--ion-color-primary);
+
+  &.second {
+    background: var(--ion-color-success);
+  }
 }
 
 .name_detail {

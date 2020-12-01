@@ -13,7 +13,7 @@ export class OffersReceivedComponent extends FormsAbstract implements OnInit {
 
   public uniqueid: string;
 
-  @Input() element: OfferUser;
+  @Input() item: OfferUser;
   @Input() index: number;
 
   constructor(
@@ -25,10 +25,16 @@ export class OffersReceivedComponent extends FormsAbstract implements OnInit {
   ngOnInit() {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     this.category = this.route.snapshot.paramMap.get('category');
+    console.log(this.item);
+  }
+
+  get days(): string {
+    const day = this.item.days;
+    return day.toString() === '1' ? 'día' : 'días';
   }
 
   public redirecto(path?: string): void {
-    this.router.navigate([`category/${this.category}/form/offer-detail/${this.uniqueid}`]);
+    this.router.navigate([`category/${this.category}/form/offer-detail/${this.uniqueid}/${this.index}`]);
   }
 
 }

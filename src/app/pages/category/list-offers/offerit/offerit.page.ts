@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import Swal from 'sweetalert2';
 
@@ -22,7 +22,8 @@ export class OfferitPage extends FormsAbstract implements OnInit {
     private firebase: FirebaseService,
     private route: ActivatedRoute,
     private fromBuilder: FormBuilder,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router,
   ) {
     super();
   }
@@ -66,6 +67,7 @@ export class OfferitPage extends FormsAbstract implements OnInit {
       this.firebase.actualizarDatos(
         this.collectionDataBD, this.item, this.item.id).then(() => {
         Swal.fire('', 'Su oferta fue realizada', 'success');
+        this.router.navigate([`category/${this.category}/list-offers`]);
         loading.dismiss();
         /**
          * TODO: One signal

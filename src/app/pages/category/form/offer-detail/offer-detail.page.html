@@ -7,14 +7,18 @@
   [colorIconBlack]="false">
 </app-header>
 
-<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
   <div class="content">
     <div class="name_detail">
-      <app-offers-received></app-offers-received>
+      <app-offers-received [item]="item.offerit[index]"></app-offers-received>
     </div>
     <span class="info">Datos de Solicitud</span>
-    <app-card-detail></app-card-detail>
-    <span class="info">Datos de Oferta</span>
-    <app-card-detail></app-card-detail>
+    <div class="card">
+      <app-card-detail [item]="item"></app-card-detail>
+    </div>
+    <span class="info second">Datos de Oferta</span>
+    <div class="card">
+      <app-card-detail [item]="item"></app-card-detail>
+    </div>
   </div>
 </ion-content>
