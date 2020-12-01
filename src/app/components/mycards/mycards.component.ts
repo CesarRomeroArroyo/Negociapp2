@@ -41,17 +41,6 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
     this.subscription?.unsubscribe();
   }
 
-  public buttons(item): boolean {
-    if (item.close?.toString().length > 0) {
-      if (!item.close)
-        return true;
-    }
-    if (item.cerrado?.toString().length > 0) {
-      if (!item.cerrado)
-        return true;
-    }
-  }
-
   public getListUser(): void {
     this.subscription = this.firebase.obtenerForObsevable(
       this.collectionDataBD,
@@ -75,6 +64,10 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
     this.router.navigate([`/category/${this.category}/form/offers/${item.uniqueid}`]);
   }
 
+  public goToDetail(item: DataForm): void {
+    this.router.navigate([`/category/${this.category}/list-offers/offer-detail/${item.uniqueid}`]);
+  }
+
   public goToEdit(item: DataForm): void {
     if (item.offerit.length === 0) {
       this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
@@ -85,7 +78,6 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
         'error'
       );
     }
-
   }
 
   public goToDelete(item: any): void {

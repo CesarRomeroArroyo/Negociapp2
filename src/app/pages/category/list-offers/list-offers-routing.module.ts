@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ListOffersPage
+  },
+  {
+    path: 'offer-detail/:uniqueid',
+    loadChildren: () => import('./offer-detail/offer-detail.module').then( m => m.OfferDetailPageModule)
   }
 ];
 

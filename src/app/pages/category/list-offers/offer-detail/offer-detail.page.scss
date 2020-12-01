@@ -1,0 +1,142 @@
+@import '../../../../../theme/mixin.scss';
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.container {
+  background-color: var(--ion-color-light);
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  @include flex();
+}
+
+.photos {
+  height: 380px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+
+  >img {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    height: 100%;
+  }
+
+  ion-slides {
+    height: 100%;
+    width: 100%;
+
+    ion-slide {
+      img {
+        object-fit: cover;
+        object-position: top;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.datos {
+  z-index: 1;
+  width: 100%;
+  height: 40%;
+  bottom: 0px;
+  border-radius: 40px 40px 0 0;
+  padding: 2rem 3rem;
+  color: var(--ion-color-primary);
+  background: var(--ion-color-light);
+  position: absolute;
+  @include flex(stretch, flex-start, column);
+  @include box-shadow-detail();
+
+  .name {
+    width: 200px;
+    font-size: 16px;
+    color: var(--ion-color-primary);
+  }
+
+  .value {
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--ion-color-primary);
+  }
+
+  .distance {
+    width: 75px;
+    top: 3rem;
+    right: 1rem;
+    margin-bottom: 16px;
+    text-align: center;
+    position: absolute;
+    @include flex(center, flex-end);
+
+    ion-icon {
+      height: 32px;
+      width: 32px;
+    }
+    
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .description {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    border: 2px solid var(--ion-color-blue-light);
+
+    span {
+      @include flex(center, center);
+
+      &:first-child {
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: var(--ion-color-primary);
+      }
+
+      &:nth-child(2) {
+        text-align: center;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}
+
+.categories {
+  width: 100%;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  @include flex(stretch, space-around);
+
+  .category {
+    height: 32px;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0px 8px;
+    text-align: center;
+    border-radius: 16px;
+    color: var(--ion-color-medium);
+    border: 1px solid var(--ion-color-primary);
+    background: var(--ion-color-blue-light);
+    @include flex(center, center);
+  }
+}
+
+.button {
+  width: 100%;
+  @include flex(center, center);
+
+  ion-button {
+    text-transform: capitalize;
+    width: fit-content;
+  }
+}

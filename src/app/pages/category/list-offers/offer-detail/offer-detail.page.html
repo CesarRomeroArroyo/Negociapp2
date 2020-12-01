@@ -1,0 +1,44 @@
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
+  <div class="container">
+    <div class="photos">
+      <img [src]="imgDefaultDetail" *ngIf="item?.photos?.length === 0; else img">
+      <ng-template #img>
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let photo of item?.photos">
+            <img [src]="photo.dataUrl">
+          </ion-slide>
+        </ion-slides>
+      </ng-template>
+    </div>
+    <div class="datos">
+      <span class="name">{{item.name}}</span>
+      <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span>
+      <span class="distance">
+        <ion-icon name="location" color="primary"></ion-icon>
+        <span>12 KM <span>de distancia</span></span>
+      </span>
+      <span class="description">
+        <span>Descripcion</span>
+        <span>{{item.description}}</span>
+      </span>
+      <div class="categories">
+        <div class="category" *ngFor="let category of item.categories">
+          {{category}}
+        </div>
+      </div>
+      <!-- *ngIf="!id && userValid" -->
+      <div class="button">
+        <ion-button shape="round">Ofertar</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

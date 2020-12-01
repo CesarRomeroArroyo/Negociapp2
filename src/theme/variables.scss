@@ -171,17 +171,6 @@ ion-toolbar {
   --color: #022999;
 }
 
-.container {
-  background-color: linear-gradient(to right top,
-      #051937,
-      #00236a,
-      #00299e,
-      #0026d1,
-      #0f00ff);
-  color: white;
-  padding: 20px;
-}
-
 .item-native {
   background: white !important;
 }
@@ -205,10 +194,9 @@ ion-popover {
   }
 }
 
-$bg-primary:#2449f2;
-$bg-primary-deep-sky:#00b8ff;
-$bg-primary-light: #3692ff;
-$bg-secondary: #d4dcfc;
-$bg-danger: #ff253e;
-$font-ubunto:Ubuntu;
-$bg-white: white;
+app-offer-detail {
+
+  .swiper-container-horizontal>.swiper-pagination-bullets {
+    bottom: 60px;
+  }
+}

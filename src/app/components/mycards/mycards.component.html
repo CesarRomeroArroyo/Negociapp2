@@ -32,7 +32,7 @@
       </div>
     </div>
     <ng-container *ngIf="!isOffers; else offersTemplate">
-      <div class="buttons" *ngIf="buttons(item)">
+      <div class="buttons">
         <div class="button" (click)="selectOffer(item)">Ofertas</div>
         <div class="button" (click)="goToEdit(item)">Editar</div>
         <div class="button" (click)="goToDelete(item)">Eliminar</div>
@@ -40,7 +40,12 @@
     </ng-container>
     <ng-template #offersTemplate>
       <div class="buttons">
-        <div class="button" [class.isOffer]="isOffers">Detalles</div>
+        <div 
+          class="button" 
+          [class.isOffer]="isOffers"
+          (click)="goToDetail(item)">
+          Detalles
+        </div>
       </div>
     </ng-template>
   </div>
