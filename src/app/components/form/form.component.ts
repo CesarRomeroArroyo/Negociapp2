@@ -12,8 +12,6 @@ import { UniqueService } from 'src/app/core/services/unique.service';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
-import { element } from 'protractor';
-import { ArrayType } from '@angular/compiler';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -38,7 +36,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     private uniqueId: UniqueService,
     private state: StateApp,
     private fileManager: FileManagerService,
-    public loadingController: LoadingController) {
+    private loadingController: LoadingController) {
     super();
   }
 
@@ -144,7 +142,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
         this.firebase.save(this.collectionDataBD, dataForm).then(() => {
           Swal.fire('', 'Datos almacenados correctamente', 'success');
           /**
-           * TODO: One signal Pendiente
+           * TODO: One signal
            */
           this.resetForm();
         }).catch(err => {

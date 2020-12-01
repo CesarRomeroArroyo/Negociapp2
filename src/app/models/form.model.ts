@@ -47,6 +47,7 @@ export interface DataForm {
 export interface OfferUser {
   user?: User;
   value?: number;
+  valueMask?: number;
   days?: number;
   conditions?: string;
 }

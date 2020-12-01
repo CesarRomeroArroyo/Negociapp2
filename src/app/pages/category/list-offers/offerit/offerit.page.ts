@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import Swal from 'sweetalert2';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
@@ -20,6 +22,7 @@ export class OfferitPage extends FormsAbstract implements OnInit {
     private firebase: FirebaseService,
     private route: ActivatedRoute,
     private fromBuilder: FormBuilder,
+    private loadingController: LoadingController
   ) {
     super();
   }
@@ -44,6 +47,40 @@ export class OfferitPage extends FormsAbstract implements OnInit {
     });
   }
 
-  public save(): void { }
+  public async save(): Promise<void> {
+    if (this.validateField()) {
+      const loading = await this.loadingController.create({
+        message: 'Ofertando...',
+      });
+      await loading.present();
+      const dataValueMask = this.form.get('valueMask').value;
+      const dataValue = dataValueMask.replace(/,/g, '');
+      const dataForm: OfferUser = {
+        ...this.form.value,
+        value: dataValue,
+        user: this.user
+      }
+      delete dataForm.valueMask;
+      this.item.offerit.push(dataForm);
+      this.item.userOffers.push(this.user.uniqueid);
+      this.firebase.actualizarDatos(
+        this.collectionDataBD, this.item, this.item.id).then(() => {
+        Swal.fire('', 'Su oferta fue realizada', 'success');
+        loading.dismiss();
+        /**
+         * TODO: One signal
+         */
+      });
+    }
+  }
+
+  private validateField(): boolean {
+    Object.values(this.form.controls).forEach(element => {
+      if (element instanceof FormControl) {
+        element.markAsTouched();
+      }
+    });
+    return this.form.valid ? true : false;
+  }
 
 }
