@@ -1,0 +1,56 @@
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
+  <div class="container">
+    <div class="form">
+      <span class="labeltitle">{{item.name}}</span>
+      <span class="label">Valor estipulado</span>
+      <span class="input">{{item.value | currency:'':'symbol':'1.0-2'}}</span>
+      <form class="container-form" [formGroup]="form">
+        <span class="label">Valor a ofertar</span>
+        <input 
+          class="input-valor" 
+          [class.invalid]="validFields('valueMask')"
+          type="currency"
+          placeholder="Indique el valor de su oferta"
+          [textMask]="{ mask: numberMask }"
+          formControlName="valueMask"/>
+        <ion-select 
+          class="ion-select" 
+          [class.invalid]="validFields('days')" 
+          placeholder="Plazo de la oferta"
+          formControlName="days">
+            <ion-select-option value="1">1 día</ion-select-option>
+            <ion-select-option [value]="item" *ngFor="let item of dias "> {{item}} días
+            </ion-select-option>
+        </ion-select>
+        <span class="label">Condiciones y restricciones</span>
+        <textarea 
+          [class.invalid]="validFields('conditions')" 
+          class="textArea"
+          name="condiciones" 
+          id="condiciones" 
+          rows="7"
+          placeholder="Describa"
+          formControlName="conditions">
+        </textarea>
+        <!-- !id && userValid -->
+        <div class="btn" *ngIf="true">
+          <ion-button shape="round" (click)="save()">Ofertar</ion-button>
+        </div>
+        <!-- id && userValid -->
+        <div class="btnUserRequest" *ngIf="false">
+          <ion-button shape="round">Trato</ion-button>
+          <ion-button shape="round">Cancelar</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

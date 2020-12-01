@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
@@ -12,8 +12,6 @@ import { DataForm } from 'src/app/models/form.model';
 })
 export class OfferDetailPage extends FormsAbstract implements OnInit {
 
-  public uniqueid: string;
-  public category: string;
   public item: DataForm;
   public slideOpts = {
     initialSlide: 0,
@@ -23,6 +21,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firebase: FirebaseService,
+    private router: Router,
   ) {
     super();
   }
@@ -32,6 +31,10 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
     this.item = dataForm[0];
+  }
+
+  public redirecto(): void {
+    this.router.navigate([`category/${this.category}/list-offers/offerit/${this.uniqueid}`]);
   }
 
 }

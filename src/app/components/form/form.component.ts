@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+
 import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 import Swal from 'sweetalert2';
@@ -31,9 +31,6 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   public photos: Photo[] = [];
   public form: FormGroup;
   public types: any[] = [];
-  public numberMask = createNumberMask({
-    prefix: '',
-  });
 
   constructor(
     private formBuilder: FormBuilder,

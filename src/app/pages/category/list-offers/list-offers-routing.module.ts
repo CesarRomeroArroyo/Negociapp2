@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'offer-detail/:uniqueid',
     loadChildren: () => import('./offer-detail/offer-detail.module').then( m => m.OfferDetailPageModule)
+  },
+  {
+    path: 'offerit/:uniqueid',
+    loadChildren: () => import('./offerit/offerit.module').then( m => m.OfferitPageModule)
   }
 ];
 
