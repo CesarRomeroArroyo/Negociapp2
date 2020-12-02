@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataForm } from 'src/app/models/form.model';
+import { DataForm, OfferUser } from 'src/app/models/form.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 
 @Component({
@@ -10,12 +10,18 @@ import { FormsAbstract } from '../abstract/form.abstact';
 export class CardDetailComponent extends FormsAbstract implements OnInit {
 
   @Input() item: DataForm;
-  @Input() isOffer: boolean;
+  @Input() offer: OfferUser;
+  @Input() isDeal: boolean;
 
   constructor() {
     super();
   }
 
   ngOnInit() { }
+
+  get days(): string {
+    const day = this.offer.days;
+    return day.toString() === '1' ? 'día' : 'días';
+  }
 
 }

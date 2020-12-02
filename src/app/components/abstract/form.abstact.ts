@@ -58,6 +58,10 @@ export abstract class FormsAbstract {
     return imgStorage.DefaulDetail;
   }
 
+  get imgDefaultDetailGreen(): string {
+    return imgStorage.DefaultDetailGreen;
+  }
+
   get imgDeal(): string {
     return imgStorage.Deal;
   }

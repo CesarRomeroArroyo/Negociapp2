@@ -25,3 +25,18 @@ ion-content {
 .name_detail {
   width: 75%;
 }
+
+.btn {
+  width: 100%;
+  margin-bottom: 16px;
+  @include flex(center, center);
+
+  ion-button {
+    text-transform: capitalize;
+    width: fit-content;
+  }
+
+  &.first-child {
+    margin-bottom: 0px;
+  }
+}

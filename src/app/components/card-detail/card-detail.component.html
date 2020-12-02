@@ -1,33 +1,58 @@
 <div class="card" *ngIf="item">
   <div class="object-circle">
     <div class="gradient"></div>
-    <img 
-      class="img" 
-      [src]="item.photos[0].dataUrl"
-      *ngIf="item.photos.length > 0; else imgDefaultTemplate">
-    <ng-template #imgDefaultTemplate>
+    <ng-container *ngIf="isDeal; else imgTemplate">
+      <img class="img" [src]="imgDefaultDetailGreen">
+    </ng-container>
+    <ng-template #imgTemplate>
       <img 
-        class="img"
-        [src]="imgDefault">
+        class="img" 
+        [src]="item.photos[0].dataUrl"
+        *ngIf="item.photos.length > 0; else imgDefaultTemplate">
+      <ng-template #imgDefaultTemplate>
+        <img class="img"[src]="imgDefault">
+      </ng-template>
     </ng-template>
   </div>
-  <div class="content-text">
-    <span class="title">{{item.name}}</span>
-    <div class="lineTwo">
-      <span>
-        <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}
-      </span>
-      <span>
-        <ion-icon name="location"></ion-icon>
-        {{user.city}}
-      </span>
-      <span>Nuevo/Usado</span>
-    </div>
-    <div class="lineThree">
-      <span>{{item.description}}</span>
-      <div class="conditions">
-        <span>Condiciones</span>
+  <ng-container *ngIf="!isDeal; else textDeal">
+    <div class="content-text">
+      <span class="title">{{item.name}}</span>
+      <div class="lineTwo">
+        <span>
+          <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}
+        </span>
+        <span>
+          <ion-icon name="location"></ion-icon>
+          {{user.city}}
+        </span>
+        <span>Nuevo/Usado</span>
+      </div>
+      <div class="lineThree">
+        <span>{{item.description}}</span>
+        <div class="conditions">
+          <span>Condiciones</span>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #textDeal>
+    <div class="content-text">
+      <div class="lineTwo">
+        <span>
+          <strong>Presupuesto: </strong>{{(offer.value | currency:'':'symbol':'1.0-2')}}
+        </span>
+        <span>
+          <ion-icon name="location"></ion-icon>
+          {{offer.user.city}}
+        </span>
+        <span>Estado: {{offer.days}} {{days}}</span>
+      </div>
+      <div class="lineThree">
+        <span>{{offer.conditions}}</span>
+        <div class="conditions">
+          <span>Condiciones</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -18,7 +18,17 @@
     </div>
     <span class="info second">Datos de Oferta</span>
     <div class="card">
-      <app-card-detail [item]="item"></app-card-detail>
+      <app-card-detail 
+        [item]="item" 
+        [isDeal]="true"
+        [offer]="item.offerit[index]">
+      </app-card-detail>
+    </div>
+    <div class="btn first-child">
+      <ion-button shape="round" color="secondary">Trato</ion-button>
+    </div>
+    <div class="btn">
+      <ion-button shape="round" color="danger">Cancelar</ion-button>
     </div>
   </div>
 </ion-content>
