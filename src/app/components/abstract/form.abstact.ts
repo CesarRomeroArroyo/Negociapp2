@@ -39,6 +39,12 @@ export abstract class FormsAbstract {
         this.category === CategoryURL.Shop ? CollectionsBd.Shop : null;
   }
 
+  get collectionBDFinalizate(): string {
+    return this.category === CategoryURL.Service ? CollectionsBd.ServiceFinalizate :
+      this.category === CategoryURL.Rent ? CollectionsBd.RentFinalizate :
+        this.category === CategoryURL.Shop ? CollectionsBd.ShopFinalizate : null;
+  }
+
   get secondMessageHeader(): string {
     switch (this.category) {
       case CategoryURL.Service:
@@ -47,6 +53,17 @@ export abstract class FormsAbstract {
         return CategoryPath.Rent;
       case CategoryURL.Shop:
         return CategoryPath.Shop;
+    }
+  }
+
+  get back(): string {
+    switch (this.category) {
+      case CategoryURL.Service:
+        return `category/${CategoryURL.Service}`;
+      case CategoryURL.Rent:
+        return `category/${CategoryURL.Rent}`;
+      case CategoryURL.Shop:
+        return `category/${CategoryURL.Shop}`;
     }
   }
 

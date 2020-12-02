@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { element } from 'protractor';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { DataForm, OfferUser } from 'src/app/models/form.model';
+import { DataForm } from 'src/app/models/form.model';
 
 @Component({
   selector: 'app-offer-detail',
@@ -15,10 +16,12 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
   public item: DataForm;
   public uniqueid: string;
   public index: number;
+  public isCancel = false;
 
   constructor(
     private route: ActivatedRoute,
     private firebase: FirebaseService,
+    private router: Router,
   ) {
     super();
   }
@@ -29,6 +32,53 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.index = parseInt(this.route.snapshot.paramMap.get('index'), 0);
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
     this.item = dataForm[0];
+  }
+
+  public dealOffer(): void {
+    this.item.close = true;
+    this.item.offerit = [this.item.offerit[this.index]];
+    this.item.userOffers = [this.item.offerit[this.index].user.uniqueid];
+    this.firebase.eliminarDatos(this.collectionDataBD, this.item.id);
+    this.firebase.save(this.collectionBDFinalizate, this.item).then(() => {
+      Swal.fire('', 'Su oferta fue enviada correctamente', 'success');
+      const idunico = this.item.uniqueid;
+      /**
+       * TODO: One signal
+       */
+      this.router.navigateByUrl(`/category/${this.category}`);
+    }).catch(err => {
+      Swal.fire('Error', err.message, 'error');
+    });
+  }
+
+  public cancelOffer(): void {
+    Swal.fire({
+      title: '',
+      text: 'Esta seguro de cancelar esta propuesta?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Cancelar!',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      this.isCancel = true;
+      if (result.value) {
+        this.item.userOffers = this.item.userOffers.filter((uniqueid) => {
+          return uniqueid !== this.item.offerit[this.index].user.uniqueid
+        });
+        this.item.offerit = this.item.offerit.filter((offer) => {
+          return offer.user.uniqueid !== this.item.offerit[this.index].user.uniqueid
+        });
+        this.firebase.actualizarDatos(this.collectionDataBD, this.item, this.item.id).then(() => {
+          Swal.fire('', 'La propuesta fue cancelada correctamente.', 'success');
+          /**
+           * TODO: One signal
+           */
+          this.router.navigate([`/category/${this.category}`]);
+        });
+      }
+    });
   }
 
 }

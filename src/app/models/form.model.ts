@@ -4,6 +4,9 @@ export const CollectionsBd = {
   Service: 'request-services',
   Rent: 'request-rents',
   Shop: 'request-products',
+  ServiceFinalizate: 'services-ended',
+  RentFinalizate: 'rents-ended',
+  ShopFinalizate: 'products-ended',
   UserRequest: 'userRequest'
 }
 export const MessageTabOne = {

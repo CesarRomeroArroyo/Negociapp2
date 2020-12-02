@@ -29,15 +29,4 @@ export class ListOffersPage extends FormsAbstract implements OnInit {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
   }
 
-  get secondMessageHeader(): string {
-    switch (this.category) {
-      case CategoryURL.Service:
-        return CategoryPath.Service;
-      case CategoryURL.Rent:
-        return CategoryPath.Rent;
-      case CategoryURL.Shop:
-        return CategoryPath.Shop;
-    }
-  }
-
 }

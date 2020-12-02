@@ -25,7 +25,6 @@ export class OffersReceivedComponent extends FormsAbstract implements OnInit {
   ngOnInit() {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     this.category = this.route.snapshot.paramMap.get('category');
-    console.log(this.item);
   }
 
   get days(): string {
