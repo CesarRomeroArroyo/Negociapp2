@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { DataForm } from 'src/app/models/form.model';
+import { DataForm, OfferUser } from 'src/app/models/form.model';
 
 @Component({
   selector: 'app-offer-detail',
@@ -31,6 +31,20 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
     this.item = dataForm[0];
+  }
+
+  get offer(): OfferUser {
+    const dataArray = this.item.offerit.filter(x => x.user.uniqueid === this.user.uniqueid);
+    return dataArray[0];
+  }
+
+  get offerit(): boolean {
+    return this.item.userOffers.includes(this.user.uniqueid);
+  }
+
+  get days(): string {
+    const day = this.offer.days;
+    return day.toString() === '1' ? 'día' : 'días';
   }
 
   public redirecto(): void {

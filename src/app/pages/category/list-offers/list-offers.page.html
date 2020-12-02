@@ -32,7 +32,13 @@
     </ion-grid>
     <app-mycards
       [category]="category"
-      [isOffers]="true">
+      [type]="'isOffers'"
+      *ngIf="tab === 1">
+    </app-mycards>
+    <app-mycards
+      [category]="category"
+      [type]="'isMyOffers'"
+      *ngIf="tab === 2">
     </app-mycards>
   </div>
 </ion-content>

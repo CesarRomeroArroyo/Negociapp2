@@ -47,7 +47,7 @@ ion-content {
   height: 40%;
   bottom: 0px;
   border-radius: 40px 40px 0 0;
-  padding: 2rem 3rem;
+  padding: 2rem;
   color: var(--ion-color-primary);
   background: var(--ion-color-light);
   position: absolute;
@@ -70,8 +70,8 @@ ion-content {
 
   .distance {
     width: 75px;
-    top: 3rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
     margin-bottom: 16px;
     text-align: center;
     position: absolute;
@@ -81,7 +81,7 @@ ion-content {
       height: 32px;
       width: 32px;
     }
-    
+
     span {
       font-size: 12px;
     }
@@ -117,6 +117,10 @@ ion-content {
   flex-wrap: wrap;
   @include flex(stretch, space-around);
 
+  span {
+    margin-bottom: 4px;
+  }
+
   .category {
     height: 32px;
     width: 100%;
@@ -131,6 +135,69 @@ ion-content {
   }
 }
 
+.isOffer {
+  .content-value {
+    width: 100%;
+    margin-bottom: 16px;
+    @include flex(center, space-between);
+
+    .valueOffer {
+      font-size: 24px;
+      border-radius: 16px;
+      padding: 0px 16px;
+      text-align: center;
+      color: var(--ion-color-primary);
+      border: 1px solid var(--ion-color-primary);
+    }
+  }
+
+  .conditions {
+    width: 100%;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .content-conditions {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    border: 2px solid var(--ion-color-blue-light);
+    @include flex();
+
+    .days {
+      flex: 1.5;
+      @include flex(center, center, column);
+
+      span {
+        font-size: 12px;
+        margin-bottom: 4px;
+        text-align: center;
+      }
+
+      .time {
+        border-radius: 8px;
+        width: fit-content;
+        padding: 4px 8px;
+        border: 2px solid var(--ion-color-blue-light);
+        @include flex(center, center);
+
+        .day {
+          font-size: 12px;
+          margin-left: 4px;
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    .descriptionOffer {
+      flex: 2;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
+
 .button {
   width: 100%;
   margin-bottom: 16px;
@@ -140,4 +207,13 @@ ion-content {
     text-transform: capitalize;
     width: fit-content;
   }
+}
+
+.info {
+  margin: 0 auto 16px;
+  padding: 4px 12px;
+  border-radius: 30px;
+  color: var(--ion-color-light);
+  background: var(--ion-color-success);
+  width: fit-content;
 }

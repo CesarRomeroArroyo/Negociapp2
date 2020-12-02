@@ -27,6 +27,11 @@ export const imgStorage = {
   iconDeal: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2FOferta.svg?alt=media&token=e094139c-3881-422f-8702-e67da52f5256',
   userIcon: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2Fuser_icon.svg?alt=media&token=49fb2f2f-c6ba-4eee-a194-34f284b3f30f',
 }
+export const nameCard = {
+  IsList: 'isList',
+  IsMyOffers: 'isMyOffers',
+  IsOffers: 'isOffers',
+}
 export interface DataForm {
   name?: string;
   type?: string;

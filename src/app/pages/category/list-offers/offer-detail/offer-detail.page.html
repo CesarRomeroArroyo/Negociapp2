@@ -31,12 +31,28 @@
         <span>{{item.description}}</span>
       </span>
       <div class="categories">
+        <span>Categorias</span>
         <div class="category" *ngFor="let category of item.categories">
           {{category}}
         </div>
       </div>
+      <div class="isOffer" *ngIf="offer">
+        <div class="info">Datos de la oferta</div>
+        <div class="content-value">
+          <span>Valor de la oferta: </span>
+          <span class="valueOffer">{{offer.value | currency:'':'symbol':'1.0-2'}}</span>
+        </div>
+        <div class="conditions">Condiciones y restricciones</div>
+        <div class="content-conditions">
+          <span class="days">
+            <span>Tiempo de entrega</span>
+            <div class="time">{{offer.days}} <span class="day">{{days}}</span></div>
+          </span>
+          <span class="descriptionOffer">{{offer.conditions}}</span>
+        </div>
+      </div>
       <div class="button">
-        <ion-button shape="round" (click)="redirecto()">Ofertar</ion-button>
+        <ion-button shape="round" (click)="redirecto()" *ngIf="!offerit">Ofertar</ion-button>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
-import { CollectionsBd, DataForm } from 'src/app/models/form.model';
+import { CollectionsBd, DataForm, nameCard } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 
@@ -20,7 +20,6 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   public subscription: Subscription;
 
   @Input() public type: string;
-  @Input() isOffers = false;
   @Output() public tab = new EventEmitter<number>();
 
   constructor(
@@ -30,10 +29,16 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   }
 
   ngOnInit() {
-    if(!this.isOffers){
-      this.getListUser();
-    } else {
-      this.getOffers();
+    switch (this.type) {
+      case nameCard.IsList:
+        this.getListUser();
+        break;
+      case nameCard.IsMyOffers:
+        this.getMyoffers();
+        break;
+      case nameCard.IsOffers:
+        this.getOffers();
+        break;
     }
   }
 
@@ -48,7 +53,7 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
       this.user.uniqueid).subscribe(data => this.list = data);
   }
 
-  public getOffers() {
+  public getOffers(): void {
     this.firebase.obtener(this.collectionDataBD).subscribe(data => {
       const Alloffers  = data;
       const offerA = Alloffers.filter((offer) => {
@@ -56,6 +61,13 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
         && offer?.close === false;
       });
       data?.length > 0 ? this.list = offerA : this.list = [];
+    });
+  }
+
+  public getMyoffers(): void {
+    this.firebase.obtener(this.collectionDataBD).subscribe((data: DataForm[]) => {
+      const dataArray = data.filter(item => item.userOffers.includes(this.user.uniqueid));
+      this.list = dataArray;
     });
   }
 
