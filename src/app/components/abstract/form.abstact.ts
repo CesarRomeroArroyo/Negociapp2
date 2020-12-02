@@ -50,6 +50,10 @@ export abstract class FormsAbstract {
     }
   }
 
+  get iconUser(): string {
+    return imgStorage.userIcon;
+
+  }
   get imgDefault(): string {
     return imgStorage.Default;
   }

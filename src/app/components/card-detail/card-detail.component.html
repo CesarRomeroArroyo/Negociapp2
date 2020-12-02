@@ -1,5 +1,10 @@
 <div class="card" *ngIf="item">
   <div class="object-circle">
+    <ion-img 
+      class="iconUser" 
+      [src]="iconUser"
+      [routerLink]="['/perfil']">
+    </ion-img>
     <div class="gradient"></div>
     <ng-container *ngIf="isDeal; else imgTemplate">
       <img class="img" [src]="imgDefaultDetailGreen">

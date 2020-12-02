@@ -21,7 +21,8 @@ export const imgStorage = {
   DefaulDetail: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2Fimag_servicios.jpg?alt=media&token=d3bed94a-1c06-4ebd-b7b5-3f9995952b82',
   DefaultDetailGreen: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2Fgreen.jpg?alt=media&token=3ca26816-7cbf-45ea-940a-f33437049bec',
   Deal: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2FOferta_img.svg?alt=media&token=a28b9504-3bd9-4a7c-a886-6d2f918477aa',
-  iconDeal: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2FOferta.svg?alt=media&token=e094139c-3881-422f-8702-e67da52f5256'
+  iconDeal: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2FOferta.svg?alt=media&token=e094139c-3881-422f-8702-e67da52f5256',
+  userIcon: 'https://firebasestorage.googleapis.com/v0/b/negociapp-1b2d8.appspot.com/o/default%2Fuser_icon.svg?alt=media&token=49fb2f2f-c6ba-4eee-a194-34f284b3f30f',
 }
 export interface DataForm {
   name?: string;
