@@ -14,8 +14,6 @@ import { DataForm } from 'src/app/models/form.model';
 export class ListOffersPage extends FormsAbstract implements OnInit {
 
   public tab = 1;
-  public category: string;
-  public uniqueid: string;
   public offers: DataForm[];
 
   constructor(

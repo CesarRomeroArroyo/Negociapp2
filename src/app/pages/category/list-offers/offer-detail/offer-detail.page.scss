@@ -13,7 +13,7 @@ ion-content {
 }
 
 .photos {
-  height: 380px;
+  height: 60vh;
   width: 100%;
   position: absolute;
   z-index: 1;
@@ -44,7 +44,7 @@ ion-content {
 .datos {
   z-index: 1;
   width: 100%;
-  height: 40%;
+  height: 40vh;
   bottom: 0px;
   border-radius: 40px 40px 0 0;
   padding: 2rem;

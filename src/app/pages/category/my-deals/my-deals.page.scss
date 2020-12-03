@@ -1,0 +1,58 @@
+@import '../../../../theme/mixin.scss';
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.content {
+  width: 100%;
+  margin-top: 16px;
+  @include flex(center, flex-start, column);
+
+  ion-grid {
+    width: 100%;
+    padding: 0px;
+
+    ion-row {
+      ion-col {
+        @include flex(center, space-around);
+
+        .tab {
+          width: 48%;
+          height: 30px;
+          border-radius: 20px;
+          color: var(--ion-color-light);
+          background: var(--ion-color-primary);
+          @include flex(center, center);
+
+          &:nth-child(2) {
+            background: var(--ion-color-secondary);
+          }
+
+          p {
+            margin: 0px;
+            padding: 0px;
+            width: 80%;
+          }
+
+          img {
+            height: 18px;
+            width: 18px;
+          }
+
+          &.active {
+            @include box-shadow-black();
+          }
+        }
+      }
+    }
+  }
+
+  app-formComponent {
+    width: 100%;
+  }
+
+  app-mycards {
+    width: 100%
+  }
+}

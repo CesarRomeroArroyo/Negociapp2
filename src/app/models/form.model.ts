@@ -31,6 +31,8 @@ export const nameCard = {
   IsList: 'isList',
   IsMyOffers: 'isMyOffers',
   IsOffers: 'isOffers',
+  IsMyHistorial: 'isMyHistorial',
+  IsMyHistorialOffers: 'isMyHistorialOffers',
 }
 export interface DataForm {
   name?: string;

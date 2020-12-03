@@ -100,5 +100,11 @@ export abstract class FormsAbstract {
   get nameCardOffers(): string {
     return nameCard.IsOffers;
   }
+  get nameCardIsMyHistorial(): string {
+    return nameCard.IsMyHistorial;
+  }
+  get nameCardIsMyHistorialOffers(): string {
+    return nameCard.IsMyHistorialOffers;
+  }
 
 }

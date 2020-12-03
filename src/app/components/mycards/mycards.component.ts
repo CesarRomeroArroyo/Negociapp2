@@ -39,6 +39,12 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
       case nameCard.IsOffers:
         this.getOffers();
         break;
+      case nameCard.IsMyHistorial:
+        this.getMyHistorial();
+        break;
+      case nameCard.IsMyHistorialOffers:
+        this.getMyHistorialOffers();
+        break;
     }
   }
 
@@ -66,6 +72,20 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
 
   public getMyoffers(): void {
     this.firebase.obtener(this.collectionDataBD).subscribe((data: DataForm[]) => {
+      const dataArray = data.filter(item => item.userOffers.includes(this.user.uniqueid));
+      this.list = dataArray;
+    });
+  }
+
+  public getMyHistorial(): void {
+    this.firebase.obtener(this.collectionBDFinalizate).subscribe((data: DataForm[]) => {
+      const dataArray = data.filter(item => item.userRequest === this.user.uniqueid);
+      this.list = dataArray;
+    });
+  }
+
+  public getMyHistorialOffers(): void {
+    this.firebase.obtener(this.collectionBDFinalizate).subscribe((data: DataForm[]) => {
       const dataArray = data.filter(item => item.userOffers.includes(this.user.uniqueid));
       this.list = dataArray;
     });
