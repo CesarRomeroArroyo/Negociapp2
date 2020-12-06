@@ -102,17 +102,6 @@ ion-content {
   background-size: cover;
 }
 
-input:not([type="button"]):not([type="submit"]):not([type="checkbox"]) {
-  height: 40px;
-  border: 0px;
-  border-radius: 50px;
-}
-
-input:focus {
-  outline: none !important;
-  box-shadow: 0 0 10px #719ECE;
-}
-
 textarea:focus {
   outline: none !important;
 }

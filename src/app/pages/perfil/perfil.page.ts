@@ -1,44 +1,110 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+
+import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
+import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { RateItem } from 'src/app/models/form.model';
+import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
-export class PerfilPage implements OnInit {
-  currentColor: string;
-  userImage: any = "/assets/img/user_perfilxxxhdpi.png";
-  services = false;
-  registerData: any = {};
-  images = [];
-  files = [];
-  numCC = 0;
-  numPic = 0;
-  numHV = 0;
-  rate = 0;
+export class PerfilPage extends FormsAbstract implements OnInit {
+
+  public cities = [
+    'Cartagena',
+    'Barranquilla',
+    'Montería',
+    'Santa Marta',
+    'Sincelejo',
+    'Riohacha',
+    'Valledupar',
+  ];
+  public stars = [5, 4, 3, 2, 1];
+  public rate: RateItem = {
+    rateItem: 0,
+    rateUser: 0,
+    comment: ''
+  };
+  public form: FormGroup;
+  public promedio: number;
+
   constructor(
-    private router: Router,
-    private firebaseService: FirebaseService
-  ) { }
-
-  ngOnInit() {
-    this.registerData = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+    private route: ActivatedRoute,
+    private firebase: FirebaseService,
+    private formBuilder: FormBuilder
+  ) {
+    super();
   }
 
-  goToHome() {
-    this.router.navigateByUrl('inicio');
+  public async ngOnInit() {
+    this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
+    if (this.uniqueid) {
+      const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);
+      this.user = user[0];
+      this.initForm(this.user);
+      this.promedio = this.starsPromedio();
+    } else {
+      const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
+      this.user = user[0];
+      this.initForm(this.user);
+      this.promedio = this.starsPromedio();
+    }
   }
 
-  next() {
-    this.firebaseService.actualizarDatos('usuario-app', this.registerData, this.registerData.id);
-    Swal.fire(
-      '',
-      'Tus datos fueron actualizados correctamente',
-      'success' 
-    );
-    this.firebaseService.actualizarDatos('usuario-app', this.registerData, this.registerData.id);
+  public initForm(data?: User): void {
+    this.form = this.formBuilder.group({
+      name: ['' || data.name, Validators.required],
+      city: ['' || data.city, Validators.required],
+      contact: ['' || data.contact, Validators.required],
+      email: ['' || data.email, Validators.required],
+    });
+    if (this.uniqueid) {
+      this.form.get('name').disable();
+      this.form.get('city').disable();
+      this.form.get('contact').disable();
+      this.form.get('email').disable();
+    }
+  }
+
+  public validateinput(param: string): boolean {
+    return this.form.get(param).invalid && this.form.get(param).touched;
+  }
+
+  public save(): void {
+    if (this.validators()) {
+      this.user.name = this.form.get('name').value;
+      this.user.city = this.form.get('city').value;
+      this.user.contact = this.form.get('contact').value;
+      this.user.email = this.form.get('email').value;
+      localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
+      this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
+        Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+      });
+    }
+  }
+
+  public starsPromedio(): number {
+    let accumulator = 0;
+    let quantity = 0;
+    this.user.rate.forEach(item => {
+      quantity++;
+      accumulator = accumulator + item.service;
+    });
+    const promedio = accumulator / quantity;
+    return promedio;
+  }
+
+  private validators(): boolean {
+    Object.values(this.form.controls).forEach(item => {
+      if (item instanceof FormControl) {
+        item.markAsTouched();
+      }
+    });
+    return this.form.invalid ? false : true;
   }
 
 }

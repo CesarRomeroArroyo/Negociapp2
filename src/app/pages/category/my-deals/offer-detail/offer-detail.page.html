@@ -22,14 +22,14 @@
       </div>
     </div>
     <div class="perfil">
-      <div class="content-icon-text" [routerLink]="['/perfil']">
-        <div class="icon-text">
+      <div class="content-icon-text">
+        <div class="icon-text" (click)="gotoPerfilUserRequest()">
           <ion-icon name="person-circle-outline"></ion-icon>
         </div>
         <span class="primary">Solicitante</span>
       </div>
-      <div class="content-icon-text" [routerLink]="['/perfil']">
-        <div class="icon-text second">
+      <div class="content-icon-text">
+        <div class="icon-text second" (click)="gotoPerfilUserOffer()">
           <ion-icon name="person-circle-outline"></ion-icon>
         </div>
         <span class="second-text">Ofertante</span>

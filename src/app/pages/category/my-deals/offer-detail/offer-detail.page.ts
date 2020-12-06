@@ -30,11 +30,26 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionBDFinalizate, this.uniqueid);
     this.item = dataForm[0];
     this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
-
   }
 
   public goToRate(): void {
     this.router.navigate([`/category/${this.category}/my-deals/rate/${this.uniqueid}/${this.index}`]);
+  }
+
+  public gotoPerfilUserRequest():void {
+    if (this.isUserRequest) {
+      this.router.navigate(['/perfil']);
+    } else {
+      this.router.navigate([`/perfil/${this.item.userRequest}`]);
+    }
+  }
+
+  public gotoPerfilUserOffer(): void {
+    if (this.isUserRequest) {
+      this.router.navigate([`/perfil/${this.item.offerit[0].user.uniqueid}`]);
+    } else {
+      this.router.navigate([`/perfil`]);
+    }
   }
 
 }

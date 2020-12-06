@@ -3,8 +3,16 @@
     <ion-img 
       class="iconUser" 
       [src]="iconUser"
-      [routerLink]="['/perfil']">
+      (click)="gotoPerfilUserRequest()"
+      *ngIf="!isDeal; else profileTemplate">
     </ion-img>
+    <ng-template #profileTemplate>
+      <ion-img 
+        class="iconUser" 
+        [src]="iconUser"
+        (click)="gotoPerfilUserOffer()">
+      </ion-img>
+    </ng-template>
     <div class="gradient"></div>
     <ng-container *ngIf="isDeal; else imgTemplate">
       <img class="img" [src]="imgDefaultDetailGreen">

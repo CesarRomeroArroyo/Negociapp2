@@ -1,202 +1,85 @@
-<ion-header class="ion-padding ion-text-center">
-  <ion-toolbar [color]="currentColor">
-    <ion-buttons class="setting-element">
-      <ion-button class="setting-element__button" (click)="goToHome()">
-        <ion-icon src="/assets/back.svg"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center setting-element__title">NegociApp</ion-title>
-  </ion-toolbar>
-  <ion-avatar class="ion-text-center">
-    <img [src]="userImage" />
-  </ion-avatar>
-  <ion-input
-    autocorrect="on"
-    autofocus="on"
-    id="email"
-    class="ion-text-center setting-element__input"
-    [(ngModel)]="registerData.name"
-  ></ion-input>
-  <div class="setting-element__rating-group">
-    <div *ngIf="rate >= 0 && rate <= 0.4">
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="form">
+  <div class="content">
+    <div class="header">
+      <div class="partOne">
+        <ion-icon name="arrow-back-outline" routerLink="/inicio"></ion-icon>
+        <span>NegociApp</span>
+      </div>
+      <ion-img src="/assets/img/user_perfilxxxhdpi.png"></ion-img>
+      <div class="header-text">
+        <span>{{user.name}}</span>
+        <div class="stars">
+          <div class="star" *ngIf="promedio">
+            <ion-icon 
+            name="star" 
+            [class.color]="promedio <= i" 
+            *ngFor="let item of stars; let i = index"></ion-icon>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div *ngIf="rate >= 0.5 && rate <= 0.9">
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
+    <div class="setting">
+      <div class="tab">
+        <ion-img src="/assets/shop_negative_perfil.svg"></ion-img>
+        <span>(0)</span>
+      </div>
+      <div class="tab">
+        <ion-img src="/assets/shop_positive-perfil.svg"></ion-img>
+        <span>(0)</span>
+      </div>
     </div>
-    <div *ngIf="rate >= 1 && rate <= 1.4">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 1.5 && rate <= 1.9">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 2 && rate <= 2.4">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 2.5 && rate <= 2.9">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 3 && rate <= 3.4">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 3.5 && rate <= 3.9">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 4 && rate <= 4.4">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 4.5 && rate <= 4.9">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-    </div>
-
-    <div *ngIf="rate === 5">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-    </div>
-
-    <div *ngIf="rate >= 3 && rate < 3.4">
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </div>
+    <form class="form" [formGroup]="form">
+      <div class="question">
+        <div class="content-icon">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <ion-input 
+          class="input"
+          [ngClass]="{'invalid': validateinput('name')}"
+          placeholder="Escribe tu correo aquí"
+          formControlName="name">
+        </ion-input>
+      </div>
+      <div class="question">
+        <div class="content-icon">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+        <ion-input 
+          class="input"
+          [ngClass]="{'invalid': validateinput('email')}"
+          placeholder="Escribe tu correo aquí"
+          formControlName="email">
+        </ion-input>
+      </div>
+      <div class="question">
+        <div class="content-icon">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+        <ion-select
+          placeholder="Ciudad"
+          [ngClass]="{'invalid': validateinput('city')}"
+          formControlName="city">
+          <ion-select-option [value]="city" *ngFor="let city of cities">{{city}}</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="question">
+        <div class="content-icon">
+          <ion-icon name="call-outline"></ion-icon>
+        </div>
+        <ion-input
+          class="input"
+          [ngClass]="{'invalid': validateinput('contact')}"
+          placeholder="Número de contacto"
+          formControlName="contact">
+        </ion-input>
+      </div>
+      <div class="submit" *ngIf="!uniqueid">
+        <ion-button 
+          shape="round" 
+          (click)="save()">
+          Guardar
+        </ion-button>
+      </div>
+    </form>
   </div>
-</ion-header>
-
-<ion-content class="ion-text-center setting-content">
-  <div class="setting-content__button-group">
-    <button class="setting-content__button negative">
-      <ion-icon
-        class="setting-content__icon"
-        src="/assets/shop_negative_perfil.svg"
-      >
-      </ion-icon
-      >(0)
-    </button>
-    <button class="setting-content__button positive">
-      <ion-icon
-        class="setting-content__icon"
-        src="/assets/shop_positive-perfil.svg"
-      ></ion-icon
-      >(0)
-    </button>
-  </div>
-
-  <ion-list class="form-container">
-    <h2 class="setting-content__title">Correo:</h2>
-    <ion-item class="user-data">
-      <ion-input 
-        autocorrect="on"
-        autofocus="on"
-        clearOnEdit="true"
-        class="user-data__input"
-        id="email"
-        [(ngModel)]="registerData.email"
-        inputmode="text"
-        placeholder="Escribe tu correo aquí"
-        required="true"
-      ></ion-input>
-      <ion-icon
-        class="user-data__icon-email"
-        src="/assets/plane.svg"
-        slot="start"
-      ></ion-icon>
-    </ion-item>
-    <h2 class="setting-content__title">Ciudad:</h2>
-    <ion-item class="user-data">
-      <ion-select
-        name="city"
-        [(ngModel)]="registerData.city"
-        class="user-data__select-city"
-        placeholder="Ciudad"
-      >
-        <ion-select-option value="Cartagena">Cartagena</ion-select-option>
-        <ion-select-option value="Barranquilla">Barranquilla</ion-select-option>
-        <ion-select-option value="Montería">Montería</ion-select-option>
-        <ion-select-option value="Santa Marta">Santa Marta</ion-select-option>
-        <ion-select-option value="Sincelejo">Sincelejo</ion-select-option>
-        <ion-select-option value="Riohacha">Riohacha</ion-select-option>
-        <ion-select-option value="Valledupar">Valledupar</ion-select-option>
-      </ion-select>
-      <ion-icon
-        class="user-data__icon-email"
-        src="/assets/globo.svg"
-        slot="start"
-      ></ion-icon>
-    </ion-item>
-    <h2 class="setting-content__title">Teléfono:</h2>
-    <ion-item class="user-data">
-      <ion-input
-        autocorrect="on"
-        autofocus="on"
-        clearOnEdit="true"
-        class="user-data__input__phone ion-text-center"
-        id="contact"
-        [(ngModel)]="registerData.contact"
-        color="primary"
-        inputmode="text"
-        placeholder="Número de contacto"
-        required="true"
-      >
-      </ion-input>
-    </ion-item>
-    <div class="setting-content__title">
-        <ion-button class="user-data__submit" size="large" shape="round" (click)="next()">
-          Guardar</ion-button>
-    </div>
-  </ion-list>
-
-  
 </ion-content>
