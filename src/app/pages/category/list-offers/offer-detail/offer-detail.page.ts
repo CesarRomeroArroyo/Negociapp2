@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { UniqueService } from 'src/app/core/services/unique.service';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
 
 @Component({
@@ -22,6 +23,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     private route: ActivatedRoute,
     private firebase: FirebaseService,
     private router: Router,
+    private uniqueService: UniqueService,
   ) {
     super();
   }
@@ -45,6 +47,11 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
   get days(): string {
     const day = this.offer.days;
     return day.toString() === '1' ? 'día' : 'días';
+  }
+
+  public distance(): string {
+      const distancia = this.uniqueService.distance(this.user.lng, this.user.lat, this.item.lng, this.item.lat);
+      return distancia;
   }
 
   public redirecto(): void {
