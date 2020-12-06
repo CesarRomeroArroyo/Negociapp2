@@ -9,7 +9,7 @@ const routes: Routes = [
     component: FormPage
   },
   {
-    path: 'offers/:uniqueid',
+    path: 'offers/:uniqueid/:index',
     loadChildren: () => import('./offers/offers.module').then( m => m.OffersPageModule)
   },
   {

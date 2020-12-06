@@ -11,7 +11,7 @@
   <div class="content">
     <div class="header">
       <ion-img [src]="imgDeal"></ion-img>
-      <span class="info">Solicitud 001</span>
+      <span class="info">Solicitud {{index + 1}}</span>
       <div class="text">
         <span>{{item.name}}</span>
         <span>Mi presupuesto: <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span></span>

@@ -48,12 +48,12 @@ export class RatePage extends FormsAbstract implements OnInit {
   }
 
   public selectStarsItem(index: number): void {
-    if (!this.item.rate)
+    if (!this.item.rate && this.isUserRequest)
       this.rate.rateItem = index + 1;
   }
 
   public selectStarsUser(index: number): void {
-    if (!this.item.rate)
+    if (!this.item.rate && this.isUserRequest)
       this.rate.rateUser = index + 1;
   }
 

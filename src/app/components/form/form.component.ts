@@ -60,7 +60,6 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.idunique);
     const data: DataForm = dataForm[0];
     this.initForm(data);
-    console.log(data);
     this.state.setData({ categories: data.categories });
     this.state.setData({ photos: data.photos });
   }

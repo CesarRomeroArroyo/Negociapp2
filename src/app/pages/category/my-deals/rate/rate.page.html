@@ -56,7 +56,7 @@
         [disabled]="item.rate"
         [(ngModel)]="rate.comment">
       </textarea>
-      <div class="btn" *ngIf="!item.rate">
+      <div class="btn" *ngIf="!item.rate && isUserRequest">
         <ion-button shape="round" (click)="save()">Calificar</ion-button>
       </div>
     </form>
