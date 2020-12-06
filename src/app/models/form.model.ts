@@ -52,6 +52,7 @@ export interface DataForm {
   userRequest?: string;
   userOffers?: string[],
   close?: boolean;
+  closeDate?: string;
   lat?: string;
   lng?: string;
   oneSignalRequest?: string;

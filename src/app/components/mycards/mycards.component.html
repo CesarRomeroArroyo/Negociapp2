@@ -2,7 +2,7 @@
   <div class="message" *ngIf="list.length === 0">
     <h6 class="text">{{'Sin productos' | uppercase}}</h6>
   </div>
-  <div class="card" *ngFor="let item of list">
+  <div class="card" *ngFor="let item of list; let i = index">
     <div class="object-circle">
       <div class="gradient"></div>
       <div class="circle" *ngIf="item.offerit?.length > 0 && type === nameCardList">
@@ -31,22 +31,23 @@
         <span>Nuevo/Usado</span>
       </div>
     </div>
-    <ng-container *ngIf="type === nameCardList; else offersTemplate">
+    <ng-container *ngIf="type === nameCardList">
       <div class="buttons">
         <div class="button" (click)="selectOffer(item)">Ofertas</div>
         <div class="button" (click)="goToEdit(item)">Editar</div>
         <div class="button" (click)="goToDelete(item)">Eliminar</div>
       </div>
     </ng-container>
-    <ng-template #offersTemplate>
+    <ng-container *ngIf="type === nameCardOffers || type === nameCardMyOffers">
       <div class="buttons">
-        <div 
-          class="button" 
-          [class.isOffer]="type === nameCardOffers"
-          (click)="goToDetail(item)">
-          Detalles
-        </div>
+        <div class="button isOffer" (click)="goToDetail(item)">Detalles</div>
       </div>
-    </ng-template>
+    </ng-container>
+    <ng-container *ngIf="type === nameCardIsMyHistorial || type === nameCardIsMyHistorialOffers">
+      <div class="buttons">
+        <div class="button" (click)="goToDetailHistorial(item, i)">Detalles</div>
+        <div class="button isHistorial">Calificar</div>
+      </div>
+    </ng-container>
   </div>
 </div>

@@ -57,6 +57,10 @@
         &.isOffer {
           border-radius: 0px 0px 10px 10px;
         }
+
+        &.isHistorial {
+          border-bottom-right-radius: 10px;
+        }
       }
     }
   }

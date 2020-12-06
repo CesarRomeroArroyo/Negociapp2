@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
@@ -36,6 +37,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
 
   public dealOffer(): void {
     this.item.close = true;
+    this.item.closeDate = moment().format('DD/MM/YYYY');
     this.item.offerit = [this.item.offerit[this.index]];
     this.item.userOffers = [this.item.offerit[this.index].user.uniqueid];
     this.firebase.eliminarDatos(this.collectionDataBD, this.item.id);

@@ -61,10 +61,10 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
 
   public getOffers(): void {
     this.firebase.obtener(this.collectionDataBD).subscribe(data => {
-      const Alloffers  = data;
+      const Alloffers = data;
       const offerA = Alloffers.filter((offer) => {
         return !offer.userOffers.includes(this.user.uniqueid) && offer.userRequest !== this.user.uniqueid
-        && offer?.close === false;
+          && offer?.close === false;
       });
       data?.length > 0 ? this.list = offerA : this.list = [];
     });
@@ -97,6 +97,11 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
 
   public goToDetail(item: DataForm): void {
     this.router.navigate([`/category/${this.category}/list-offers/offer-detail/${item.uniqueid}`]);
+  }
+
+  public goToDetailHistorial(item: DataForm, index: number): void {
+    console.log(index);
+    this.router.navigate([`category/${this.category}/my-deals/offer-detail/${item.uniqueid}/${index}`]);
   }
 
   public goToEdit(item: DataForm): void {
