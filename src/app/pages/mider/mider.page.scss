@@ -1,0 +1,154 @@
+@import '../../../theme/mixin.scss';
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.content {
+  padding: 0px 16px;
+
+  ion-grid {
+    width: 100%;
+    padding: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    ion-row {
+      ion-col {
+        @include flex(center, space-around);
+
+        .tab {
+          width: 32%;
+          height: 30px;
+          border-radius: 20px;
+          color: var(--ion-color-light);
+          background: var(--ion-color-primary);
+          @include flex(center, center);
+
+          p {
+            margin: 0px;
+            padding: 0px;
+            width: 80%;
+          }
+
+          img {
+            height: 18px;
+            width: 18px;
+          }
+
+          &.active {
+            background: var(--ion-color-secondary);
+            @include box-shadow-black();
+          }
+        }
+      }
+    }
+  }
+}
+
+.title {
+  color: var(--ion-color-primary);
+  margin-bottom: 16px;
+  @include flex(center, center, column);
+
+  .text {
+    @include flex(center, center);
+  }
+
+  .subtitle {
+    color: var(--ion-color-secondary);
+  }
+}
+
+.my-categories {
+  @include flex(center, center);
+
+  ion-img {
+    height: 32px;
+    width: 32px;
+  }
+
+  .subtitle {
+    color: var(--ion-color-primary);
+    margin-left: 4px;
+  }
+}
+
+.input {
+  width: 100%;
+  margin: 0 auto;
+  background: var(--ion-color-blue-light);
+  border: 1px solid var(--ion-color-primary);
+  color: var(--ion-color-primary);
+  border-radius: 1.5em;
+  margin-bottom: 16px;
+  padding: 10px 0px 8px 8px;
+
+  &.invalid {
+    border: 1px solid var(--ion-color-danger);
+  }
+
+  &.select {
+    margin-bottom: 16px;
+    @include flex(center, $direction: row-reverse);
+
+    ion-icon {
+      position: absolute;
+      right: 0px;
+    }
+  }
+
+  &.button {
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}
+
+.categories {
+  width: 100%;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  @include flex(stretch, space-around);
+
+  span {
+    margin-bottom: 4px;
+  }
+
+  .category {
+    height: 32px;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0px 8px;
+    text-align: center;
+    border-radius: 16px;
+    color: var(--ion-color-medium);
+    border: 1px solid var(--ion-color-primary);
+    background: var(--ion-color-blue-light);
+    @include flex(center, center);
+
+    &.isDisable {
+      opacity: 0.5;
+    }
+  }
+}
+
+.rut {
+  font-size: 18px;
+  height: 35px;
+  border-radius: 30px;
+  border: 1px solid var(--ion-color-primary);
+  color: var(--ion-color-primary);
+  background: var(--ion-color-blue-light);
+  @include flex(center, center);
+
+  &.isDisable {
+    opacity: 0.5;
+  }
+}
+
+.submit {
+  width: 100%;
+  margin: 16px 0px;
+  @include flex(center, center);
+}

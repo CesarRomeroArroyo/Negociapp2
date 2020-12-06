@@ -74,7 +74,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     return this.form.get(param).invalid && this.form.get(param).touched;
   }
 
-  public save(): void {
+  public update(): void {
     if (this.validators()) {
       this.user.name = this.form.get('name').value;
       this.user.city = this.form.get('city').value;

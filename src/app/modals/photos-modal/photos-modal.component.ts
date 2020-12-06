@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { StateApp } from 'src/app/core/services/state.service';
 import Swal from 'sweetalert2';
@@ -15,17 +15,23 @@ export class PhotosModalComponent implements OnInit {
 
   public user: User;
   public photos: Photo[] = [];
-
+  public file: any = null;
+  @Input() public isRut = false;
   @Output() public showModal = new EventEmitter<boolean>();
 
   constructor(private state: StateApp) { }
 
   ngOnInit() {
+    console.log(this.file);
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
     this.state.getObservable().subscribe(data => {
-      if (data.photos)
-        this.photos = data.photos
-    })
+      if (data.photos) this.photos = data.photos;
+      if (data.file) this.file = data.file;
+    });
+  }
+
+  get title(): string {
+    return this.isRut ? 'RUT' : 'Fotos';
   }
 
   public async takePic() {
@@ -58,6 +64,18 @@ export class PhotosModalComponent implements OnInit {
         this.state.setData({ photos: this.photos });
       }
     })
+  }
+
+  public onFileChange(e) {
+    if (e.target.files.length > 0) {
+      this.file = e.target.files[0];
+      this.state.setData({ file: this.file });
+    }
+  }
+
+  public deleteFile(): void {
+    this.file = { name: '', path: '' };
+    this.state.setData({ file: this.file });
   }
 
 }

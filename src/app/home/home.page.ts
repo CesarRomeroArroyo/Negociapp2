@@ -3,16 +3,36 @@ import Swal from 'sweetalert2';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../core/services/firebase.service';
+import { User } from '../models/user.model';
 
 const { Geolocation, Device } = Plugins;
+
+const level = [
+  { isChecked: false, value: 'Especializado' },
+  { isChecked: false, value: 'Profesional' },
+  { isChecked: false, value: 'Tecnologo' },
+  { isChecked: false, value: 'Tecnico' },
+  { isChecked: false, value: 'Independiente' },
+];
+
+const path = { name: '', path: '', url: '' }
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+
   services = false;
-  registerData: any = {};
+  registerData: User = {
+    prestador: true,
+    service: true,
+    rent: true,
+    shop: true,
+    miders: { status: false, categories: [], levels: level, rut: path },
+    midera: { status: false, categories: [], levels: level, rut: path },
+    miderv: { status: false, categories: [], levels: level, rut: path },
+  };
   images = [];
   files = [];
   numCC = 0;
@@ -55,9 +75,6 @@ export class HomePage implements OnInit {
     this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
     this.registerData.active = true;
     this.registerData.nameToSearch = this.registerData.name.toLowerCase();
-    this.registerData.miders = { estado: false, categorias: [], niveles: [], rut: '' };
-    this.registerData.midera = { estado: false, categorias: [], niveles: [], rut: '' };
-    this.registerData.miderv = { estado: false, categorias: [], niveles: [], rut: '' };
     this.registerData.rate = [];
     this.firebaseService.save('usuario-app', this.registerData);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.registerData));

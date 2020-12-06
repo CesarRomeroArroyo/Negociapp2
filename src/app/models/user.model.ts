@@ -19,7 +19,7 @@ export interface User {
     midera: Mider;
     miders: Mider;
     miderv: Mider;
-    rate: Rate[];
+    rate?: Rate[];
 }
 
 export interface Rate {
@@ -29,8 +29,19 @@ export interface Rate {
 }
 
 export interface Mider {
-    categorias: string[];
-    estado: boolean;
-    niveles: any[];
-    rut: string;
+    rut?: Path;
+    categories: string[];
+    status: boolean;
+    levels: Level[];
+}
+
+export interface Level {
+    value: string;
+    isChecked: boolean;
+}
+
+export interface Path {
+    name: string;
+    path: string;
+    url: string;
 }

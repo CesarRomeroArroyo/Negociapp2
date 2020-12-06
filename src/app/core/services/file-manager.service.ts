@@ -24,7 +24,7 @@ export class FileManagerService {
     this.estado.next(true);
     const fileRef = this.storage.ref(filepath);
     const loading = await this.loadingController.create({
-      message: 'Espere por favor, Cargando la Imagen...'
+      message: 'Espere por favor...'
     });
     await loading.present();
     // Upload image

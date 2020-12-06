@@ -1,9 +1,103 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mider</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header
+  [secondMessage]="'Configuracion de Miders'"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
 
-<ion-content>
-
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="form">
+  <div class="content">
+    <ion-grid >
+      <ion-row>
+        <ion-col>
+          <button 
+            class="tab" 
+            (click)="tabSelected(1)" 
+            [ngClass]="{'active': tab === 1}">
+              <p>MIDER-S</p>
+          </button>
+          <button 
+            class="tab" 
+            [ngClass]="{'active' : tab === 2}"
+            (click)="tabSelected(2)">
+              <p>MIDER-V</p>
+          </button>
+          <button 
+            class="tab" 
+            [ngClass]="{'active' : tab === 3}"
+            (click)="tabSelected(3)">
+              <p>MIDER-A</p>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <form [formGroup]="form">
+      <div class="title">
+        <div class="text">
+          <span>{{miderText}}</span>
+          <ion-toggle color="primary" formControlName="status"></ion-toggle>
+        </div>
+        <span class="subtitle">{{miderSubtitle}}</span>
+      </div>
+      <ion-button 
+        type="button" 
+        fill="clear" 
+        class="input select button"
+        [disabled]="!this.form.get('status').value" 
+        (click)="showModalCategories = true">
+        Agregar Categorias
+        <ion-icon name="caret-down-outline"></ion-icon>
+      </ion-button>
+      <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
+      <div class="categories" *ngIf="categories.length > 0">
+        <div 
+          class="category" 
+          [class.isDisable]="!this.form.get('status').value"  
+          *ngFor="let category of categories">
+          {{category}}
+        </div>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let type of types; let i = index">
+          <ion-label>{{type.value}}</ion-label>
+          <ion-checkbox 
+            slot="end" 
+            [value]="type.isChecked"
+            [disabled]="!this.form.get('status').value"  
+            [checked]="type.isChecked"  
+            (click)="setLevel(type, i)">
+          </ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <div 
+        class="rut" 
+        (click)="showModalPhotosModal()"
+        [class.isDisable]="!this.form.get('status').value">
+        <ion-icon name="attach-outline"></ion-icon>
+        <span>Tap para subir tu RUT.</span>
+      </div>
+      <div class="submit">
+        <ion-button
+          type="submit"
+          shape="round"
+          *ngIf="this.form.get('status').value"
+          (click)="update()">
+            Actualizar
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>
+
+<app-categories-modal 
+  (showModal)="showModalCategories = $event"
+  *ngIf="showModalCategories">
+</app-categories-modal>
+
+<app-photos-modal
+  (showModal)="showModalPhotos = $event"
+  *ngIf="showModalPhotos"
+  [isRut]="true">
+</app-photos-modal>
