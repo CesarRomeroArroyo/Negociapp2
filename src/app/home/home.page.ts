@@ -58,6 +58,7 @@ export class HomePage implements OnInit {
     this.registerData.miders = { estado: false, categorias: [], niveles: [], rut: '' };
     this.registerData.midera = { estado: false, categorias: [], niveles: [], rut: '' };
     this.registerData.miderv = { estado: false, categorias: [], niveles: [], rut: '' };
+    this.registerData.rate = [];
     this.firebaseService.save('usuario-app', this.registerData);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.registerData));
     this.router.navigateByUrl('/home/bienvenida');

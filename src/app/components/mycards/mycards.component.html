@@ -43,10 +43,15 @@
         <div class="button isOffer" (click)="goToDetail(item)">Detalles</div>
       </div>
     </ng-container>
-    <ng-container *ngIf="type === nameCardIsMyHistorial || type === nameCardIsMyHistorialOffers">
+    <ng-container *ngIf="type === nameCardIsMyHistorial">
       <div class="buttons">
-        <div class="button" (click)="goToDetailHistorial(item, i)">Detalles</div>
-        <div class="button isHistorial">Calificar</div>
+        <div class="button" [class.isOffer]="item.rate" (click)="goToDetailHistorial(item, i)">Detalles</div>
+        <div class="button isHistorial" *ngIf="!item.rate" (click)="goToDetailRate(item, i)">Calificar</div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="type === nameCardIsMyHistorialOffers">
+      <div class="buttons">
+        <div class="button isOffer" (click)="goToDetailHistorial(item, i)">Detalles</div>
       </div>
     </ng-container>
   </div>

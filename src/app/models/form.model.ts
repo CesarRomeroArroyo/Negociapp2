@@ -56,6 +56,14 @@ export interface DataForm {
   lat?: string;
   lng?: string;
   oneSignalRequest?: string;
+  rate: RateItem;
+}
+
+export interface RateItem {
+  rateUser: number;
+  rateItem: number;
+  comment: string;
+  uniqueidItem?: string;
 }
 export interface OfferUser {
   user?: User;

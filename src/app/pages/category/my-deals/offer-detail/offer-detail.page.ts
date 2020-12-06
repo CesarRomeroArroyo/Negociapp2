@@ -13,6 +13,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
 
   public item: DataForm;
   public index: number;
+  public isUserRequest: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +29,12 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.index = parseInt(this.route.snapshot.paramMap.get('index'), 0);
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionBDFinalizate, this.uniqueid);
     this.item = dataForm[0];
-    console.log(this.item);
+    this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
+
+  }
+
+  public goToRate(): void {
+    this.router.navigate([`/category/${this.category}/my-deals/rate/${this.uniqueid}/${this.index}`]);
   }
 
 }

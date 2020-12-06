@@ -35,9 +35,15 @@
         <span class="second-text">Ofertante</span>
       </div>
     </div>
-    <span class="info width-60">Negocio {{index + 1}}</span>
-    <span class="info width-60">Calificacion recibida</span>
-    <span class="info width-60 secondary">Calificacion dada</span>
+    <div class="status">
+      <span>Estado del negocio</span>
+      <div class="status-content">
+        <span class="reset isClose">Cerrado</span>
+        <span class="reset">Proceso</span>
+      </div>
+    </div>
+    <span class="info width-60" *ngIf="!isUserRequest" (click)="goToRate()">Calificacion recibida</span>
+    <span class="info width-60 secondary" *ngIf="isUserRequest" (click)="goToRate()">Calificacion dada</span>
     <div class="detail center" *ngIf="false">
       <span class="name">Comisión del negocio</span>
       <span class="text-value">xxxxxxxx</span>

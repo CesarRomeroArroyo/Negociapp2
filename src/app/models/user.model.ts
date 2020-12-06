@@ -14,18 +14,18 @@ export interface User {
     shop?: boolean;
     tip_ide?: string;
     uniqueid?: string;
-    rate?: Rate[];
     lat?: number;
     lng?: number;
     midera: Mider;
     miders: Mider;
     miderv: Mider;
+    rate: Rate[];
 }
 
 export interface Rate {
-    rate?: number;
-    recommend?: number;
-    commentary?: string;
+    service: number;
+    product: number;
+    uniqueidItem: string;
 }
 
 export interface Mider {

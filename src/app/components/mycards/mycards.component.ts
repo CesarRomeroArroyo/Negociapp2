@@ -100,8 +100,11 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   }
 
   public goToDetailHistorial(item: DataForm, index: number): void {
-    console.log(index);
     this.router.navigate([`category/${this.category}/my-deals/offer-detail/${item.uniqueid}/${index}`]);
+  }
+
+  public goToDetailRate(item: DataForm, index: number): void {
+    this.router.navigate([`category/${this.category}/my-deals/rate/${item.uniqueid}/${index}`]);
   }
 
   public goToEdit(item: DataForm): void {

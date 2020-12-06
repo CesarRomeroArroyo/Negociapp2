@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'my-deals',
     loadChildren: () => import('./my-deals/my-deals.module').then( m => m.MyDealsPageModule)
-  },
+  }
 ];
 
 @NgModule({

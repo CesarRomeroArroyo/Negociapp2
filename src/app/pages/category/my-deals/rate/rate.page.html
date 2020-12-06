@@ -1,0 +1,64 @@
+<app-header
+  [secondMessage]="secondMessageHeader"
+  [colorHeader]="'var(--ion-color-primary)'"
+  [colorText]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'"
+  [colorBorderIcon]="'1px solid var(--ion-color-light)'"
+  [colorIconBlack]="false">
+</app-header>
+
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
+  <div class="content">
+    <span class="info">Negocio {{index + 1}}</span>
+    <div class="detail">
+      <span class="name">{{item.name}}</span>
+      <div class="second-content">
+        <div class="value">
+          <span>Valor: <span class="value-text">{{item.value}}</span></span>
+        </div>
+        <div class="date">
+          <span>Fecha: <span class="date-text">{{item.closeDate}}</span></span>
+        </div>
+      </div>
+    </div>
+    <form class="form">
+      <div class="status">
+        <span>Area de calificación</span>
+        <span class="info">Calificar producto</span>
+        <div class="stars">
+          <div class="star">
+            <ion-icon 
+            name="star" 
+            [class.color]="rate.rateItem <= i" 
+            *ngFor="let item of stars; let i = index" 
+            (click)="selectStarsItem(i)"></ion-icon>
+          </div>
+        </div>
+        <span class="info text-second">Calificar proveedor</span>
+        <div class="stars">
+          <div class="star">
+            <ion-icon 
+            name="star" 
+            [class.color]="rate.rateUser <= i" 
+            *ngFor="let item of stars; let i = index" 
+            (click)="selectStarsUser(i)"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <span class="second-text">Comentarios</span>
+      <textarea 
+        class="textArea"
+        name="condiciones" 
+        id="condiciones" 
+        rows="7"
+        placeholder="Describa"
+        [class.rate]="!item.rate"
+        [disabled]="item.rate"
+        [(ngModel)]="rate.comment">
+      </textarea>
+      <div class="btn" *ngIf="!item.rate">
+        <ion-button shape="round" (click)="save()">Calificar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
