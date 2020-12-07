@@ -5,8 +5,6 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 
 import { DataForm } from 'src/app/models/form.model';
-import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
-import { parse } from 'path';
 
 @Component({
   selector: 'app-offers',

@@ -22,7 +22,6 @@ export class PhotosModalComponent implements OnInit {
   constructor(private state: StateApp) { }
 
   ngOnInit() {
-    console.log(this.file);
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
     this.state.getObservable().subscribe(data => {
       if (data.photos) this.photos = data.photos;

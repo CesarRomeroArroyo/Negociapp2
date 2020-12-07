@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
 import { MycardsComponent } from './mycards/mycards.component';
 import { OffersReceivedComponent } from './offers-received/offers-received.component';
 import { CardDetailComponent } from './card-detail/card-detail.component';
+import { MenuComponent } from './menu/menu.component';
 
 const components = [
   HeaderComponent,
@@ -18,7 +19,8 @@ const components = [
   FormComponent,
   MycardsComponent,
   OffersReceivedComponent,
-  CardDetailComponent
+  CardDetailComponent,
+  MenuComponent
 ];
 
 @NgModule({

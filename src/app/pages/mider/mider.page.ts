@@ -38,6 +38,10 @@ export class MiderPage extends FormsAbstract implements OnInit {
 
   public async ngOnInit() {
     this.tabSelected(this.tab);
+    const dataUser = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
+    const user = dataUser[0];
+    this.user = user;
+    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
     this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.file) this.file = data.file;
