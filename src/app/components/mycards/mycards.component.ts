@@ -138,5 +138,4 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
       }
     });
   }
-
 }

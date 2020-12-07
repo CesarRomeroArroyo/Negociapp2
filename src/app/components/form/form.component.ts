@@ -21,7 +21,6 @@ import { LoadingController } from '@ionic/angular';
 })
 export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
-  photosDelete: string[] = [];
   @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
@@ -29,6 +28,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   public categories: string[] = [];
   public photos: Photo[] = [];
   public photosDataBD: Photo[] = [];
+  public photosDelete: string[] = [];
   public form: FormGroup;
   public types: any[] = [];
 
@@ -157,7 +157,6 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     }
     delete dataForm.valueMask;
     this.firebase.save(this.collectionDataBD, dataForm).then(() => {
-      console.log(dataForm);
       Swal.fire('', 'Datos almacenados correctamente', 'success');
       /**
        * TODO: One signal
