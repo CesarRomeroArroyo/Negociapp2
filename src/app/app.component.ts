@@ -41,13 +41,11 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log('Initializing HomePage');
     const device = await Device.getInfo();
     localStorage.setItem('NEGOCIAPP_UINIQUEID', device.uuid);
     this.oneSignal.startInit('d32974fc-eac0-416d-a22d-b2b4996d28fe', '95147562311');
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
     this.oneSignal.handleNotificationReceived().subscribe(() => {
-      // do something when notification is received
     });
 
     /* Asi se debe enviar los mensajes
@@ -56,12 +54,13 @@ export class AppComponent implements OnInit {
                 'Hay un nuevo servicio que concuerda con tus categorias.',
                 { idunico, target: 'request-services', type: 'redirect' }
               );
+              user.onesignal: One signal del usuario al que le llegara la notificacion
+              idunico: uniqueid del item,
+              target: 'ruta a la que llevar,
+              type: redirect,
     */
 
     this.oneSignal.handleNotificationOpened().subscribe((data) => {
-      // do something when a notification is opened
-      // Concentrarse en este metodo.
-      console.log(data);
       if (data.notification.payload.additionalData && data.notification.payload.additionalData.msgInfo) {
         const info = data.notification.payload.additionalData.msgInfo;
         if (info.type === 'redirect') {

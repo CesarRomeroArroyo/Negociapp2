@@ -21,14 +21,17 @@ import { LoadingController } from '@ionic/angular';
 })
 export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
+  photosDelete: string[] = [];
   @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
 
   public categories: string[] = [];
   public photos: Photo[] = [];
+  public photosDataBD: Photo[] = [];
   public form: FormGroup;
   public types: any[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +52,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
+      if (data.photosDelete) this.photosDelete = data.photosDelete;
     });
   }
 
@@ -110,46 +114,59 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
   public async create(): Promise<void> {
     if (this.validators()) {
-      const priceMask = this.form.get('valueMask').value;
-      const price = priceMask.replace(/,/g, '');
-      const coordinates = await Geolocation.getCurrentPosition();
+      const loading = await this.loadingController.create({
+        message: 'Creando solicitud...',
+      });
+      await loading.present();
       if (this.photos.length > 0) {
-        this.photos.forEach(async (item) => {
+        this.photos.forEach(async (item, index) => {
           const idunique = this.uniqueId.uniqueId();
           const path = `${this.user.uniqueid}/${this.category}/${idunique}`;
           await this.fileManager.uploadImageBase64(item.dataUrl, path);
           item.filepath = path;
-          item.dataUrl = await this.fileManager.getUrlFileInfo(path);
+          this.fileManager.getUrlFileInfo(path).then((url) => {
+            item.dataUrl = url;
+            this.photosDataBD.push(item);
+            if (this.photosDataBD.length === this.photos.length)
+              this.createData(loading);
+          });
         });
+      } else {
+        this.createData(loading);
       }
-      setTimeout(() => {
-        const dataForm: DataForm = {
-          ...this.form.value,
-          categories: this.categories,
-          photos: this.photos,
-          value: price,
-          uniqueid: this.uniqueId.uniqueId(),
-          userRequest: this.user.uniqueid,
-          offerit: [],
-          userOffers: [],
-          close: false,
-          lat: coordinates.coords.latitude,
-          lng: coordinates.coords.longitude,
-          oneSignalRequest: this.user.onesignal,
-        }
-        delete dataForm.valueMask;
-        this.firebase.save(this.collectionDataBD, dataForm).then(() => {
-          Swal.fire('', 'Datos almacenados correctamente', 'success');
-          /**
-           * TODO: One signal
-           */
-          this.resetForm();
-        }).catch(err => {
-          Swal.fire('Error', err.message, 'error');
-        });
-      }, 2000);
-
     }
+  }
+
+  public async createData(loading?: HTMLIonLoadingElement): Promise<void> {
+    const priceMask = this.form.get('valueMask').value;
+    const price = priceMask.replace(/,/g, '');
+    const coordinates = await Geolocation.getCurrentPosition();
+    const dataForm: DataForm = {
+      ...this.form.value,
+      categories: this.categories,
+      photos: this.photosDataBD,
+      value: price,
+      uniqueid: this.uniqueId.uniqueId(),
+      userRequest: this.user.uniqueid,
+      offerit: [],
+      userOffers: [],
+      close: false,
+      lat: coordinates.coords.latitude,
+      lng: coordinates.coords.longitude,
+      oneSignalRequest: this.user.onesignal,
+    }
+    delete dataForm.valueMask;
+    this.firebase.save(this.collectionDataBD, dataForm).then(() => {
+      console.log(dataForm);
+      Swal.fire('', 'Datos almacenados correctamente', 'success');
+      /**
+       * TODO: One signal
+       */
+      loading.dismiss();
+      this.resetForm();
+    }).catch(err => {
+      Swal.fire('Error', err.message, 'error');
+    });
   }
 
   public async update(): Promise<void> {
@@ -158,6 +175,11 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
         message: 'Actualizando Datos...',
       });
       await loading.present();
+      if (this.photosDelete.length > 0) {
+        this.photosDelete.forEach(item => {
+          this.fileManager.deleteFilesFolder(item);
+        });
+      }
       if (this.photos.length > 0) {
         const arrayTemp = this.photos.filter(item => {
           return item.dataUrl.indexOf('data:image/') !== -1;
@@ -216,7 +238,9 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
   private resetForm(): void {
     this.form.reset();
+    this.photosDataBD = [];
     this.state.setData({ categories: [] });
     this.state.setData({ photos: [] });
+    this.state.setData({ photosDelete: [] });
   }
 }

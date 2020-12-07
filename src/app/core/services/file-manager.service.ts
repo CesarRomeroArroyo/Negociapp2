@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { Photo } from 'src/app/models/form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,12 +52,9 @@ export class FileManagerService {
 
   public async uploadImageBase64(file: string, filepath): Promise<any> {
     this.estado.next(true);
-    this.fileReference = this.storage.ref(filepath);
     const task = this.storage.ref(filepath).putString(file, 'data_url');
-    this.uploadProgress = task.percentageChanges();
     return task.snapshotChanges().pipe(
       finalize(() => {
-        // this.uploadURL = fileRef.getDownloadURL();
         this.estado.next(false);
       })
     ).toPromise()
@@ -65,5 +63,4 @@ export class FileManagerService {
   public async getUrlFileInfo(path: string): Promise<string> {
     return this.storage.ref(path).getDownloadURL().toPromise();
   }
-
 }

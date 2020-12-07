@@ -165,6 +165,7 @@ export class MiderPage extends FormsAbstract implements OnInit {
     this.form = this.formBuilder.group({
       status: [false || data.status],
     });
+    this.form.get('status').disable();
     this.types = data.levels;
     this.state.setData({ categories: data.categories });
     this.state.setData({ file: data.rut });

@@ -16,6 +16,7 @@ export class PhotosModalComponent implements OnInit {
   public user: User;
   public photos: Photo[] = [];
   public file: any = null;
+  public photosDelete: string[] = [];
   @Input() public isRut = false;
   @Output() public showModal = new EventEmitter<boolean>();
 
@@ -57,10 +58,13 @@ export class PhotosModalComponent implements OnInit {
       confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
       if (result.value) {
+        if (!this.photosDelete.includes(photo.filepath))
+          this.photosDelete.push(photo.filepath);
         this.photos = this.photos.filter((photoArray) => {
           return photoArray !== photo;
         });
         this.state.setData({ photos: this.photos });
+        this.state.setData({ photosDelete: this.photosDelete });
       }
     })
   }
