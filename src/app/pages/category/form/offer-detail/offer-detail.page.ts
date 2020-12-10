@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { DataForm } from 'src/app/models/form.model';
+import { OneSignalService } from 'src/app/core/services/one-signal.service';
 
 @Component({
   selector: 'app-offer-detail',
@@ -23,6 +24,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     private route: ActivatedRoute,
     private firebase: FirebaseService,
     private router: Router,
+    private oneSignal: OneSignalService,
   ) {
     super();
   }
@@ -43,10 +45,14 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.firebase.eliminarDatos(this.collectionDataBD, this.item.id);
     this.firebase.save(this.collectionBDFinalizate, this.item).then(() => {
       Swal.fire('', 'Su oferta fue enviada correctamente', 'success');
-      const idunico = this.item.uniqueid;
-      /**
-       * TODO: One signal
-       */
+      this.oneSignal.sendDirectMessage(
+        this.item.offerit[0].user.onesignal,
+        `¡${this.user.name} ha cerrado el trato, felicitaciones!`,
+        {
+          target: `category/${this.category}/my-deals/offer-detail/${this.item.uniqueid}/${this.item.offerit.length - 1}`,
+          type: 'redirect'
+        }
+      );
       this.router.navigateByUrl(`/category/${this.category}`);
     }).catch(err => {
       Swal.fire('Error', err.message, 'error');
@@ -74,9 +80,14 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
         });
         this.firebase.actualizarDatos(this.collectionDataBD, this.item, this.item.id).then(() => {
           Swal.fire('', 'La propuesta fue cancelada correctamente.', 'success');
-          /**
-           * TODO: One signal
-           */
+          this.oneSignal.sendDirectMessage(
+            this.item.offerit[0].user.onesignal,
+            `¡${this.user.name} ha cancelado una de tus ofertas`,
+            {
+              target: `category/${this.category}/list-offers/offer-detail/${this.item.uniqueid}/${this.item.offerit.length - 1}`,
+              type: 'redirect'
+            }
+          );
           this.router.navigate([`/category/${this.category}`]);
         });
       }

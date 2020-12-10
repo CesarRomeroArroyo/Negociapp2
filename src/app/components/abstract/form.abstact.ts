@@ -67,6 +67,20 @@ export abstract class FormsAbstract {
     }
   }
 
+  get userMider(): string {
+    switch (this.category) {
+      case this.service: {
+        return 'miders';
+      }
+      case this.rent: {
+        return 'midera';
+      }
+      case this.shop: {
+        return 'miderv';
+      }
+    }
+  }
+
   get iconUser(): string {
     return imgStorage.userIcon;
 

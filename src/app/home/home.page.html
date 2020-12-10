@@ -32,7 +32,7 @@
     <ion-select-option value="Valledupar">Valledupar</ion-select-option>      
   </ion-select> 
 
-  <ion-input class="login__input" fill="outline" placeholder="Número contacto" name="contact" [(ngModel)]="registerData.contact"></ion-input>
+  <ion-input type="tel" class="login__input" fill="outline" placeholder="Número contacto" name="contact" [(ngModel)]="registerData.contact"></ion-input>
   <ion-button class="login-submit" (click)="next()" shape="round" color="secondary">
     Siguiente <ion-icon class="register-icon" src="/assets/btn-registro.svg"></ion-icon>
   </ion-button>
