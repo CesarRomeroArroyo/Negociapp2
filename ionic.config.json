@@ -1,5 +1,7 @@
 {
   "name": "StartApp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

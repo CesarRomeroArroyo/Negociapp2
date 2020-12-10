@@ -13,13 +13,16 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { LoadingController } from '@ionic/angular';
+import { OneSignalService } from 'src/app/core/services/one-signal.service';
+import { User } from 'src/app/models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-formComponent',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
+export class FormComponent extends FormsAbstract implements OnInit {
 
   @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
@@ -31,6 +34,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   public photosDelete: string[] = [];
   public form: FormGroup;
   public types: any[] = [];
+  public subscription: Subscription;
 
 
   constructor(
@@ -39,7 +43,9 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     private uniqueId: UniqueService,
     private state: StateApp,
     private fileManager: FileManagerService,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private oneSignal: OneSignalService
+  ) {
     super();
   }
 
@@ -49,14 +55,16 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     if (this.idunique) {
       this.getDataUpdate();
     }
-    this.state.getObservable().subscribe(data => {
+    this.subscription = this.state.getObservable().subscribe(data => {
+      console.log(data);
       if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
       if (data.photosDelete) this.photosDelete = data.photosDelete;
     });
   }
 
-  public ngOnDestroy() {
+  public ionViewDidLeave() {
+    this.subscription.unsubscribe();
     this.resetForm();
   }
 
@@ -158,11 +166,8 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     delete dataForm.valueMask;
     this.firebase.save(this.collectionDataBD, dataForm).then(() => {
       Swal.fire('', 'Datos almacenados correctamente', 'success');
-      /**
-       * TODO: One signal
-       */
+      this.sendNotifications(dataForm.uniqueid);
       loading.dismiss();
-      this.resetForm();
     }).catch(err => {
       Swal.fire('Error', err.message, 'error');
     });
@@ -241,5 +246,23 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     this.state.setData({ categories: [] });
     this.state.setData({ photos: [] });
     this.state.setData({ photosDelete: [] });
+  }
+
+  private async sendNotifications(uniqueid: string) {
+    const users: User[] = await this.firebase.obtenerPromise('usuario-app');
+    users.forEach(user => {
+      if (user.uniqueid !== this.user.uniqueid) {
+        this.categories.forEach(category => {
+          if (user[this.userMider].categories.includes(category)) {
+            this.oneSignal.sendDirectMessage(
+              user.onesignal,
+              '!Hay un nuevo producto que concuerda con tus categorias!',
+              { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
+            );
+            this.resetForm();
+          }
+        });
+      }
+    });
   }
 }

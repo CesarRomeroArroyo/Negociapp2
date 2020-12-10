@@ -55,6 +55,7 @@ export class AppComponent implements OnInit {
                 { idunico, target: 'request-services', type: 'redirect' }
               );
               user.onesignal: One signal del usuario al que le llegara la notificacion
+              message
               idunico: uniqueid del item,
               target: 'ruta a la que llevar,
               type: redirect,
@@ -63,6 +64,7 @@ export class AppComponent implements OnInit {
     this.oneSignal.handleNotificationOpened().subscribe((data) => {
       if (data.notification.payload.additionalData && data.notification.payload.additionalData.msgInfo) {
         const info = data.notification.payload.additionalData.msgInfo;
+        console.log(info);
         if (info.type === 'redirect') {
           this.oneSignalService.redirectTo(info);
         }

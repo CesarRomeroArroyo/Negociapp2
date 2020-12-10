@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -8,6 +8,7 @@ import { StateApp } from 'src/app/core/services/state.service';
 import { Level, Mider, User } from '../../models/user.model';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mider',
@@ -24,6 +25,7 @@ export class MiderPage extends FormsAbstract implements OnInit {
   public types: Level[];
   public mider: Mider;
   public form: FormGroup;
+  public subscription: Subscription;
   @Output() public showCategories = new EventEmitter<boolean>();
 
   constructor(
@@ -37,15 +39,20 @@ export class MiderPage extends FormsAbstract implements OnInit {
   }
 
   public async ngOnInit() {
-    this.tabSelected(this.tab);
     const dataUser = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
     const user = dataUser[0];
     this.user = user;
+    this.tabSelected(this.tab);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
-    this.state.getObservable().subscribe(data => {
+    this.subscription = this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.file) this.file = data.file;
     });
+  }
+
+  public ionViewDidLeave(): void {
+    this.subscription.unsubscribe();
+    this.state.setData({ categories: [] });
   }
 
   get miderText(): string {

@@ -69,10 +69,12 @@ export class HomePage implements OnInit {
       )
       return;
     }
-    const cc = 0;
+    const coordinates = await Geolocation.getCurrentPosition();
     const info = await Device.getInfo();
     this.registerData.uniqueid = info.uuid;
     this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
+    this.registerData.lat = coordinates.coords.latitude;
+    this.registerData.lng = coordinates.coords.longitude;
     this.registerData.active = true;
     this.registerData.nameToSearch = this.registerData.name.toLowerCase();
     this.registerData.rate = [];

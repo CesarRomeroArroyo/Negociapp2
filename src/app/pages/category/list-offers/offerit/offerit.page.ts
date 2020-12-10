@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
+import { User } from 'src/app/models/user.model';
+import { OneSignalService } from 'src/app/core/services/one-signal.service';
 
 @Component({
   selector: 'app-offerit',
@@ -24,6 +26,7 @@ export class OfferitPage extends FormsAbstract implements OnInit {
     private fromBuilder: FormBuilder,
     private loadingController: LoadingController,
     private router: Router,
+    private oneSignal: OneSignalService
   ) {
     super();
   }
@@ -65,14 +68,18 @@ export class OfferitPage extends FormsAbstract implements OnInit {
       this.item.offerit.push(dataForm);
       this.item.userOffers.push(this.user.uniqueid);
       this.firebase.actualizarDatos(
-        this.collectionDataBD, this.item, this.item.id).then(() => {
-        Swal.fire('', 'Su oferta fue realizada', 'success');
-        this.router.navigate([`category/${this.category}/list-offers`]);
-        loading.dismiss();
-        /**
-         * TODO: One signal
-         */
-      });
+        this.collectionDataBD, this.item, this.item.id).then(async () => {
+          Swal.fire('', 'Su oferta fue realizada', 'success');
+          this.router.navigate([`category/${this.category}/list-offers`]);
+          const data = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.item.userRequest);
+          const user: User = data[0];
+          this.oneSignal.sendDirectMessage(
+            user.onesignal,
+            `¡${this.user.name} ha hecho una oferta a una de tus solicitudes!`,
+            { target: `category/${this.category}/form/offers/${this.item.uniqueid}/${this.item.offerit.length - 1}`, type: 'redirect' }
+          );
+          loading.dismiss();
+        });
     }
   }
 
