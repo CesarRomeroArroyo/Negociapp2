@@ -72,6 +72,14 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     }).then((result) => {
       this.isCancel = true;
       if (result.value) {
+        this.oneSignal.sendDirectMessage(
+          this.item.offerit[0].user.onesignal,
+          `¡${this.user.name} ha cancelado una de tus ofertas`,
+          {
+            target: `category/${this.category}/list-offers/offer-detail/${this.item.uniqueid}/${this.item.offerit.length - 1}`,
+            type: 'redirect'
+          }
+        );
         this.item.userOffers = this.item.userOffers.filter((uniqueid) => {
           return uniqueid !== this.item.offerit[this.index].user.uniqueid
         });
@@ -80,14 +88,6 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
         });
         this.firebase.actualizarDatos(this.collectionDataBD, this.item, this.item.id).then(() => {
           Swal.fire('', 'La propuesta fue cancelada correctamente.', 'success');
-          this.oneSignal.sendDirectMessage(
-            this.item.offerit[0].user.onesignal,
-            `¡${this.user.name} ha cancelado una de tus ofertas`,
-            {
-              target: `category/${this.category}/list-offers/offer-detail/${this.item.uniqueid}/${this.item.offerit.length - 1}`,
-              type: 'redirect'
-            }
-          );
           this.router.navigate([`/category/${this.category}`]);
         });
       }

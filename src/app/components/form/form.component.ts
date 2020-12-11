@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent extends FormsAbstract implements OnInit {
+export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
   @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
@@ -35,6 +35,8 @@ export class FormComponent extends FormsAbstract implements OnInit {
   public form: FormGroup;
   public types: any[] = [];
   public subscription: Subscription;
+  public notificationSend = false;
+  public coordinates: any;
 
 
   constructor(
@@ -56,14 +58,13 @@ export class FormComponent extends FormsAbstract implements OnInit {
       this.getDataUpdate();
     }
     this.subscription = this.state.getObservable().subscribe(data => {
-      console.log(data);
       if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
       if (data.photosDelete) this.photosDelete = data.photosDelete;
     });
   }
 
-  public ionViewDidLeave() {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.resetForm();
   }
@@ -121,7 +122,7 @@ export class FormComponent extends FormsAbstract implements OnInit {
   }
 
   public async create(): Promise<void> {
-    if (this.validators()) {
+    if (await this.validators()) {
       const loading = await this.loadingController.create({
         message: 'Creando solicitud...',
       });
@@ -148,7 +149,6 @@ export class FormComponent extends FormsAbstract implements OnInit {
   public async createData(loading?: HTMLIonLoadingElement): Promise<void> {
     const priceMask = this.form.get('valueMask').value;
     const price = priceMask.replace(/,/g, '');
-    const coordinates = await Geolocation.getCurrentPosition();
     const dataForm: DataForm = {
       ...this.form.value,
       categories: this.categories,
@@ -159,8 +159,8 @@ export class FormComponent extends FormsAbstract implements OnInit {
       offerit: [],
       userOffers: [],
       close: false,
-      lat: coordinates.coords.latitude,
-      lng: coordinates.coords.longitude,
+      lat: this.coordinates.coords.latitude,
+      lng: this.coordinates.coords.longitude,
       oneSignalRequest: this.user.onesignal,
     }
     delete dataForm.valueMask;
@@ -174,7 +174,7 @@ export class FormComponent extends FormsAbstract implements OnInit {
   }
 
   public async update(): Promise<void> {
-    if (this.validators()) {
+    if (await this.validators()) {
       const loading = await this.loadingController.create({
         message: 'Actualizando Datos...',
       });
@@ -230,19 +230,27 @@ export class FormComponent extends FormsAbstract implements OnInit {
     }, 2000);
   }
 
-  private validators(): boolean {
+  private async validators(): Promise<boolean> {
+    let coord = true;
     Object.values(this.form.controls).forEach(item => {
       if (item instanceof FormControl) {
         item.markAsTouched();
       }
     });
+    try {
+      this.coordinates = await Geolocation.getCurrentPosition();
+      coord = false;
+    } catch {
+      Swal.fire('', 'Debes tener el GPS activo', 'warning');
+    }
     this.categories.length === 0 ? this.invalid = true : this.invalid = false;
-    return this.form.invalid || this.categories.length === 0 ? false : true;
+    return this.form.invalid || this.categories.length === 0 || coord ? false : true;
   }
 
   private resetForm(): void {
     this.form.reset();
     this.photosDataBD = [];
+    this.notificationSend = false;
     this.state.setData({ categories: [] });
     this.state.setData({ photos: [] });
     this.state.setData({ photosDelete: [] });
@@ -254,14 +262,17 @@ export class FormComponent extends FormsAbstract implements OnInit {
       if (user.uniqueid !== this.user.uniqueid) {
         this.categories.forEach(category => {
           if (user[this.userMider].categories.includes(category)) {
-            this.oneSignal.sendDirectMessage(
-              user.onesignal,
-              '!Hay un nuevo producto que concuerda con tus categorias!',
-              { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
-            );
-            this.resetForm();
+            this.notificationSend = true;
           }
         });
+        if (this.notificationSend) {
+          this.oneSignal.sendDirectMessage(
+            user.onesignal,
+            '!Hay un nuevo producto que concuerda con tus categorias!',
+            { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
+          );
+          this.resetForm();
+        }
       }
     });
   }

@@ -338,6 +338,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HomePage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          if (JSON.parse(localStorage.getItem('NEGOCIAPP_LOGGED'))) {
+            this.router.navigateByUrl('/inicio');
+          }
+
           this.registerData.prestador = true;
           this.registerData.service = true;
           this.registerData.rent = true;

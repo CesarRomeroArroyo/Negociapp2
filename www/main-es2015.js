@@ -526,7 +526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
 
 /***/ }),
 
@@ -1268,6 +1268,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.photosDataBD = [];
         this.photosDelete = [];
         this.types = [];
+        this.notificationSend = false;
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -1276,7 +1277,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             if (this.idunique) {
                 this.getDataUpdate();
             }
-            this.state.getObservable().subscribe(data => {
+            this.subscription = this.state.getObservable().subscribe(data => {
                 if (data.categories)
                     this.categories = data.categories;
                 if (data.photos)
@@ -1287,6 +1288,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         });
     }
     ngOnDestroy() {
+        this.subscription.unsubscribe();
         this.resetForm();
     }
     getDataUpdate() {
@@ -1343,7 +1345,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
     }
     create() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            if (this.validators()) {
+            if (yield this.validators()) {
                 const loading = yield this.loadingController.create({
                     message: 'Creando solicitud...',
                 });
@@ -1372,8 +1374,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const priceMask = this.form.get('valueMask').value;
             const price = priceMask.replace(/,/g, '');
-            const coordinates = yield Geolocation.getCurrentPosition();
-            const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photosDataBD, value: price, uniqueid: this.uniqueId.uniqueId(), userRequest: this.user.uniqueid, offerit: [], userOffers: [], close: false, lat: coordinates.coords.latitude, lng: coordinates.coords.longitude, oneSignalRequest: this.user.onesignal });
+            const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photosDataBD, value: price, uniqueid: this.uniqueId.uniqueId(), userRequest: this.user.uniqueid, offerit: [], userOffers: [], close: false, lat: this.coordinates.coords.latitude, lng: this.coordinates.coords.longitude, oneSignalRequest: this.user.onesignal });
             delete dataForm.valueMask;
             this.firebase.save(this.collectionDataBD, dataForm).then(() => {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Datos almacenados correctamente', 'success');
@@ -1386,7 +1387,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
     }
     update() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            if (this.validators()) {
+            if (yield this.validators()) {
                 const loading = yield this.loadingController.create({
                     message: 'Actualizando Datos...',
                 });
@@ -1439,17 +1440,28 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         }, 2000);
     }
     validators() {
-        Object.values(this.form.controls).forEach(item => {
-            if (item instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]) {
-                item.markAsTouched();
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let coord = true;
+            Object.values(this.form.controls).forEach(item => {
+                if (item instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]) {
+                    item.markAsTouched();
+                }
+            });
+            try {
+                this.coordinates = yield Geolocation.getCurrentPosition();
+                coord = false;
             }
+            catch (_a) {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Debes tener el GPS activo', 'warning');
+            }
+            this.categories.length === 0 ? this.invalid = true : this.invalid = false;
+            return this.form.invalid || this.categories.length === 0 || coord ? false : true;
         });
-        this.categories.length === 0 ? this.invalid = true : this.invalid = false;
-        return this.form.invalid || this.categories.length === 0 ? false : true;
     }
     resetForm() {
         this.form.reset();
         this.photosDataBD = [];
+        this.notificationSend = false;
         this.state.setData({ categories: [] });
         this.state.setData({ photos: [] });
         this.state.setData({ photosDelete: [] });
@@ -1461,10 +1473,13 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
                 if (user.uniqueid !== this.user.uniqueid) {
                     this.categories.forEach(category => {
                         if (user[this.userMider].categories.includes(category)) {
-                            this.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' });
-                            this.resetForm();
+                            this.notificationSend = true;
                         }
                     });
+                    if (this.notificationSend) {
+                        this.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' });
+                        this.resetForm();
+                    }
                 }
             });
         });

@@ -171,6 +171,9 @@ let HomePage = class HomePage {
         this.flag = false;
     }
     ngOnInit() {
+        if (JSON.parse(localStorage.getItem('NEGOCIAPP_LOGGED'))) {
+            this.router.navigateByUrl('/inicio');
+        }
         this.registerData.prestador = true;
         this.registerData.service = true;
         this.registerData.rent = true;

@@ -283,7 +283,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n";
+    __webpack_exports__["default"] = "<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n";
     /***/
   },
 
@@ -1599,6 +1599,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this4.photosDataBD = [];
         _this4.photosDelete = [];
         _this4.types = [];
+        _this4.notificationSend = false;
         return _this4;
       }
 
@@ -1621,7 +1622,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.getDataUpdate();
                     }
 
-                    this.state.getObservable().subscribe(function (data) {
+                    this.subscription = this.state.getObservable().subscribe(function (data) {
                       if (data.categories) _this5.categories = data.categories;
                       if (data.photos) _this5.photos = data.photos;
                       if (data.photosDelete) _this5.photosDelete = data.photosDelete;
@@ -1638,6 +1639,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnDestroy",
         value: function ngOnDestroy() {
+          this.subscription.unsubscribe();
           this.resetForm();
         }
       }, {
@@ -1751,22 +1753,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context7.prev = _context7.next) {
                   case 0:
-                    if (!this.validators()) {
-                      _context7.next = 7;
+                    _context7.next = 2;
+                    return this.validators();
+
+                  case 2:
+                    if (!_context7.sent) {
+                      _context7.next = 9;
                       break;
                     }
 
-                    _context7.next = 3;
+                    _context7.next = 5;
                     return this.loadingController.create({
                       message: 'Creando solicitud...'
                     });
 
-                  case 3:
+                  case 5:
                     loading = _context7.sent;
-                    _context7.next = 6;
+                    _context7.next = 8;
                     return loading.present();
 
-                  case 6:
+                  case 8:
                     if (this.photos.length > 0) {
                       this.photos.forEach(function (item, index) {
                         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this6, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
@@ -1804,7 +1810,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.createData(loading);
                     }
 
-                  case 7:
+                  case 9:
                   case "end":
                     return _context7.stop();
                 }
@@ -1818,18 +1824,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
             var _this8 = this;
 
-            var priceMask, price, coordinates, dataForm;
+            var priceMask, price, dataForm;
             return regeneratorRuntime.wrap(function _callee8$(_context8) {
               while (1) {
                 switch (_context8.prev = _context8.next) {
                   case 0:
                     priceMask = this.form.get('valueMask').value;
                     price = priceMask.replace(/,/g, '');
-                    _context8.next = 4;
-                    return Geolocation.getCurrentPosition();
-
-                  case 4:
-                    coordinates = _context8.sent;
                     dataForm = Object.assign(Object.assign({}, this.form.value), {
                       categories: this.categories,
                       photos: this.photosDataBD,
@@ -1839,8 +1840,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       offerit: [],
                       userOffers: [],
                       close: false,
-                      lat: coordinates.coords.latitude,
-                      lng: coordinates.coords.longitude,
+                      lat: this.coordinates.coords.latitude,
+                      lng: this.coordinates.coords.longitude,
                       oneSignalRequest: this.user.onesignal
                     });
                     delete dataForm.valueMask;
@@ -1854,7 +1855,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Error', err.message, 'error');
                     });
 
-                  case 8:
+                  case 5:
                   case "end":
                     return _context8.stop();
                 }
@@ -1873,22 +1874,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context10.prev = _context10.next) {
                   case 0:
-                    if (!this.validators()) {
-                      _context10.next = 8;
+                    _context10.next = 2;
+                    return this.validators();
+
+                  case 2:
+                    if (!_context10.sent) {
+                      _context10.next = 10;
                       break;
                     }
 
-                    _context10.next = 3;
+                    _context10.next = 5;
                     return this.loadingController.create({
                       message: 'Actualizando Datos...'
                     });
 
-                  case 3:
+                  case 5:
                     loading = _context10.sent;
-                    _context10.next = 6;
+                    _context10.next = 8;
                     return loading.present();
 
-                  case 6:
+                  case 8:
                     if (this.photosDelete.length > 0) {
                       this.photosDelete.forEach(function (item) {
                         _this9.fileManager.deleteFilesFolder(item);
@@ -1940,7 +1945,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.updateData(loading);
                     }
 
-                  case 8:
+                  case 10:
                   case "end":
                     return _context10.stop();
                 }
@@ -1979,19 +1984,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "validators",
         value: function validators() {
-          Object.values(this.form.controls).forEach(function (item) {
-            if (item instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]) {
-              item.markAsTouched();
-            }
-          });
-          this.categories.length === 0 ? this.invalid = true : this.invalid = false;
-          return this.form.invalid || this.categories.length === 0 ? false : true;
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            var coord;
+            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              while (1) {
+                switch (_context11.prev = _context11.next) {
+                  case 0:
+                    coord = true;
+                    Object.values(this.form.controls).forEach(function (item) {
+                      if (item instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]) {
+                        item.markAsTouched();
+                      }
+                    });
+                    _context11.prev = 2;
+                    _context11.next = 5;
+                    return Geolocation.getCurrentPosition();
+
+                  case 5:
+                    this.coordinates = _context11.sent;
+                    coord = false;
+                    _context11.next = 12;
+                    break;
+
+                  case 9:
+                    _context11.prev = 9;
+                    _context11.t0 = _context11["catch"](2);
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Debes tener el GPS activo', 'warning');
+
+                  case 12:
+                    this.categories.length === 0 ? this.invalid = true : this.invalid = false;
+                    return _context11.abrupt("return", this.form.invalid || this.categories.length === 0 || coord ? false : true);
+
+                  case 14:
+                  case "end":
+                    return _context11.stop();
+                }
+              }
+            }, _callee11, this, [[2, 9]]);
+          }));
         }
       }, {
         key: "resetForm",
         value: function resetForm() {
           this.form.reset();
           this.photosDataBD = [];
+          this.notificationSend = false;
           this.state.setData({
             categories: []
           });
@@ -2005,40 +2042,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendNotifications",
         value: function sendNotifications(uniqueid) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
             var _this11 = this;
 
             var users;
-            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+            return regeneratorRuntime.wrap(function _callee12$(_context12) {
               while (1) {
-                switch (_context11.prev = _context11.next) {
+                switch (_context12.prev = _context12.next) {
                   case 0:
-                    _context11.next = 2;
+                    _context12.next = 2;
                     return this.firebase.obtenerPromise('usuario-app');
 
                   case 2:
-                    users = _context11.sent;
+                    users = _context12.sent;
                     users.forEach(function (user) {
                       if (user.uniqueid !== _this11.user.uniqueid) {
                         _this11.categories.forEach(function (category) {
                           if (user[_this11.userMider].categories.includes(category)) {
-                            _this11.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', {
-                              target: "category/".concat(_this11.category, "/list-offers/offer-detail/").concat(uniqueid),
-                              type: 'redirect'
-                            });
-
-                            _this11.resetForm();
+                            _this11.notificationSend = true;
                           }
                         });
+
+                        if (_this11.notificationSend) {
+                          _this11.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', {
+                            target: "category/".concat(_this11.category, "/list-offers/offer-detail/").concat(uniqueid),
+                            type: 'redirect'
+                          });
+
+                          _this11.resetForm();
+                        }
                       }
                     });
 
                   case 4:
                   case "end":
-                    return _context11.stop();
+                    return _context12.stop();
                 }
               }
-            }, _callee11, this);
+            }, _callee12, this);
           }));
         }
       }]);
@@ -2749,30 +2790,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
             var tokenUser;
-            return regeneratorRuntime.wrap(function _callee12$(_context12) {
+            return regeneratorRuntime.wrap(function _callee13$(_context13) {
               while (1) {
-                switch (_context12.prev = _context12.next) {
+                switch (_context13.prev = _context13.next) {
                   case 0:
                     tokenUser = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
 
                     if (!tokenUser) {
-                      _context12.next = 5;
+                      _context13.next = 5;
                       break;
                     }
 
-                    return _context12.abrupt("return", true);
+                    return _context13.abrupt("return", true);
 
                   case 5:
                     this.router.navigateByUrl('/login');
 
                   case 6:
                   case "end":
-                    return _context12.stop();
+                    return _context13.stop();
                 }
               }
-            }, _callee12, this);
+            }, _callee13, this);
           }));
         }
       }]);
@@ -2860,26 +2901,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(FileManagerService, [{
         key: "upload",
         value: function upload(file, filepath) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
             var _this20 = this;
 
             var fileRef, loading, task;
-            return regeneratorRuntime.wrap(function _callee13$(_context13) {
+            return regeneratorRuntime.wrap(function _callee14$(_context14) {
               while (1) {
-                switch (_context13.prev = _context13.next) {
+                switch (_context14.prev = _context14.next) {
                   case 0:
                     // Get input file
                     // const file = event.target.files[0];
                     this.estado.next(true);
                     fileRef = this.storage.ref(filepath);
-                    _context13.next = 4;
+                    _context14.next = 4;
                     return this.loadingController.create({
                       message: 'Espere por favor...'
                     });
 
                   case 4:
-                    loading = _context13.sent;
-                    _context13.next = 7;
+                    loading = _context14.sent;
+                    _context14.next = 7;
                     return loading.present();
 
                   case 7:
@@ -2888,7 +2929,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     this.uploadProgress = task.percentageChanges(); // Get notified when the download URL is available
 
-                    return _context13.abrupt("return", task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["finalize"])(function () {
+                    return _context14.abrupt("return", task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["finalize"])(function () {
                       _this20.uploadURL = fileRef.getDownloadURL();
 
                       _this20.estado.next(false);
@@ -2898,10 +2939,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 10:
                   case "end":
-                    return _context13.stop();
+                    return _context14.stop();
                 }
               }
-            }, _callee13, this);
+            }, _callee14, this);
           }));
         }
       }, {
@@ -2917,44 +2958,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "uploadImageBase64",
         value: function uploadImageBase64(file, filepath) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
             var _this21 = this;
 
             var task;
-            return regeneratorRuntime.wrap(function _callee14$(_context14) {
+            return regeneratorRuntime.wrap(function _callee15$(_context15) {
               while (1) {
-                switch (_context14.prev = _context14.next) {
+                switch (_context15.prev = _context15.next) {
                   case 0:
                     this.estado.next(true);
                     task = this.storage.ref(filepath).putString(file, 'data_url');
-                    return _context14.abrupt("return", task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["finalize"])(function () {
+                    return _context15.abrupt("return", task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["finalize"])(function () {
                       _this21.estado.next(false);
                     })).toPromise());
 
                   case 3:
                   case "end":
-                    return _context14.stop();
+                    return _context15.stop();
                 }
               }
-            }, _callee14, this);
+            }, _callee15, this);
           }));
         }
       }, {
         key: "getUrlFileInfo",
         value: function getUrlFileInfo(path) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
-            return regeneratorRuntime.wrap(function _callee15$(_context15) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+            return regeneratorRuntime.wrap(function _callee16$(_context16) {
               while (1) {
-                switch (_context15.prev = _context15.next) {
+                switch (_context16.prev = _context16.next) {
                   case 0:
-                    return _context15.abrupt("return", this.storage.ref(path).getDownloadURL().toPromise());
+                    return _context16.abrupt("return", this.storage.ref(path).getDownloadURL().toPromise());
 
                   case 1:
                   case "end":
-                    return _context15.stop();
+                    return _context16.stop();
                 }
               }
-            }, _callee15, this);
+            }, _callee16, this);
           }));
         }
       }]);
@@ -3042,50 +3083,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "obtenerPromise",
         value: function obtenerPromise(tabla, show) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
-            var returnData, data;
-            return regeneratorRuntime.wrap(function _callee16$(_context16) {
-              while (1) {
-                switch (_context16.prev = _context16.next) {
-                  case 0:
-                    returnData = [];
-                    _context16.next = 3;
-                    return this.db.collection(tabla).get().toPromise();
-
-                  case 3:
-                    data = _context16.sent;
-                    data.forEach(function (info) {
-                      var d = info.data();
-                      d.id = info.id;
-                      returnData.push(d);
-                    });
-                    return _context16.abrupt("return", returnData);
-
-                  case 6:
-                  case "end":
-                    return _context16.stop();
-                }
-              }
-            }, _callee16, this);
-          }));
-        }
-      }, {
-        key: "obtenerId",
-        value: function obtenerId(tabla, id, show) {
-          this.itemsCollection = this.db.collection(tabla, function (ref) {
-            return ref.where('id', '==', id);
-          });
-          return this.itemsCollection.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
-            return data.map(function (d) {
-              var retorno = d.payload.doc.data();
-              retorno.id = d.payload.doc.id;
-              return retorno;
-            });
-          }));
-        }
-      }, {
-        key: "obtenerIdPromise",
-        value: function obtenerIdPromise(tabla, id, show) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
             var returnData, data;
             return regeneratorRuntime.wrap(function _callee17$(_context17) {
@@ -3094,9 +3091,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     returnData = [];
                     _context17.next = 3;
-                    return this.db.collection(tabla, function (ref) {
-                      return ref.where('id', '==', id);
-                    }).get().toPromise();
+                    return this.db.collection(tabla).get().toPromise();
 
                   case 3:
                     data = _context17.sent;
@@ -3116,10 +3111,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "obtenerUniqueId",
-        value: function obtenerUniqueId(tabla, id) {
+        key: "obtenerId",
+        value: function obtenerId(tabla, id, show) {
           this.itemsCollection = this.db.collection(tabla, function (ref) {
-            return ref.where('idunico', '==', id);
+            return ref.where('id', '==', id);
           });
           return this.itemsCollection.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
             return data.map(function (d) {
@@ -3130,8 +3125,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "obtenerUniqueIdPromise",
-        value: function obtenerUniqueIdPromise(tabla, id) {
+        key: "obtenerIdPromise",
+        value: function obtenerIdPromise(tabla, id, show) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
             var returnData, data;
             return regeneratorRuntime.wrap(function _callee18$(_context18) {
@@ -3141,7 +3136,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     returnData = [];
                     _context18.next = 3;
                     return this.db.collection(tabla, function (ref) {
-                      return ref.where('uniqueid', '==', id);
+                      return ref.where('id', '==', id);
                     }).get().toPromise();
 
                   case 3:
@@ -3162,8 +3157,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "obtenerByContactoIDPromise",
-        value: function obtenerByContactoIDPromise(id, show) {
+        key: "obtenerUniqueId",
+        value: function obtenerUniqueId(tabla, id) {
+          this.itemsCollection = this.db.collection(tabla, function (ref) {
+            return ref.where('idunico', '==', id);
+          });
+          return this.itemsCollection.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data.map(function (d) {
+              var retorno = d.payload.doc.data();
+              retorno.id = d.payload.doc.id;
+              return retorno;
+            });
+          }));
+        }
+      }, {
+        key: "obtenerUniqueIdPromise",
+        value: function obtenerUniqueIdPromise(tabla, id) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
             var returnData, data;
             return regeneratorRuntime.wrap(function _callee19$(_context19) {
@@ -3172,8 +3181,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     returnData = [];
                     _context19.next = 3;
-                    return this.db.collection('usuario-app', function (ref) {
-                      return ref.where('num_ide', '==', id);
+                    return this.db.collection(tabla, function (ref) {
+                      return ref.where('uniqueid', '==', id);
                     }).get().toPromise();
 
                   case 3:
@@ -3191,6 +3200,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }, _callee19, this);
+          }));
+        }
+      }, {
+        key: "obtenerByContactoIDPromise",
+        value: function obtenerByContactoIDPromise(id, show) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+            var returnData, data;
+            return regeneratorRuntime.wrap(function _callee20$(_context20) {
+              while (1) {
+                switch (_context20.prev = _context20.next) {
+                  case 0:
+                    returnData = [];
+                    _context20.next = 3;
+                    return this.db.collection('usuario-app', function (ref) {
+                      return ref.where('num_ide', '==', id);
+                    }).get().toPromise();
+
+                  case 3:
+                    data = _context20.sent;
+                    data.forEach(function (info) {
+                      var d = info.data();
+                      d.id = info.id;
+                      returnData.push(d);
+                    });
+                    return _context20.abrupt("return", returnData);
+
+                  case 6:
+                  case "end":
+                    return _context20.stop();
+                }
+              }
+            }, _callee20, this);
           }));
         }
       }, {
@@ -3347,19 +3388,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "redirectTo",
         value: function redirectTo(data) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
-            return regeneratorRuntime.wrap(function _callee20$(_context20) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
+            return regeneratorRuntime.wrap(function _callee21$(_context21) {
               while (1) {
-                switch (_context20.prev = _context20.next) {
+                switch (_context21.prev = _context21.next) {
                   case 0:
                     this.router.navigate([data.target]);
 
                   case 1:
                   case "end":
-                    return _context20.stop();
+                    return _context21.stop();
                 }
               }
-            }, _callee20, this);
+            }, _callee21, this);
           }));
         }
       }]);
