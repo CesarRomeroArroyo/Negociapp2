@@ -1,5 +1,6 @@
 <app-header
   [secondMessage]="secondMessageHeader"
+  [thirdMessage]="thirdMessage"
   [colorHeader]="'var(--ion-color-primary)'"
   [colorText]="'var(--ion-color-light)'"
   [colorBack]="'var(--ion-color-light)'"
@@ -16,14 +17,14 @@
           class="tab" 
           (click)="tab = 1" 
           [ngClass]="{'active': tab === 1}">
-            <p>Historial</p>
+            <p>Mis compras</p>
             <img src="../../../assets/icon_servicios.png">
         </button>
         <button 
           class="tab" 
           [ngClass]="{'active' : tab === 2}"
           (click)="tab = 2">
-            <p>Mis ofertas</p>
+            <p>Mis ventas</p>
             <img src="../../../assets/mis_servicios.png">
         </button>
       </ion-col>

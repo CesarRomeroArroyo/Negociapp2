@@ -9,6 +9,7 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 import { OneSignalService } from 'src/app/core/services/one-signal.service';
+import { CategoryURL } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-offerit',
@@ -37,6 +38,20 @@ export class OfferitPage extends FormsAbstract implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.uniqueid);
     this.item = dataForm[0];
+  }
+
+  get thirdMessage(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        return 'Ofertar Servicio';
+      }
+      case CategoryURL.Rent: {
+        return 'Ofertar Alquiler';
+      }
+      case CategoryURL.Shop: {
+        return 'Ofertar Producto';
+      }
+    }
   }
 
   public validFields(param: string): boolean {

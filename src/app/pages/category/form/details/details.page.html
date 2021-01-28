@@ -1,9 +1,9 @@
-<app-header
-  [secondMessage]="secondMessageHeader"
+<app-header 
+  [secondMessage]="secondMessageHeader" 
   [thirdMessage]="thirdMessage"
-  [colorHeader]="'var(--ion-color-primary)'"
+  [colorHeader]="'var(--ion-color-primary)'" 
   [colorText]="'var(--ion-color-light)'"
-  [colorBack]="'var(--ion-color-light)'"
+  [colorBack]="'var(--ion-color-light)'" 
   [colorBorderIcon]="'1px solid var(--ion-color-light)'"
   [colorIconBlack]="false">
 </app-header>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="button">
-        <ion-button shape="round" (click)="redirecto()" *ngIf="!offerit">Ofertar</ion-button>
+        <ion-button shape="round" (click)="redirecto(item)">Modificar</ion-button>
       </div>
     </div>
   </div>

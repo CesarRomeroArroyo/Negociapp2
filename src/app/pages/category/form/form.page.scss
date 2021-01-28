@@ -43,6 +43,10 @@ ion-content {
           &.active {
             @include box-shadow-black();
           }
+
+          &:focus {
+            outline: none;
+          }
         }
       }
     }

@@ -7,6 +7,7 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { DataForm } from 'src/app/models/form.model';
 import { RateItem } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
+import { CategoryURL } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-rate',
@@ -45,6 +46,20 @@ export class RatePage extends FormsAbstract implements OnInit {
     this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
     if (this.item.rate)
       this.rate = this.item.rate;
+  }
+
+  get thirdMessage(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        return 'Calificación del Negocio';
+      }
+      case CategoryURL.Rent: {
+        return 'Calificación del Negocio';
+      }
+      case CategoryURL.Shop: {
+        return 'Calificación del Negocio';
+      }
+    }
   }
 
   public selectStarsItem(index: number): void {

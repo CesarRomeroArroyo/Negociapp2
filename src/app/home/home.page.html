@@ -1,44 +1,51 @@
-<ion-content class="ion-padding login background-image">
-
-  <h1 class="ion-text-center login__title">NegociApp</h1>
-  <article class="login__welcome ion-text-center">
-    <p class="ion-text-center login__welcome__text">Bienvenido a NegociApp</p>
-    <p class="login__welcome__text">
-      una gran comunidad de servicios
-      y arriendos en tu ciudad</p>
-  </article>
-  <p class="login__welcome__text-form ion-text-center">Ingresa tus datos personales</p>
-  
-<div class="form-container">
-
-  <ion-select name="tip_ide" [(ngModel)]="registerData.tip_ide" class="login-select" placeholder="Tipo de identificación">
-    <ion-select-option value="Cedula">Cédula de ciudadanía</ion-select-option>
-    <ion-select-option value="Cedula Extranjeria">Cédula de extranjería</ion-select-option>
-    <ion-select-option value="Pasaporte">Pasaporte</ion-select-option>
-  </ion-select>
-
-  <ion-input type="number" id="num_ide" [(ngModel)]="registerData.num_ide" (focusout)="verificarExistencia()" 
-    class="login__input" fill="outline" placeholder="Número de identificacion"></ion-input>
-  <ion-input class="login__input" fill="outline" placeholder="Nombres y apellidos" id="name" [(ngModel)]="registerData.name"></ion-input>
-  <ion-input class="login__input" fill="outline" placeholder="Correo" id="email" [(ngModel)]="registerData.email"></ion-input>
-      
-  <ion-select name="city" [(ngModel)]="registerData.city" class="login-select select-city" placeholder="Ciudad">
-    <ion-select-option value="Cartagena">Cartagena</ion-select-option>
-    <ion-select-option value="Barranquilla">Barranquilla</ion-select-option>
-    <ion-select-option value="Montería">Montería</ion-select-option>
-    <ion-select-option value="Santa Marta">Santa Marta</ion-select-option>
-    <ion-select-option value="Sincelejo">Sincelejo</ion-select-option>      
-    <ion-select-option value="Riohacha">Riohacha</ion-select-option>
-    <ion-select-option value="Valledupar">Valledupar</ion-select-option>      
-  </ion-select> 
-
-  <ion-input type="tel" class="login__input" fill="outline" placeholder="Número contacto" name="contact" [(ngModel)]="registerData.contact"></ion-input>
-  <ion-button class="login-submit" (click)="next()" shape="round" color="secondary">
-    Siguiente <ion-icon class="register-icon" src="/assets/btn-registro.svg"></ion-icon>
-  </ion-button>
-  
-</div>
-  <!-- <ion-button class="login-submit" (click)="borrarmetodo()" shape="round" color="secondary">
-    Borrar
-  </ion-button> -->
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <div class="container">
+    <div class="content-text">
+      <span class="title">NegociApp</span>
+      <span class="text">Bienvenido a NegociApp</span>
+      <span class="text">una gran comunidad de servicios y arriendos en tu ciudad</span>
+    </div>
+    <div class="form">
+      <span class="text">Ingresa tus datos personales</span>
+      <form [formGroup]="form" (ngSubmit)="next()">
+        <input 
+          class="input" 
+          placeholder="Número de identificación" 
+          type="number" 
+          (blur)="isLogged()" 
+          formControlName="id" 
+          [ngClass]="{'invalid': validateinput('id')}"
+        />
+        <input 
+          class="input" 
+          placeholder="Nombres y apellidos" 
+          formControlName="name" 
+          [ngClass]="{'invalid': validateinput('name')}"
+        />
+        <input 
+          class="input" 
+          placeholder="Email" 
+          type="email" 
+          formControlName="email" 
+          [ngClass]="{'invalid': validateinput('email')}"
+        />
+        <input 
+          class="input" 
+          placeholder="Numero de Telefono" 
+          type="number" 
+          formControlName="tel" 
+          [ngClass]="{'invalid': validateinput('tel')}"
+        />
+        <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
+          <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
+        </ion-select>
+        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
+          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
+        </ion-select>
+        <div class="submit">
+          <ion-button color="secondary" type="submit" shape="round" expand="full">Siguiente</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
 </ion-content>

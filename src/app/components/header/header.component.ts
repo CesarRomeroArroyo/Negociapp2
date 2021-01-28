@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() public text = 'NegociApp';
   @Input() public secondMessage = '';
+  @Input() public thirdMessage = '';
   @Input() public colorHeader = 'var(--ion-color-light)';
   @Input() public colorText = 'var(--ion-color-secondary)';
   @Input() public colorBack = 'var(--ion-color-primary)';

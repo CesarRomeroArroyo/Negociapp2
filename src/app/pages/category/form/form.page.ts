@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 
 import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { MessageTabOne, MessageTabTwo } from '../../../models/form.model';
@@ -9,7 +10,7 @@ import { MessageTabOne, MessageTabTwo } from '../../../models/form.model';
   templateUrl: './form.page.html',
   styleUrls: ['./form.page.scss'],
 })
-export class FormPage implements OnInit {
+export class FormPage extends FormsAbstract implements OnInit {
 
   public tab = 1;
   public category: string;
@@ -17,7 +18,7 @@ export class FormPage implements OnInit {
   public showModalPhotos = false;
   public idunique: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { super() }
 
   ngOnInit() {
     this.category = this.route.snapshot.paramMap.get('category');
@@ -33,6 +34,27 @@ export class FormPage implements OnInit {
       case CategoryURL.Shop:
         return CategoryPath.Shop;
     }
+  }
+
+  get thirdMessage(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        if (this.tab === 1) return 'Solicitar Servicio';
+        else return 'Mis solicitudes'
+      }
+      case CategoryURL.Rent: {
+        if (this.tab === 1) return 'Solicitar Alquiler';
+        else return 'Mis solicitudes'
+      }
+      case CategoryURL.Shop: {
+        if (this.tab === 1) return 'Solicitar Producto';
+        else return 'Mis solicitudes'
+      }
+    }
+  }
+
+  get back(): string {
+    return `category/${this.category}`;
   }
 
   get message(): string {

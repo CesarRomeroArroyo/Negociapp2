@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { CategoryURL } from 'src/app/models/category.model';
 import { DataForm } from 'src/app/models/form.model';
 
 @Component({
@@ -32,11 +33,25 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
   }
 
+  get thirdMessage(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        return 'Detalles del Negocio';
+      }
+      case CategoryURL.Rent: {
+        return 'Detalles del Negocio';
+      }
+      case CategoryURL.Shop: {
+        return 'Detalles del Negocio';
+      }
+    }
+  }
+
   public goToRate(): void {
     this.router.navigate([`/category/${this.category}/my-deals/rate/${this.uniqueid}/${this.index}`]);
   }
 
-  public gotoPerfilUserRequest():void {
+  public gotoPerfilUserRequest(): void {
     if (this.isUserRequest) {
       this.router.navigate(['/perfil']);
     } else {

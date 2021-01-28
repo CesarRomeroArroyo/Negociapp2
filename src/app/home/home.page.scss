@@ -1,87 +1,103 @@
-ion-content {
-  --background: #fff url("/assets/login.jpg") no-repeat center center / cover;
-  /* background-image: #fff url("/assets/login.jpg") no-repeat center center / cover !important; */
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
+@import '../../theme/mixin.scss';
+
+.container {
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  color: var(--ion-color-light);
+  @include flex(center, stretch, column);
 }
 
-.form-container {
-  margin: 0 10%;
+.content-text {
+  width: 100%;
+  margin-bottom: 2rem;
+  @include flex(center, center, column);
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  .text {
+    text-align: center;
+    font-size: 18px;
+  }
 }
 
-.login {
-  font-family: Ubuntu, sans-serif;
-  &__title {
-      font-weight: 700;
-      color: white;
+.form {
+  width: 100%;
+  margin-bottom: 16px;
+  @include flex(center, center, column);
+  .text {
+    text-align: center;
+    font-size: 18px;
   }
-  &__welcome {
-      font-weight: 400;
-      font-size: 1.2em;
-      color:white;
-      width: 75%;
-      margin: 0 auto;
-      margin-top: 60px;
-      margin-bottom: 60px;
-      &__text {
-          margin: 0
-      }
-      &__text-form {
-          color: #d4dcfc;
-          font-weight: 300;
-      }
-  }
-  &__input {
+
+  form {
+    margin-top: 2rem;
+    .input {
       width: 100%;
       margin: 0 auto;
-      background-color: var(--ion-color-primary);
-      --placeholder-color: #d4dcfc;
-      --color: white;
-      border: 1px solid white;
+      background: var(--ion-color-blue-primary);
+      border: 1px solid var(--ion-color-light);
+      color: var(--ion-color-light);
       border-radius: 1.5em;
-      text-align: center;
       margin-bottom: 16px;
-      padding-left: 0;
-      --padding-start: 0;
-  }
-}
-
-
-
-.login-select {
-  width: 100%;
-  margin: 0 auto;
-  color:white;    
-  border: 1px solid white;
-  border-radius: 1.5em;
-  text-align: center;
-  padding: 6px 0; 
-  margin-bottom: 16px;
-}
-
-ion-select {
+      padding: 10px 0px 8px 8px;
+      text-align: center;
   
-  &::part(icon) {
-      display: none;
+      &.invalid {
+        border: 1px solid var(--ion-color-danger);
+      }
+  
+      &.select {
+        margin-bottom: 16px;
+        @include flex(center, $direction: row-reverse);
+  
+        ion-icon {
+          position: absolute;
+          right: 0px;
+        }
+      }
+  
+      &.button {
+        padding: 0px;
+        width: 100%;
+        margin-bottom: 16px;
+      }
+  
+      &:focus {
+        outline: none;
+      }
+  
+      &::placeholder { 
+        color: var(--ion-color-light);
+        opacity: 0.6; 
+      }
+    }
+  
+    ion-select {
+      --placeholder-opacity: 0.6;
+      --padding-end: 16px;
+      background: var(--ion-color-blue-primary);
+      color: var(--ion-color-light);
+      border: 1px solid var(--ion-color-light);
+      border-radius: 1.5em;
+      margin-bottom: 16px;
+      text-align: center;
+  
+      &.invalid {
+        border: 1px solid var(--ion-color-danger);
+      }
+    }
+
+    .submit {
+      width: 100%;
+      margin: 16px 0px;
+      @include flex(center, center);
+      ion-button {
+        width: 70%;
+      }
+    }
   }
+
 }
-
-
-.login-submit {
-  display:flex;
-  justify-content: center;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 30px;
-  padding: 0 10px;
-}
-
-.register-icon {
-  width: 25px;
-  height: 20px;
-  padding-left: 5px;
-}
-
-
-

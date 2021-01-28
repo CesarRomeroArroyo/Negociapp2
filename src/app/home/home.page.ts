@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
+
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from '../core/services/firebase.service';
 import { User } from '../models/user.model';
+import Swal from 'sweetalert2';
+import { LoadingController } from '@ionic/angular';
+import { timer } from 'rxjs';
 
 const { Geolocation, Device } = Plugins;
-
 const level = [
   { isChecked: false, value: 'Especializado' },
   { isChecked: false, value: 'Profesional' },
@@ -23,8 +26,22 @@ const path = { name: '', path: '', url: '' }
 })
 export class HomePage implements OnInit {
 
-  services = false;
-  registerData: User = {
+  public identificationType = [
+    { name: 'Cedula de ciudadanía', value: 'Cedula' },
+    { name: 'Cedula extranjera', value: 'CedulaExtranjera' },
+    { name: 'Pasaporte', value: 'Pasaporte' }
+  ];
+  public cities = [
+    { name: 'Cartagena', value: 'Cartagena' },
+    { name: 'Barranquilla', value: 'Barranquilla' },
+    { name: 'Montería', value: 'Montería' },
+    { name: 'Santa Marta', value: 'Santa Marta' },
+    { name: 'Sincelejo', value: 'Sincelejo' },
+    { name: 'Riohacha', value: 'Riohacha' },
+    { name: 'Valledupar', value: 'Valledupar' }
+  ];
+  public registerData: User = {
+    uniqueid: null,
     prestador: true,
     service: true,
     rent: true,
@@ -32,28 +49,38 @@ export class HomePage implements OnInit {
     miders: { status: false, categories: [], levels: level, rut: path },
     midera: { status: false, categories: [], levels: level, rut: path },
     miderv: { status: false, categories: [], levels: level, rut: path },
+    lat: null,
+    lng: null,
+    active: true,
+    nameToSearch: null,
+    rate: []
   };
-  images = [];
-  files = [];
-  numCC = 0;
-  numPic = 0;
-  numHV = 0;
-  flag = false;
-  tempo: any;
+  public form: FormGroup;
+  public coordinates: any;
+
   constructor(
     private router: Router,
-    private firebaseService: FirebaseService
-  ) { }
+    private formBuilder: FormBuilder,
+    private firebaseService: FirebaseService,
+    private loadingController: LoadingController,
+  ) { this.initForm() }
 
   ngOnInit() {
     if (JSON.parse(localStorage.getItem('NEGOCIAPP_LOGGED'))) {
       this.router.navigateByUrl('/inicio');
     }
-    this.registerData.prestador = true;
-    this.registerData.service = true;
-    this.registerData.rent = true;
-    this.registerData.shop = true;
     this.obtenerCoordenadas();
+  }
+
+  public initForm(data?): void {
+    this.form = this.formBuilder.group({
+      id: ['' || data?.id, Validators.required],
+      name: ['' || data?.name, Validators.required],
+      email: ['' || data?.name, Validators.required],
+      tel: ['' || data?.tel, Validators.required],
+      typeId: ['' || data?.typeId, Validators.required],
+      city: ['' || data?.city, Validators.required],
+    });
   }
 
   async obtenerCoordenadas() {
@@ -63,43 +90,56 @@ export class HomePage implements OnInit {
   }
 
   async next() {
-    if (!this.registerData.tip_ide || !this.registerData.num_ide ||
-      !this.registerData.name || !this.registerData.email || !this.registerData.contact || !this.registerData.city) {
-      Swal.fire(
-        '',
-        'Faltan datos, por favor incluye toda tu información',
-        'error'
-      )
-      return;
+    if (await this.validators()) {
+      const loading = await this.loadingController.create({
+        message: 'Espere por favor...',
+      });
+      await loading.present();
+      const coordinates = await Geolocation.getCurrentPosition();
+      const idTel = await Device.getInfo();
+      this.registerData.uniqueid = idTel.uuid;
+      this.registerData.lat = coordinates.coords.latitude;
+      this.registerData.lng = coordinates.coords.longitude;
+      this.registerData.nameToSearch = this.registerData.name;
+      this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
+      const data = {
+        ...this.form.value,
+        ...this.registerData
+      }
+      this.firebaseService.save('usuario-app', data)
+      .then(() => {
+        localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
+        this.router.navigateByUrl('/home/bienvenida');
+        loading.dismiss();
+      }).catch(err => Swal.fire('Error', err.message, 'error'));
     }
-    const coordinates = await Geolocation.getCurrentPosition();
-    const info = await Device.getInfo();
-    this.registerData.uniqueid = info.uuid;
-    this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
-    this.registerData.lat = coordinates.coords.latitude;
-    this.registerData.lng = coordinates.coords.longitude;
-    this.registerData.active = true;
-    this.registerData.nameToSearch = this.registerData.name.toLowerCase();
-    this.registerData.rate = [];
-    this.firebaseService.save('usuario-app', this.registerData);
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.registerData));
-    this.router.navigateByUrl('/home/bienvenida');
   }
 
-  async verificarExistencia() {
-    const data = await this.firebaseService.obtenerByContactoIDPromise(this.registerData.num_ide);
+  async isLogged() {
+    const data = await this.firebaseService.obtenerByContactoIDPromise((this.form.get('id').value));
     if (data.length > 0) {
-      this.flag = true;
       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
       localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));
-      Swal.fire(
-        '',
-        'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!',
-        'success'
-      )
+      Swal.fire('', 'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!', 'success')
       localStorage.setItem('NEGOCIAPP_RELOGGED', JSON.stringify(true));
       this.router.navigateByUrl('/home/bienvenida');
     }
+  }
+
+  public validateinput(param: string): boolean {
+    return this.form.get(param).invalid && this.form.get(param).touched;
+  }
+
+  private async validators(): Promise<boolean> {
+    let coord = true;
+    Object.values(this.form.controls).forEach(item => {
+      if (item instanceof FormControl) { item.markAsTouched(); }
+    });
+    try {
+      this.coordinates = await Geolocation.getCurrentPosition();
+      coord = false;
+    } catch { Swal.fire('', 'Debes tener el GPS activo', 'warning'); }
+    return this.form.invalid || coord ? false : true;
   }
 
 }

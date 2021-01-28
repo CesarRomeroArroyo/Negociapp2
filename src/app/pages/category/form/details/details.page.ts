@@ -8,11 +8,11 @@ import { CategoryURL } from 'src/app/models/category.model';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
 
 @Component({
-  selector: 'app-offer-detail',
-  templateUrl: './offer-detail.page.html',
-  styleUrls: ['./offer-detail.page.scss'],
+  selector: 'app-details',
+  templateUrl: './details.page.html',
+  styleUrls: ['./details.page.scss'],
 })
-export class OfferDetailPage extends FormsAbstract implements OnInit {
+export class DetailsPage extends FormsAbstract implements OnInit {
 
   public item: DataForm;
   public slideOpts = {
@@ -24,10 +24,8 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     private route: ActivatedRoute,
     private firebase: FirebaseService,
     private router: Router,
-    private uniqueService: UniqueService,
-  ) {
-    super();
-  }
+    private uniqueService: UniqueService
+  ) { super() }
 
   public async ngOnInit() {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
@@ -70,8 +68,8 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     return dataReturn.toString();
   }
 
-  public redirecto(): void {
-    this.router.navigate([`category/${this.category}/list-offers/offerit/${this.uniqueid}`]);
+  public redirecto(item: DataForm): void {
+    this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
   }
 
 }

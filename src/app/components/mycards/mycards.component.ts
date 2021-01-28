@@ -107,9 +107,9 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
     this.router.navigate([`category/${this.category}/my-deals/rate/${item.uniqueid}/${index}`]);
   }
 
-  public goToEdit(item: DataForm): void {
+  public goToDetails(item: DataForm): void {
     if (item.offerit.length === 0) {
-      this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
+      this.router.navigate([`/category/${this.category}/form/details/${item.uniqueid}`]);
     } else {
       Swal.fire(
         '',

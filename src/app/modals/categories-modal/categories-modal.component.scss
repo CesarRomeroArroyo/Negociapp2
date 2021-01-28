@@ -17,6 +17,7 @@
   height: 90%;
   border-radius: 10px;
   background: var(--ion-color-light);
+  overflow: auto;
 }
 
 .header {
@@ -63,4 +64,10 @@
     --size: 24px;
     --border-radius: 50%;
   }
+}
+
+.btn {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
 }

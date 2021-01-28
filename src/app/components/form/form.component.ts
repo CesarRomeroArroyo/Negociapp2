@@ -16,6 +16,7 @@ import { LoadingController } from '@ionic/angular';
 import { OneSignalService } from 'src/app/core/services/one-signal.service';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formComponent',
@@ -46,7 +47,8 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     private state: StateApp,
     private fileManager: FileManagerService,
     private loadingController: LoadingController,
-    private oneSignal: OneSignalService
+    private oneSignal: OneSignalService,
+    private router: Router
   ) {
     super();
   }
@@ -65,7 +67,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
     this.resetForm();
   }
 
@@ -222,7 +224,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       this.firebase.actualizarDatos(this.collectionDataBD, dataForm, this.form.get('id').value).then(() => {
         Swal.fire('', 'Datos actualizados correctamente', 'success');
         this.resetForm();
-        window.history.back();
+        this.router.navigate([`/category/${this.category}/form/`]);
         loading.dismiss();
       }).catch(err => {
         Swal.fire('Error', err.message, 'error');
