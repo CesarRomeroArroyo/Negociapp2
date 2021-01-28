@@ -1,12 +1,32 @@
-<div class="item" (click)="redirecto()" *ngIf="item">
-  <ion-img [src]="iconDeal"></ion-img>
-  <div class="text">
-    <span>Oferta 001</span>
-    <span>Valor de Oferta:
-      <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span>
-    </span>
-    <span>Vencimiento
-      <span class="value">{{item.days}} </span>{{days}} 
-    </span>
+<ng-container *ngIf="item && index !== null; else withoutIndexTemplate">
+  <ng-container [ngTemplateOutlet]="withIndexTemplate"></ng-container>
+</ng-container>
+
+<ng-template #withIndexTemplate>
+  <div class="item" *ngIf="item" (click)="redirecto()">
+    <ion-img [src]="iconDeal"></ion-img>
+    <div class="text">
+      <span>Oferta {{index + 1}}</span>
+      <span>Valor de Oferta:
+        <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span>
+      </span>
+      <span>Vencimiento
+        <span class="value">{{item.days}} </span>{{days}}
+      </span>
+    </div>
   </div>
-</div>
+</ng-template>
+<ng-template #withoutIndexTemplate>
+  <div class="item" *ngIf="item">
+    <ion-img [src]="iconDeal"></ion-img>
+    <div class="text">
+      <span *ngIf="index">Oferta {{index}}</span>
+      <span>Valor de Oferta:
+        <span class="value">{{item.value | currency:'':'symbol':'1.0-2'}}</span>
+      </span>
+      <span>Vencimiento
+        <span class="value">{{item.days}} </span>{{days}}
+      </span>
+    </div>
+  </div>
+</ng-template>

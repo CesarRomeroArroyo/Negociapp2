@@ -13,8 +13,8 @@ export class OffersReceivedComponent extends FormsAbstract implements OnInit {
 
   public uniqueid: string;
 
-  @Input() item: OfferUser;
-  @Input() index: number;
+  @Input() item: OfferUser = null;
+  @Input() index: number = null;
 
   constructor(
     private router: Router,

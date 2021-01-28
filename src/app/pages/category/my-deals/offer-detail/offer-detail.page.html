@@ -15,7 +15,7 @@
       <span class="name">{{item.name}}</span>
       <div class="second-content">
         <div class="value">
-          <span>Valor: <span class="value-text">{{item.value}}</span></span>
+          <span>Valor: <span class="value-text">{{item.value | currency:'':'symbol':'1.0-2'}}</span></span>
         </div>
         <div class="date">
           <span>Fecha: <span class="date-text">{{item.closeDate}}</span></span>

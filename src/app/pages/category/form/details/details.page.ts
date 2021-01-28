@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
@@ -69,7 +70,11 @@ export class DetailsPage extends FormsAbstract implements OnInit {
   }
 
   public redirecto(item: DataForm): void {
-    this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
+    if (item.offerit.length === 0) {
+      this.router.navigate([`/category/${this.category}/form/${item.uniqueid}`]);
+    } else {
+      Swal.fire('', 'No es posible editar el servicio ya que ya contiene ofertas relacionadas', 'error');
+    }
   }
 
 }

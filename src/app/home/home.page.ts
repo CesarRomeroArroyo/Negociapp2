@@ -4,20 +4,12 @@ import { Router } from '@angular/router';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from '../core/services/firebase.service';
+import { LoadingController } from '@ionic/angular';
 import { User } from '../models/user.model';
 import Swal from 'sweetalert2';
-import { LoadingController } from '@ionic/angular';
-import { timer } from 'rxjs';
+import { CITIES } from '../constans/constans-global';
 
 const { Geolocation, Device } = Plugins;
-const level = [
-  { isChecked: false, value: 'Especializado' },
-  { isChecked: false, value: 'Profesional' },
-  { isChecked: false, value: 'Tecnologo' },
-  { isChecked: false, value: 'Tecnico' },
-  { isChecked: false, value: 'Independiente' },
-];
-
 const path = { name: '', path: '', url: '' }
 @Component({
   selector: 'app-home',
@@ -31,24 +23,16 @@ export class HomePage implements OnInit {
     { name: 'Cedula extranjera', value: 'CedulaExtranjera' },
     { name: 'Pasaporte', value: 'Pasaporte' }
   ];
-  public cities = [
-    { name: 'Cartagena', value: 'Cartagena' },
-    { name: 'Barranquilla', value: 'Barranquilla' },
-    { name: 'Montería', value: 'Montería' },
-    { name: 'Santa Marta', value: 'Santa Marta' },
-    { name: 'Sincelejo', value: 'Sincelejo' },
-    { name: 'Riohacha', value: 'Riohacha' },
-    { name: 'Valledupar', value: 'Valledupar' }
-  ];
+  public cities = CITIES;
   public registerData: User = {
     uniqueid: null,
     prestador: true,
     service: true,
     rent: true,
     shop: true,
-    miders: { status: false, categories: [], levels: level, rut: path },
-    midera: { status: false, categories: [], levels: level, rut: path },
-    miderv: { status: false, categories: [], levels: level, rut: path },
+    miders: { status: false, categories: [], typesService: [], cities: [], rut: path },
+    midera: { status: false, categories: [], typesService: [], cities: [], rut: path },
+    miderv: { status: false, categories: [], typesService: [], cities: [], rut: path },
     lat: null,
     lng: null,
     active: true,
@@ -66,6 +50,7 @@ export class HomePage implements OnInit {
   ) { this.initForm() }
 
   ngOnInit() {
+    console.log(this.cities);
     if (JSON.parse(localStorage.getItem('NEGOCIAPP_LOGGED'))) {
       this.router.navigateByUrl('/inicio');
     }
@@ -107,11 +92,11 @@ export class HomePage implements OnInit {
         ...this.registerData
       }
       this.firebaseService.save('usuario-app', data)
-      .then(() => {
-        localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
-        this.router.navigateByUrl('/home/bienvenida');
-        loading.dismiss();
-      }).catch(err => Swal.fire('Error', err.message, 'error'));
+        .then(() => {
+          localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
+          this.router.navigateByUrl('/home/bienvenida');
+          loading.dismiss();
+        }).catch(err => Swal.fire('Error', err.message, 'error'));
     }
   }
 

@@ -32,12 +32,8 @@ export interface Mider {
     rut?: Path;
     categories: string[];
     status: boolean;
-    levels: Level[];
-}
-
-export interface Level {
-    value: string;
-    isChecked: boolean;
+    typesService: string[];
+    cities: string[];
 }
 
 export interface Path {

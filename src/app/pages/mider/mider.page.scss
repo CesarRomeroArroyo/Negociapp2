@@ -40,6 +40,10 @@ ion-content {
             background: var(--ion-color-secondary);
             @include box-shadow-black();
           }
+
+          &:focus {
+            outline: none;
+          }
         }
       }
     }
@@ -117,7 +121,7 @@ ion-content {
 
   .category {
     height: 32px;
-    width: 100%;
+    width: 60%;
     margin-bottom: 8px;
     padding: 0px 8px;
     text-align: center;
@@ -130,6 +134,24 @@ ion-content {
     &.isDisable {
       opacity: 0.5;
     }
+  }
+}
+
+ion-select {
+  --placeholder-opacity: 1;
+  --padding-end: 16px;
+  background: var(--ion-color-blue-light);
+  color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 1.5em;
+  margin-bottom: 16px;
+
+  &::part(icon) {
+    opacity: 1;
+  }
+
+  &.invalid {
+    border: 1px solid var(--ion-color-danger);
   }
 }
 
@@ -152,3 +174,10 @@ ion-content {
   margin: 16px 0px;
   @include flex(center, center);
 }
+
+.config-notification {
+  color: var(--ion-color-secondary);
+  margin: 16px 0px;
+  @include flex(center, center, column);
+}
+

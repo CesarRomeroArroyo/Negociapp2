@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import { StateApp } from 'src/app/core/services/state.service';
 import Swal from 'sweetalert2';
 const { Camera } = Plugins;
 
 import { User } from 'src/app/models/user.model';
 import { Photo } from 'src/app/models/form.model';
+import { StateApp } from 'src/app/core/services/state.service';
 @Component({
   selector: 'app-photos-modal',
   templateUrl: './photos-modal.component.html',
@@ -38,7 +38,7 @@ export class PhotosModalComponent implements OnInit {
     const image = await Camera.getPhoto({
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
-      quality: 100
+      quality: 50
     });
     this.photos.unshift({
       filepath: '',

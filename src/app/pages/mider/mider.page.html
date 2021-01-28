@@ -42,36 +42,6 @@
         </div>
         <span class="subtitle">{{miderSubtitle}}</span>
       </div>
-      <ion-button 
-        type="button" 
-        fill="clear" 
-        class="input select button"
-        [disabled]="!this.form.get('status').value" 
-        (click)="showModalCategories = true">
-        Agregar Categorias
-        <ion-icon name="caret-down-outline"></ion-icon>
-      </ion-button>
-      <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
-      <div class="categories" *ngIf="categories.length > 0">
-        <div 
-          class="category" 
-          [class.isDisable]="!this.form.get('status').value"  
-          *ngFor="let category of categories">
-          {{category}}
-        </div>
-      </div>
-      <ion-list>
-        <ion-item *ngFor="let type of types; let i = index">
-          <ion-label>{{type.value}}</ion-label>
-          <ion-checkbox 
-            slot="end" 
-            [value]="type.isChecked"
-            [disabled]="!this.form.get('status').value"  
-            [checked]="type.isChecked"  
-            (click)="setLevel(type, i)">
-          </ion-checkbox>
-        </ion-item>
-      </ion-list>
       <div 
         class="rut" 
         (click)="showModalPhotosModal()"
@@ -79,6 +49,7 @@
         <ion-icon name="attach-outline"></ion-icon>
         <span>Tap para subir tu RUT.</span>
       </div>
+      <ng-container [ngTemplateOutlet]="configTemplateNotification"></ng-container>
       <div class="submit">
         <ion-button
           type="submit"
@@ -101,3 +72,51 @@
   *ngIf="showModalPhotos"
   [isRut]="true">
 </app-photos-modal>
+
+<ng-template #configTemplateNotification >
+  <div [formGroup]="form">
+    <span class="config-notification">Configuración de notificaciones</span>
+    <ion-select 
+      multiple="true" 
+      cancelText="Cerrar" 
+      okText="Seleccionar" 
+      placeholder="Seleccionar tipo de servicio"
+      formControlName="types">
+      <ion-select-option 
+        *ngFor="let type of types; let i = index" 
+        [value]="type.value">
+        {{type.name}}
+      </ion-select-option>
+    </ion-select>
+    <ion-select 
+      multiple="true" 
+      cancelText="Cerrar" 
+      okText="Seleccionar" 
+      placeholder="Seleccionar ciudades"
+      formControlName="cities">
+      <ion-select-option 
+        *ngFor="let city of cities; let i = index" 
+        [value]="city.value">
+        {{city.value}}
+      </ion-select-option>
+    </ion-select>
+    <ion-button 
+      type="button" 
+      fill="clear" 
+      class="input select button"
+      [disabled]="!this.form.get('status').value" 
+      (click)="showModalCategories = true">
+      Agregar Categorias
+      <ion-icon name="caret-down-outline"></ion-icon>
+    </ion-button>
+    <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
+    <div class="categories" *ngIf="categories.length > 0">
+      <div 
+        class="category" 
+        [class.isDisable]="!this.form.get('status').value"  
+        *ngFor="let category of categories">
+        {{category}}
+      </div>
+    </div>
+  </div>
+</ng-template>

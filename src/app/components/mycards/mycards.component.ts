@@ -108,15 +108,7 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   }
 
   public goToDetails(item: DataForm): void {
-    if (item.offerit.length === 0) {
-      this.router.navigate([`/category/${this.category}/form/details/${item.uniqueid}`]);
-    } else {
-      Swal.fire(
-        '',
-        'No es posible editar el servicio ya que ya contiene ofertas relacionadas',
-        'error'
-      );
-    }
+    this.router.navigate([`/category/${this.category}/form/details/${item.uniqueid}`]);
   }
 
   public goToDelete(item: any): void {

@@ -5,9 +5,10 @@ import Swal from 'sweetalert2';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
-import { Level, Mider, User } from '../../models/user.model';
+import { Mider } from '../../models/user.model';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
+import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,10 +23,11 @@ export class MiderPage extends FormsAbstract implements OnInit {
   public file;
   public showModalCategories = false;
   public showModalPhotos = false;
-  public types: Level[];
+  public types = TYPES_SERVICE;
   public mider: Mider;
   public form: FormGroup;
   public subscription: Subscription;
+  public cities = CITIES;
   @Output() public showCategories = new EventEmitter<boolean>();
 
   constructor(
@@ -80,14 +82,10 @@ export class MiderPage extends FormsAbstract implements OnInit {
   get dataForm(): Mider {
     return {
       categories: this.categories,
-      levels: this.mider.levels,
-      status: this.form.get('status').value
+      typesService: this.form.get('types').value,
+      status: this.form.get('status').value,
+      cities: this.form.get('cities').value
     }
-  }
-
-  public setLevel(level: Level, index: number): void {
-    level.isChecked = true;
-    this.mider.levels[index] = level;
   }
 
   public showModalPhotosModal(): void {
@@ -170,9 +168,10 @@ export class MiderPage extends FormsAbstract implements OnInit {
 
   private initForm(data?: Mider): void {
     this.form = this.formBuilder.group({
-      status: [false || data.status],
+      status: [data?.status || false],
+      types: [data?.typesService || []],
+      cities: [data?.cities || []]
     });
-    this.types = data.levels;
     this.state.setData({ categories: data.categories });
     this.state.setData({ file: data.rut });
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
-import { UniqueService } from 'src/app/core/services/unique.service';
 
 @Component({
   selector: 'app-categories-modal',

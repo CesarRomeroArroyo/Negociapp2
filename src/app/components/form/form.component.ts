@@ -17,6 +17,7 @@ import { OneSignalService } from 'src/app/core/services/one-signal.service';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { TYPES_SERVICE } from 'src/app/constans/constans-global';
 
 @Component({
   selector: 'app-formComponent',
@@ -116,7 +117,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   }
 
   public async getTypes(): Promise<any> {
-    this.types = await this.firebase.obtenerPromise('services-types');
+    this.types = TYPES_SERVICE;
   }
 
   public validateinput(param: string): boolean {
