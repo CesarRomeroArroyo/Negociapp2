@@ -19,6 +19,19 @@
       {{tipo.name}}
     </ion-select-option>
   </ion-select>
+  <!-- Cities -->
+  <ion-select 
+    formControlName="cities"
+    multiple
+    placeholder="Seleccionar ciudades"
+    icon="caret-down-outline"
+    [ngClass]="{'invalid': validateinput('cities')}">
+    <ion-select-option 
+      *ngFor="let city of cities" 
+      [value]="city.value">
+      {{city.name}}
+    </ion-select-option>
+  </ion-select>
   <!-- Quantity -->
   <input 
   *ngIf="category === rent"
@@ -27,6 +40,7 @@
     [textMask]="{mask: numberMask}"
     placeholder="Cantidad"
     formControlName="quantity"
+    type="number"
   >
   <!-- Time -->
   <ion-input

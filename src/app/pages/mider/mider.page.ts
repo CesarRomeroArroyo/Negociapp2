@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -170,7 +170,8 @@ export class MiderPage extends FormsAbstract implements OnInit {
     this.form = this.formBuilder.group({
       status: [data?.status || false],
       types: [data?.typesService || []],
-      cities: [data?.cities || []]
+      cities: [data?.cities || []],
+      categories: [data?.categories || []],
     });
     this.state.setData({ categories: data.categories });
     this.state.setData({ file: data.rut });

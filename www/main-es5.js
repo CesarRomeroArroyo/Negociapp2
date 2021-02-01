@@ -283,7 +283,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n";
+    __webpack_exports__["default"] = "<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Cities -->\n  <ion-select \n    formControlName=\"cities\"\n    multiple\n    placeholder=\"Seleccionar ciudades\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('cities')}\">\n    <ion-select-option \n      *ngFor=\"let city of cities\" \n      [value]=\"city.value\">\n      {{city.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n    type=\"number\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n";
     /***/
   },
 
@@ -363,7 +363,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ng-container *ngIf=\"item && index; else withoutIndexTemplate\">\n  <ng-container [ngTemplateOutlet]=\"withIndexTemplate\"></ng-container>\n</ng-container>\n\n<ng-template #withIndexTemplate>\n  <div class=\"item\" (click)=\"redirecto()\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>\n<ng-template #withoutIndexTemplate>\n  <div class=\"item\" >\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>";
+    __webpack_exports__["default"] = "<ng-container *ngIf=\"item && index !== null; else withoutIndexTemplate\">\n  <ng-container [ngTemplateOutlet]=\"withIndexTemplate\"></ng-container>\n</ng-container>\n\n<ng-template #withIndexTemplate>\n  <div class=\"item\" *ngIf=\"item\" (click)=\"redirecto()\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span>Oferta {{index + 1}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>\n<ng-template #withoutIndexTemplate>\n  <div class=\"item\" *ngIf=\"item\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>";
     /***/
   },
 
@@ -1577,6 +1577,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! src/app/constans/constans-global */
+    "./src/app/constans/constans-global.ts");
 
     var Geolocation = _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Plugins"].Geolocation;
 
@@ -1607,6 +1613,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this4.photosDelete = [];
         _this4.types = [];
         _this4.notificationSend = false;
+        _this4.cities = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["CITIES"];
         return _this4;
       }
 
@@ -1690,6 +1697,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               {
                 this.form = this.formBuilder.group({
                   name: [false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                  cities: [[] || false, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   type: [false || (data === null || data === void 0 ? void 0 : data.type), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   description: [false || (data === null || data === void 0 ? void 0 : data.description)],
                   valueMask: [false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1702,6 +1710,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               {
                 this.form = this.formBuilder.group({
                   name: [false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                  cities: [[] || false, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   quantity: [false || (data === null || data === void 0 ? void 0 : data.quantity), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   time: [false || (data === null || data === void 0 ? void 0 : data.time), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   timeFor: [false || (data === null || data === void 0 ? void 0 : data.timeFor), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1716,6 +1725,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               {
                 this.form = this.formBuilder.group({
                   name: [false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                  cities: [[] || false, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   state: [false || (data === null || data === void 0 ? void 0 : data.state), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                   description: [false || (data === null || data === void 0 ? void 0 : data.description)],
                   valueMask: [false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1732,13 +1742,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context5.prev = _context5.next) {
                   case 0:
-                    _context5.next = 2;
-                    return this.firebase.obtenerPromise('services-types');
+                    this.types = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["TYPES_SERVICE"];
 
-                  case 2:
-                    this.types = _context5.sent;
-
-                  case 3:
+                  case 1:
                   case "end":
                     return _context5.stop();
                 }
@@ -2053,8 +2059,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "sendNotifications",
         value: function sendNotifications(uniqueid) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-            var _this11 = this;
-
             var users;
             return regeneratorRuntime.wrap(function _callee12$(_context12) {
               while (1) {
@@ -2065,32 +2069,60 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     users = _context12.sent;
-                    users.forEach(function (user) {
-                      if (user.uniqueid !== _this11.user.uniqueid) {
-                        _this11.categories.forEach(function (category) {
-                          if (user[_this11.userMider].categories.includes(category)) {
-                            _this11.notificationSend = true;
-                          }
-                        });
+                    console.log('SendNotification');
+                    _context12.t0 = this.userMider;
+                    _context12.next = _context12.t0 === 'midera' ? 7 : _context12.t0 === 'miderv' ? 9 : _context12.t0 === 'miders' ? 11 : 13;
+                    break;
 
-                        if (_this11.notificationSend) {
-                          _this11.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', {
-                            target: "category/".concat(_this11.category, "/list-offers/offer-detail/").concat(uniqueid),
-                            type: 'redirect'
-                          });
+                  case 7:
+                    this.sendNotificationMideraAndMiderv(users, uniqueid, false);
+                    return _context12.abrupt("break", 13);
 
-                          _this11.resetForm();
-                        }
-                      }
-                    });
+                  case 9:
+                    this.sendNotificationMideraAndMiderv(users, uniqueid, false);
+                    return _context12.abrupt("break", 13);
 
-                  case 4:
+                  case 11:
+                    this.sendNotificationMideraAndMiderv(users, uniqueid, true);
+                    return _context12.abrupt("break", 13);
+
+                  case 13:
                   case "end":
                     return _context12.stop();
                 }
               }
             }, _callee12, this);
           }));
+        }
+      }, {
+        key: "sendNotificationMideraAndMiderv",
+        value: function sendNotificationMideraAndMiderv(users, uniqueid, type) {
+          var _this11 = this;
+
+          users.forEach(function (usuario) {
+            _this11.categories.forEach(function (category) {
+              _this11.form.get('cities').value.forEach(function (city) {
+                if (!type) {
+                  if (usuario[_this11.userMider].categories.includes(category) || usuario[_this11.userMider].cities.includes(city)) _this11.notificationSend = true;
+                } else {
+                  usuario[_this11.userMider].typesService.forEach(function (typeService) {
+                    if (usuario[_this11.userMider].categories.includes(category) || usuario[_this11.userMider].cities.includes(city) || usuario[_this11.userMider].typesService.includes(typeService)) _this11.notificationSend = true;
+                  });
+                }
+              });
+            });
+
+            if (_this11.notificationSend) {
+              _this11.oneSignal.sendDirectMessage(usuario.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', {
+                target: "category/".concat(_this11.category, "/list-offers/offer-detail/").concat(uniqueid),
+                type: 'redirect'
+              });
+
+              console.log('producto enviado a ', usuario);
+
+              _this11.resetForm();
+            }
+          });
         }
       }]);
 
@@ -2705,6 +2737,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this19 = _super4.call(this);
         _this19.router = router;
         _this19.route = route;
+        _this19.item = null;
+        _this19.index = null;
         return _this19;
       }
 
@@ -2749,6 +2783,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./offers-received.component.scss */
       "./src/app/components/offers-received/offers-received.component.scss"))["default"]]
     }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])], OffersReceivedComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/constans/constans-global.ts":
+  /*!*********************************************!*\
+    !*** ./src/app/constans/constans-global.ts ***!
+    \*********************************************/
+
+  /*! exports provided: CITIES, TYPES_SERVICE */
+
+  /***/
+  function srcAppConstansConstansGlobalTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CITIES", function () {
+      return CITIES;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TYPES_SERVICE", function () {
+      return TYPES_SERVICE;
+    });
+
+    var CITIES = [{
+      name: 'Cartagena',
+      value: 'Cartagena'
+    }, {
+      name: 'Barranquilla',
+      value: 'Barranquilla'
+    }, {
+      name: 'Montería',
+      value: 'Montería'
+    }, {
+      name: 'Santa Marta',
+      value: 'Santa Marta'
+    }, {
+      name: 'Sincelejo',
+      value: 'Sincelejo'
+    }, {
+      name: 'Riohacha',
+      value: 'Riohacha'
+    }, {
+      name: 'Valledupar',
+      value: 'Valledupar'
+    }];
+    var TYPES_SERVICE = [{
+      name: 'Especializado',
+      value: 'Especializado'
+    }, {
+      name: 'Profesional',
+      value: 'Profesional'
+    }, {
+      name: 'Tecnologo',
+      value: 'Tecnologo'
+    }, {
+      name: 'Tecnico',
+      value: 'Tecnico'
+    }, {
+      name: 'Independiente',
+      value: 'Independiente'
+    }];
     /***/
   },
 
@@ -3362,6 +3463,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../../environments/environment */
+    "./src/environments/environment.ts");
 
     var OneSignalService = /*#__PURE__*/function () {
       function OneSignalService(http, router) {
@@ -3376,13 +3483,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function sendDirectMessage(id, message, info) {
           var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json',
-            Authorization: 'Basic OWFjYjhmOTMtMzk1Yi00NGU0LTkyMGEtYjY2MjI3ZWI1M2Qz'
+            Authorization: "Basic ".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].authorization_onseSignal)
           });
           var options = {
             headers: headers
           };
           var dataSend = JSON.stringify({
-            app_id: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
+            app_id: "".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiId_oneSingal),
             contents: {
               en: message
             },
@@ -3391,7 +3498,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               msgInfo: info
             }
           });
-          this.http.post('https://onesignal.com:443/api/v1/notifications', dataSend, options).subscribe(function (data) {
+          this.http.post("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].api_onseSignal), dataSend, options).subscribe(function (data) {
             console.log(data);
           });
         }
@@ -3750,15 +3857,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var environment = {
       production: false,
       firebase: {
-        apiKey: "AIzaSyDF0g_ASIpRWqlcwuK85VeFMsV0cnczyf8",
-        authDomain: "negociapp-1b2d8.firebaseapp.com",
-        databaseURL: "https://negociapp-1b2d8.firebaseio.com",
-        projectId: "negociapp-1b2d8",
-        storageBucket: "negociapp-1b2d8.appspot.com",
-        messagingSenderId: "950550048655",
-        appId: "1:950550048655:web:09f44d67e6846726e625fa",
-        measurementId: "G-L4M422NKX7"
-      }
+        apiKey: 'AIzaSyDF0g_ASIpRWqlcwuK85VeFMsV0cnczyf8',
+        authDomain: 'negociapp-1b2d8.firebaseapp.com',
+        databaseURL: 'https://negociapp-1b2d8.firebaseio.com',
+        projectId: 'negociapp-1b2d8',
+        storageBucket: 'negociapp-1b2d8.appspot.com',
+        messagingSenderId: '950550048655',
+        appId: '1:950550048655:web:09f44d67e6846726e625fa',
+        measurementId: 'G-L4M422NKX7'
+      },
+      authorization_onseSignal: 'Yzk3YTVkYjgtNDg1Zi00ZGE1LTkzMjktYTIyMzA1Zjg1ZGE0',
+      apiId_oneSingal: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
+      api_onseSignal: 'https://onesignal.com:443/api/v1/notifications'
     };
     /*
      * For easier debugging in development mode, you can import the following file

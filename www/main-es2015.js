@@ -526,7 +526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.text}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    placeholder=\"Nombre del producto\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Cities -->\n  <ion-select \n    formControlName=\"cities\"\n    multiple\n    placeholder=\"Seleccionar ciudades\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('cities')}\">\n    <ion-select-option \n      *ngFor=\"let city of cities\" \n      [value]=\"city.value\">\n      {{city.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n    type=\"number\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
 
 /***/ }),
 
@@ -578,7 +578,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ng-container *ngIf=\"item && index; else withoutIndexTemplate\">\n  <ng-container [ngTemplateOutlet]=\"withIndexTemplate\"></ng-container>\n</ng-container>\n\n<ng-template #withIndexTemplate>\n  <div class=\"item\" (click)=\"redirecto()\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>\n<ng-template #withoutIndexTemplate>\n  <div class=\"item\" >\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ng-container *ngIf=\"item && index !== null; else withoutIndexTemplate\">\n  <ng-container [ngTemplateOutlet]=\"withIndexTemplate\"></ng-container>\n</ng-container>\n\n<ng-template #withIndexTemplate>\n  <div class=\"item\" *ngIf=\"item\" (click)=\"redirecto()\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span>Oferta {{index + 1}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>\n<ng-template #withoutIndexTemplate>\n  <div class=\"item\" *ngIf=\"item\">\n    <ion-img [src]=\"iconDeal\"></ion-img>\n    <div class=\"text\">\n      <span *ngIf=\"index\">Oferta {{index}}</span>\n      <span>Valor de Oferta:\n        <span class=\"value\">{{item.value | currency:'':'symbol':'1.0-2'}}</span>\n      </span>\n      <span>Vencimiento\n        <span class=\"value\">{{item.days}} </span>{{days}}\n      </span>\n    </div>\n  </div>\n</ng-template>");
 
 /***/ }),
 
@@ -1239,11 +1239,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_app_core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/core/services/one-signal.service */ "./src/app/core/services/one-signal.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/constans/constans-global */ "./src/app/constans/constans-global.ts");
 
 
 
 
 const { Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Plugins"];
+
 
 
 
@@ -1272,6 +1274,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.photosDelete = [];
         this.types = [];
         this.notificationSend = false;
+        this.cities = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["CITIES"];
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -1309,6 +1312,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.service: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     type: [ false || (data === null || data === void 0 ? void 0 : data.type), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     description: [ false || (data === null || data === void 0 ? void 0 : data.description)],
                     valueMask: [ false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1319,6 +1323,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.rent: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     quantity: [ false || (data === null || data === void 0 ? void 0 : data.quantity), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     time: [ false || (data === null || data === void 0 ? void 0 : data.time), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     timeFor: [ false || (data === null || data === void 0 ? void 0 : data.timeFor), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1331,6 +1336,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.shop: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     state: [ false || (data === null || data === void 0 ? void 0 : data.state), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     description: [ false || (data === null || data === void 0 ? void 0 : data.description)],
                     valueMask: [ false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1341,7 +1347,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
     }
     getTypes() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.types = yield this.firebase.obtenerPromise('services-types');
+            this.types = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["TYPES_SERVICE"];
         });
     }
     validateinput(param) {
@@ -1473,19 +1479,49 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
     sendNotifications(uniqueid) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const users = yield this.firebase.obtenerPromise('usuario-app');
-            users.forEach(user => {
-                if (user.uniqueid !== this.user.uniqueid) {
-                    this.categories.forEach(category => {
-                        if (user[this.userMider].categories.includes(category)) {
-                            this.notificationSend = true;
-                        }
-                    });
-                    if (this.notificationSend) {
-                        this.oneSignal.sendDirectMessage(user.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' });
-                        this.resetForm();
+            console.log('SendNotification');
+            switch (this.userMider) {
+                case 'midera':
+                    {
+                        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
                     }
-                }
+                    break;
+                case 'miderv':
+                    {
+                        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
+                    }
+                    break;
+                case 'miders':
+                    {
+                        this.sendNotificationMideraAndMiderv(users, uniqueid, true);
+                    }
+                    break;
+            }
+        });
+    }
+    sendNotificationMideraAndMiderv(users, uniqueid, type) {
+        users.forEach(usuario => {
+            this.categories.forEach(category => {
+                this.form.get('cities').value.forEach(city => {
+                    if (!type) {
+                        if (usuario[this.userMider].categories.includes(category) || usuario[this.userMider].cities.includes(city))
+                            this.notificationSend = true;
+                    }
+                    else {
+                        usuario[this.userMider].typesService.forEach(typeService => {
+                            if (usuario[this.userMider].categories.includes(category) ||
+                                usuario[this.userMider].cities.includes(city) ||
+                                usuario[this.userMider].typesService.includes(typeService))
+                                this.notificationSend = true;
+                        });
+                    }
+                });
             });
+            if (this.notificationSend) {
+                this.oneSignal.sendDirectMessage(usuario.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' });
+                console.log('producto enviado a ', usuario);
+                this.resetForm();
+            }
         });
     }
 };
@@ -1909,6 +1945,8 @@ let OffersReceivedComponent = class OffersReceivedComponent extends _abstract_fo
         super();
         this.router = router;
         this.route = route;
+        this.item = null;
+        this.index = null;
     }
     ngOnInit() {
         this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
@@ -1944,6 +1982,37 @@ OffersReceivedComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
 ], OffersReceivedComponent);
 
+
+
+/***/ }),
+
+/***/ "./src/app/constans/constans-global.ts":
+/*!*********************************************!*\
+  !*** ./src/app/constans/constans-global.ts ***!
+  \*********************************************/
+/*! exports provided: CITIES, TYPES_SERVICE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CITIES", function() { return CITIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPES_SERVICE", function() { return TYPES_SERVICE; });
+const CITIES = [
+    { name: 'Cartagena', value: 'Cartagena' },
+    { name: 'Barranquilla', value: 'Barranquilla' },
+    { name: 'Montería', value: 'Montería' },
+    { name: 'Santa Marta', value: 'Santa Marta' },
+    { name: 'Sincelejo', value: 'Sincelejo' },
+    { name: 'Riohacha', value: 'Riohacha' },
+    { name: 'Valledupar', value: 'Valledupar' }
+];
+const TYPES_SERVICE = [
+    { name: 'Especializado', value: 'Especializado' },
+    { name: 'Profesional', value: 'Profesional' },
+    { name: 'Tecnologo', value: 'Tecnologo' },
+    { name: 'Tecnico', value: 'Tecnico' },
+    { name: 'Independiente', value: 'Independiente' }
+];
 
 
 /***/ }),
@@ -2255,6 +2324,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -2267,16 +2338,16 @@ let OneSignalService = class OneSignalService {
     sendDirectMessage(id, message, info) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json',
-            Authorization: 'Basic OWFjYjhmOTMtMzk1Yi00NGU0LTkyMGEtYjY2MjI3ZWI1M2Qz'
+            Authorization: `Basic ${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].authorization_onseSignal}`
         });
         const options = { headers };
         const dataSend = JSON.stringify({
-            app_id: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
+            app_id: `${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiId_oneSingal}`,
             contents: { en: message },
             include_player_ids: [id],
             data: { msgInfo: info }
         });
-        this.http.post('https://onesignal.com:443/api/v1/notifications', dataSend, options).subscribe((data) => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].api_onseSignal}`, dataSend, options).subscribe((data) => {
             console.log(data);
         });
     }
@@ -2509,15 +2580,18 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     firebase: {
-        apiKey: "AIzaSyDF0g_ASIpRWqlcwuK85VeFMsV0cnczyf8",
-        authDomain: "negociapp-1b2d8.firebaseapp.com",
-        databaseURL: "https://negociapp-1b2d8.firebaseio.com",
-        projectId: "negociapp-1b2d8",
-        storageBucket: "negociapp-1b2d8.appspot.com",
-        messagingSenderId: "950550048655",
-        appId: "1:950550048655:web:09f44d67e6846726e625fa",
-        measurementId: "G-L4M422NKX7"
-    }
+        apiKey: 'AIzaSyDF0g_ASIpRWqlcwuK85VeFMsV0cnczyf8',
+        authDomain: 'negociapp-1b2d8.firebaseapp.com',
+        databaseURL: 'https://negociapp-1b2d8.firebaseio.com',
+        projectId: 'negociapp-1b2d8',
+        storageBucket: 'negociapp-1b2d8.appspot.com',
+        messagingSenderId: '950550048655',
+        appId: '1:950550048655:web:09f44d67e6846726e625fa',
+        measurementId: 'G-L4M422NKX7'
+    },
+    authorization_onseSignal: 'Yzk3YTVkYjgtNDg1Zi00ZGE1LTkzMjktYTIyMzA1Zjg1ZGE0',
+    apiId_oneSingal: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
+    api_onseSignal: 'https://onesignal.com:443/api/v1/notifications'
 };
 /*
  * For easier debugging in development mode, you can import the following file

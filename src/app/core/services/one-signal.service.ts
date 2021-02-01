@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment as ENV } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,18 +17,18 @@ export class OneSignalService {
   sendDirectMessage(id, message, info?) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic OWFjYjhmOTMtMzk1Yi00NGU0LTkyMGEtYjY2MjI3ZWI1M2Qz'
+      Authorization: `Basic ${ENV.authorization_onseSignal}`
     });
 
     const options = { headers };
     const dataSend = JSON.stringify({
-      app_id: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
+      app_id: `${ENV.apiId_oneSingal}`,
       contents: { en: message },
       include_player_ids: [id],
       data: { msgInfo: info }
     });
 
-    this.http.post('https://onesignal.com:443/api/v1/notifications', dataSend, options).subscribe((data) => {
+    this.http.post(`${ENV.api_onseSignal}`, dataSend, options).subscribe((data) => {
       console.log(data);
     });
   }

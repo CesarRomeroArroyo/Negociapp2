@@ -81,7 +81,9 @@
       cancelText="Cerrar" 
       okText="Seleccionar" 
       placeholder="Seleccionar tipo de servicio"
-      formControlName="types">
+      formControlName="types"
+      *ngIf="tab === 1"
+      [attr.disabled]="!this.form.get('status').value">
       <ion-select-option 
         *ngFor="let type of types; let i = index" 
         [value]="type.value">
@@ -93,7 +95,8 @@
       cancelText="Cerrar" 
       okText="Seleccionar" 
       placeholder="Seleccionar ciudades"
-      formControlName="cities">
+      formControlName="cities"
+      [attr.disabled]="!this.form.get('status').value">
       <ion-select-option 
         *ngFor="let city of cities; let i = index" 
         [value]="city.value">
@@ -104,7 +107,7 @@
       type="button" 
       fill="clear" 
       class="input select button"
-      [disabled]="!this.form.get('status').value" 
+      [attr.disabled]="!this.form.get('status').value" 
       (click)="showModalCategories = true">
       Agregar Categorias
       <ion-icon name="caret-down-outline"></ion-icon>
@@ -114,7 +117,7 @@
       <div 
         class="category" 
         [class.isDisable]="!this.form.get('status').value"  
-        *ngFor="let category of categories">
+        *ngFor="let category of this.form.get('categories').value">  
         {{category}}
       </div>
     </div>

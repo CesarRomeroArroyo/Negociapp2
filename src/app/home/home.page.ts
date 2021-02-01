@@ -50,7 +50,6 @@ export class HomePage implements OnInit {
   ) { this.initForm() }
 
   ngOnInit() {
-    console.log(this.cities);
     if (JSON.parse(localStorage.getItem('NEGOCIAPP_LOGGED'))) {
       this.router.navigateByUrl('/inicio');
     }
@@ -59,7 +58,7 @@ export class HomePage implements OnInit {
 
   public initForm(data?): void {
     this.form = this.formBuilder.group({
-      id: ['' || data?.id, Validators.required],
+      num_ide: ['' || data?.id, Validators.required],
       name: ['' || data?.name, Validators.required],
       email: ['' || data?.name, Validators.required],
       tel: ['' || data?.tel, Validators.required],
@@ -101,7 +100,7 @@ export class HomePage implements OnInit {
   }
 
   async isLogged() {
-    const data = await this.firebaseService.obtenerByContactoIDPromise((this.form.get('id').value));
+    const data = await this.firebaseService.obtenerByContactoIDPromise((this.form.get('num_ide').value));
     if (data.length > 0) {
       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
       localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));

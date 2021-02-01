@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen=\"true\" scroll-y=\"true\" scroll-x=\"false\">\r\n  <div class=\"container\">\r\n    <div class=\"content-text\">\r\n      <span class=\"title\">NegociApp</span>\r\n      <span class=\"text\">Bienvenido a NegociApp</span>\r\n      <span class=\"text\">una gran comunidad de servicios y arriendos en tu ciudad</span>\r\n    </div>\r\n    <div class=\"form\">\r\n      <span class=\"text\">Ingresa tus datos personales</span>\r\n      <form [formGroup]=\"form\" (ngSubmit)=\"next()\">\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Número de identificación\" \r\n          type=\"number\" \r\n          (blur)=\"isLogged()\" \r\n          formControlName=\"id\" \r\n          [ngClass]=\"{'invalid': validateinput('id')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Nombres y apellidos\" \r\n          formControlName=\"name\" \r\n          [ngClass]=\"{'invalid': validateinput('name')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Email\" \r\n          type=\"email\" \r\n          formControlName=\"email\" \r\n          [ngClass]=\"{'invalid': validateinput('email')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Numero de Telefono\" \r\n          type=\"number\" \r\n          formControlName=\"tel\" \r\n          [ngClass]=\"{'invalid': validateinput('tel')}\"\r\n        />\r\n        <ion-select placeholder=\"Tipo de identificación\" formControlName=\"typeId\" [ngClass]=\"{'invalid': validateinput('typeId')}\">\r\n          <ion-select-option [value]=\"type.value\" *ngFor=\"let type of identificationType\">{{type.name}}</ion-select-option>\r\n        </ion-select>\r\n        <ion-select placeholder=\"Ciudad\" formControlName=\"city\" [ngClass]=\"{'invalid': validateinput('city')}\">\r\n          <ion-select-option [value]=\"city.value\" *ngFor=\"let city of cities\">{{city.name}}</ion-select-option>\r\n        </ion-select>\r\n        <div class=\"submit\">\r\n          <ion-button color=\"secondary\" type=\"submit\" shape=\"round\" expand=\"full\">Siguiente</ion-button>\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen=\"true\" scroll-y=\"true\" scroll-x=\"false\">\r\n  <div class=\"container\">\r\n    <div class=\"content-text\">\r\n      <span class=\"title\">NegociApp</span>\r\n      <span class=\"text\">Bienvenido a NegociApp</span>\r\n      <span class=\"text\">una gran comunidad de servicios y arriendos en tu ciudad</span>\r\n    </div>\r\n    <div class=\"form\">\r\n      <span class=\"text\">Ingresa tus datos personales</span>\r\n      <form [formGroup]=\"form\" (ngSubmit)=\"next()\">\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Número de identificación\" \r\n          type=\"number\" \r\n          (blur)=\"isLogged()\" \r\n          formControlName=\"num_ide\" \r\n          [ngClass]=\"{'invalid': validateinput('num_ide')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Nombres y apellidos\" \r\n          formControlName=\"name\" \r\n          [ngClass]=\"{'invalid': validateinput('name')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Email\" \r\n          type=\"email\" \r\n          formControlName=\"email\" \r\n          [ngClass]=\"{'invalid': validateinput('email')}\"\r\n        />\r\n        <input \r\n          class=\"input\" \r\n          placeholder=\"Numero de Telefono\" \r\n          type=\"number\" \r\n          formControlName=\"tel\" \r\n          [ngClass]=\"{'invalid': validateinput('tel')}\"\r\n        />\r\n        <ion-select placeholder=\"Tipo de identificación\" formControlName=\"typeId\" [ngClass]=\"{'invalid': validateinput('typeId')}\">\r\n          <ion-select-option [value]=\"type.value\" *ngFor=\"let type of identificationType\">{{type.name}}</ion-select-option>\r\n        </ion-select>\r\n        <ion-select placeholder=\"Ciudad\" formControlName=\"city\" [ngClass]=\"{'invalid': validateinput('city')}\">\r\n          <ion-select-option [value]=\"city.value\" *ngFor=\"let city of cities\">{{city.name}}</ion-select-option>\r\n        </ion-select>\r\n        <div class=\"submit\">\r\n          <ion-button color=\"secondary\" type=\"submit\" shape=\"round\" expand=\"full\">Siguiente</ion-button>\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</ion-content>");
 
 /***/ }),
 
@@ -134,9 +134,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _constans_constans_global__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../constans/constans-global */ "./src/app/constans/constans-global.ts");
+
 
 
 
@@ -146,13 +148,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const { Geolocation, Device } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
-const level = [
-    { isChecked: false, value: 'Especializado' },
-    { isChecked: false, value: 'Profesional' },
-    { isChecked: false, value: 'Tecnologo' },
-    { isChecked: false, value: 'Tecnico' },
-    { isChecked: false, value: 'Independiente' },
-];
 const path = { name: '', path: '', url: '' };
 let HomePage = class HomePage {
     constructor(router, formBuilder, firebaseService, loadingController) {
@@ -165,24 +160,16 @@ let HomePage = class HomePage {
             { name: 'Cedula extranjera', value: 'CedulaExtranjera' },
             { name: 'Pasaporte', value: 'Pasaporte' }
         ];
-        this.cities = [
-            { name: 'Cartagena', value: 'Cartagena' },
-            { name: 'Barranquilla', value: 'Barranquilla' },
-            { name: 'Montería', value: 'Montería' },
-            { name: 'Santa Marta', value: 'Santa Marta' },
-            { name: 'Sincelejo', value: 'Sincelejo' },
-            { name: 'Riohacha', value: 'Riohacha' },
-            { name: 'Valledupar', value: 'Valledupar' }
-        ];
+        this.cities = _constans_constans_global__WEBPACK_IMPORTED_MODULE_8__["CITIES"];
         this.registerData = {
             uniqueid: null,
             prestador: true,
             service: true,
             rent: true,
             shop: true,
-            miders: { status: false, categories: [], levels: level, rut: path },
-            midera: { status: false, categories: [], levels: level, rut: path },
-            miderv: { status: false, categories: [], levels: level, rut: path },
+            miders: { status: false, categories: [], typesService: [], cities: [], rut: path },
+            midera: { status: false, categories: [], typesService: [], cities: [], rut: path },
+            miderv: { status: false, categories: [], typesService: [], cities: [], rut: path },
             lat: null,
             lng: null,
             active: true,
@@ -199,7 +186,7 @@ let HomePage = class HomePage {
     }
     initForm(data) {
         this.form = this.formBuilder.group({
-            id: [ false || (data === null || data === void 0 ? void 0 : data.id), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            num_ide: [ false || (data === null || data === void 0 ? void 0 : data.id), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
             name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
             email: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
             tel: [ false || (data === null || data === void 0 ? void 0 : data.tel), _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
@@ -234,17 +221,17 @@ let HomePage = class HomePage {
                     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
                     this.router.navigateByUrl('/home/bienvenida');
                     loading.dismiss();
-                }).catch(err => sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('Error', err.message, 'error'));
+                }).catch(err => sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('Error', err.message, 'error'));
             }
         });
     }
     isLogged() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const data = yield this.firebaseService.obtenerByContactoIDPromise((this.form.get('id').value));
+            const data = yield this.firebaseService.obtenerByContactoIDPromise((this.form.get('num_ide').value));
             if (data.length > 0) {
                 localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]));
                 localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));
-                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('', 'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!', 'success');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('', 'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!', 'success');
                 localStorage.setItem('NEGOCIAPP_RELOGGED', JSON.stringify(true));
                 this.router.navigateByUrl('/home/bienvenida');
             }
@@ -266,7 +253,7 @@ let HomePage = class HomePage {
                 coord = false;
             }
             catch (_a) {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('', 'Debes tener el GPS activo', 'warning');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire('', 'Debes tener el GPS activo', 'warning');
             }
             return this.form.invalid || coord ? false : true;
         });
@@ -276,7 +263,7 @@ HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
     { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_5__["FirebaseService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -287,7 +274,7 @@ HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
         _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_5__["FirebaseService"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"]])
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"]])
 ], HomePage);
 
 

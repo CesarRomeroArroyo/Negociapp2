@@ -57,6 +57,7 @@ export interface DataForm {
   lng?: number;
   oneSignalRequest?: string;
   rate: RateItem;
+  cities: string[];
 }
 
 export interface RateItem {

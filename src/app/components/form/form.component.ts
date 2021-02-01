@@ -17,7 +17,7 @@ import { OneSignalService } from 'src/app/core/services/one-signal.service';
 import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { TYPES_SERVICE } from 'src/app/constans/constans-global';
+import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
 
 @Component({
   selector: 'app-formComponent',
@@ -39,6 +39,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   public subscription: Subscription;
   public notificationSend = false;
   public coordinates: any;
+  public cities = CITIES;
 
 
   constructor(
@@ -85,6 +86,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.service: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
+          cities: [[] || data?.cities, Validators.required],
           type: ['' || data?.type, Validators.required],
           description: ['' || data?.description],
           valueMask: ['' || data?.value, Validators.required],
@@ -95,6 +97,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.rent: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
+          cities: [[] || data?.cities, Validators.required],
           quantity: ['' || data?.quantity, Validators.required],
           time: ['' || data?.time, Validators.required],
           timeFor: ['' || data?.timeFor, Validators.required],
@@ -107,6 +110,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.shop: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
+          cities: [[] || data?.cities, Validators.required],
           state: ['' || data?.state, Validators.required],
           description: ['' || data?.description],
           valueMask: ['' || data?.value, Validators.required],
@@ -261,21 +265,49 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
   private async sendNotifications(uniqueid: string) {
     const users: User[] = await this.firebase.obtenerPromise('usuario-app');
-    users.forEach(user => {
-      if (user.uniqueid !== this.user.uniqueid) {
-        this.categories.forEach(category => {
-          if (user[this.userMider].categories.includes(category)) {
-            this.notificationSend = true;
+    console.log('SendNotification');
+    switch (this.userMider) {
+      case 'midera': {
+        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
+      }
+        break;
+      case 'miderv': {
+        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
+      }
+        break;
+      case 'miders': {
+        this.sendNotificationMideraAndMiderv(users, uniqueid, true);
+      }
+        break;
+    }
+  }
+
+  sendNotificationMideraAndMiderv(users: User[], uniqueid: string, type?: boolean): void {
+    users.forEach(usuario => {
+      this.categories.forEach(category => {
+        this.form.get('cities').value.forEach(city => {
+          if (!type) {
+            if (usuario[this.userMider].categories.includes(category) || usuario[this.userMider].cities.includes(city))
+              this.notificationSend = true;
+          } else {
+            usuario[this.userMider].typesService.forEach(typeService => {
+              if (
+                usuario[this.userMider].categories.includes(category) ||
+                usuario[this.userMider].cities.includes(city) ||
+                usuario[this.userMider].typesService.includes(typeService)
+              ) this.notificationSend = true;
+            });
           }
         });
-        if (this.notificationSend) {
-          this.oneSignal.sendDirectMessage(
-            user.onesignal,
-            '!Hay un nuevo producto que concuerda con tus categorias!',
-            { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
-          );
-          this.resetForm();
-        }
+      });
+      if (this.notificationSend) {
+        this.oneSignal.sendDirectMessage(
+          usuario.onesignal,
+          '!Hay un nuevo producto que concuerda con tus categorias!',
+          { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
+        );
+        console.log('producto enviado a ', usuario)
+        this.resetForm();
       }
     });
   }
