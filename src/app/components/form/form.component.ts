@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
@@ -13,29 +14,28 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { LoadingController } from '@ionic/angular';
-import { OneSignalService } from 'src/app/core/services/one-signal.service';
-import { User } from 'src/app/models/user.model';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
+import { FormService } from 'src/app/core/services/form.service';
 
 @Component({
   selector: 'app-formComponent',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
+  providers: [FormService]
 })
 export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
-  @Input() public idunique: string;
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
 
+  public idunique: string;
   public categories: string[] = [];
   public photos: Photo[] = [];
   public photosDataBD: Photo[] = [];
   public photosDelete: string[] = [];
   public form: FormGroup;
-  public types: any[] = [];
+  public types = TYPES_SERVICE;
   public subscription: Subscription;
   public notificationSend = false;
   public coordinates: any;
@@ -49,18 +49,17 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     private state: StateApp,
     private fileManager: FileManagerService,
     private loadingController: LoadingController,
-    private oneSignal: OneSignalService,
-    private router: Router
+    private router: Router,
+    private formSvc: FormService,
+    private route: ActivatedRoute
   ) {
     super();
   }
 
   public async ngOnInit() {
     this.initForm();
-    await this.getTypes();
-    if (this.idunique) {
-      this.getDataUpdate();
-    }
+    this.idunique = this.route.snapshot.paramMap.get('idunique');
+    if (this.idunique) this.getDataUpdate();
     this.subscription = this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
@@ -86,7 +85,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.service: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
-          cities: [[] || data?.cities, Validators.required],
+          cities: [data?.cities || [], Validators.required],
           type: ['' || data?.type, Validators.required],
           description: ['' || data?.description],
           valueMask: ['' || data?.value, Validators.required],
@@ -97,7 +96,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.rent: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
-          cities: [[] || data?.cities, Validators.required],
+          cities: [data?.cities || [], Validators.required],
           quantity: ['' || data?.quantity, Validators.required],
           time: ['' || data?.time, Validators.required],
           timeFor: ['' || data?.timeFor, Validators.required],
@@ -110,7 +109,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
       case this.shop: {
         this.form = this.formBuilder.group({
           name: ['' || data?.name, Validators.required],
-          cities: [[] || data?.cities, Validators.required],
+          cities: [data?.cities || [], Validators.required],
           state: ['' || data?.state, Validators.required],
           description: ['' || data?.description],
           valueMask: ['' || data?.value, Validators.required],
@@ -118,10 +117,6 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
         });
       }
     }
-  }
-
-  public async getTypes(): Promise<any> {
-    this.types = TYPES_SERVICE;
   }
 
   public validateinput(param: string): boolean {
@@ -254,6 +249,14 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     return this.form.invalid || this.categories.length === 0 || coord ? false : true;
   }
 
+  private async sendNotifications(uniqueid: string) {
+    await this.formSvc.sendNotification(
+      this.form.get('cities').value, this.categories,
+      this.form.get('type')?.value ? this.form.get('type')?.value : null,
+      uniqueid);
+    this.resetForm();
+  }
+
   private resetForm(): void {
     this.form.reset();
     this.photosDataBD = [];
@@ -263,52 +266,4 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     this.state.setData({ photosDelete: [] });
   }
 
-  private async sendNotifications(uniqueid: string) {
-    const users: User[] = await this.firebase.obtenerPromise('usuario-app');
-    console.log('SendNotification');
-    switch (this.userMider) {
-      case 'midera': {
-        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
-      }
-        break;
-      case 'miderv': {
-        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
-      }
-        break;
-      case 'miders': {
-        this.sendNotificationMideraAndMiderv(users, uniqueid, true);
-      }
-        break;
-    }
-  }
-
-  sendNotificationMideraAndMiderv(users: User[], uniqueid: string, type?: boolean): void {
-    users.forEach(usuario => {
-      this.categories.forEach(category => {
-        this.form.get('cities').value.forEach(city => {
-          if (!type) {
-            if (usuario[this.userMider].categories.includes(category) || usuario[this.userMider].cities.includes(city))
-              this.notificationSend = true;
-          } else {
-            usuario[this.userMider].typesService.forEach(typeService => {
-              if (
-                usuario[this.userMider].categories.includes(category) ||
-                usuario[this.userMider].cities.includes(city) ||
-                usuario[this.userMider].typesService.includes(typeService)
-              ) this.notificationSend = true;
-            });
-          }
-        });
-      });
-      if (this.notificationSend) {
-        this.oneSignal.sendDirectMessage(
-          usuario.onesignal,
-          '!Hay un nuevo producto que concuerda con tus categorias!',
-          { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' }
-        );
-        console.log('producto enviado a ', usuario)
-        this.resetForm();
-      }
-    });
-  }
 }

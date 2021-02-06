@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
@@ -35,7 +36,8 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firebase: FirebaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _location: Location
   ) {
     super();
   }
@@ -59,15 +61,19 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     this.form = this.formBuilder.group({
       name: ['' || data.name, Validators.required],
       city: ['' || data.city, Validators.required],
-      contact: ['' || data.contact, Validators.required],
+      tel: ['' || data.tel, Validators.required],
       email: ['' || data.email, Validators.required],
     });
     if (this.uniqueid) {
       this.form.get('name').disable();
       this.form.get('city').disable();
-      this.form.get('contact').disable();
+      this.form.get('tel').disable();
       this.form.get('email').disable();
     }
+  }
+
+  public goBack(): void {
+    this._location.back();
   }
 
   public validateinput(param: string): boolean {
@@ -78,7 +84,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     if (this.validators()) {
       this.user.name = this.form.get('name').value;
       this.user.city = this.form.get('city').value;
-      this.user.contact = this.form.get('contact').value;
+      this.user.tel = this.form.get('tel').value;
       this.user.email = this.form.get('email').value;
       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
       this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {

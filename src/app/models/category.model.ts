@@ -13,8 +13,8 @@ export const dataTemplate = [
         title: 'Alquiler',
         icono: '/assets/icon/btn_inicio_alquiler.svg',
         type: 'rent',
-        item1: 'BUSCAR UN PRODUCTO',
-        item2: 'OFERTAR PRODUCTOS',
+        item1: 'BUSCAR UN ARRIENDO',
+        item2: 'OFERTAR ARRIENDOS',
         item3: 'MIS NEGOCIOS',
     },
     {

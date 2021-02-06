@@ -1,7 +1,7 @@
 export interface User {
     active?: boolean;
     city?: string;
-    contact?: string
+    tel?: string
     email?: string;
     id?: string;
     name?: string;

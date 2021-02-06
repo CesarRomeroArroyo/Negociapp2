@@ -2,7 +2,7 @@
   <div class="content">
     <div class="header">
       <div class="partOne">
-        <ion-icon name="arrow-back-outline" routerLink="/inicio"></ion-icon>
+        <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
         <span>NegociApp</span>
       </div>
       <ion-img src="/assets/img/user_perfilxxxhdpi.png"></ion-img>
@@ -68,9 +68,9 @@
         </div>
         <ion-input
           class="input"
-          [ngClass]="{'invalid': validateinput('contact')}"
+          [ngClass]="{'invalid': validateinput('tel')}"
           placeholder="Número de contacto"
-          formControlName="contact">
+          formControlName="tel">
         </ion-input>
       </div>
       <div class="submit" *ngIf="!uniqueid">

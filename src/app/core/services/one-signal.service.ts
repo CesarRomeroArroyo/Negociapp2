@@ -28,9 +28,7 @@ export class OneSignalService {
       data: { msgInfo: info }
     });
 
-    this.http.post(`${ENV.api_onseSignal}`, dataSend, options).subscribe((data) => {
-      console.log(data);
-    });
+    this.http.post(`${ENV.api_onseSignal}`, dataSend, options).subscribe();
   }
 
   async redirectTo(data) {

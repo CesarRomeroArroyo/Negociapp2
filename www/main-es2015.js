@@ -565,7 +565,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"cards\" *ngIf=\"list\">\n  <div class=\"message\" *ngIf=\"list.length === 0\">\n    <h6 class=\"text\">{{'Sin productos' | uppercase}}</h6>\n  </div>\n  <div class=\"card\" *ngFor=\"let item of list; let i = index\">\n    <div class=\"object-circle\">\n      <div class=\"gradient\"></div>\n      <div class=\"circle\" *ngIf=\"item.offerit?.length > 0 && type === nameCardList\">\n        {{item.offerit.length}}\n      </div>\n      <img \n        class=\"img\" \n        [src]=\"item.photos[0].dataUrl\"\n        *ngIf=\"item.photos.length > 0; else imgDefaultTemplate\">\n      <ng-template #imgDefaultTemplate>\n        <img \n          class=\"img\"\n          [src]=\"imgDefault\">\n      </ng-template>\n    </div>\n    <div class=\"content-text\">\n      <span class=\"title\">{{item.name}}</span>\n      <div class=\"lineTwo\">\n        <span>\n          <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}\n        </span>\n        <span>\n          <ion-icon name=\"location\"></ion-icon>\n          {{user.city}}\n        </span>\n        <span>Nuevo/Usado</span>\n      </div>\n    </div>\n    <ng-container *ngIf=\"type === nameCardList\">\n      <div class=\"buttons\">\n        <div class=\"button\" (click)=\"selectOffer(item, i)\">Ofertas</div>\n        <div class=\"button\" (click)=\"goToDetails(item)\">Ver más</div>\n        <div class=\"button\" (click)=\"goToDelete(item)\">Eliminar</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardOffers || type === nameCardMyOffers\">\n      <div class=\"buttons\">\n        <div class=\"button isOffer\" (click)=\"goToDetail(item)\">Detalles</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardIsMyHistorial\">\n      <div class=\"buttons\">\n        <div class=\"button\" [class.isOffer]=\"item.rate\" (click)=\"goToDetailHistorial(item, i)\">Detalles</div>\n        <div class=\"button isHistorial\" *ngIf=\"!item.rate\" (click)=\"goToDetailRate(item, i)\">Calificar</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardIsMyHistorialOffers\">\n      <div class=\"buttons\">\n        <div class=\"button isOffer\" (click)=\"goToDetailHistorial(item, i)\">Detalles</div>\n      </div>\n    </ng-container>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"cards\" *ngIf=\"list\">\n  <div class=\"message\" *ngIf=\"list.length === 0\">\n    <h6 class=\"text\">{{textWithoutItem | uppercase}}</h6>\n  </div>\n  <div class=\"card\" *ngFor=\"let item of list; let i = index\">\n    <div class=\"object-circle\">\n      <div class=\"gradient\"></div>\n      <div class=\"circle\" *ngIf=\"item.offerit?.length > 0 && type === nameCardList\">\n        {{item.offerit.length}}\n      </div>\n      <img \n        class=\"img\" \n        [src]=\"item.photos[0].dataUrl\"\n        *ngIf=\"item.photos.length > 0; else imgDefaultTemplate\">\n      <ng-template #imgDefaultTemplate>\n        <img \n          class=\"img\"\n          [src]=\"imgDefault\">\n      </ng-template>\n    </div>\n    <div class=\"content-text\">\n      <span class=\"title\">{{item.name}}</span>\n      <div class=\"lineTwo\">\n        <span>\n          <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}\n        </span>\n        <span>\n          <ion-icon name=\"location\"></ion-icon>\n          {{item.cities[0]}}\n        </span>\n        <ng-container *ngIf=\"category === service; else categoryTemplate\">\n          <span>{{item.type}}</span>\n        </ng-container>\n        <ng-template #categoryTemplate>\n          <span>{{item.categories[0]}}</span>\n        </ng-template>\n      </div>\n    </div>\n    <ng-container *ngIf=\"type === nameCardList\">\n      <div class=\"buttons\">\n        <div class=\"button\" (click)=\"selectOffer(item, i)\">Ofertas</div>\n        <div class=\"button\" (click)=\"goToDetails(item)\">Ver más</div>\n        <div class=\"button\" (click)=\"goToDelete(item)\">Eliminar</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardOffers || type === nameCardMyOffers\">\n      <div class=\"buttons\">\n        <div class=\"button isOffer\" (click)=\"goToDetail(item)\">Detalles</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardIsMyHistorial\">\n      <div class=\"buttons\">\n        <div class=\"button\" [class.isOffer]=\"item.rate\" (click)=\"goToDetailHistorial(item, i)\">Detalles</div>\n        <div class=\"button isHistorial\" *ngIf=\"!item.rate\" (click)=\"goToDetailRate(item, i)\">Calificar</div>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"type === nameCardIsMyHistorialOffers\">\n      <div class=\"buttons\">\n        <div class=\"button isOffer\" (click)=\"goToDetailHistorial(item, i)\">Detalles</div>\n      </div>\n    </ng-container>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -628,7 +628,7 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() | pages-mider-mider-module */[__webpack_require__.e("default~form-form-module~pages-mider-mider-module"), __webpack_require__.e("pages-mider-mider-module")]).then(__webpack_require__.bind(null, /*! ./pages/mider/mider.module */ "./src/app/pages/mider/mider.module.ts")).then(m => m.MiderPageModule)
     },
     {
-        path: '',
+        path: '**',
         redirectTo: 'home',
         pathMatch: 'full'
     },
@@ -1228,35 +1228,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
-/* harmony import */ var src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/services/unique.service */ "./src/app/core/services/unique.service.ts");
-/* harmony import */ var src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
-/* harmony import */ var src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/state.service */ "./src/app/core/services/state.service.ts");
-/* harmony import */ var src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/file-manager.service */ "./src/app/core/services/file-manager.service.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/core/services/one-signal.service */ "./src/app/core/services/one-signal.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/constans/constans-global */ "./src/app/constans/constans-global.ts");
-
-
-
-
-const { Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Plugins"];
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
+/* harmony import */ var src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/services/unique.service */ "./src/app/core/services/unique.service.ts");
+/* harmony import */ var src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
+/* harmony import */ var src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/state.service */ "./src/app/core/services/state.service.ts");
+/* harmony import */ var src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/core/services/file-manager.service */ "./src/app/core/services/file-manager.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/constans/constans-global */ "./src/app/constans/constans-global.ts");
+/* harmony import */ var src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/core/services/form.service */ "./src/app/core/services/form.service.ts");
 
 
 
 
 
+const { Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"];
 
 
 
 
 
-let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_5__["FormsAbstract"] {
-    constructor(formBuilder, firebase, uniqueId, state, fileManager, loadingController, oneSignal, router) {
+
+
+
+
+let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_6__["FormsAbstract"] {
+    constructor(formBuilder, firebase, uniqueId, state, fileManager, loadingController, router, formSvc, route) {
         super();
         this.formBuilder = formBuilder;
         this.firebase = firebase;
@@ -1264,25 +1264,25 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.state = state;
         this.fileManager = fileManager;
         this.loadingController = loadingController;
-        this.oneSignal = oneSignal;
         this.router = router;
+        this.formSvc = formSvc;
+        this.route = route;
         this.showCategories = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.showPhotos = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.categories = [];
         this.photos = [];
         this.photosDataBD = [];
         this.photosDelete = [];
-        this.types = [];
+        this.types = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__["TYPES_SERVICE"];
         this.notificationSend = false;
-        this.cities = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["CITIES"];
+        this.cities = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__["CITIES"];
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.initForm();
-            yield this.getTypes();
-            if (this.idunique) {
+            this.idunique = this.route.snapshot.paramMap.get('idunique');
+            if (this.idunique)
                 this.getDataUpdate();
-            }
             this.subscription = this.state.getObservable().subscribe(data => {
                 if (data.categories)
                     this.categories = data.categories;
@@ -1312,7 +1312,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.service: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [(data === null || data === void 0 ? void 0 : data.cities) || [], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     type: [ false || (data === null || data === void 0 ? void 0 : data.type), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     description: [ false || (data === null || data === void 0 ? void 0 : data.description)],
                     valueMask: [ false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1323,7 +1323,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.rent: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [(data === null || data === void 0 ? void 0 : data.cities) || [], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     quantity: [ false || (data === null || data === void 0 ? void 0 : data.quantity), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     time: [ false || (data === null || data === void 0 ? void 0 : data.time), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     timeFor: [ false || (data === null || data === void 0 ? void 0 : data.timeFor), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1336,7 +1336,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             case this.shop: {
                 this.form = this.formBuilder.group({
                     name: [ false || (data === null || data === void 0 ? void 0 : data.name), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-                    cities: [[] || (false), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                    cities: [(data === null || data === void 0 ? void 0 : data.cities) || [], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     state: [ false || (data === null || data === void 0 ? void 0 : data.state), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                     description: [ false || (data === null || data === void 0 ? void 0 : data.description)],
                     valueMask: [ false || (data === null || data === void 0 ? void 0 : data.value), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -1344,11 +1344,6 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
                 });
             }
         }
-    }
-    getTypes() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.types = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_13__["TYPES_SERVICE"];
-        });
     }
     validateinput(param) {
         return this.form.get(param).invalid && this.form.get(param).touched;
@@ -1387,11 +1382,11 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photosDataBD, value: price, uniqueid: this.uniqueId.uniqueId(), userRequest: this.user.uniqueid, offerit: [], userOffers: [], close: false, lat: this.coordinates.coords.latitude, lng: this.coordinates.coords.longitude, oneSignalRequest: this.user.onesignal });
             delete dataForm.valueMask;
             this.firebase.save(this.collectionDataBD, dataForm).then(() => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Datos almacenados correctamente', 'success');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Datos almacenados correctamente', 'success');
                 this.sendNotifications(dataForm.uniqueid);
                 loading.dismiss();
             }).catch(err => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Error', err.message, 'error');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Error', err.message, 'error');
             });
         });
     }
@@ -1440,12 +1435,12 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photos, value: price });
             delete dataForm.valueMask;
             this.firebase.actualizarDatos(this.collectionDataBD, dataForm, this.form.get('id').value).then(() => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Datos actualizados correctamente', 'success');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Datos actualizados correctamente', 'success');
                 this.resetForm();
                 this.router.navigate([`/category/${this.category}/form/`]);
                 loading.dismiss();
             }).catch(err => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Error', err.message, 'error');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Error', err.message, 'error');
             });
         }, 2000);
     }
@@ -1462,10 +1457,17 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
                 coord = false;
             }
             catch (_a) {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Debes tener el GPS activo', 'warning');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Debes tener el GPS activo', 'warning');
             }
             this.categories.length === 0 ? this.invalid = true : this.invalid = false;
             return this.form.invalid || this.categories.length === 0 || coord ? false : true;
+        });
+    }
+    sendNotifications(uniqueid) {
+        var _a, _b;
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield this.formSvc.sendNotification(this.form.get('cities').value, this.categories, ((_a = this.form.get('type')) === null || _a === void 0 ? void 0 : _a.value) ? (_b = this.form.get('type')) === null || _b === void 0 ? void 0 : _b.value : null, uniqueid);
+            this.resetForm();
         });
     }
     resetForm() {
@@ -1476,69 +1478,18 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.state.setData({ photos: [] });
         this.state.setData({ photosDelete: [] });
     }
-    sendNotifications(uniqueid) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const users = yield this.firebase.obtenerPromise('usuario-app');
-            console.log('SendNotification');
-            switch (this.userMider) {
-                case 'midera':
-                    {
-                        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
-                    }
-                    break;
-                case 'miderv':
-                    {
-                        this.sendNotificationMideraAndMiderv(users, uniqueid, false);
-                    }
-                    break;
-                case 'miders':
-                    {
-                        this.sendNotificationMideraAndMiderv(users, uniqueid, true);
-                    }
-                    break;
-            }
-        });
-    }
-    sendNotificationMideraAndMiderv(users, uniqueid, type) {
-        users.forEach(usuario => {
-            this.categories.forEach(category => {
-                this.form.get('cities').value.forEach(city => {
-                    if (!type) {
-                        if (usuario[this.userMider].categories.includes(category) || usuario[this.userMider].cities.includes(city))
-                            this.notificationSend = true;
-                    }
-                    else {
-                        usuario[this.userMider].typesService.forEach(typeService => {
-                            if (usuario[this.userMider].categories.includes(category) ||
-                                usuario[this.userMider].cities.includes(city) ||
-                                usuario[this.userMider].typesService.includes(typeService))
-                                this.notificationSend = true;
-                        });
-                    }
-                });
-            });
-            if (this.notificationSend) {
-                this.oneSignal.sendDirectMessage(usuario.onesignal, '!Hay un nuevo producto que concuerda con tus categorias!', { target: `category/${this.category}/list-offers/offer-detail/${uniqueid}`, type: 'redirect' });
-                console.log('producto enviado a ', usuario);
-                this.resetForm();
-            }
-        });
-    }
 };
 FormComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
-    { type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"] },
-    { type: src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_6__["UniqueService"] },
-    { type: src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_8__["StateApp"] },
-    { type: src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_9__["FileManagerService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["LoadingController"] },
-    { type: src_app_core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_11__["OneSignalService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_12__["Router"] }
+    { type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__["FirebaseService"] },
+    { type: src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__["UniqueService"] },
+    { type: src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__["StateApp"] },
+    { type: src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__["FileManagerService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__["LoadingController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
 ];
-Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
-], FormComponent.prototype, "idunique", void 0);
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
@@ -1551,16 +1502,18 @@ FormComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-formComponent',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./form.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/form/form.component.html")).default,
+        providers: [src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"]],
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./form.component.scss */ "./src/app/components/form/form.component.scss")).default]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-        src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"],
-        src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_6__["UniqueService"],
-        src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_8__["StateApp"],
-        src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_9__["FileManagerService"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["LoadingController"],
-        src_app_core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_11__["OneSignalService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_12__["Router"]])
+        src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__["FirebaseService"],
+        src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__["UniqueService"],
+        src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__["StateApp"],
+        src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__["FileManagerService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_11__["LoadingController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
 ], FormComponent);
 
 
@@ -1816,6 +1769,10 @@ let MycardsComponent = class MycardsComponent extends _abstract_form_abstact__WE
     ngOnDestroy() {
         var _a;
         (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+    }
+    get textWithoutItem() {
+        return this.category === this.service ? 'SIN SERVICIOS' :
+            this.category === this.rent ? 'SIN ALQUILERES' : 'SIN PRODUCTOS';
     }
     getListUser() {
         this.subscription = this.firebase.obtenerForObsevable(this.collectionDataBD, src_app_models_form_model__WEBPACK_IMPORTED_MODULE_5__["CollectionsBd"].UserRequest, this.user.uniqueid).subscribe(data => this.list = data);
@@ -2310,6 +2267,86 @@ FirebaseService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/core/services/form.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/core/services/form.service.ts ***!
+  \***********************************************/
+/*! exports provided: FormService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormService", function() { return FormService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/components/abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
+/* harmony import */ var _firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./firebase.service */ "./src/app/core/services/firebase.service.ts");
+/* harmony import */ var _one_signal_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./one-signal.service */ "./src/app/core/services/one-signal.service.ts");
+
+
+
+
+
+
+let FormService = class FormService extends src_app_components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__["FormsAbstract"] {
+    constructor(firebase, oneSignal, route) {
+        super();
+        this.firebase = firebase;
+        this.oneSignal = oneSignal;
+        this.route = route;
+        this.category = this.route.snapshot.paramMap.get('category');
+    }
+    sendNotification(cities, categories, typeService = null, itemUniqueid) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const users = yield this.firebase.obtenerPromise('usuario-app');
+            const usersSendNotications = [];
+            users.forEach(usuario => {
+                var _a;
+                if (usuario.uniqueid !== this.user.uniqueid) {
+                    cities === null || cities === void 0 ? void 0 : cities.forEach(city => {
+                        var _a;
+                        if ((_a = usuario[this.userMider].cities) === null || _a === void 0 ? void 0 : _a.includes(city))
+                            usersSendNotications.push(usuario);
+                    });
+                    categories === null || categories === void 0 ? void 0 : categories.forEach(category => {
+                        var _a;
+                        if ((_a = usuario[this.userMider].categories) === null || _a === void 0 ? void 0 : _a.includes(category))
+                            if (!usersSendNotications.includes(usuario))
+                                usersSendNotications.push(usuario);
+                    });
+                    if (this.userMider === 'miders')
+                        if (this.category === this.service)
+                            if ((_a = usuario[this.userMider].typesService) === null || _a === void 0 ? void 0 : _a.includes(typeService))
+                                if (!usersSendNotications.includes(usuario))
+                                    usersSendNotications.push(usuario);
+                }
+            });
+            usersSendNotications.forEach(user => {
+                console.log('user =>', user);
+                this.oneSignal.sendDirectMessage(user.onesignal, this.userMider === 'miders' ? `!Hay un nuevo servicio que concuerda con tus categorias!` :
+                    this.userMider === 'midera' ? `!Hay un nuevo Alquiler que concuerda con tus categorias!` :
+                        `!Hay un nuevo producto que concuerda con tus categorias!`, { target: `category/${this.category}/list-offers/offer-detail/${itemUniqueid}`, type: 'redirect' });
+            });
+        });
+    }
+};
+FormService.ctorParameters = () => [
+    { type: _firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"] },
+    { type: _one_signal_service__WEBPACK_IMPORTED_MODULE_5__["OneSignalService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+];
+FormService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"],
+        _one_signal_service__WEBPACK_IMPORTED_MODULE_5__["OneSignalService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+], FormService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/services/one-signal.service.ts":
 /*!*****************************************************!*\
   !*** ./src/app/core/services/one-signal.service.ts ***!
@@ -2347,9 +2384,7 @@ let OneSignalService = class OneSignalService {
             include_player_ids: [id],
             data: { msgInfo: info }
         });
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].api_onseSignal}`, dataSend, options).subscribe((data) => {
-            console.log(data);
-        });
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].api_onseSignal}`, dataSend, options).subscribe();
     }
     redirectTo(data) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -2487,8 +2522,8 @@ const dataTemplate = [
         title: 'Alquiler',
         icono: '/assets/icon/btn_inicio_alquiler.svg',
         type: 'rent',
-        item1: 'BUSCAR UN PRODUCTO',
-        item2: 'OFERTAR PRODUCTOS',
+        item1: 'BUSCAR UN ARRIENDO',
+        item2: 'OFERTAR ARRIENDOS',
         item3: 'MIS NEGOCIOS',
     },
     {

@@ -53,8 +53,7 @@
         id="condiciones" 
         rows="7"
         placeholder="Describa"
-        [class.rate]="!item.rate"
-        [disabled]="item.rate"
+        [disabled]="!isUserRequest"
         [(ngModel)]="rate.comment">
       </textarea>
       <div class="btn" *ngIf="!item.rate && isUserRequest">

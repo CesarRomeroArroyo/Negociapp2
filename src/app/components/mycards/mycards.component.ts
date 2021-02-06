@@ -52,6 +52,11 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
     this.subscription?.unsubscribe();
   }
 
+  get textWithoutItem(): string {
+    return this.category === this.service ? 'SIN SERVICIOS' :
+      this.category === this.rent ? 'SIN ALQUILERES' : 'SIN PRODUCTOS';
+  }
+
   public getListUser(): void {
     this.subscription = this.firebase.obtenerForObsevable(
       this.collectionDataBD,

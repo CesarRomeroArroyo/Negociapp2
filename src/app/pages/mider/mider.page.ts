@@ -41,9 +41,9 @@ export class MiderPage extends FormsAbstract implements OnInit {
   }
 
   public async ngOnInit() {
+    this.state.setData({ categories: [] });
     const dataUser = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
-    const user = dataUser[0];
-    this.user = user;
+    this.user = dataUser[0];
     this.tabSelected(this.tab);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
     this.subscription = this.state.getObservable().subscribe(data => {
@@ -150,6 +150,8 @@ export class MiderPage extends FormsAbstract implements OnInit {
 
   public tabSelected(index: number): void {
     this.tab = index;
+    this.state.setData({ categories: [] });
+    this.categories = [];
     switch (this.tab) {
       case 1:
         this.mider = this.user.miders;
@@ -173,7 +175,8 @@ export class MiderPage extends FormsAbstract implements OnInit {
       cities: [data?.cities || []],
       categories: [data?.categories || []],
     });
-    this.state.setData({ categories: data.categories });
+    this.categories = data?.categories ? data.categories : [];
+    this.state.setData({ categories: this.form.get('categories').value });
     this.state.setData({ file: data.rut });
   }
 

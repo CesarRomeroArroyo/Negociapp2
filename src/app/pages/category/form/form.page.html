@@ -33,7 +33,6 @@
     </ion-grid>
     <app-formComponent 
       [category]="category" 
-      [idunique]="idunique"
       (showCategories)="showModalCategories = $event"
       (showPhotos)="showModalPhotos = $event"
       *ngIf="tab === 1; else MyItem">

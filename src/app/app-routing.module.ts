@@ -18,18 +18,18 @@ const routes: Routes = [
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
   },
   {
     path: 'perfil/:uniqueid',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
   },
   {
     path: 'mider',
-    loadChildren: () => import('./pages/mider/mider.module').then( m => m.MiderPageModule)
+    loadChildren: () => import('./pages/mider/mider.module').then(m => m.MiderPageModule)
   },
   {
-    path: '',
+    path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   },

@@ -4,8 +4,7 @@
   [colorText]="'var(--ion-color-light)'"
   [colorBack]="'var(--ion-color-light)'"
   [colorBorderIcon]="'1px solid var(--ion-color-light)'"
-  [colorIconBlack]="false"
-  [path]="'inicio'">
+  [colorIconBlack]="false">
 </app-header>
 
 <ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="form && user">
@@ -117,7 +116,7 @@
       <div 
         class="category" 
         [class.isDisable]="!this.form.get('status').value"  
-        *ngFor="let category of this.form.get('categories').value">  
+        *ngFor="let category of categories">  
         {{category}}
       </div>
     </div>

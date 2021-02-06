@@ -23,6 +23,7 @@ export class FormPage extends FormsAbstract implements OnInit {
   ngOnInit() {
     this.category = this.route.snapshot.paramMap.get('category');
     this.idunique = this.route.snapshot.paramMap.get('idunique');
+    console.log(this.idunique);
   }
 
   get secondMessageHeader(): string {
@@ -54,7 +55,7 @@ export class FormPage extends FormsAbstract implements OnInit {
   }
 
   get back(): string {
-    return `category/${this.category}`;
+    return this.idunique ? '' : `category/${this.category}`;
   }
 
   get message(): string {

@@ -1,6 +1,6 @@
 <div class="cards" *ngIf="list">
   <div class="message" *ngIf="list.length === 0">
-    <h6 class="text">{{'Sin productos' | uppercase}}</h6>
+    <h6 class="text">{{textWithoutItem | uppercase}}</h6>
   </div>
   <div class="card" *ngFor="let item of list; let i = index">
     <div class="object-circle">
@@ -26,9 +26,14 @@
         </span>
         <span>
           <ion-icon name="location"></ion-icon>
-          {{user.city}}
+          {{item.cities[0]}}
         </span>
-        <span>Nuevo/Usado</span>
+        <ng-container *ngIf="category === service; else categoryTemplate">
+          <span>{{item.type}}</span>
+        </ng-container>
+        <ng-template #categoryTemplate>
+          <span>{{item.categories[0]}}</span>
+        </ng-template>
       </div>
     </div>
     <ng-container *ngIf="type === nameCardList">

@@ -8,6 +8,9 @@
     <div class="form">
       <span class="text">Ingresa tus datos personales</span>
       <form [formGroup]="form" (ngSubmit)="next()">
+        <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
+          <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
+        </ion-select>
         <input 
           class="input" 
           placeholder="Número de identificación" 
@@ -15,6 +18,16 @@
           (blur)="isLogged()" 
           formControlName="num_ide" 
           [ngClass]="{'invalid': validateinput('num_ide')}"
+        />
+        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
+          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
+        </ion-select>
+        <input 
+          class="input" 
+          placeholder="Numero de Telefono" 
+          type="number" 
+          formControlName="tel" 
+          [ngClass]="{'invalid': validateinput('tel')}"
         />
         <input 
           class="input" 
@@ -29,19 +42,6 @@
           formControlName="email" 
           [ngClass]="{'invalid': validateinput('email')}"
         />
-        <input 
-          class="input" 
-          placeholder="Numero de Telefono" 
-          type="number" 
-          formControlName="tel" 
-          [ngClass]="{'invalid': validateinput('tel')}"
-        />
-        <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
-          <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
-        </ion-select>
-        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
-          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
-        </ion-select>
         <div class="submit">
           <ion-button color="secondary" type="submit" shape="round" expand="full">Siguiente</ion-button>
         </div>

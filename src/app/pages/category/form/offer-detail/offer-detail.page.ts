@@ -74,7 +74,7 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
       if (result.value) {
         this.oneSignal.sendDirectMessage(
           this.item.offerit[0].user.onesignal,
-          `¡${this.user.name} ha cancelado una de tus ofertas`,
+          `${this.user.name} ha cancelado una de tus ofertas`,
           {
             target: `category/${this.category}/list-offers/offer-detail/${this.item.uniqueid}/${this.item.offerit.length - 1}`,
             type: 'redirect'
