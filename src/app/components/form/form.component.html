@@ -3,7 +3,7 @@
   <ion-input 
     [ngClass]="{'invalid': validateinput('name')}"
     class="input"
-    placeholder="Nombre del producto"
+    [placeholder]="placeholderText"
     formControlName="name">
   </ion-input>
   <!-- Type -->

@@ -17,7 +17,6 @@
   height: 90%;
   border-radius: 10px;
   background: var(--ion-color-light);
-  overflow: auto;
 }
 
 .header {
@@ -43,10 +42,11 @@
 
 .content-list {
   width: 100%;
-  height: 72%;
+  height: 70%;
   margin-top: 16px;
   padding: 0px 16px;
-  overflow-y: scroll;
+  overflow: auto;
+  margin-bottom: 4px;
   @include flex(center, flex-start, column);
 
   ion-list {

@@ -67,6 +67,17 @@ export abstract class FormsAbstract {
     }
   }
 
+  get placeholderText(): string {
+    switch (this.category) {
+      case CategoryURL.Service:
+        return `Nombre del servicio`;
+      case CategoryURL.Rent:
+        return `Nombre del alquiler`;
+      case CategoryURL.Shop:
+        return `Nombre del producto`;
+    }
+  }
+
   get userMider(): string {
     switch (this.category) {
       case this.service: {

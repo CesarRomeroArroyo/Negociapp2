@@ -24,19 +24,20 @@ export class FormService extends FormsAbstract {
     users.forEach(usuario => {
       if (usuario.uniqueid !== this.user.uniqueid) {
         cities?.forEach(city => {
-          if (usuario[this.userMider].cities?.includes(city))
-            usersSendNotications.push(usuario)
+          if (usuario[this.userMider].cities?.includes(city)) {
+            categories?.forEach(category => {
+              if (usuario[this.userMider].categories?.includes(category))
+                if (!usersSendNotications.includes(usuario))
+                  usersSendNotications.push(usuario)
+            })
+          }
         });
-        categories?.forEach(category => {
-          if (usuario[this.userMider].categories?.includes(category))
-            if (!usersSendNotications.includes(usuario))
-              usersSendNotications.push(usuario)
-        })
-        if (this.userMider === 'miders')
-          if (this.category === this.service)
-            if (usuario[this.userMider].typesService?.includes(typeService))
-              if (!usersSendNotications.includes(usuario))
-                usersSendNotications.push(usuario)
+        if (false)
+          if (this.userMider === 'miders')
+            if (this.category === this.service)
+              if (usuario[this.userMider].typesService?.includes(typeService))
+                if (!usersSendNotications.includes(usuario))
+                  usersSendNotications.push(usuario)
       }
     });
     usersSendNotications.forEach(user => {

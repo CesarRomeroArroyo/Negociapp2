@@ -35,6 +35,7 @@
       [category]="category" 
       (showCategories)="showModalCategories = $event"
       (showPhotos)="showModalPhotos = $event"
+      (showTabTwo)="tab = 2"
       *ngIf="tab === 1; else MyItem">
     </app-formComponent>
     <ng-template #MyItem>

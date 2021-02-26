@@ -28,6 +28,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
+  @Output() public showTabTwo = new EventEmitter<void>();
 
   public idunique: string;
   public categories: string[] = [];
@@ -169,6 +170,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     this.firebase.save(this.collectionDataBD, dataForm).then(() => {
       Swal.fire('', 'Datos almacenados correctamente', 'success');
       this.sendNotifications(dataForm.uniqueid);
+      this.showTabTwo.emit();
       loading.dismiss();
     }).catch(err => {
       Swal.fire('Error', err.message, 'error');
