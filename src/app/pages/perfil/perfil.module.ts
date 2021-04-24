@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PerfilPageRoutingModule } from './perfil-routing.module';
 
 import { PerfilPage } from './perfil.page';
+import { FormComponent } from './form/form.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,10 @@ import { PerfilPage } from './perfil.page';
     ReactiveFormsModule,
     PerfilPageRoutingModule
   ],
-  declarations: [PerfilPage]
+  declarations: [
+    PerfilPage,
+    FormComponent,
+    RankingComponent
+  ]
 })
 export class PerfilPageModule {}

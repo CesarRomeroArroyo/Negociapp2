@@ -62,7 +62,8 @@ export interface DataForm {
 
 export interface RateItem {
   rateUser: number;
-  rateItem: number;
+  recommend?: boolean;
+  satisfied?: boolean;
   comment: string;
   uniqueidItem?: string;
 }

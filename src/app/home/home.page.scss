@@ -44,9 +44,26 @@
       margin-bottom: 16px;
       padding: 10px 0px 8px 8px;
       text-align: center;
+      min-height: 40px;
+      max-height: 40px;
+
+      &.file {
+        min-height: 40px;
+        max-height: 40px;
+        opacity: 0.6;
+        @include flex(center, center, column);
+        .text-file {
+          font-size: 12px;
+          color: var(--ion-color-light);
+        }
+      }
   
       &.invalid {
         border: 1px solid var(--ion-color-danger);
+      }
+
+      &.invalidImg {
+        border: 1px solid var(--ion-color-warning);
       }
   
       &.select {

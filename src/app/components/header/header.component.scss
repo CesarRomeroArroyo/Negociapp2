@@ -31,9 +31,17 @@ ion-header {
 ion-button {
   height: auto;
 
-  .profile-icon {
-    padding: 8px;
+  ion-img {
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
+    &::part(image) {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
   }
 
   a {

@@ -29,19 +29,11 @@
     </ion-title>
     <ion-buttons slot="end">
       <ion-button class="home-element" [routerLink]="['/perfil']">
-        <ion-icon 
+        <ion-img 
           [style.border]="colorBorderIcon"
-          class="profile-icon" 
-          src="../../../assets/btn-profile_black.svg"
-          *ngIf="colorIconBlack; else white">
-        </ion-icon>
-        <ng-template #white>
-          <ion-icon 
-            [style.border]="colorBorderIcon"
-            class="profile-icon" 
-            src="../../../assets/btn-profile_white.svg">
-        </ion-icon>
-        </ng-template>
+          [src]="user.photoUrl"
+          *ngIf="colorIconBlack">
+        </ion-img>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

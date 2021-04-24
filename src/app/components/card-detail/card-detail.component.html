@@ -2,14 +2,14 @@
   <div class="object-circle">
     <ion-img 
       class="iconUser" 
-      [src]="iconUser"
+      [src]="user.photoUrl"
       (click)="gotoPerfilUserRequest()"
       *ngIf="!isDeal; else profileTemplate">
     </ion-img>
     <ng-template #profileTemplate>
       <ion-img 
         class="iconUser" 
-        [src]="iconUser"
+        [src]="userOfferit.user.photoUrl"
         (click)="gotoPerfilUserOffer()">
       </ion-img>
     </ng-template>

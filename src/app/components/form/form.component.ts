@@ -169,7 +169,7 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     delete dataForm.valueMask;
     this.firebase.save(this.collectionDataBD, dataForm).then(() => {
       Swal.fire('', 'Datos almacenados correctamente', 'success');
-      this.sendNotifications(dataForm.uniqueid);
+      // this.sendNotifications(dataForm.uniqueid);
       this.showTabTwo.emit();
       loading.dismiss();
     }).catch(err => {

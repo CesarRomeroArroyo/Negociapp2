@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
+import { User } from 'src/app/models/user.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 
 @Component({
@@ -13,14 +14,22 @@ export class CardDetailComponent extends FormsAbstract implements OnInit {
   @Input() item: DataForm;
   @Input() offer: OfferUser;
   @Input() isDeal: boolean;
-  public isUserRequest: boolean;
+  public idUserOffer: string;
 
-  constructor(private router: Router) {
-    super();
-  }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) { super(); }
 
   ngOnInit() {
-    this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
+    this.idUserOffer = this.route.snapshot.paramMap.get('index');
+  }
+
+  get userOfferit(): OfferUser {
+    return this.item.offerit[this.idUserOffer];
+  }
+
+  get isUserRequest(): boolean {
+    return this.user.uniqueid === this.item.userRequest ? true : false;
   }
 
   get days(): string {
@@ -38,7 +47,7 @@ export class CardDetailComponent extends FormsAbstract implements OnInit {
 
   public gotoPerfilUserOffer(): void {
     if (this.isUserRequest) {
-      this.router.navigate([`/perfil/${this.item.offerit[0].user.uniqueid}`]);
+      this.router.navigate([`/perfil/${this.item.offerit[this.idUserOffer].user.uniqueid}`]);
     } else {
       this.router.navigate([`/perfil`]);
     }

@@ -1,12 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { FormsAbstract } from '../abstract/form.abstact';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends FormsAbstract implements OnInit {
 
   @Input() public text = 'NegociApp';
   @Input() public secondMessage = '';
@@ -14,7 +16,7 @@ export class HeaderComponent implements OnInit {
   @Input() public colorHeader = 'var(--ion-color-light)';
   @Input() public colorText = 'var(--ion-color-secondary)';
   @Input() public colorBack = 'var(--ion-color-primary)';
-  @Input() public colorBorderIcon = '1px solid var(--ion-color-dark)';
+  @Input() public colorBorderIcon = '2px solid var(--ion-color-secondary)';
   @Input() public colorIconBlack = true;
   @Input() public path = '';
   @Input() close = false;
@@ -23,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+  ) { super(); }
 
   ngOnInit() { }
 

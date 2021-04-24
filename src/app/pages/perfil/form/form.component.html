@@ -1,0 +1,53 @@
+<form class="form" [formGroup]="form">
+  <div class="question">
+    <div class="content-icon">
+      <ion-icon name="person-outline"></ion-icon>
+    </div>
+    <ion-input 
+      class="input"
+      [ngClass]="{'invalid': validateinput('name')}"
+      placeholder="Escribe tu correo aquí"
+      formControlName="name">
+    </ion-input>
+  </div>
+  <div class="question">
+    <div class="content-icon">
+      <ion-icon name="mail-outline"></ion-icon>
+    </div>
+    <ion-input 
+      class="input"
+      [ngClass]="{'invalid': validateinput('email')}"
+      placeholder="Escribe tu correo aquí"
+      formControlName="email">
+    </ion-input>
+  </div>
+  <div class="question">
+    <div class="content-icon">
+      <ion-icon name="location-outline"></ion-icon>
+    </div>
+    <ion-select
+      placeholder="Ciudad"
+      [ngClass]="{'invalid': validateinput('city')}"
+      formControlName="city">
+      <ion-select-option [value]="city" *ngFor="let city of cities">{{city}}</ion-select-option>
+    </ion-select>
+  </div>
+  <div class="question">
+    <div class="content-icon">
+      <ion-icon name="call-outline"></ion-icon>
+    </div>
+    <ion-input
+      class="input"
+      [ngClass]="{'invalid': validateinput('tel')}"
+      placeholder="Número de contacto"
+      formControlName="tel">
+    </ion-input>
+  </div>
+  <div class="submit" *ngIf="!uniqueid">
+    <ion-button 
+      shape="round" 
+      (click)="emitUserForm()">
+      Actualizar
+    </ion-button>
+  </div>
+</form>

@@ -15,8 +15,3 @@ export const TYPES_SERVICE = [
   { name: 'Tecnico', value: 'Tecnico' },
   { name: 'Independiente', value: 'Independiente' }
 ]
-
-
-
-
-

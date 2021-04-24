@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { RateItem } from 'src/app/models/form.model';
-import { User } from 'src/app/models/user.model';
+import { Ranking } from 'src/app/models/perfil.models';
+import { FileManagerService } from 'src/app/core/services/file-manager.service';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
@@ -25,50 +26,51 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     'Valledupar',
   ];
   public stars = [5, 4, 3, 2, 1];
-  public rate: RateItem = {
-    rateItem: 0,
-    rateUser: 0,
-    comment: ''
-  };
-  public form: FormGroup;
   public promedio: number;
+  public tab: number = 1;
+  public dataRanking: Ranking = { allBussiness: 0, recommended: 0, notRecommended: 0, satisfied: 0, notSatisfied: 0, };
+  public filePhoto: File = null;
+
 
   constructor(
     private route: ActivatedRoute,
     private firebase: FirebaseService,
-    private formBuilder: FormBuilder,
-    private _location: Location
-  ) {
-    super();
-  }
+    private _location: Location,
+    private storage: FileManagerService,
+  ) { super(); }
 
   public async ngOnInit() {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     if (this.uniqueid) {
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);
       this.user = user[0];
-      this.initForm(this.user);
-      this.promedio = this.starsPromedio();
     } else {
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
       this.user = user[0];
-      this.initForm(this.user);
-      this.promedio = this.starsPromedio();
     }
+    this.getDataRanking()
+    this.promedio = this.starsPromedio();
   }
 
-  public initForm(data?: User): void {
-    this.form = this.formBuilder.group({
-      name: ['' || data.name, Validators.required],
-      city: ['' || data.city, Validators.required],
-      tel: ['' || data.tel, Validators.required],
-      email: ['' || data.email, Validators.required],
-    });
-    if (this.uniqueid) {
-      this.form.get('name').disable();
-      this.form.get('city').disable();
-      this.form.get('tel').disable();
-      this.form.get('email').disable();
+  public async selectImg(file): Promise<void> {
+    console.log(file);
+    if (file.target.files[0]) {
+      this.filePhoto = file.target.files[0];
+      const reader = new FileReader()
+      reader.onload = (e: any) => {
+        Swal.fire({
+          text: 'Imagen seleccionada',
+          imageUrl: e.target.result,
+          imageAlt: 'The uploaded picture'
+        });
+      };
+      reader.readAsDataURL(this.filePhoto);
+      if (this.filePhoto !== null) {
+        await this.uploadImg();
+        this.update();
+      }
+    } else {
+      this.filePhoto = null;
     }
   }
 
@@ -76,21 +78,17 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     this._location.back();
   }
 
-  public validateinput(param: string): boolean {
-    return this.form.get(param).invalid && this.form.get(param).touched;
-  }
-
-  public update(): void {
-    if (this.validators()) {
-      this.user.name = this.form.get('name').value;
-      this.user.city = this.form.get('city').value;
-      this.user.tel = this.form.get('tel').value;
-      this.user.email = this.form.get('email').value;
-      localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
-      this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
-        Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
-      });
+  public update(event?: FormGroup): void {
+    if (event) {
+      this.user.name = event.get('name').value;
+      this.user.city = event.get('city').value;
+      this.user.tel = event.get('tel').value;
+      this.user.email = event.get('email').value;
     }
+    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
+    this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
+      Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+    });
   }
 
   public starsPromedio(): number {
@@ -104,13 +102,19 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     return promedio;
   }
 
-  private validators(): boolean {
-    Object.values(this.form.controls).forEach(item => {
-      if (item instanceof FormControl) {
-        item.markAsTouched();
-      }
-    });
-    return this.form.invalid ? false : true;
+  public getDataRanking(): void {
+    this.dataRanking.allBussiness = this.user?.rate.length;
+    this.dataRanking.recommended = this.user?.rate.filter(x => x.recommend === true).length;
+    this.dataRanking.notRecommended = this.user?.rate.filter(x => x.recommend === false).length;
+    this.dataRanking.satisfied = this.user?.rate.filter(x => x.satisfied === true).length;
+    this.dataRanking.notSatisfied = this.user?.rate.filter(x => x.satisfied === false).length;
+  }
+
+  private async uploadImg(): Promise<void> {
+    await this.storage.deleteFilesFolder(this.user.photoRef);
+    this.user.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
+    await this.storage.upload(this.filePhoto, this.user.photoRef, false);
+    await this.storage.getUrlFileInfo(this.user.photoRef).then((url) => this.user.photoUrl = url);
   }
 
 }

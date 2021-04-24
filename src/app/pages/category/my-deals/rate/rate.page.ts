@@ -22,12 +22,11 @@ export class RatePage extends FormsAbstract implements OnInit {
   public stars = [5, 4, 3, 2, 1];
 
   public rate: RateItem = {
-    rateItem: 0,
     rateUser: 0,
+    recommend: null,
+    satisfied: null,
     comment: ''
   };
-
-  public isUserRequest: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,9 +42,20 @@ export class RatePage extends FormsAbstract implements OnInit {
     this.index = parseInt(this.route.snapshot.paramMap.get('index'), 0);
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionBDFinalizate, this.uniqueid);
     this.item = dataForm[0];
-    this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
     if (this.item.rate)
       this.rate = this.item.rate;
+  }
+
+  get isUserRequest(): boolean {
+    return this.user.uniqueid === this.item.userRequest ? true : false;
+  }
+
+  get isRate(): boolean {
+    return this.item.rate ? true : false;
+  }
+
+  get isDisabledInput(): boolean {
+    return !this.isUserRequest || this.isRate
   }
 
   get thirdMessage(): string {
@@ -62,9 +72,16 @@ export class RatePage extends FormsAbstract implements OnInit {
     }
   }
 
-  public selectStarsItem(index: number): void {
-    if (!this.item.rate && this.isUserRequest)
-      this.rate.rateItem = index + 1;
+  public selectRecommended(value: boolean): void {
+    if (!this.isDisabledInput) {
+      this.rate.recommend = value;
+    }
+  }
+
+  public selectSatisfied(value: boolean): void {
+    if (!this.isDisabledInput) {
+      this.rate.satisfied = value;
+    }
   }
 
   public selectStarsUser(index: number): void {
@@ -78,7 +95,10 @@ export class RatePage extends FormsAbstract implements OnInit {
   }
 
   validation(): boolean {
-    if (this.rate.rateItem === 0 || this.rate.rateUser === 0) {
+    if (
+      this.rate.rateUser === 0 ||
+      this.rate.recommend === null ||
+      this.rate.satisfied === null) {
       return false;
     } else {
       return true;
@@ -90,7 +110,8 @@ export class RatePage extends FormsAbstract implements OnInit {
       const dataForm = {
         rate: {
           rateUser: this.rate.rateUser,
-          rateProduct: this.rate.rateItem,
+          recommend: this.rate.recommend,
+          satisfied: this.rate.satisfied,
           comment: this.rate.comment,
         }
       }
@@ -99,7 +120,8 @@ export class RatePage extends FormsAbstract implements OnInit {
       const user: User = data[0];
       user.rate.push({
         service: dataForm.rate.rateUser,
-        product: dataForm.rate.rateProduct,
+        recommend: dataForm.rate.recommend,
+        satisfied: dataForm.rate.satisfied,
         uniqueidItem: this.item.uniqueid
       });
       this.firebase.actualizarDatos('usuario-app', user, user.id);

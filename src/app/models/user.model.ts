@@ -20,11 +20,14 @@ export interface User {
     miders: Mider;
     miderv: Mider;
     rate?: Rate[];
+    photoUrl: string;
+    photoRef: string;
 }
 
 export interface Rate {
     service: number;
-    product: number;
+    recommend?: boolean;
+    satisfied?: boolean;
     uniqueidItem: string;
 }
 

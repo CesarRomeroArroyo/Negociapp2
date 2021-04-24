@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
-
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirebaseService } from '../core/services/firebase.service';
-import { LoadingController } from '@ionic/angular';
-import { User } from '../models/user.model';
 import Swal from 'sweetalert2';
+import { LoadingController } from '@ionic/angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { FirebaseService } from '../core/services/firebase.service';
+import { User } from '../models/user.model';
 import { CITIES } from '../constans/constans-global';
+import { FileManagerService } from '../core/services/file-manager.service';
 
 const { Geolocation, Device } = Plugins;
-const path = { name: '', path: '', url: '' }
+const path = { name: '', path: '', url: '' };
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -37,16 +39,21 @@ export class HomePage implements OnInit {
     lng: null,
     active: true,
     nameToSearch: null,
-    rate: []
+    rate: [],
+    photoUrl: '',
+    photoRef: ''
   };
   public form: FormGroup;
   public coordinates: any;
+
+  public filePhoto: File = null;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService,
     private loadingController: LoadingController,
+    private storage: FileManagerService,
   ) { this.initForm() }
 
   ngOnInit() {
@@ -56,15 +63,36 @@ export class HomePage implements OnInit {
     this.obtenerCoordenadas();
   }
 
+  get isValidImg(): boolean {
+    return this.filePhoto === null ? true : false;
+  }
+
   public initForm(data?): void {
     this.form = this.formBuilder.group({
-      num_ide: ['' || data?.id, Validators.required],
-      name: ['' || data?.name, Validators.required],
-      email: ['' || data?.name, Validators.required],
-      tel: ['' || data?.tel, Validators.required],
+      num_ide: ['' || data?.id, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      name: ['' || data?.name, [Validators.required, Validators.minLength(5)]],
+      email: ['' || data?.name, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
+      tel: ['' || data?.tel, [Validators.required, Validators.pattern('^[0-9]*$')]],
       typeId: ['' || data?.typeId, Validators.required],
       city: ['' || data?.city, Validators.required],
     });
+  }
+
+  public selectImg(file): void {
+    if (file.target.files[0]) {
+      this.filePhoto = file.target.files[0];
+      const reader = new FileReader()
+      reader.onload = (e: any) => {
+        Swal.fire({
+          text: 'Imagen seleccionada',
+          imageUrl: e.target.result,
+          imageAlt: 'The uploaded picture'
+        });
+      };
+      reader.readAsDataURL(this.filePhoto);
+    } else {
+      this.filePhoto = null;
+    }
   }
 
   async obtenerCoordenadas() {
@@ -86,10 +114,9 @@ export class HomePage implements OnInit {
       this.registerData.lng = coordinates.coords.longitude;
       this.registerData.nameToSearch = this.registerData.name;
       this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
-      const data = {
-        ...this.form.value,
-        ...this.registerData
-      }
+      await this.uploadImg();
+      const data = { ...this.form.value, ...this.registerData };
+      console.log(data);
       this.firebaseService.save('usuario-app', data)
         .then(() => {
           localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
@@ -99,7 +126,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  async isLogged() {
+  public async isLogged(): Promise<void> {
     const data = await this.firebaseService.obtenerByContactoIDPromise((this.form.get('num_ide').value));
     if (data.length > 0) {
       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data[0]))
@@ -123,7 +150,13 @@ export class HomePage implements OnInit {
       this.coordinates = await Geolocation.getCurrentPosition();
       coord = false;
     } catch { Swal.fire('', 'Debes tener el GPS activo', 'warning'); }
-    return this.form.invalid || coord ? false : true;
+    return this.form.invalid || coord || this.filePhoto === null ? false : true;
+  }
+
+  private async uploadImg(): Promise<void> {
+    this.registerData.photoRef = `user-profile/${this.registerData.uniqueid}/foto/${this.filePhoto.name}`;
+    await this.storage.upload(this.filePhoto, this.registerData.photoRef);
+    await this.storage.getUrlFileInfo(this.registerData.photoRef).then((url) => this.registerData.photoUrl = url);
   }
 
 }

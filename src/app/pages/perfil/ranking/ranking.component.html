@@ -1,0 +1,32 @@
+<ng-container *ngIf="dataRanking">
+  <div class="container">
+    <div class="content-info">
+      <span>Servicios Atendidos</span>
+      <div class="onlyItem">
+        <span>{{dataRanking.allBussiness}}</span>
+      </div>
+    </div>
+    <div class="content-info">
+      <span>Satisfacción Clientes</span>
+      <div class="items">
+        <div class="item">
+          <span>{{dataRanking.satisfied}}</span>
+        </div>
+        <div class="item">
+          <span>{{dataRanking.notSatisfied}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="content-info">
+      <span>Recomendaciones</span>
+      <div class="items">
+        <div class="item">
+          <span>{{dataRanking.recommended}}</span>
+        </div>
+        <div class="item">
+          <span>{{dataRanking.notRecommended}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

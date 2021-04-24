@@ -1,85 +1,59 @@
-<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="form">
-  <div class="content">
-    <div class="header">
-      <div class="partOne">
-        <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
-        <span>NegociApp</span>
-      </div>
-      <ion-img src="/assets/img/user_perfilxxxhdpi.png"></ion-img>
-      <div class="header-text">
-        <span>{{user.name}}</span>
-        <div class="stars">
-          <div class="star" *ngIf="promedio">
-            <ion-icon 
-            name="star" 
-            [class.color]="promedio <= i" 
-            *ngFor="let item of stars; let i = index"></ion-icon>
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false" >
+  <ng-container *ngIf="user">
+    <div class="content">
+      <div class="header">
+        <div class="partOne">
+          <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
+          <span>NegociApp</span>
+        </div>
+        <ion-img [src]="user.photoUrl" ></ion-img>
+        <ng-container *ngIf="!uniqueid">
+          <div class="text-photo">
+            <ion-chip>
+              <label for="foto1">Actualizar foto</label>
+              <input
+                id="foto1" 
+                style="display: none;" 
+                type="file" 
+                accept="image/*" 
+                (change)="selectImg($event)"
+              />
+            </ion-chip>
+          </div>
+        </ng-container>
+        <div class="header-text">
+          <span>{{user.name}}</span>
+          <div class="stars">
+            <div class="star" *ngIf="promedio">
+              <ion-icon 
+              name="star" 
+              [class.color]="promedio <= i" 
+              *ngFor="let item of stars; let i = index"></ion-icon>
+            </div>
           </div>
         </div>
       </div>
+      <div class="setting">
+        <div class="tabs">
+          <div class="tab" [ngClass]="{'isSelected': tab === 1}" (click)="tab = 1">
+            <span>Ranking</span>
+          </div>
+          <div class="tab" [ngClass]="{'isSelected': tab === 2}" (click)="tab = 2">
+            <span>Perfil</span>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="tab === 1">
+        <app-ranking [dataRanking]="dataRanking"> </app-ranking>
+      </ng-container>
+      <ng-container *ngIf="tab === 2">
+        <app-form 
+          [uniqueid]="uniqueid" 
+          [user]="user" 
+          [cities]="cities"
+          (updateUser)="update($event)">
+        </app-form>
+      </ng-container>
     </div>
-    <div class="setting">
-      <div class="tab">
-        <ion-img src="/assets/shop_negative_perfil.svg"></ion-img>
-        <span>(0)</span>
-      </div>
-      <div class="tab">
-        <ion-img src="/assets/shop_positive-perfil.svg"></ion-img>
-        <span>(0)</span>
-      </div>
-    </div>
-    <form class="form" [formGroup]="form">
-      <div class="question">
-        <div class="content-icon">
-          <ion-icon name="person-outline"></ion-icon>
-        </div>
-        <ion-input 
-          class="input"
-          [ngClass]="{'invalid': validateinput('name')}"
-          placeholder="Escribe tu correo aquí"
-          formControlName="name">
-        </ion-input>
-      </div>
-      <div class="question">
-        <div class="content-icon">
-          <ion-icon name="mail-outline"></ion-icon>
-        </div>
-        <ion-input 
-          class="input"
-          [ngClass]="{'invalid': validateinput('email')}"
-          placeholder="Escribe tu correo aquí"
-          formControlName="email">
-        </ion-input>
-      </div>
-      <div class="question">
-        <div class="content-icon">
-          <ion-icon name="location-outline"></ion-icon>
-        </div>
-        <ion-select
-          placeholder="Ciudad"
-          [ngClass]="{'invalid': validateinput('city')}"
-          formControlName="city">
-          <ion-select-option [value]="city" *ngFor="let city of cities">{{city}}</ion-select-option>
-        </ion-select>
-      </div>
-      <div class="question">
-        <div class="content-icon">
-          <ion-icon name="call-outline"></ion-icon>
-        </div>
-        <ion-input
-          class="input"
-          [ngClass]="{'invalid': validateinput('tel')}"
-          placeholder="Número de contacto"
-          formControlName="tel">
-        </ion-input>
-      </div>
-      <div class="submit" *ngIf="!uniqueid">
-        <ion-button 
-          shape="round" 
-          (click)="update()">
-          Actualizar
-        </ion-button>
-      </div>
-    </form>
-  </div>
+  </ng-container>
 </ion-content>
