@@ -1,22 +1,21 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar class="toolbar" color="primary">
-    <ion-title>NegociApp</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
-  <ion-list>
-    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-      <ion-item 
-        lines="full"
-        button
-        detail
-        (click)="redirecto(p.url)"
-        [routerDirection]="'root'" 
-        [routerLink]="[]">
-        <ion-icon slot="start" color="primary" [name]="p.icon"></ion-icon>
-        <ion-label>{{p.title}}</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-  </ion-list>
-</ion-content>
-
+<ion-menu side="start" contentId="main">
+  <ion-content>
+    <ion-header class="ion-no-border">
+      <ion-toolbar class="toolbar" color="primary">
+        <ion-title>NegociApp</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-list>
+      <ion-menu-toggle *ngFor="let p of appPages">
+        <ion-item 
+          lines="full" button detail
+          (click)="redirecto(p.url)"
+          [routerDirection]="'root'" 
+          [routerLink]="[]">
+          <ion-icon slot="start" color="primary" [name]="p.icon"></ion-icon>
+          <ion-label>{{p.title}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

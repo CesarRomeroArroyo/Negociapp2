@@ -53,7 +53,6 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   public async selectImg(file): Promise<void> {
-    console.log(file);
     if (file.target.files[0]) {
       this.filePhoto = file.target.files[0];
       const reader = new FileReader()
@@ -113,7 +112,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   private async uploadImg(): Promise<void> {
     await this.storage.deleteFilesFolder(this.user.photoRef);
     this.user.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
-    await this.storage.upload(this.filePhoto, this.user.photoRef, false);
+    await this.storage.upload(this.filePhoto, this.user.photoRef);
     await this.storage.getUrlFileInfo(this.user.photoRef).then((url) => this.user.photoUrl = url);
   }
 

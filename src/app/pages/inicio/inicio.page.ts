@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
+
+import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { User } from 'src/app/models/user.model';
 import { CategoryURL } from '../../models/category.model';
 
 @Component({
@@ -7,14 +11,9 @@ import { CategoryURL } from '../../models/category.model';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class InicioPage implements OnInit {
-  user: any;
+export class InicioPage extends FormsAbstract {
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-  }
+  constructor(private router: Router) { super(); }
 
   get service(): string {
     return CategoryURL.Service;

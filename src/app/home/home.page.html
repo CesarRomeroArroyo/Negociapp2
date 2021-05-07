@@ -8,18 +8,6 @@
     <div class="form">
       <span class="text">Ingresa tus datos personales</span>
       <form [formGroup]="form" (ngSubmit)="next()">
-        <!-- Input File -->
-        <div class="input file" [ngClass]="{'invalidImg': isValidImg}">
-          <label for="foto1">Seleccionar foto perfil</label>
-          <label class="text-file">{{filePhoto?.name}}</label>
-          <input
-            id="foto1" 
-            style="display: none;" 
-            type="file" 
-            accept="image/*" 
-            (change)="selectImg($event)"
-            />
-        </div>
         <!-- Type identification -->
         <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
           <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
@@ -60,6 +48,18 @@
           formControlName="email" 
           [ngClass]="{'invalid': validateinput('email')}"
         />
+        <!-- Input File -->
+        <div class="input file" [ngClass]="{'invalidImg': isValidImg}">
+          <label for="foto1">Seleccionar foto perfil</label>
+          <label class="text-file">{{filePhoto?.name}}</label>
+          <input
+            id="foto1" 
+            style="display: none;" 
+            type="file" 
+            accept="image/*" 
+            (change)="selectImg($event)"
+            />
+        </div>
         <!-- Submit -->
         <div class="submit">
           <ion-button color="secondary" type="submit" shape="round" expand="full">Siguiente</ion-button>

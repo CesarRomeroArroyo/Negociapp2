@@ -41,7 +41,6 @@ export class FormService extends FormsAbstract {
       }
     });
     usersSendNotications.forEach(user => {
-      console.log('user =>', user)
       this.oneSignal.sendDirectMessage(
         user.onesignal,
         this.userMider === 'miders' ? `!Hay un nuevo servicio que concuerda con tus categorias!` :

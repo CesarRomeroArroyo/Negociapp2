@@ -20,17 +20,7 @@ export class FileManagerService {
     // this.estado.next(true);
   }
 
-  async upload(file, filepath, showLoading: boolean = true): Promise<firebase.storage.UploadTaskSnapshot> {
-    if (showLoading) {
-      const task = await this.uploadFileWithLoading(file, filepath);
-      return task;
-    } else {
-      const task = await this.uploadFileWithoutLoading(file, filepath);
-      return task;
-    }
-  }
-
-  public async uploadFileWithLoading(file, filepath): Promise<firebase.storage.UploadTaskSnapshot> {
+  async upload(file, filepath): Promise<firebase.storage.UploadTaskSnapshot> {
     // Get input file
     // const file = event.target.files[0];
     this.estado.next(true);
@@ -49,19 +39,6 @@ export class FileManagerService {
         this.uploadURL = fileRef.getDownloadURL();
         this.estado.next(false);
         loading.dismiss();
-      })
-    ).toPromise();
-  }
-
-  public async uploadFileWithoutLoading(file, filepath): Promise<firebase.storage.UploadTaskSnapshot> {
-    this.estado.next(true);
-    const fileRef = this.storage.ref(filepath);
-    const task = this.storage.upload(filepath, file);
-    this.uploadProgress = task.percentageChanges();
-    return task.snapshotChanges().pipe(
-      finalize(() => {
-        this.uploadURL = fileRef.getDownloadURL();
-        this.estado.next(false);
       })
     ).toPromise();
   }

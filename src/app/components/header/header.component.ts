@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { User } from 'src/app/models/user.model';
 
 import { FormsAbstract } from '../abstract/form.abstact';
 
@@ -9,6 +12,8 @@ import { FormsAbstract } from '../abstract/form.abstact';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent extends FormsAbstract implements OnInit {
+
+  public user: User;
 
   @Input() public text = 'NegociApp';
   @Input() public secondMessage = '';
@@ -24,10 +29,14 @@ export class HeaderComponent extends FormsAbstract implements OnInit {
   @Output() emitClose = new EventEmitter<boolean>();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private menuController: MenuController,
+    private firebaseService: FirebaseService
   ) { super(); }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.fetchUser();
+  }
 
   public goToBack(): void {
     this.path.length > 0 ? this.router.navigate([this.path]) : window.history.back();
@@ -35,6 +44,18 @@ export class HeaderComponent extends FormsAbstract implements OnInit {
 
   public closeModal(): void {
     this.emitClose.emit(false);
+  }
+
+  public openMenu(): void {
+    this.menuController.open('content')
+  }
+
+  public async fetchUser(): Promise<void> {
+    this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+    const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
+    const dataUser = users.filter(x => x.uniqueid === this.user.uniqueid)
+    this.user = dataUser[0];
+    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
   }
 
 }
