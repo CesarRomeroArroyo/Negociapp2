@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
   @Input() uniqueid: string;
   @Input() cities: string[] = [];
   @Input() user: User;
+  @Input() isOtherUser: boolean;
   @Output() updateUser: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
 
   public form: FormGroup;
@@ -20,6 +21,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm(this.user);
+    console.log(this.user);
   }
 
   public initForm(data?: User): void {
@@ -54,6 +56,12 @@ export class FormComponent implements OnInit {
       }
     });
     return this.form.invalid ? false : true;
+  }
+
+  public goToWhatsapp(): string {
+    if (this.uniqueid) {
+      return `https://api.whatsapp.com/send?phone=+57${this.user.tel}`;
+    }
   }
 
 }

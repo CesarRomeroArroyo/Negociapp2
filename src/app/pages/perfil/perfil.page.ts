@@ -40,16 +40,23 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   ) { super(); }
 
   public async ngOnInit() {
-    this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
-    if (this.uniqueid) {
+    console.log(this.isOtherUser);
+    if (this.isOtherUser) {
+      // Other user
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);
       this.user = user[0];
     } else {
+      // My user
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
       this.user = user[0];
     }
     this.getDataRanking()
     this.promedio = this.starsPromedio();
+  }
+
+  get isOtherUser(): boolean {
+    this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
+    return this.uniqueid ? true: false;
   }
 
   public async selectImg(file): Promise<void> {

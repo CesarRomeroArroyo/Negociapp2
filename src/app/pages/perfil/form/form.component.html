@@ -1,16 +1,18 @@
 <form class="form" [formGroup]="form">
-  <div class="question">
+  <!-- Name -->
+  <div class="item">
     <div class="content-icon">
       <ion-icon name="person-outline"></ion-icon>
     </div>
     <ion-input 
       class="input"
       [ngClass]="{'invalid': validateinput('name')}"
-      placeholder="Escribe tu correo aquí"
+      placeholder="Escribe tu nombre aquí"
       formControlName="name">
     </ion-input>
   </div>
-  <div class="question">
+  <!-- Email -->
+  <div class="item">
     <div class="content-icon">
       <ion-icon name="mail-outline"></ion-icon>
     </div>
@@ -21,7 +23,8 @@
       formControlName="email">
     </ion-input>
   </div>
-  <div class="question">
+  <!-- City -->
+  <div class="item">
     <div class="content-icon">
       <ion-icon name="location-outline"></ion-icon>
     </div>
@@ -32,10 +35,11 @@
       <ion-select-option [value]="city" *ngFor="let city of cities">{{city}}</ion-select-option>
     </ion-select>
   </div>
-  <div class="question">
-    <div class="content-icon">
-      <ion-icon name="call-outline"></ion-icon>
-    </div>
+  <!-- Celphone -->
+  <div class="item">
+    <ng-container *ngIf="isOtherUser; else itemTelTemplate">
+      <ng-container [ngTemplateOutlet]="itemTelWhatsappTemplate"></ng-container>
+    </ng-container>
     <ion-input
       class="input"
       [ngClass]="{'invalid': validateinput('tel')}"
@@ -51,3 +55,14 @@
     </ion-button>
   </div>
 </form>
+
+<ng-template #itemTelWhatsappTemplate>
+  <a class="content-icon" [href]="goToWhatsapp()">
+    <ion-icon name="call-outline"></ion-icon>
+  </a>
+</ng-template>
+<ng-template #itemTelTemplate>
+  <div class="content-icon">
+    <ion-icon name="call-outline"></ion-icon>
+  </div>
+</ng-template>
