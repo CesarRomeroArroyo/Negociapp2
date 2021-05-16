@@ -15,7 +15,6 @@ export class CelularPage implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-    console.log(this.user);
     this.number = this.user.contact;
   }
 

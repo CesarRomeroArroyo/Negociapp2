@@ -679,6 +679,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./core/services/one-signal.service */ "./src/app/core/services/one-signal.service.ts");
 /* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
+/* harmony import */ var _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./core/services/sms.service */ "./src/app/core/services/sms.service.ts");
+
 
 
 
@@ -689,11 +691,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Device } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let AppComponent = class AppComponent {
-    constructor(oneSignal, platform, router, oneSignalService, firebaseService) {
+    constructor(oneSignal, platform, router, oneSignalService, smsService, firebaseService) {
         this.oneSignal = oneSignal;
         this.platform = platform;
         this.router = router;
         this.oneSignalService = oneSignalService;
+        this.smsService = smsService;
         this.firebaseService = firebaseService;
         this.initializeApp();
     }
@@ -722,6 +725,7 @@ let AppComponent = class AppComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const device = yield Device.getInfo();
             yield this.oneSignalService.fetchConfigurations();
+            yield this.smsService.fetchConfigurations();
             const { apiId_oneSingal, key_oneSignal } = yield this.oneSignalService.fetchOneSignalConfiguration();
             localStorage.setItem('NEGOCIAPP_UINIQUEID', device.uuid);
             this.oneSignal.startInit(apiId_oneSingal, key_oneSignal);
@@ -758,6 +762,7 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"] },
+    { type: _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"] },
     { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -770,6 +775,7 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
         _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"],
+        _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"],
         _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"]])
 ], AppComponent);
 
@@ -2484,6 +2490,58 @@ OneSignalService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"]])
 ], OneSignalService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/services/sms.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/core/services/sms.service.ts ***!
+  \**********************************************/
+/*! exports provided: SmsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmsService", function() { return SmsService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./firebase.service */ "./src/app/core/services/firebase.service.ts");
+
+
+
+
+let SmsService = class SmsService {
+    constructor(http, firebaseService) {
+        this.http = http;
+        this.firebaseService = firebaseService;
+    }
+    fetchConfigurations() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const data = yield this.firebaseService.obtenerPromise('configurations');
+            this.UrlSms = data[0].sms;
+            return data[0];
+        });
+    }
+    sendSms(msg, phone) {
+        this.http.post(`${this.UrlSms}${phone}&SMSText=${msg}`, {}).subscribe((data) => {
+            console.log(data);
+        });
+    }
+};
+SmsService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _firebase_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"] }
+];
+SmsService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+        _firebase_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"]])
+], SmsService);
 
 
 

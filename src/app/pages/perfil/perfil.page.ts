@@ -40,7 +40,6 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   ) { super(); }
 
   public async ngOnInit() {
-    console.log(this.isOtherUser);
     if (this.isOtherUser) {
       // Other user
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);

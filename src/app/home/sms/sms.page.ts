@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { SmsService } from '../../core/services/sms.service';
+import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-sms',
   templateUrl: './sms.page.html',
   styleUrls: ['./sms.page.scss'],
 })
 export class SmsPage implements OnInit {
-  number1 = '';
-  number2 = '';
-  number3 = '';
-  number4 = '';
-  phone: string;
-  remoteCode: number;
-  registerData: any = {};
-  images = [];
-  files = [];
-  user: any;
+
+  public number1: string = '';
+  public number2: string = '';
+  public number3: string = '';
+  public number4: string = '';
+  public remoteCode: number;
+  public user: User;
+
   constructor(
     private router: Router,
+    private smsService: SmsService,
   ) { }
 
   ngOnInit() {
@@ -26,13 +27,13 @@ export class SmsPage implements OnInit {
     this.generateCode();
   }
 
-  generateCode() {
+  public generateCode(): void {
     const code = this.aleatorio(1000, 9999);
     this.remoteCode = code;
-    Swal.fire('', 'Negociapp, su codigo de verificacion es: ' + code, 'success')
+    this.smsService.sendSms(`Negociapp, su codigo de verificacion es: ${code}`, this.user.tel);
   }
 
-  addNumber(n: string) {
+  public addNumber(n: string): void {
     if (n === 'BCK') {
       if (this.number4 !== '') {
         this.number4 = '';
@@ -72,8 +73,7 @@ export class SmsPage implements OnInit {
     }
   }
 
-
-  async validateSMS() {
+  public async validateSMS() {
     const code = this.number1 + this.number2 + this.number3 + this.number4;
     if (code === this.remoteCode.toString()) {
       localStorage.setItem('NEGOCIAPP_LOGGED', JSON.stringify(true));

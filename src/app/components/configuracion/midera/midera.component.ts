@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class MideraComponent implements OnInit , OnDestroy {
   user: any;
   numRUT = 0;
-  files = [];
+  files: any = [];
   selectNiveles = [];
   nivelArriendo = [{ name:'Especializado'},{name:'Profesional'},{name:'Tecnologo'},{name:'Tecnico'},{name:'Independiente'}];
   levelsSelected;
@@ -20,7 +20,6 @@ export class MideraComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-    console.log(this.user.midera);
   }
 
   ngOnDestroy() {
@@ -28,9 +27,8 @@ export class MideraComponent implements OnInit , OnDestroy {
   }
 
   next() {
-    this.user.midera.rut = this.files["files"];
+    this.user.midera.rut = this.files.files;
     this.user.midera.niveles = this.levelsSelected;
-    console.log(this.user.midera);
     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
     this.firebase.actualizarDatos('usuario-app', this.user, this.user.id);
     Swal.fire(

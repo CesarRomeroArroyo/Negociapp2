@@ -585,17 +585,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./core/services/firebase.service */
     "./src/app/core/services/firebase.service.ts");
+    /* harmony import */
+
+
+    var _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./core/services/sms.service */
+    "./src/app/core/services/sms.service.ts");
 
     var Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Device;
 
     var AppComponent = /*#__PURE__*/function () {
-      function AppComponent(oneSignal, platform, router, oneSignalService, firebaseService) {
+      function AppComponent(oneSignal, platform, router, oneSignalService, smsService, firebaseService) {
         _classCallCheck(this, AppComponent);
 
         this.oneSignal = oneSignal;
         this.platform = platform;
         this.router = router;
         this.oneSignalService = oneSignalService;
+        this.smsService = smsService;
         this.firebaseService = firebaseService;
         this.initializeApp();
       }
@@ -676,9 +683,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 5:
                     _context2.next = 7;
-                    return this.oneSignalService.fetchOneSignalConfiguration();
+                    return this.smsService.fetchConfigurations();
 
                   case 7:
+                    _context2.next = 9;
+                    return this.oneSignalService.fetchOneSignalConfiguration();
+
+                  case 9:
                     _yield$this$oneSignal = _context2.sent;
                     apiId_oneSingal = _yield$this$oneSignal.apiId_oneSingal;
                     key_oneSignal = _yield$this$oneSignal.key_oneSignal;
@@ -699,10 +710,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       localStorage.setItem('NEGOCIAPP_ONESIGNALUI', JSON.stringify(info.userId));
                     });
                     this.oneSignal.endInit();
-                    _context2.next = 19;
+                    _context2.next = 21;
                     return this.fetchUser();
 
-                  case 19:
+                  case 21:
                   case "end":
                     return _context2.stop();
                 }
@@ -754,6 +765,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         type: _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"]
       }, {
+        type: _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"]
+      }, {
         type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"]
       }];
     };
@@ -766,7 +779,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
       /*! ./app.component.scss */
       "./src/app/app.component.scss"))["default"]]
-    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_4__["OneSignal"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"], _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"]])], AppComponent);
+    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_4__["OneSignal"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"], _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"], _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"]])], AppComponent);
     /***/
   },
 
@@ -3824,6 +3837,109 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     OneSignalService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"]])], OneSignalService);
+    /***/
+  },
+
+  /***/
+  "./src/app/core/services/sms.service.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/core/services/sms.service.ts ***!
+    \**********************************************/
+
+  /*! exports provided: SmsService */
+
+  /***/
+  function srcAppCoreServicesSmsServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SmsService", function () {
+      return SmsService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./firebase.service */
+    "./src/app/core/services/firebase.service.ts");
+
+    var SmsService = /*#__PURE__*/function () {
+      function SmsService(http, firebaseService) {
+        _classCallCheck(this, SmsService);
+
+        this.http = http;
+        this.firebaseService = firebaseService;
+      }
+
+      _createClass(SmsService, [{
+        key: "fetchConfigurations",
+        value: function fetchConfigurations() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee26() {
+            var data;
+            return regeneratorRuntime.wrap(function _callee26$(_context26) {
+              while (1) {
+                switch (_context26.prev = _context26.next) {
+                  case 0:
+                    _context26.next = 2;
+                    return this.firebaseService.obtenerPromise('configurations');
+
+                  case 2:
+                    data = _context26.sent;
+                    this.UrlSms = data[0].sms;
+                    return _context26.abrupt("return", data[0]);
+
+                  case 5:
+                  case "end":
+                    return _context26.stop();
+                }
+              }
+            }, _callee26, this);
+          }));
+        }
+      }, {
+        key: "sendSms",
+        value: function sendSms(msg, phone) {
+          this.http.post("".concat(this.UrlSms).concat(phone, "&SMSText=").concat(msg), {}).subscribe(function (data) {
+            console.log(data);
+          });
+        }
+      }]);
+
+      return SmsService;
+    }();
+
+    SmsService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }, {
+        type: _firebase_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"]
+      }];
+    };
+
+    SmsService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _firebase_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"]])], SmsService);
     /***/
   },
 

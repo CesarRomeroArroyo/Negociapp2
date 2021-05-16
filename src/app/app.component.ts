@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { OneSignalService } from './core/services/one-signal.service';
 import { FirebaseService } from './core/services/firebase.service';
 import { User } from './models/user.model';
+import { SmsService } from './core/services/sms.service';
 const { Device } = Plugins;
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private router: Router,
     private oneSignalService: OneSignalService,
+    private smsService: SmsService,
     private firebaseService: FirebaseService
   ) {
     this.initializeApp();
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     const device = await Device.getInfo();
     await this.oneSignalService.fetchConfigurations();
+    await this.smsService.fetchConfigurations();
     const { apiId_oneSingal, key_oneSignal } = await this.oneSignalService.fetchOneSignalConfiguration();
 
     localStorage.setItem('NEGOCIAPP_UINIQUEID', device.uuid);

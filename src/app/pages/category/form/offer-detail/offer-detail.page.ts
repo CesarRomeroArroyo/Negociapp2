@@ -42,7 +42,6 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
     this.item.closeDate = moment().format('DD/MM/YYYY');
     this.item.offerit = [this.item.offerit[this.index]];
     this.item.userOffers = [this.item.offerit[0].user.uniqueid];
-    console.log(this.item);
     this.firebase.eliminarDatos(this.collectionDataBD, this.item.id);
     this.firebase.save(this.collectionBDFinalizate, this.item).then(() => {
       Swal.fire('', 'Su oferta fue enviada correctamente', 'success');

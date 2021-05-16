@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-import { environment as ENV } from '../../../environments/environment';
 import { FirebaseService } from './firebase.service';
+import { Configurations } from 'src/app/models/bd.models';
+import { ConfigurationsOnseSignal } from '../../models/bd.models';
 
 @Injectable({
   providedIn: 'root'
@@ -47,12 +46,6 @@ export class OneSignalService {
       Authorization: `Basic ${this.authorizationOnseSignal}`
     });
 
-    console.log({
-      apiId_oneSingal: this.apiIdOneSingal,
-      api_onseSignal: this.apiOnseSignal,
-      authorization_onseSignal: this.authorizationOnseSignal,
-    });
-
     const options = { headers };
     const dataSend = JSON.stringify({
       app_id: this.apiIdOneSingal,
@@ -69,16 +62,4 @@ export class OneSignalService {
   }
 }
 
-export interface Configurations {
-  apiId_oneSingal: string;
-  api_onseSignal: string;
-  authorization_onseSignal: string;
-  key_oneSignal: string;
-  sms: string;
-}
-export interface ConfigurationsOnseSignal {
-  apiId_oneSingal: string;
-  api_onseSignal: string;
-  authorization_onseSignal: string;
-  key_oneSignal: string;
-}
+

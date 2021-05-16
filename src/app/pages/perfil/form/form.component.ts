@@ -21,7 +21,6 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm(this.user);
-    console.log(this.user);
   }
 
   public initForm(data?: User): void {
