@@ -10,7 +10,4 @@ export const environment = {
     appId: '1:950550048655:web:09f44d67e6846726e625fa',
     measurementId: 'G-L4M422NKX7'
   },
-  authorization_onseSignal: 'Yzk3YTVkYjgtNDg1Zi00ZGE1LTkzMjktYTIyMzA1Zjg1ZGE0',
-  apiId_oneSingal: 'd32974fc-eac0-416d-a22d-b2b4996d28fe',
-  api_onseSignal: 'https://onesignal.com:443/api/v1/notifications'
 };

@@ -1,10 +1,14 @@
-import { Input } from '@angular/core';
+import { Input, Component } from '@angular/core';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { CollectionsBd, imgStorage, nameCard } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 
+@Component({
+  template: ''
+})
+// tslint:disable-next-line: component-class-suffix
 export abstract class FormsAbstract {
 
   public uniqueid: string;
@@ -19,6 +23,7 @@ export abstract class FormsAbstract {
   public numberMask = createNumberMask({
     prefix: '',
   });
+
   @Input() public category: string;
 
   get service(): string {
