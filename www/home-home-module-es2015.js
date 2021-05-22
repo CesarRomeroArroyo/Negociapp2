@@ -243,7 +243,6 @@ let HomePage = class HomePage {
                 this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
                 yield this.uploadImg();
                 const data = Object.assign(Object.assign({}, this.form.value), this.registerData);
-                console.log(data);
                 this.firebaseService.save('usuario-app', data)
                     .then(() => {
                     localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));

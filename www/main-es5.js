@@ -970,7 +970,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! src/app/models/form.model */
     "./src/app/models/form.model.ts");
 
-    var FormsAbstract = /*#__PURE__*/function () {
+    var FormsAbstract =
+    /*#__PURE__*/
+    // tslint:disable-next-line: component-class-suffix
+    function () {
       function FormsAbstract() {
         _classCallCheck(this, FormsAbstract);
 
@@ -1131,6 +1134,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)], FormsAbstract.prototype, "category", void 0);
+    FormsAbstract = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      template: ''
+    }) // tslint:disable-next-line: component-class-suffix
+    ], FormsAbstract);
     /***/
   },
 
@@ -1496,7 +1503,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-          console.log(this.user.midera);
         }
       }, {
         key: "ngOnDestroy",
@@ -1504,9 +1510,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "next",
         value: function next() {
-          this.user.midera.rut = this.files["files"];
+          this.user.midera.rut = this.files.files;
           this.user.midera.niveles = this.levelsSelected;
-          console.log(this.user.midera);
           localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
           this.firebase.actualizarDatos('usuario-app', this.user, this.user.id);
           sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('', 'El Mider se creo correctamente', 'success');
@@ -3780,11 +3785,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json',
             Authorization: "Basic ".concat(this.authorizationOnseSignal)
-          });
-          console.log({
-            apiId_oneSingal: this.apiIdOneSingal,
-            api_onseSignal: this.apiOnseSignal,
-            authorization_onseSignal: this.authorizationOnseSignal
           });
           var options = {
             headers: headers

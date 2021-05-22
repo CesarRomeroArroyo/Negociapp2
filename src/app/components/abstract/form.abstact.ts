@@ -5,10 +5,6 @@ import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { CollectionsBd, imgStorage, nameCard } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 
-@Component({
-  template: ''
-})
-// tslint:disable-next-line: component-class-suffix
 export abstract class FormsAbstract {
 
   public uniqueid: string;

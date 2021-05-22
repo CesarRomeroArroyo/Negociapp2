@@ -876,6 +876,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let FormsAbstract = 
+// tslint:disable-next-line: component-class-suffix
 class FormsAbstract {
     constructor() {
         this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
@@ -985,11 +987,18 @@ class FormsAbstract {
     get nameCardIsMyHistorialOffers() {
         return src_app_models_form_model__WEBPACK_IMPORTED_MODULE_4__["nameCard"].IsMyHistorialOffers;
     }
-}
+};
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
 ], FormsAbstract.prototype, "category", void 0);
+FormsAbstract = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        template: ''
+    })
+    // tslint:disable-next-line: component-class-suffix
+], FormsAbstract);
+
 
 
 /***/ }),
@@ -1202,14 +1211,12 @@ let MideraComponent = class MideraComponent {
     }
     ngOnInit() {
         this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-        console.log(this.user.midera);
     }
     ngOnDestroy() {
     }
     next() {
-        this.user.midera.rut = this.files["files"];
+        this.user.midera.rut = this.files.files;
         this.user.midera.niveles = this.levelsSelected;
-        console.log(this.user.midera);
         localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
         this.firebase.actualizarDatos('usuario-app', this.user, this.user.id);
         sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('', 'El Mider se creo correctamente', 'success');
@@ -2456,11 +2463,6 @@ let OneSignalService = class OneSignalService {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json',
             Authorization: `Basic ${this.authorizationOnseSignal}`
-        });
-        console.log({
-            apiId_oneSingal: this.apiIdOneSingal,
-            api_onseSignal: this.apiOnseSignal,
-            authorization_onseSignal: this.authorizationOnseSignal,
         });
         const options = { headers };
         const dataSend = JSON.stringify({

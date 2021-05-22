@@ -445,7 +445,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     if (!_context2.sent) {
-                      _context2.next = 24;
+                      _context2.next = 23;
                       break;
                     }
 
@@ -480,7 +480,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 21:
                     data = Object.assign(Object.assign({}, this.form.value), this.registerData);
-                    console.log(data);
                     this.firebaseService.save('usuario-app', data).then(function () {
                       localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(data));
 
@@ -491,7 +490,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       return sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Error', err.message, 'error');
                     });
 
-                  case 24:
+                  case 23:
                   case "end":
                     return _context2.stop();
                 }
