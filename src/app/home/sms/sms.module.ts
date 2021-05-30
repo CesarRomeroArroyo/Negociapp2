@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SmsPageRoutingModule } from './sms-routing.module';
+import { ComponentsModule } from '../../components/components.module';
 
 import { SmsPage } from './sms.page';
 
@@ -13,7 +14,8 @@ import { SmsPage } from './sms.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SmsPageRoutingModule
+    SmsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [SmsPage]
 })

@@ -17,8 +17,11 @@ export class FormService extends FormsAbstract {
     this.category = this.route.snapshot.paramMap.get('category');
   }
 
-  async sendNotification(cities: string[], categories: string[],
-    typeService: string = null, itemUniqueid: string): Promise<void> {
+  async sendNotification(
+    cities: string[],
+    categories: string[],
+    typeService: string = null,
+    itemUniqueid: string): Promise<void> {
     const users: User[] = await this.firebase.obtenerPromise('usuario-app');
     const usersSendNotications: User[] = [];
     users.forEach(usuario => {

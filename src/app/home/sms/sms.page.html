@@ -1,64 +1,19 @@
 <ion-content fullscreen scroll-y="true">
   <div class="sms">
-    <div class="sms__titulo">
+    <div class="title">
       Codigo de verificación
     </div>
-    <div class="sms__titulo2">
+    <div class="title-2">
       Ingresa el codigo de verificación recibido
     </div>
-    <div class="sms__numero">
-      <div class="sms__numero__num">{{number1}}</div>
-      <div class="sms__numero__num">{{number2}}</div>
-      <div class="sms__numero__num">{{number3}}</div>
-      <div class="sms__numero__num">{{number4}}</div>
+    <div class="number">
+      <div class="box-number">{{number1}}</div>
+      <div class="box-number">{{number2}}</div>
+      <div class="box-number">{{number3}}</div>
+      <div class="box-number">{{number4}}</div>
     </div>
-    <div class="sms__footer">
-      <div class="sms__footer__content">
-        <div class="sms__footer__content__fila">
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('1')">
-            1
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('2')">
-            2
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('3')">
-            3
-          </div>
-        </div>
-        <div class="sms__footer__content__fila">
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('4')">
-            4
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('5')">
-            5
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('6')">
-            6
-          </div>
-        </div>
-        <div class="sms__footer__content__fila">
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('7')">
-            7
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('8')">
-            8
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('9')">
-            9
-          </div>
-        </div>
-        <div class="sms__footer__content__fila">
-          <div class="sms__footer__content__fila__columna">
-            <ion-icon name="refresh-outline" (click)="generateCode()"></ion-icon>
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('0')">
-            0
-          </div>
-          <div class="sms__footer__content__fila__columna" (click)="addNumber('BCK')">
-            <ion-icon name="arrow-back"></ion-icon>
-          </div>
-        </div>
-      </div>
+    <div class="content-keyboard">
+      <app-keyboard (number)="addNumber($event)" (clickRefresh)="generateCode()"></app-keyboard>
   </div>
   </div>
 </ion-content>

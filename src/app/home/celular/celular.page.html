@@ -1,20 +1,23 @@
 <ion-content fullscreen scroll-y="true">
   <div class="phone">
-    <div class="phone__titulo">
-      
-    </div>
-    <div class="phone__titulo2">
+    <div class="title">
       Ingresa tu numero para finalizar tu registro
     </div>
-    <div class="phone__numero">
-      <input type="number" maxlength="10" name="phoneNumber" name="number" [(ngModel)]="number">
+    <div class="number">
+      <input 
+        type="number" 
+        maxlength="10" 
+        name="number" 
+        [(ngModel)]="number"
+      >
     </div>
-    <div class="phone__button">
-      
-        <ion-button color="secondary" shape="round" size="large" (click)="enviarCel()">Enviar</ion-button>
-        
+    <div class="button-phone">
+      <ion-button 
+        color="secondary" 
+        expand="full"
+        shape="round" 
+        (click)="enviarCel()">Enviar
+      </ion-button>
     </div>
   </div>
-  
-
 </ion-content>

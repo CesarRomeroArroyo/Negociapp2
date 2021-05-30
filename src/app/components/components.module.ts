@@ -12,6 +12,7 @@ import { MycardsComponent } from './mycards/mycards.component';
 import { OffersReceivedComponent } from './offers-received/offers-received.component';
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { MenuComponent } from './menu/menu.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 
 const components = [
   HeaderComponent,
@@ -20,7 +21,8 @@ const components = [
   MycardsComponent,
   OffersReceivedComponent,
   CardDetailComponent,
-  MenuComponent
+  MenuComponent,
+  KeyboardComponent
 ];
 
 @NgModule({

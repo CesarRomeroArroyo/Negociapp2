@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 
-import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { User } from 'src/app/models/user.model';
 import { CategoryURL } from '../../models/category.model';
 
 @Component({

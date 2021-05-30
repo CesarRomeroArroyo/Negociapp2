@@ -308,6 +308,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/components/keyboard/keyboard.component.html":
+  /*!***************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/keyboard/keyboard.component.html ***!
+    \***************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppComponentsKeyboardKeyboardComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"content\">\n  <div class=\"row\">\n    <div class=\"col\" (click)=\"number.emit('1')\">1</div>\n    <div class=\"col\" (click)=\"number.emit('2')\">2</div>\n    <div class=\"col\" (click)=\"number.emit('3')\">3</div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\" (click)=\"number.emit('4')\">4</div>\n    <div class=\"col\" (click)=\"number.emit('5')\">5</div>\n    <div class=\"col\" (click)=\"number.emit('6')\">6</div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\" (click)=\"number.emit('7')\">7</div>\n    <div class=\"col\" (click)=\"number.emit('8')\">8</div>\n    <div class=\"col\" (click)=\"number.emit('9')\">9</div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <ion-icon name=\"refresh-outline\" (click)=\"clickRefresh.emit()\"></ion-icon>\n    </div>\n    <div class=\"col\" (click)=\"number.emit('0')\">0</div>\n    <div class=\"col\" (click)=\"number.emit('BCK')\">\n      <ion-icon name=\"arrow-back\"></ion-icon>\n    </div>\n  </div>\n</div>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/components/menu/menu.component.html":
   /*!*******************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/menu/menu.component.html ***!
@@ -969,15 +989,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_models_form_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/models/form.model */
     "./src/app/models/form.model.ts");
+    /* harmony import */
 
-    var FormsAbstract =
-    /*#__PURE__*/
-    // tslint:disable-next-line: component-class-suffix
-    function () {
+
+    var _constans_localStorage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../../constans/localStorage */
+    "./src/app/constans/localStorage.ts");
+
+    var FormsAbstract = /*#__PURE__*/function () {
       function FormsAbstract() {
         _classCallCheck(this, FormsAbstract);
 
-        this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+        this.user = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_5__["LOCALSTORAGE"].USER));
         this.invalid = false;
         this.timeForArray = ['Horas', 'Dias', 'Meses'];
         this.dias = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
@@ -1134,10 +1157,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)], FormsAbstract.prototype, "category", void 0);
-    FormsAbstract = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      template: ''
-    }) // tslint:disable-next-line: component-class-suffix
-    ], FormsAbstract);
     /***/
   },
 
@@ -1395,8 +1414,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _menu_menu_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ./menu/menu.component */
     "./src/app/components/menu/menu.component.ts");
+    /* harmony import */
 
-    var components = [_header_header_component__WEBPACK_IMPORTED_MODULE_7__["HeaderComponent"], _configuracion_midera_midera_component__WEBPACK_IMPORTED_MODULE_8__["MideraComponent"], _form_form_component__WEBPACK_IMPORTED_MODULE_9__["FormComponent"], _mycards_mycards_component__WEBPACK_IMPORTED_MODULE_10__["MycardsComponent"], _offers_received_offers_received_component__WEBPACK_IMPORTED_MODULE_11__["OffersReceivedComponent"], _card_detail_card_detail_component__WEBPACK_IMPORTED_MODULE_12__["CardDetailComponent"], _menu_menu_component__WEBPACK_IMPORTED_MODULE_13__["MenuComponent"]];
+
+    var _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! ./keyboard/keyboard.component */
+    "./src/app/components/keyboard/keyboard.component.ts");
+
+    var components = [_header_header_component__WEBPACK_IMPORTED_MODULE_7__["HeaderComponent"], _configuracion_midera_midera_component__WEBPACK_IMPORTED_MODULE_8__["MideraComponent"], _form_form_component__WEBPACK_IMPORTED_MODULE_9__["FormComponent"], _mycards_mycards_component__WEBPACK_IMPORTED_MODULE_10__["MycardsComponent"], _offers_received_offers_received_component__WEBPACK_IMPORTED_MODULE_11__["OffersReceivedComponent"], _card_detail_card_detail_component__WEBPACK_IMPORTED_MODULE_12__["CardDetailComponent"], _menu_menu_component__WEBPACK_IMPORTED_MODULE_13__["MenuComponent"], _keyboard_keyboard_component__WEBPACK_IMPORTED_MODULE_14__["KeyboardComponent"]];
 
     var ComponentsModule = function ComponentsModule() {
       _classCallCheck(this, ComponentsModule);
@@ -2381,6 +2406,88 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/components/keyboard/keyboard.component.scss":
+  /*!*************************************************************!*\
+    !*** ./src/app/components/keyboard/keyboard.component.scss ***!
+    \*************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppComponentsKeyboardKeyboardComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ":host {\n  height: 100%;\n  width: 100%;\n}\n\n.content {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n\n.content .row {\n  width: 100%;\n  height: 25%;\n  font-size: 24px;\n  display: flex;\n  align-items: stretch;\n  justify-content: flex-start;\n  flex-direction: row;\n}\n\n.content .row .col {\n  width: 33%;\n  height: 100%;\n  color: var(--ion-color-light);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9rZXlib2FyZC9EOlxcSW9uaWNcXE5lZ29jaWFwcC1hbGxcXE5lZ29jaWFwcDIvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGtleWJvYXJkXFxrZXlib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9rZXlib2FyZC9rZXlib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9rZXlib2FyZC9EOlxcSW9uaWNcXE5lZ29jaWFwcC1hbGxcXE5lZ29jaWFwcDIvc3JjXFx0aGVtZVxcbWl4aW4uc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLFlBQUE7RUFDQSxXQUFBO0FDREY7O0FESUE7RUFDRSxZQUFBO0VBQ0EsV0FBQTtFRVJBLGFBQUE7RUFDQSxtQkZRYztFRVBkLHVCRk9zQjtFRU50QixzQkZNOEI7QUNFaEM7O0FEREU7RUFDRSxXQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7RUViRixhQUFBO0VBQ0Esb0JBRnVCO0VBR3ZCLDJCQUhpRDtFQUlqRCxtQkFKeUU7QURxQjNFOztBRExJO0VBQ0UsVUFBQTtFQUNBLFlBQUE7RUFDQSw2QkFBQTtFRWxCSixhQUFBO0VBQ0EsbUJGa0JrQjtFRWpCbEIsdUJGaUIwQjtFRWhCMUIsc0JGZ0JrQztBQ1VwQyIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMva2V5Ym9hcmQva2V5Ym9hcmQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi4vLi4vLi4vdGhlbWUvbWl4aW4uc2Nzc1wiO1xyXG5cclxuOmhvc3Qge1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmNvbnRlbnQge1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogMTAwJTtcclxuICBAaW5jbHVkZSBmbGV4KGNlbnRlciwgY2VudGVyLCBjb2x1bW4pO1xyXG4gIC5yb3cge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDI1JTtcclxuICAgIGZvbnQtc2l6ZTogMjRweDtcclxuICAgIEBpbmNsdWRlIGZsZXgoKTtcclxuICAgIC5jb2wge1xyXG4gICAgICB3aWR0aDogMzMlO1xyXG4gICAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbGlnaHQpO1xyXG4gICAgICBAaW5jbHVkZSBmbGV4KGNlbnRlciwgY2VudGVyLCBjb2x1bW4pO1xyXG4gICAgfVxyXG4gIH1cclxufVxyXG4iLCI6aG9zdCB7XG4gIGhlaWdodDogMTAwJTtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbi5jb250ZW50IHtcbiAgaGVpZ2h0OiAxMDAlO1xuICB3aWR0aDogMTAwJTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG4uY29udGVudCAucm93IHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMjUlO1xuICBmb250LXNpemU6IDI0cHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBzdHJldGNoO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG59XG4uY29udGVudCAucm93IC5jb2wge1xuICB3aWR0aDogMzMlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbGlnaHQpO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn0iLCJAbWl4aW4gZmxleCgkYWxpZ25JdGVtczogc3RyZXRjaCwgJGp1c3RpZnlDb250ZW50OiBmbGV4LXN0YXJ0LCAkZGlyZWN0aW9uOiByb3cpIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiAkYWxpZ25JdGVtcztcclxuICBqdXN0aWZ5LWNvbnRlbnQ6ICRqdXN0aWZ5Q29udGVudDtcclxuICBmbGV4LWRpcmVjdGlvbjogJGRpcmVjdGlvbjtcclxufVxyXG5cclxuQG1peGluIGJveC1zaGFkb3ctYmxhY2sge1xyXG4gIGJveC1zaGFkb3c6IDBweCAxcHggMnB4IDBweCB2YXIoLS1pb24tY29sb3ItZGFyayk7XHJcbn1cclxuXHJcbkBtaXhpbiBib3gtc2hhZG93LWNhcmQge1xyXG4gIGJveC1zaGFkb3c6IDBweCAwcHggNHB4IDBweCB2YXIoLS1pb24tY29sb3ItZGFyayk7XHJcbn1cclxuXHJcbkBtaXhpbiBib3gtc2hhZG93LWRldGFpbCB7XHJcbiAgYm94LXNoYWRvdzogMHB4IC0xcHggMXB4IDBweCB2YXIoLS1pb24tY29sb3ItbWVkaXVtKTtcclxufSJdfQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/components/keyboard/keyboard.component.ts":
+  /*!***********************************************************!*\
+    !*** ./src/app/components/keyboard/keyboard.component.ts ***!
+    \***********************************************************/
+
+  /*! exports provided: KeyboardComponent */
+
+  /***/
+  function srcAppComponentsKeyboardKeyboardComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "KeyboardComponent", function () {
+      return KeyboardComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+    var KeyboardComponent = /*#__PURE__*/function () {
+      function KeyboardComponent() {
+        _classCallCheck(this, KeyboardComponent);
+
+        this.number = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.clickRefresh = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+      }
+
+      _createClass(KeyboardComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }]);
+
+      return KeyboardComponent;
+    }();
+
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])], KeyboardComponent.prototype, "number", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])], KeyboardComponent.prototype, "clickRefresh", void 0);
+    KeyboardComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-keyboard',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./keyboard.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/components/keyboard/keyboard.component.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./keyboard.component.scss */
+      "./src/app/components/keyboard/keyboard.component.scss"))["default"]]
+    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [])], KeyboardComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/components/menu/menu.component.scss":
   /*!*****************************************************!*\
     !*** ./src/app/components/menu/menu.component.scss ***!
@@ -2946,6 +3053,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       name: 'Independiente',
       value: 'Independiente'
     }];
+    /***/
+  },
+
+  /***/
+  "./src/app/constans/localStorage.ts":
+  /*!******************************************!*\
+    !*** ./src/app/constans/localStorage.ts ***!
+    \******************************************/
+
+  /*! exports provided: LOCALSTORAGE */
+
+  /***/
+  function srcAppConstansLocalStorageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "LOCALSTORAGE", function () {
+      return LOCALSTORAGE;
+    });
+
+    var LOCALSTORAGE = {
+      LOGGED: 'NEGOCIAPP_LOGGED',
+      USER: 'NEGOCIAPP_USER',
+      RELOGGED: 'NEGOCIAPP_RELOGGED'
+    };
     /***/
   },
 
@@ -3799,7 +3934,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               msgInfo: info
             }
           });
-          this.http.post("".concat(this.apiOnseSignal), dataSend, options).subscribe();
+          this.http.post("".concat(this.apiOnseSignal), dataSend, options).subscribe(function (x) {
+            console.log(x);
+          });
         }
       }, {
         key: "redirectTo",

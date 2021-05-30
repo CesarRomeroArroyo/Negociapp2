@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="row">
+    <div class="col" (click)="number.emit('1')">1</div>
+    <div class="col" (click)="number.emit('2')">2</div>
+    <div class="col" (click)="number.emit('3')">3</div>
+  </div>
+  <div class="row">
+    <div class="col" (click)="number.emit('4')">4</div>
+    <div class="col" (click)="number.emit('5')">5</div>
+    <div class="col" (click)="number.emit('6')">6</div>
+  </div>
+  <div class="row">
+    <div class="col" (click)="number.emit('7')">7</div>
+    <div class="col" (click)="number.emit('8')">8</div>
+    <div class="col" (click)="number.emit('9')">9</div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ion-icon name="refresh-outline" (click)="clickRefresh.emit()"></ion-icon>
+    </div>
+    <div class="col" (click)="number.emit('0')">0</div>
+    <div class="col" (click)="number.emit('BCK')">
+      <ion-icon name="arrow-back"></ion-icon>
+    </div>
+  </div>
+</div>

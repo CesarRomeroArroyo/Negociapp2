@@ -5,10 +5,12 @@ import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { CollectionsBd, imgStorage, nameCard } from 'src/app/models/form.model';
 import { User } from 'src/app/models/user.model';
 
+import { LOCALSTORAGE } from '../../constans/localStorage';
+
 export abstract class FormsAbstract {
 
   public uniqueid: string;
-  public user: User = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+  public user: User = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
   public invalid = false;
   public timeForArray: string[] = ['Horas', 'Dias', 'Meses'];
   public dias: string[] = [

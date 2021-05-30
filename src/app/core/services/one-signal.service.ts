@@ -53,8 +53,9 @@ export class OneSignalService {
       include_player_ids: [id],
       data: { msgInfo: info }
     });
-
-    this.http.post(`${this.apiOnseSignal}`, dataSend, options).subscribe();
+    this.http.post(`${this.apiOnseSignal}`, dataSend, options).subscribe((x) => {
+      console.log(x);
+    });
   }
 
   async redirectTo(data) {

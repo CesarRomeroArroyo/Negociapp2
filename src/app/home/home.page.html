@@ -21,18 +21,6 @@
           formControlName="num_ide" 
           [ngClass]="{'invalid': validateinput('num_ide')}"
         />
-        <!-- City -->
-        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
-          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
-        </ion-select>
-        <!-- Number phone -->
-        <input 
-          class="input" 
-          placeholder="Numero de Telefono" 
-          type="number" 
-          formControlName="tel" 
-          [ngClass]="{'invalid': validateinput('tel')}"
-        />
         <!-- Names -->
         <input 
           class="input" 
@@ -48,6 +36,18 @@
           formControlName="email" 
           [ngClass]="{'invalid': validateinput('email')}"
         />
+        <!-- Number phone -->
+        <input 
+          class="input" 
+          placeholder="Numero de Telefono" 
+          type="number" 
+          formControlName="tel" 
+          [ngClass]="{'invalid': validateinput('tel')}"
+        />
+        <!-- City -->
+        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
+          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
+        </ion-select>
         <!-- Input File -->
         <div class="input file" [ngClass]="{'invalidImg': isValidImg}">
           <label for="foto1">Seleccionar foto perfil</label>
