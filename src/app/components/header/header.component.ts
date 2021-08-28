@@ -5,6 +5,7 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { User } from 'src/app/models/user.model';
 
 import { FormsAbstract } from '../abstract/form.abstact';
+import { LOCALSTORAGE } from '../../constans/localStorage';
 
 @Component({
   selector: 'app-header',
@@ -38,6 +39,10 @@ export class HeaderComponent extends FormsAbstract implements OnInit {
     this.fetchUser();
   }
 
+  get userImg(): string {
+    return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+  }
+
   public goToBack(): void {
     this.path.length > 0 ? this.router.navigate([this.path]) : window.history.back();
   }
@@ -51,11 +56,11 @@ export class HeaderComponent extends FormsAbstract implements OnInit {
   }
 
   public async fetchUser(): Promise<void> {
-    this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+    this.user = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
     const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
     const dataUser = users.filter(x => x.uniqueid === this.user.uniqueid)
     this.user = dataUser[0];
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
+    localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(this.user));
   }
 
 }

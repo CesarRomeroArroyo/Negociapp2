@@ -14,7 +14,7 @@ export class FirebaseService {
 
   constructor(private db: AngularFirestore) { }
 
-  public obtener(tabla, show?): Observable<any> {
+  public obtener(tabla): Observable<any> {
     this.itemsCollection = this.db.collection(tabla);
     return this.itemsCollection.snapshotChanges().pipe(
       map(data => {
@@ -27,7 +27,7 @@ export class FirebaseService {
     );
   }
 
-  public async obtenerPromise(tabla, show?): Promise<any[]> {
+  public async obtenerPromise(tabla): Promise<any[]> {
     const returnData = [];
     const data = await this.db.collection(tabla).get().toPromise();
     data.forEach(info => {
@@ -38,7 +38,7 @@ export class FirebaseService {
     return returnData;
   }
 
-  public obtenerId(tabla, id, show?): Observable<any> {
+  public obtenerId(tabla, id): Observable<any> {
     this.itemsCollection = this.db.collection(tabla, ref => ref.where('id', '==', id));
     return this.itemsCollection.snapshotChanges().pipe(
       map(data => {
@@ -51,7 +51,7 @@ export class FirebaseService {
     );
   }
 
-  public async obtenerIdPromise(tabla, id, show?): Promise<any[]> {
+  public async obtenerIdPromise(tabla, id): Promise<any[]> {
     const returnData = [];
     const data = await this.db.collection(tabla, ref => ref.where('id', '==', id)).get().toPromise();
     data.forEach(info => {
@@ -86,7 +86,7 @@ export class FirebaseService {
     return returnData;
   }
 
-  public async obtenerByContactoIDPromise(id, show?) {
+  public async obtenerByContactoIDPromise(id) {
     const returnData = [];
     const data = await this.db.collection('usuario-app', ref => ref.where('num_ide', '==', id)).get().toPromise();
     data.forEach(info => {

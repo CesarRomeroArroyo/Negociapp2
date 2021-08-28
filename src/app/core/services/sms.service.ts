@@ -18,14 +18,12 @@ export class SmsService {
 
   public async fetchConfigurations(): Promise<Configurations> {
     const data = await this.firebaseService.obtenerPromise('configurations');
-    this.UrlSms = data[0].sms;
+    this.UrlSms = data[0]?.sms;
     return data[0] as Configurations;
   }
 
   public sendSms(msg, phone): void {
-    this.http.post(`${this.UrlSms}${phone}&SMSText=${msg}`, {}).subscribe((data) => {
-      console.log(data);
-    });
+    this.http.post(`${this.UrlSms}${phone}&SMSText=${msg}`, {}).subscribe((data) => {});
   }
 
 }

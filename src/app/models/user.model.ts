@@ -1,5 +1,6 @@
 export interface User {
     active?: boolean;
+    sessionActive?: boolean;
     city?: string;
     tel?: string
     email?: string;

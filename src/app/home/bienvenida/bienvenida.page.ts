@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { StatusUserLoggin } from '../entities/home.types';
 
 @Component({
   selector: 'app-bienvenida',
@@ -7,17 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./bienvenida.page.scss'],
 })
 export class BienvenidaPage implements OnInit {
-  user = { name: '' };
+
+  public user: User;
+  public isLoading: boolean = true;
+
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+    this.isLoading = this.user ? false : true;
   }
 
-  next() {
-    this.router.navigateByUrl('/home/celular');
+  get isUserNew(): boolean {
+    const typeUser = this.route.snapshot.paramMap.get('status');
+    return typeUser === StatusUserLoggin.LOGGED ? true : false;
   }
 
 }

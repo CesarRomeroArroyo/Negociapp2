@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { LoadingModule } from '../ux/loading/loading.module';
 
 import { HomePage } from './home.page';
 
@@ -13,7 +14,8 @@ import { HomePage } from './home.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    LoadingModule
   ],
   declarations: [HomePage]
 })

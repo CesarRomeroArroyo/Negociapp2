@@ -10,6 +10,7 @@ import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
 import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
 import { Subscription } from 'rxjs';
+import { LOCALSTORAGE } from '../../constans/localStorage';
 
 @Component({
   selector: 'app-mider',
@@ -45,7 +46,7 @@ export class MiderPage extends FormsAbstract implements OnInit {
     const dataUser = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
     this.user = dataUser[0];
     this.tabSelected(this.tab);
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
+    localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(this.user));
     this.subscription = this.state.getObservable().subscribe(data => {
       if (data.categories) this.categories = data.categories;
       if (data.file) this.file = data.file;

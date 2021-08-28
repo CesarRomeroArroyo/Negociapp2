@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SmsPageRoutingModule } from './sms-routing.module';
 import { ComponentsModule } from '../../components/components.module';
+import { LoadingModule } from '../../ux/loading/loading.module';
 
 import { SmsPage } from './sms.page';
 
@@ -15,7 +16,8 @@ import { SmsPage } from './sms.page';
     FormsModule,
     IonicModule,
     SmsPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    LoadingModule
   ],
   declarations: [SmsPage]
 })

@@ -1,24 +1,47 @@
 <ion-content scroll-y="true" class="ion-padding">
-  <div class="container">
-    <div class="container__number">
-      <ion-icon name="checkmark"></ion-icon>
-    </div>
-    <div class="container__welcome">Datos guardados correctamente!</div>
-    <br />
-    <br />
-    <br />
-    <div class="container__welcome">Hola {{user.name}}, gracias por ingresar tu información, estas a pocos pasos de ser
-      parte de esta gran comunidad.
-      <br />
-      <br />
-      <br />
-      A continuacion veriquemos tu numero celular.
-    </div>
-    <div class="container__button">
-      <br />
-      <br />
-      <br />
-      <ion-button expand="block" color="secondary" shape="round" size="large" (click)="next()">Siguiente</ion-button>
-    </div>
-  </div>
+  <ng-container *ngIf="!isLoading; else isLoadingTemplate">
+    <ng-container *ngIf="isUserNew; else isReloggedUserTemplate">
+      <div class="welcome-container">
+        <div class="icon-content">
+          <ion-icon name="checkmark"></ion-icon>
+        </div>
+        <div class="body">
+          <div class="info">
+            <span class="text-title">Estas un paso mas cerca de tener tu propia cuenta</span>
+            <span class="user-information">
+              Hola {{user.name}}, gracias por ingresar tu información, estas a pocos pasos de ser parte de esta gran comunidad.
+            </span>
+            <span>A continuacion veriquemos tu numero celular.</span>
+          </div>
+          <div class="buttons">
+            <ion-button expand="block" color="secondary" shape="round" size="large" [routerLink]="['/home/celular']">Siguiente</ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #isReloggedUserTemplate>
+      <div class="welcome-container">
+        <div class="icon-content">
+          <ion-icon name="happy-outline"></ion-icon>
+        </div>
+        <div class="body">
+          <div class="info">
+            <span class="text-title">¡Bienvenido!</span>
+            <span class="user-information">
+              Es una alegria contar con tu presencia de nuevo <strong>{{user.name}}</strong>
+            </span>
+            <span>Te esperan las mejores ofertas</span>
+          </div>
+          <div class="buttons">
+            <p class="send-code">Se te enviara un codigo al numero de telefono registrado en la app</p>
+            <ion-button expand="block" color="secondary" shape="round" size="large" [routerLink]="['/home/sms']">Enviar</ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-template #isLoadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </ion-content>
+

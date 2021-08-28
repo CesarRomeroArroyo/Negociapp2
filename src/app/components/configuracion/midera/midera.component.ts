@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import Swal from 'sweetalert2';
 
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
   templateUrl: './midera.component.html',
   styleUrls: ['./midera.component.scss'],
 })
-export class MideraComponent implements OnInit , OnDestroy {
+export class MideraComponent implements OnInit {
   user: any;
   numRUT = 0;
   files: any = [];
@@ -20,10 +20,6 @@ export class MideraComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
-  }
-
-  ngOnDestroy() {
-
   }
 
   next() {

@@ -53,6 +53,10 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     this.promedio = this.starsPromedio();
   }
 
+  get userImg(): string {
+    return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+  }
+
   get isOtherUser(): boolean {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
     return this.uniqueid ? true: false;
@@ -116,7 +120,9 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   private async uploadImg(): Promise<void> {
-    await this.storage.deleteFilesFolder(this.user.photoRef);
+    if (this.user.photoRef) {
+      await this.storage.deleteFilesFolder(this.user.photoRef);
+    }
     this.user.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
     await this.storage.upload(this.filePhoto, this.user.photoRef);
     await this.storage.getUrlFileInfo(this.user.photoRef).then((url) => this.user.photoUrl = url);

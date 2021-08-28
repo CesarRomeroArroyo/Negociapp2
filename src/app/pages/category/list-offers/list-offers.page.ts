@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
@@ -23,9 +23,12 @@ export class ListOffersPage extends FormsAbstract implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
+  }
+
+  ionViewWillEnter(): void {
     if (!this.user[this.userMider].status) {
       Swal.fire('', 'Debes configurarte como Mider para poder ofertar', 'warning');
       this.router.navigate(['mider']);

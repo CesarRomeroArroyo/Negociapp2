@@ -1,70 +1,83 @@
 <ion-content fullscreen="true" scroll-y="true" scroll-x="false">
-  <div class="container">
-    <div class="content-text">
-      <span class="title">NegociApp</span>
-      <span class="text">Bienvenido a NegociApp</span>
-      <span class="text">una gran comunidad de servicios y arriendos en tu ciudad</span>
+  <ng-container *ngIf="!isLoading; else isLoadingTemplate">
+    <div class="container">
+      <div class="content-text">
+        <span class="title">NegociApp</span>
+        <span class="text">Bienvenido a NegociApp</span>
+        <span class="text">una gran comunidad de servicios y arriendos en tu ciudad</span>
+      </div>
+      <div class="form">
+        <span class="text">Ingresa tus datos personales</span>
+        <form [formGroup]="form" (ngSubmit)="next()">
+          <!-- Type identification -->
+          <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
+            <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
+          </ion-select>
+          <!-- Identifiation number -->
+          <input 
+            class="input" 
+            placeholder="Número de identificación" 
+            type="number" 
+            (blur)="isLogged()" 
+            formControlName="num_ide" 
+            [ngClass]="{'invalid': validateinput('num_ide')}"
+          />
+          <!-- Names -->
+          <input 
+            class="input" 
+            placeholder="Nombres y apellidos" 
+            formControlName="name" 
+            [ngClass]="{'invalid': validateinput('name')}"
+          />
+          <!-- Email -->
+          <input 
+            class="input" 
+            placeholder="Email" 
+            type="email" 
+            formControlName="email" 
+            [ngClass]="{'invalid': validateinput('email')}"
+          />
+          <!-- Number phone -->
+          <!-- <input 
+            class="input" 
+            placeholder="Numero de Telefono" 
+            type="number" 
+            formControlName="tel" 
+            [ngClass]="{'invalid': validateinput('tel')}"
+          /> -->
+          <!-- City -->
+          <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
+            <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
+          </ion-select>
+          <!-- Input File -->
+          <!-- <div class="input file" [ngClass]="{'invalidImg': isValidImg}">
+            <label for="foto1">Seleccionar foto perfil</label>
+            <label class="text-file">{{filePhoto?.name}}</label>
+            <input
+              id="foto1" 
+              style="display: none;" 
+              type="file" 
+              accept="image/*" 
+              (change)="selectImg($event)"
+              />
+          </div> -->
+          <!-- Submit -->
+          <div class="submit">
+            <ion-button 
+              color="secondary" 
+              type="submit" 
+              shape="round" 
+              expand="full" 
+              [disabled]="form.invalid"
+            >
+              Siguiente
+            </ion-button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="form">
-      <span class="text">Ingresa tus datos personales</span>
-      <form [formGroup]="form" (ngSubmit)="next()">
-        <!-- Type identification -->
-        <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
-          <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
-        </ion-select>
-        <!-- Identifiation number -->
-        <input 
-          class="input" 
-          placeholder="Número de identificación" 
-          type="number" 
-          (blur)="isLogged()" 
-          formControlName="num_ide" 
-          [ngClass]="{'invalid': validateinput('num_ide')}"
-        />
-        <!-- Names -->
-        <input 
-          class="input" 
-          placeholder="Nombres y apellidos" 
-          formControlName="name" 
-          [ngClass]="{'invalid': validateinput('name')}"
-        />
-        <!-- Email -->
-        <input 
-          class="input" 
-          placeholder="Email" 
-          type="email" 
-          formControlName="email" 
-          [ngClass]="{'invalid': validateinput('email')}"
-        />
-        <!-- Number phone -->
-        <input 
-          class="input" 
-          placeholder="Numero de Telefono" 
-          type="number" 
-          formControlName="tel" 
-          [ngClass]="{'invalid': validateinput('tel')}"
-        />
-        <!-- City -->
-        <ion-select placeholder="Ciudad" formControlName="city" [ngClass]="{'invalid': validateinput('city')}">
-          <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
-        </ion-select>
-        <!-- Input File -->
-        <div class="input file" [ngClass]="{'invalidImg': isValidImg}">
-          <label for="foto1">Seleccionar foto perfil</label>
-          <label class="text-file">{{filePhoto?.name}}</label>
-          <input
-            id="foto1" 
-            style="display: none;" 
-            type="file" 
-            accept="image/*" 
-            (change)="selectImg($event)"
-            />
-        </div>
-        <!-- Submit -->
-        <div class="submit">
-          <ion-button color="secondary" type="submit" shape="round" expand="full">Siguiente</ion-button>
-        </div>
-      </form>
-    </div>
-  </div>
+  </ng-container>
+  <ng-template #isLoadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </ion-content>

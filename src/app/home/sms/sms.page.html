@@ -1,19 +1,25 @@
 <ion-content fullscreen scroll-y="true">
-  <div class="sms">
-    <div class="title">
-      Codigo de verificación
+  <ng-container *ngIf="!isLoading; else isLoadingTemplate">
+    <div class="sms">
+      <div class="title">
+        Codigo de verificación
+      </div>
+      <div class="title-2">
+        Ingresa el codigo de verificación recibido
+      </div>
+      <div class="number">
+        <div class="box-number">{{number1}}</div>
+        <div class="box-number">{{number2}}</div>
+        <div class="box-number">{{number3}}</div>
+        <div class="box-number">{{number4}}</div>
+      </div>
+      <div class="content-keyboard">
+        <app-keyboard (number)="addNumber($event)" (clickRefresh)="generateCode()"></app-keyboard>
     </div>
-    <div class="title-2">
-      Ingresa el codigo de verificación recibido
     </div>
-    <div class="number">
-      <div class="box-number">{{number1}}</div>
-      <div class="box-number">{{number2}}</div>
-      <div class="box-number">{{number3}}</div>
-      <div class="box-number">{{number4}}</div>
-    </div>
-    <div class="content-keyboard">
-      <app-keyboard (number)="addNumber($event)" (clickRefresh)="generateCode()"></app-keyboard>
-  </div>
-  </div>
+  </ng-container>
+  
+  <ng-template #isLoadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </ion-content>

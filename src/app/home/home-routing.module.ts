@@ -8,7 +8,7 @@ const routes: Routes = [
     component: HomePage,
   },
   {
-    path: 'bienvenida',
+    path: 'bienvenida/:status',
     loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
   },
   {

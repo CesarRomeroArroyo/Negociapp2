@@ -20,6 +20,7 @@ export class MycardsComponent extends FormsAbstract implements OnInit, OnDestroy
   public subscription: Subscription;
 
   @Input() public type: string;
+  @Input() public category: string;
   @Output() public tab = new EventEmitter<number>();
 
   constructor(

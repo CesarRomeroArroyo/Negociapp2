@@ -9,6 +9,8 @@ import { LOCALSTORAGE } from '../../constans/localStorage';
 
 export abstract class FormsAbstract {
 
+  constructor() { }
+
   public uniqueid: string;
   public user: User = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
   public invalid = false;

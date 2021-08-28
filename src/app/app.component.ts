@@ -8,6 +8,7 @@ import { OneSignalService } from './core/services/one-signal.service';
 import { FirebaseService } from './core/services/firebase.service';
 import { User } from './models/user.model';
 import { SmsService } from './core/services/sms.service';
+import { LOCALSTORAGE } from './constans/localStorage';
 const { Device } = Plugins;
 @Component({
   selector: 'app-root',
@@ -25,25 +26,6 @@ export class AppComponent implements OnInit {
     private firebaseService: FirebaseService
   ) {
     this.initializeApp();
-  }
-
-  async initializeApp() {
-    const { SplashScreen, StatusBar } = Plugins;
-    try {
-      await SplashScreen.hide();
-      await StatusBar.setStyle({ style: StatusBarStyle.Light });
-      if (this.platform.is('android')) {
-        StatusBar.setBackgroundColor({ color: '#2449f2' });
-      }
-    } catch (err) {
-      console.log('This is a normal Browser', err);
-    }
-    this.platform.backButton.subscribe(() => {
-      if (this.router.url === '/inicio') {
-        // tslint:disable-next-line: no-string-literal
-        navigator['app'].exitApp();
-      }
-    });
   }
 
   async ngOnInit() {
@@ -73,11 +55,30 @@ export class AppComponent implements OnInit {
     await this.fetchUser();
   }
 
+  async initializeApp() {
+    const { SplashScreen, StatusBar } = Plugins;
+    try {
+      await SplashScreen.hide();
+      await StatusBar.setStyle({ style: StatusBarStyle.Light });
+      if (this.platform.is('android')) {
+        StatusBar.setBackgroundColor({ color: '#2449f2' });
+      }
+    } catch (err) {
+      console.log('This is a normal Browser', err);
+    }
+    this.platform.backButton.subscribe(() => {
+      if (this.router.url === '/inicio') {
+        // tslint:disable-next-line: no-string-literal
+        navigator['app'].exitApp();
+      }
+    });
+  }
+
   public async fetchUser(): Promise<void> {
-    let user = JSON.parse(localStorage.getItem('NEGOCIAPP_USER'));
+    let user = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
     const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
-    const dataUser = users.filter(x => x.uniqueid === user.uniqueid)
+    const dataUser = users.filter(x => x?.uniqueid === user?.uniqueid)
     user = dataUser[0];
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(user));
+    localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(user));
   }
 }
