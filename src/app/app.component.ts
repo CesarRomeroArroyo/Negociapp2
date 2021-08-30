@@ -10,6 +10,7 @@ import { User } from './models/user.model';
 import { SmsService } from './core/services/sms.service';
 import { LOCALSTORAGE } from './constans/localStorage';
 const { Device } = Plugins;
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -81,4 +82,5 @@ export class AppComponent implements OnInit {
     user = dataUser[0];
     localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(user));
   }
+
 }
