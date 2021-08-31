@@ -422,9 +422,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.isUserLogged = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].LOGGED));
 
           if (this.isUserLogged) {
-            this.isLoading = false;
             this.router.navigateByUrl('/inicio');
           } else {
+            this.isLoading = false;
             this.obtenerCoordenadas();
           }
         }
@@ -439,7 +439,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             typeId: [false || (data === null || data === void 0 ? void 0 : data.typeId), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required],
             city: [false || (data === null || data === void 0 ? void 0 : data.city), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]
           });
-          this.isLoading = false;
         } // public selectImg(file): void {
         //   if (file.target.files[0]) {
         //     this.filePhoto = file.target.files[0];

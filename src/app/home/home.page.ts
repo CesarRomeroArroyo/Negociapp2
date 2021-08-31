@@ -59,9 +59,9 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.isUserLogged = JSON.parse(localStorage.getItem(LOCALSTORAGE.LOGGED));
     if (this.isUserLogged) {
-      this.isLoading = false;
       this.router.navigateByUrl('/inicio');
     } else {
+      this.isLoading = false;
       this.obtenerCoordenadas();
     }
   }
@@ -79,7 +79,6 @@ export class HomePage implements OnInit {
       typeId: ['' || data?.typeId, Validators.required],
       city: ['' || data?.city, Validators.required],
     });
-    this.isLoading = false;
   }
 
   // public selectImg(file): void {
