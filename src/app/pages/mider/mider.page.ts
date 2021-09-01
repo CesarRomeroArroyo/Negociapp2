@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -10,14 +10,13 @@ import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
 import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
 import { Subscription } from 'rxjs';
-import { LOCALSTORAGE } from '../../constans/localStorage';
 
 @Component({
   selector: 'app-mider',
   templateUrl: './mider.page.html',
   styleUrls: ['./mider.page.scss'],
 })
-export class MiderPage extends FormsAbstract implements OnInit {
+export class MiderPage extends FormsAbstract {
 
   public tab = 1;
   public categories: string[] = [];
@@ -32,7 +31,7 @@ export class MiderPage extends FormsAbstract implements OnInit {
   @Output() public showCategories = new EventEmitter<boolean>();
 
   constructor(
-    private state: StateApp,
+    private subject: StateApp,
     private formBuilder: FormBuilder,
     private firebase: FirebaseService,
     private storage: FileManagerService,
@@ -41,13 +40,14 @@ export class MiderPage extends FormsAbstract implements OnInit {
     super();
   }
 
-  public async ngOnInit() {
-    this.state.setData({ categories: [] });
+  async ionViewWillEnter(): Promise<void> {
+    console.log('ionViewWillEnter');
+    this.subject.setData({ categories: [] });
     const dataUser = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
     this.user = dataUser[0];
     this.tabSelected(this.tab);
-    localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(this.user));
-    this.subscription = this.state.getObservable().subscribe(data => {
+    this.subscription = this.subject.getObservable().subscribe(data => {
+      console.log(data);
       if (data.categories) this.categories = data.categories;
       if (data.file) this.file = data.file;
     });
@@ -55,7 +55,7 @@ export class MiderPage extends FormsAbstract implements OnInit {
 
   public ionViewDidLeave(): void {
     this.subscription.unsubscribe();
-    this.state.setData({ categories: [] });
+    this.subject.setData({ categories: [] });
   }
 
   get miderText(): string {
@@ -143,15 +143,16 @@ export class MiderPage extends FormsAbstract implements OnInit {
         }
         break;
     }
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
+    console.log(this.user);
     this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
+      localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
       Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
     });
   }
 
   public tabSelected(index: number): void {
     this.tab = index;
-    this.state.setData({ categories: [] });
+    this.subject.setData({ categories: [] });
     this.categories = [];
     switch (this.tab) {
       case 1:
@@ -177,8 +178,8 @@ export class MiderPage extends FormsAbstract implements OnInit {
       categories: [data?.categories || []],
     });
     this.categories = data?.categories ? data.categories : [];
-    this.state.setData({ categories: this.form.get('categories').value });
-    this.state.setData({ file: data.rut });
+    this.subject.setData({ categories: this.form.get('categories').value });
+    this.subject.setData({ file: data.rut });
   }
 
 }

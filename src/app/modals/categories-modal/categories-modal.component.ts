@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
@@ -26,6 +26,7 @@ export class CategoriesModalComponent implements OnInit {
       this.categoriesTem = data;
     });
     this.subject.getObservable().subscribe(data => {
+      console.log(data);
       if (data.categories) this.categoriesSelected = data.categories;
     });
   }

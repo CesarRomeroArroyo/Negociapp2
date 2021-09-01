@@ -21,8 +21,8 @@ export interface User {
     miders: Mider;
     miderv: Mider;
     rate?: Rate[];
-    photoUrl: string;
-    photoRef: string;
+    photoUrl?: string;
+    photoRef?: string;
 }
 
 export interface Rate {

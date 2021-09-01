@@ -49,7 +49,56 @@
         <ion-icon name="attach-outline"></ion-icon>
         <span>Tap para subir tu RUT.</span>
       </div>
-      <ng-container [ngTemplateOutlet]="configTemplateNotification"></ng-container>
+      <!-- Init Form -->
+      <div [formGroup]="form">
+        <span class="config-notification">Configuración de notificaciones</span>
+        <ion-select 
+          multiple="true" 
+          cancelText="Cerrar" 
+          okText="Seleccionar" 
+          placeholder="Seleccionar tipo de servicio"
+          formControlName="types"
+          *ngIf="tab === 1"
+          [attr.disabled]="!this.form.get('status').value">
+          <ion-select-option 
+            *ngFor="let type of types; let i = index" 
+            [value]="type.value">
+            {{type.name}}
+          </ion-select-option>
+        </ion-select>
+        <ion-select 
+          multiple="true" 
+          cancelText="Cerrar" 
+          okText="Seleccionar" 
+          placeholder="Seleccionar ciudades"
+          formControlName="cities"
+          [attr.disabled]="!this.form.get('status').value">
+          <ion-select-option 
+            *ngFor="let city of cities; let i = index" 
+            [value]="city.value">
+            {{city.value}}
+          </ion-select-option>
+        </ion-select>
+        <ion-button 
+          type="button" 
+          fill="clear" 
+          class="input select button"
+          [attr.disabled]="!this.form.get('status').value" 
+          (click)="showModalCategories = true">
+          Agregar Categorias
+          <ion-icon name="caret-down-outline"></ion-icon>
+        </ion-button>
+        <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
+        <div class="categories" *ngIf="categories.length > 0">
+          <div 
+            class="category" 
+            [class.isDisable]="!this.form.get('status').value"  
+            *ngFor="let category of categories">  
+            {{category}}
+          </div>
+        </div>
+      </div>
+       <!-- End Form -->
       <div class="submit">
         <ion-button
           type="submit"
@@ -72,54 +121,3 @@
   *ngIf="showModalPhotos"
   [isRut]="true">
 </app-photos-modal>
-
-<ng-template #configTemplateNotification >
-  <div [formGroup]="form">
-    <span class="config-notification">Configuración de notificaciones</span>
-    <ion-select 
-      multiple="true" 
-      cancelText="Cerrar" 
-      okText="Seleccionar" 
-      placeholder="Seleccionar tipo de servicio"
-      formControlName="types"
-      *ngIf="tab === 1"
-      [attr.disabled]="!this.form.get('status').value">
-      <ion-select-option 
-        *ngFor="let type of types; let i = index" 
-        [value]="type.value">
-        {{type.name}}
-      </ion-select-option>
-    </ion-select>
-    <ion-select 
-      multiple="true" 
-      cancelText="Cerrar" 
-      okText="Seleccionar" 
-      placeholder="Seleccionar ciudades"
-      formControlName="cities"
-      [attr.disabled]="!this.form.get('status').value">
-      <ion-select-option 
-        *ngFor="let city of cities; let i = index" 
-        [value]="city.value">
-        {{city.value}}
-      </ion-select-option>
-    </ion-select>
-    <ion-button 
-      type="button" 
-      fill="clear" 
-      class="input select button"
-      [attr.disabled]="!this.form.get('status').value" 
-      (click)="showModalCategories = true">
-      Agregar Categorias
-      <ion-icon name="caret-down-outline"></ion-icon>
-    </ion-button>
-    <span class="span" *ngIf="categories.length <= 0 && invalid">Debe seleccionar una categoria al menos</span>
-    <div class="categories" *ngIf="categories.length > 0">
-      <div 
-        class="category" 
-        [class.isDisable]="!this.form.get('status').value"  
-        *ngFor="let category of categories">  
-        {{category}}
-      </div>
-    </div>
-  </div>
-</ng-template>

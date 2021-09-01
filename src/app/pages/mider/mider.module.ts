@@ -9,6 +9,7 @@ import { MiderPageRoutingModule } from './mider-routing.module';
 import { MiderPage } from './mider.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ModalsModule } from 'src/app/modals/modals.module';
+import { LoadingModule } from '../../ux/loading/loading.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ModalsModule } from 'src/app/modals/modals.module';
     ComponentsModule,
     ReactiveFormsModule,
     ModalsModule,
-    MiderPageRoutingModule
+    MiderPageRoutingModule,
+    LoadingModule
   ],
   declarations: [MiderPage]
 })
