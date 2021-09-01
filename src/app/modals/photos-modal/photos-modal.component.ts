@@ -3,7 +3,7 @@ import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import Swal from 'sweetalert2';
 const { Camera } = Plugins;
 
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { Photo } from 'src/app/models/form.model';
 import { StateApp } from 'src/app/core/services/state.service';
 @Component({

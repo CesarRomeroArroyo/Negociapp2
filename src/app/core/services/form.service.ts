@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { FirebaseService } from './firebase.service';
 import { OneSignalService } from './one-signal.service';
 

@@ -17,9 +17,9 @@ export interface User {
     uniqueid?: string;
     lat?: number;
     lng?: number;
-    midera: Mider;
-    miders: Mider;
-    miderv: Mider;
+    midera?: Mider;
+    miders?: Mider;
+    miderv?: Mider;
     rate?: Rate[];
     photoUrl?: string;
     photoRef?: string;

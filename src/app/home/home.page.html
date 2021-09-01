@@ -11,7 +11,11 @@
         <form [formGroup]="form" (ngSubmit)="next()">
           <!-- Type identification -->
           <ion-select placeholder="Tipo de identificación" formControlName="typeId" [ngClass]="{'invalid': validateinput('typeId')}">
-            <ion-select-option [value]="type.value" *ngFor="let type of identificationType">{{type.name}}</ion-select-option>
+            <ion-select-option 
+              [value]="type.value" 
+              *ngFor="let type of identificationType">
+              {{type.name}}
+            </ion-select-option>
           </ion-select>
           <!-- Identifiation number -->
           <input 

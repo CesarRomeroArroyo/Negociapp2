@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 
 import { FormsAbstract } from '../abstract/form.abstact';
 import { LOCALSTORAGE } from '../../constans/localStorage';

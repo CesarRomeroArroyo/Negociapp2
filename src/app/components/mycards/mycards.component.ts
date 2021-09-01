@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
 import { CollectionsBd, DataForm, nameCard } from 'src/app/models/form.model';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 
 @Component({

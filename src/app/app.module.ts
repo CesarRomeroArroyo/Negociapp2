@@ -19,11 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { ComponentsModule } from './components/components.module';
 
-import { State } from './store/state/state';
-import { globalReducers } from './store/reducers/index-global-reducers';
+import { State } from '@store/state/state';
+import { globalReducers } from '@store/reducers/index-global-reducers';
+import { AuthenticationEffects } from '@store/effects/effects';
+import { HomeFacade } from '@app/home/home.facade';
 
 import { MetaReducer, StoreModule } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export const REDUCER_TOKEN = new InjectionToken('Registered Reducers');
@@ -45,6 +48,7 @@ export const metaReducers: MetaReducer<State>[] = !ENV.production ? [] : [storeF
     StoreModule.forRoot(REDUCER_TOKEN, {
       metaReducers
     }),
+    EffectsModule.forRoot([AuthenticationEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !ENV.production,
@@ -61,7 +65,8 @@ export const metaReducers: MetaReducer<State>[] = !ENV.production ? [] : [storeF
       useClass: IonicRouteStrategy
     },
     AngularFireAuth,
-    OneSignal
+    OneSignal,
+    HomeFacade
   ],
   bootstrap: [AppComponent]
 })

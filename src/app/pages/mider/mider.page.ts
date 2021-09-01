@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { StateApp } from 'src/app/core/services/state.service';
-import { Mider } from '../../models/user.model';
+import { Mider } from '../../models/global/user.model';
 import { FileManagerService } from 'src/app/core/services/file-manager.service';
 import { UniqueService } from 'src/app/core/services/unique.service';
 import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';

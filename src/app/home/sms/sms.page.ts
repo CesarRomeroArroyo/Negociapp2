@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { LOCALSTORAGE } from '../../constans/localStorage';
 import { SmsService } from '../../core/services/sms.service';
 import { FirebaseService } from '../../core/services/firebase.service';
+import { HomeFacade } from '../home.facade';
 @Component({
   selector: 'app-sms',
   templateUrl: './sms.page.html',
@@ -24,7 +25,8 @@ export class SmsPage implements OnInit {
   constructor(
     private router: Router,
     private smsService: SmsService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private homeFacade: HomeFacade
   ) { }
 
   ngOnInit() {
@@ -87,33 +89,14 @@ export class SmsPage implements OnInit {
   public async validateSMS() {
     const code = this.number1 + this.number2 + this.number3 + this.number4;
     if (code === this.remoteCode.toString()) {
+      localStorage.setItem(LOCALSTORAGE.LOGGED, JSON.stringify(true));
       this.isLoading = true;
       const user = await this.isValidIdUser();
       this.user.sessionActive = true;
       if (user) {
-        localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(this.user));
-        localStorage.setItem(LOCALSTORAGE.LOGGED, JSON.stringify(true));
-        this.firebaseService.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
-          Swal.fire(
-            '',
-            '¡Bienvenido nuevamente!',
-            'success'
-          );
-          this.router.navigate([`/inicio`]);
-          this.isLoading = false;
-        });
+        this.homeFacade.userRelogged(this.user);
       } else {
-        this.firebaseService.save('usuario-app', this.user).then(() => {
-          localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(this.user));
-          localStorage.setItem(LOCALSTORAGE.LOGGED, JSON.stringify(true));
-          this.router.navigate([`/inicio`]);
-          this.isLoading = false;
-          Swal.fire(
-            '',
-            'Registro completado',
-            'success'
-          );
-        }).catch(err => Swal.fire('Error', err.message, 'error'));
+        this.homeFacade.registerUserNew(this.user);
       }
     } else {
       Swal.fire(

@@ -10,6 +10,8 @@ import { LoadingModule } from '../../ux/loading/loading.module';
 
 import { SmsPage } from './sms.page';
 
+import { HomeFacade } from '../home.facade';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +21,9 @@ import { SmsPage } from './sms.page';
     ComponentsModule,
     LoadingModule
   ],
-  declarations: [SmsPage]
+  declarations: [SmsPage],
+  providers: [
+    HomeFacade
+  ]
 })
 export class SmsPageModule {}

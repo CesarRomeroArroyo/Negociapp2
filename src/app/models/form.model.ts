@@ -1,4 +1,4 @@
-import { User } from './user.model'
+import { User } from './global/user.model'
 
 export const CollectionsBd = {
   Service: 'request-services',

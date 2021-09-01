@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { FirebaseService } from './firebase.service';
-import { Configurations } from 'src/app/models/bd.models';
-import { ConfigurationsOnseSignal } from '../../models/bd.models';
+import { Configurations } from 'src/app/models/data-base/bd.models';
+import { ConfigurationsOnseSignal } from '../../models/data-base/bd.models';
 
 @Injectable({
   providedIn: 'root'

@@ -6,13 +6,17 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FirebaseService } from '../core/services/firebase.service';
-import { User } from '../models/user.model';
-import { CITIES } from '../constans/constans-global';
+
+import { IdentificationTypes } from '../models/home/identification-types';
+import { initialMider } from '../models/home/mider';
 import { StatusUserLoggin } from './entities/home.types';
+import { User } from '../models/global/user.model';
+import { CITIES } from '../constans/constans-global';
 import { LOCALSTORAGE } from '../constans/localStorage';
 
+import { HomeFacade } from './home.facade';
+
 const { Geolocation, Device } = Plugins;
-const path = { name: '', path: '', url: '' };
 
 @Component({
   selector: 'app-home',
@@ -21,11 +25,7 @@ const path = { name: '', path: '', url: '' };
 })
 export class HomePage implements OnInit {
 
-  public identificationType = [
-    { name: 'Cedula de ciudadanía', value: 'Cedula' },
-    { name: 'Cedula extranjera', value: 'CedulaExtranjera' },
-    { name: 'Pasaporte', value: 'Pasaporte' }
-  ];
+  public identificationType: IdentificationTypes[] = [];
   public cities = CITIES;
   public registerData: User = {
     uniqueid: null,
@@ -33,9 +33,6 @@ export class HomePage implements OnInit {
     service: true,
     rent: true,
     shop: true,
-    miders: { status: false, categories: [], typesService: [], cities: [], rut: path },
-    midera: { status: false, categories: [], typesService: [], cities: [], rut: path },
-    miderv: { status: false, categories: [], typesService: [], cities: [], rut: path },
     lat: null,
     lng: null,
     active: true,
@@ -54,21 +51,23 @@ export class HomePage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService,
+    private homeFacade: HomeFacade
   ) { this.initForm(); }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.identificationType = await this.firebaseService.obtenerPromise('identification-types');
     this.isUserLogged = JSON.parse(localStorage.getItem(LOCALSTORAGE.LOGGED));
     if (this.isUserLogged) {
-      this.router.navigateByUrl('/inicio');
+      this.homeFacade.userAlreadylogged();
     } else {
       this.isLoading = false;
       this.obtenerCoordenadas();
     }
   }
 
-  get isValidImg(): boolean {
-    return this.filePhoto === null ? true : false;
-  }
+  // get isValidImg(): boolean {
+  //   return this.filePhoto === null ? true : false;
+  // }
 
   public initForm(data?): void {
     this.form = this.formBuilder.group({
@@ -98,7 +97,7 @@ export class HomePage implements OnInit {
   //   }
   // }
 
-  async obtenerCoordenadas() {
+  public async obtenerCoordenadas() {
     const coordinates = await Geolocation.getCurrentPosition();
     this.registerData.lat = coordinates.coords.latitude;
     this.registerData.lng = coordinates.coords.longitude;
@@ -117,7 +116,6 @@ export class HomePage implements OnInit {
       } else {
         localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(user));
         localStorage.setItem(LOCALSTORAGE.LOGGED, JSON.stringify(false));
-        localStorage.setItem(LOCALSTORAGE.RELOGGED, JSON.stringify(true));
         Swal.fire('', 'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!', 'success');
         this.form.reset();
         this.router.navigateByUrl(`/home/bienvenida/${StatusUserLoggin.RELOGGED}`);
@@ -161,7 +159,9 @@ export class HomePage implements OnInit {
         this.registerData.lat = coordinates.coords.latitude;
         this.registerData.lng = coordinates.coords.longitude;
         this.registerData.nameToSearch = this.registerData.name;
-        this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
+        this.registerData.miders = initialMider;
+        this.registerData.midera = initialMider;
+        this.registerData.miderv = initialMider;
         // await this.uploadImg();
         const data = { ...this.form.value, ...this.registerData };
         localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(data))

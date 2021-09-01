@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { FirebaseService } from './firebase.service';
-import { Configurations } from '../../models/bd.models';
+import { Configurations } from '../../models/data-base/bd.models';
 
 @Injectable({
   providedIn: 'root'

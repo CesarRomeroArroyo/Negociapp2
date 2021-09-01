@@ -8,6 +8,8 @@ import { LoadingModule } from '../ux/loading/loading.module';
 
 import { HomePage } from './home.page';
 
+import { HomeFacade } from './home.facade';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import { HomePage } from './home.page';
     HomePageRoutingModule,
     LoadingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [
+    HomeFacade
+  ]
 })
 export class HomePageModule {}

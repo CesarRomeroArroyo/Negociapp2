@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 import { DataForm, OfferUser } from 'src/app/models/form.model';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { OneSignalService } from 'src/app/core/services/one-signal.service';
 import { CategoryURL } from 'src/app/models/category.model';
 

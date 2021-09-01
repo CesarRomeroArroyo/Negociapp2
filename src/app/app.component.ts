@@ -6,9 +6,10 @@ import { Router } from '@angular/router';
 
 import { OneSignalService } from './core/services/one-signal.service';
 import { FirebaseService } from './core/services/firebase.service';
-import { User } from './models/user.model';
+import { User } from './models/global/user.model';
 import { SmsService } from './core/services/sms.service';
 import { LOCALSTORAGE } from './constans/localStorage';
+import { HomeFacade } from './home/home.facade';
 const { Device } = Plugins;
 
 @Component({
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private oneSignalService: OneSignalService,
     private smsService: SmsService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private homeFacade: HomeFacade
   ) {
     this.initializeApp();
   }
@@ -77,10 +79,18 @@ export class AppComponent implements OnInit {
 
   public async fetchUser(): Promise<void> {
     let user = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
-    const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
-    const dataUser = users.filter(x => x?.uniqueid === user?.uniqueid)
-    user = dataUser[0];
-    localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(user));
+    console.log(user);
+    if (user) {
+      const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
+      const dataUser = users.filter(x => x?.uniqueid === user?.uniqueid)
+      user = dataUser[0];
+      localStorage.setItem(LOCALSTORAGE.USER, JSON.stringify(user));
+      const logged = JSON.parse(localStorage.getItem(LOCALSTORAGE.LOGGED));
+      if (logged) {
+        this.homeFacade.userAlreadylogged();
+      }
+    }
+
   }
 
 }

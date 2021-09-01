@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { LOCALSTORAGE } from '../../constans/localStorage';
 import { FirebaseService } from '../../core/services/firebase.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 
 @Component({

@@ -3,7 +3,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
 import { CollectionsBd, imgStorage, nameCard } from 'src/app/models/form.model';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/global/user.model';
 
 import { LOCALSTORAGE } from '../../constans/localStorage';
 
