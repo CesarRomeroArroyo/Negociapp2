@@ -57,11 +57,11 @@
           cancelText="Cerrar" 
           okText="Seleccionar" 
           placeholder="Seleccionar tipo de servicio"
-          formControlName="types"
+          formControlName="specialties"
           *ngIf="tab === 1"
           [attr.disabled]="!this.form.get('status').value">
           <ion-select-option 
-            *ngFor="let type of types; let i = index" 
+            *ngFor="let type of specialties; let i = index" 
             [value]="type.value">
             {{type.name}}
           </ion-select-option>
@@ -76,9 +76,10 @@
           <ion-select-option 
             *ngFor="let city of cities; let i = index" 
             [value]="city.value">
-            {{city.value}}
+            {{city.name}}
           </ion-select-option>
         </ion-select>
+        <!-- Categories -->
         <ion-button 
           type="button" 
           fill="clear" 
@@ -97,6 +98,7 @@
             {{category}}
           </div>
         </div>
+        <!-- End Categories -->
       </div>
        <!-- End Form -->
       <div class="submit">
@@ -112,8 +114,12 @@
 </ion-content>
 
 <app-categories-modal 
+  *ngIf="showModalCategories"
+  [categories]="categories$ | async"
+  [categoriesTem]="categories$ | async"
+  [categoriesSelected]="categories"
   (showModal)="showModalCategories = $event"
-  *ngIf="showModalCategories">
+  (categoriesSelectedOutput)="categoriesSelectedModal($event)">
 </app-categories-modal>
 
 <app-photos-modal

@@ -9,6 +9,8 @@ import { InicioPageRoutingModule } from './inicio-routing.module';
 import { InicioPage } from './inicio.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
+import { InicioFacade } from './inicio.facade';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule,
     InicioPageRoutingModule
   ],
-  declarations: [InicioPage]
+  declarations: [InicioPage],
+  providers: [
+    InicioFacade
+  ]
 })
 export class InicioPageModule {}

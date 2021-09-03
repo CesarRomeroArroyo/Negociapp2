@@ -19,7 +19,7 @@ export const initialMider = {
     cities: [],
     rut: {
         name: '',
-        path: '', 
+        path: '',
         url: ''
     }
 }

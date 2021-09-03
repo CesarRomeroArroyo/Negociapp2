@@ -1,5 +1,7 @@
-import { User } from '../../models/global/user.model';
+import { Categories } from '@models/data-base/categorires';
+import { User } from '@models/global/user.model';
 
 export type State = Readonly<{
-    auth: User,
+    authenticationUser: User,
+    categories: Categories
 }>;

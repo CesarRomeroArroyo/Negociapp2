@@ -15,6 +15,24 @@ const featureReducer = createReducer(
   }),
   on(actions.userAlreadylogged, (state, { user }) => {
     return { ...user, sessionActive: true }
+  }),
+  on(actions.updateMiders, (state, { miders }) => {
+    return {
+      ...state,
+      miders
+    }
+  }),
+  on(actions.updateMiderv, (state, { miderv }) => {
+    return {
+      ...state,
+      miderv
+    }
+  }),
+  on(actions.updateMidera, (state, { midera }) => {
+    return {
+      ...state,
+      midera
+    }
   })
 );
 

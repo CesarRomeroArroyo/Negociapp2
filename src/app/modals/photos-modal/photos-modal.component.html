@@ -30,7 +30,7 @@
         <ion-icon name="close" slot="end" (click)="deleteFile()"></ion-icon>
       </ion-item>
     </div>
-    <div class="btn">
+    <div class="btn" *ngIf="!isRut">
       <ion-button
         type="submit"
         shape="round"

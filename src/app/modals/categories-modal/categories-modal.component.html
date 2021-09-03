@@ -18,7 +18,7 @@
           type="submit"
           *ngFor="let category of categoriesTem"
           (click)="pushCategory(category.value)">
-          <ion-label>{{category.text}}</ion-label>
+          <ion-label>{{category.name}}</ion-label>
           <ion-checkbox 
             color="secondary" 
             slot="end" 

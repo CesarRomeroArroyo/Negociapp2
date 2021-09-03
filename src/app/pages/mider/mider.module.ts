@@ -7,9 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MiderPageRoutingModule } from './mider-routing.module';
 
 import { MiderPage } from './mider.page';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { ModalsModule } from 'src/app/modals/modals.module';
-import { LoadingModule } from '../../ux/loading/loading.module';
+
+import { ComponentsModule } from '@components/components.module';
+import { ModalsModule } from '@modals/modals.module';
+import { LoadingModule } from '@ux/loading/loading.module';
+
+import { HomeFacade } from '@app/home/home.facade';
+import { InicioFacade } from '@pages/inicio/inicio.facade';
+
+import { MiderFacade } from './mider.facade';
 
 @NgModule({
   imports: [
@@ -22,6 +28,11 @@ import { LoadingModule } from '../../ux/loading/loading.module';
     MiderPageRoutingModule,
     LoadingModule
   ],
-  declarations: [MiderPage]
+  declarations: [MiderPage],
+  providers: [
+    HomeFacade,
+    InicioFacade,
+    MiderFacade
+  ]
 })
 export class MiderPageModule {}

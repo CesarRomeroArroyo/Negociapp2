@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 
-import { CategoryURL } from '../../models/category.model';
+import { FormsAbstract } from '@components/abstract/form.abstact';
+
+import { CategoryURL } from '@models/category.model';
+import { InicioFacade } from '@pages/inicio/inicio.facade';
 
 @Component({
   selector: 'app-inicio',
@@ -11,7 +13,14 @@ import { CategoryURL } from '../../models/category.model';
 })
 export class InicioPage extends FormsAbstract {
 
-  constructor(private router: Router) { super(); }
+  constructor(
+    private router: Router,
+    private inicioFacade: InicioFacade
+  ) { super(); }
+
+  async ionViewWillEnter(): Promise<void> {
+    this.inicioFacade.fetchCategories();
+  }
 
   get service(): string {
     return CategoryURL.Service;

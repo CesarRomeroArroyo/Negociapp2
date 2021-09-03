@@ -27,6 +27,7 @@
       "@modals/*": ["src/app/modals/*"],
       "@ux/*": ["src/app/ux/*"],
       "@store/*": ["src/app/store/*"],
+      "@pages/*": ["src/app/pages/*"],
     }
   },
   "angularCompilerOptions": {

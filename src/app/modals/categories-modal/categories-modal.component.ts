@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
-import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { StateApp } from 'src/app/core/services/state.service';
+import { FirebaseService } from '@core/services/firebase.service';
+import { StateApp } from '@core/services/state.service';
+
+import { SelectType } from '@app/models/home/select-type';
 
 @Component({
   selector: 'app-categories-modal',
@@ -10,10 +12,13 @@ import { StateApp } from 'src/app/core/services/state.service';
 })
 export class CategoriesModalComponent implements OnInit {
 
+  @Input() categories: SelectType[] = [];
+  @Input() categoriesTem: any[] = [];
+  @Input() categoriesSelected: string[] = [];
+
   @Output() public showModal = new EventEmitter<boolean>();
-  public categories: any[] = [];
-  public categoriesTem: any[] = [];
-  public categoriesSelected: string[] = [];
+  @Output() public categoriesSelectedOutput = new EventEmitter<string[]>();
+
   public search = '';
 
   constructor(
@@ -21,14 +26,9 @@ export class CategoriesModalComponent implements OnInit {
     private subject: StateApp) { }
 
   ngOnInit() {
-    this.firebase.obtener('categories').subscribe((data) => {
-      this.categories = data;
-      this.categoriesTem = data;
-    });
-    this.subject.getObservable().subscribe(data => {
-      console.log(data);
-      if (data.categories) this.categoriesSelected = data.categories;
-    });
+    // this.subject.getObservable().subscribe(data => {
+    //   if (data.categories) this.categoriesSelected = data.categories;
+    // });
   }
 
   public searhCategory(): void {
@@ -47,9 +47,14 @@ export class CategoriesModalComponent implements OnInit {
         return data.toUpperCase() !== value.toUpperCase();
       });
     } else {
-      this.categoriesSelected.push(value);
+      if (this.categoriesSelected.length === 0) {
+        this.categoriesSelected = [value];
+      } else {
+        this.categoriesSelected = [...this.categoriesSelected, value];
+      }
     }
     this.subject.setData({ categories: this.categoriesSelected });
+    this.categoriesSelectedOutput.emit(this.categoriesSelected);
   }
 
   public selectCategory(category: any): boolean {

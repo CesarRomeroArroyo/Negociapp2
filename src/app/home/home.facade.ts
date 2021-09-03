@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { State } from '../store/state/state';
+
+import { State } from '@store/state/state';
+import * as actions from '@store/actions/actions';
+import { LOCALSTORAGE } from '@constans/localStorage';
+
 import { User } from '@models/global/user.model';
-import * as actions from '../store/actions/actions';
-import { LOCALSTORAGE } from '../constans/localStorage';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class HomeFacade {
@@ -14,6 +17,8 @@ export class HomeFacade {
     protected store: Store<State>,
     private router: Router
   ) { }
+
+  public getUser$: Observable<User> = this.store.select('authenticationUser');
 
   public registerUserNew(user: User): void {
     this.store.dispatch(actions.registerUser({ user }))
