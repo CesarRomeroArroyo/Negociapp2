@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
 
-import { CategoryPath, CategoryURL } from 'src/app/models/category.model';
-import { MessageTabOne, MessageTabTwo } from '../../../models/form.model';
+import { FormsAbstract } from '@components/abstract/form.abstact';
+
+import { CategoryPath, CategoryURL } from '@models/category.model';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { MessageTabOne, MessageTabTwo } from '@models/form.model';
+import { InicioFacade } from '@pages/inicio/inicio.facade';
+import { SelectType } from '@models/home/select-type';
 
 @Component({
   selector: 'app-form',
@@ -17,12 +23,31 @@ export class FormPage extends FormsAbstract implements OnInit {
   public showModalCategories = false;
   public showModalPhotos = false;
   public idunique: string;
+  public categories: string[] = [];
 
-  constructor(private route: ActivatedRoute) { super() }
+  constructor(
+    private route: ActivatedRoute,
+    private inicioFacade: InicioFacade
+  ) { super() }
 
   ngOnInit() {
     this.category = this.route.snapshot.paramMap.get('category');
     this.idunique = this.route.snapshot.paramMap.get('idunique');
+  }
+
+  get categories$(): Observable<SelectType[]> {
+    return this.inicioFacade.getCategories$.pipe(
+      map(categories => {
+        switch (this.category) {
+          case CategoryURL.Service:
+            return categories.categoriesServices
+          case CategoryURL.Shop:
+            return categories.categoriesShop
+          case CategoryURL.Rent:
+            return categories.categoriesRent
+        }
+      })
+    )
   }
 
   get secondMessageHeader(): string {
@@ -77,6 +102,10 @@ export class FormPage extends FormsAbstract implements OnInit {
       case CategoryURL.Shop:
         return MessageTabTwo.Shop;
     }
+  }
+
+  public categoriesSelectedModal(event): void {
+    this.categories = event;
   }
 
   public tabSelected(n: number): void {

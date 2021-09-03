@@ -10,6 +10,8 @@ import { FormPage } from './form.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ModalsModule } from 'src/app/modals/modals.module';
 
+import { InicioFacade } from '@pages/inicio/inicio.facade';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +22,9 @@ import { ModalsModule } from 'src/app/modals/modals.module';
     ModalsModule,
     FormPageRoutingModule
   ],
-  declarations: [FormPage]
+  declarations: [FormPage],
+  providers: [
+    InicioFacade
+  ]
 })
 export class FormPageModule {}

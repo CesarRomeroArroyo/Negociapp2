@@ -31,12 +31,14 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <app-formComponent 
-      [category]="category" 
+    <app-formComponent
+      *ngIf="tab === 1; else MyItem"
+      [category]="category"
+      [categories]="categories"
       (showCategories)="showModalCategories = $event"
       (showPhotos)="showModalPhotos = $event"
       (showTabTwo)="tab = 2"
-      *ngIf="tab === 1; else MyItem">
+      (categoriesUpdate)="categoriesSelectedModal($event)">
     </app-formComponent>
     <ng-template #MyItem>
       <app-mycards 
@@ -48,7 +50,11 @@
 </ion-content>
 
 <app-categories-modal 
+  [categories]="categories$ | async"
+  [categoriesTem]="categories$ | async"
+  [categoriesSelected]="categories"
   (showModal)="showModalCategories = $event"
+  (categoriesSelectedOutput)="categoriesSelectedModal($event)"
   *ngIf="showModalCategories">
 </app-categories-modal>
 

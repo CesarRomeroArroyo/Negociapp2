@@ -1,22 +1,23 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 import Swal from 'sweetalert2';
 
-import { DataForm, Photo } from '../../models/form.model';
+import { DataForm, Photo } from '@models/form.model';
 import { FormsAbstract } from '../abstract/form.abstact';
+import { SelectType } from '@models/home/select-type';
+import { COLLECTIONS_BD } from '@models/data-base/bd.models';
 
-import { UniqueService } from 'src/app/core/services/unique.service';
-import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { StateApp } from 'src/app/core/services/state.service';
-import { FileManagerService } from 'src/app/core/services/file-manager.service';
-import { LoadingController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
-import { CITIES, TYPES_SERVICE } from 'src/app/constans/constans-global';
-import { FormService } from 'src/app/core/services/form.service';
+import { UniqueService } from '@core/services/unique.service';
+import { FirebaseService } from '@core/services/firebase.service';
+import { StateApp } from '@core/services/state.service';
+import { FileManagerService } from '@core/services/file-manager.service';
+import { FormService } from '@core/services/form.service';
 
 @Component({
   selector: 'app-formComponent',
@@ -26,21 +27,24 @@ import { FormService } from 'src/app/core/services/form.service';
 })
 export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
 
+  @Input() category: string;
+  @Input() categories: string[] = [];
+
   @Output() public showCategories = new EventEmitter<boolean>();
   @Output() public showPhotos = new EventEmitter<boolean>();
   @Output() public showTabTwo = new EventEmitter<void>();
+  @Output() categoriesUpdate = new EventEmitter<string[]>();
 
   public idunique: string;
-  public categories: string[] = [];
   public photos: Photo[] = [];
   public photosDataBD: Photo[] = [];
   public photosDelete: string[] = [];
   public form: FormGroup;
-  public types = TYPES_SERVICE;
+  public specialties: SelectType[] = [];
   public subscription: Subscription;
   public notificationSend = false;
   public coordinates: any;
-  public cities = CITIES;
+  public cities: SelectType[] = [];
 
 
   constructor(
@@ -58,11 +62,14 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   }
 
   public async ngOnInit() {
-    this.initForm();
     this.idunique = this.route.snapshot.paramMap.get('idunique');
-    if (this.idunique) this.getDataUpdate();
+    this.specialties = await this.firebase.obtenerPromise(COLLECTIONS_BD.SPECIALTIES);
+    this.cities = await this.firebase.obtenerPromise(COLLECTIONS_BD.CITIES);
+    this.initForm();
+    if (this.idunique) {
+      this.getDataUpdate();
+    }
     this.subscription = this.state.getObservable().subscribe(data => {
-      if (data.categories) this.categories = data.categories;
       if (data.photos) this.photos = data.photos;
       if (data.photosDelete) this.photosDelete = data.photosDelete;
     });
@@ -76,8 +83,9 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   public async getDataUpdate(): Promise<void> {
     const dataForm = await this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.idunique);
     const data: DataForm = dataForm[0];
+    this.categories = data.categories;
+    this.categoriesUpdate.emit(this.categories);
     this.initForm(data);
-    this.state.setData({ categories: data.categories });
     this.state.setData({ photos: data.photos });
   }
 
@@ -263,7 +271,6 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
     this.form.reset();
     this.photosDataBD = [];
     this.notificationSend = false;
-    this.state.setData({ categories: [] });
     this.state.setData({ photos: [] });
     this.state.setData({ photosDelete: [] });
   }

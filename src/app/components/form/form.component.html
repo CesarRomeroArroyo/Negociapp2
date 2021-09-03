@@ -14,9 +14,9 @@
     icon="caret-down-outline"
     [ngClass]="{'invalid': validateinput('type')}">
     <ion-select-option 
-      *ngFor="let tipo of types" 
-      [value]="tipo.value">
-      {{tipo.name}}
+      *ngFor="let type of specialties" 
+      [value]="type.value">
+      {{type.name}}
     </ion-select-option>
   </ion-select>
   <!-- Cities -->

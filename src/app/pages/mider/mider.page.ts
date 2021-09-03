@@ -61,7 +61,6 @@ export class MiderPage implements OnInit {
   }
 
   async ionViewWillEnter(): Promise<void> {
-    this.subject.setData({ categories: [] });
     this.user$.subscribe(user => {
       this.user = user;
       this.tabSelected(this.tab);
@@ -73,7 +72,6 @@ export class MiderPage implements OnInit {
 
   public ionViewDidLeave(): void {
     this.subscription.unsubscribe();
-    this.subject.setData({ categories: [] });
   }
 
   get user$(): Observable<User> { return this.homeFacade.getUser$; }
@@ -126,7 +124,6 @@ export class MiderPage implements OnInit {
 
   public tabSelected(index: number): void {
     this.tab = index;
-    this.subject.setData({ categories: [] });
     this.categories = [];
     switch (this.tab) {
       case 1:
