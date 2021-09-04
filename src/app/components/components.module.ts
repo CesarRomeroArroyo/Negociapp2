@@ -13,6 +13,7 @@ import { OffersReceivedComponent } from './offers-received/offers-received.compo
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { MenuComponent } from './menu/menu.component';
 import { KeyboardComponent } from './keyboard/keyboard.component';
+import { LoadingModule } from '../ux/loading/loading.module';
 
 const components = [
   HeaderComponent,
@@ -33,7 +34,8 @@ const components = [
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    TextMaskModule
+    TextMaskModule,
+    LoadingModule
   ],
   exports: components
 })

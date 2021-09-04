@@ -9,20 +9,38 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen=\"true\" scroll-y=\"true\" scroll-x=\"false\">\r\n  <ng-container *ngIf=\"!isLoading; else isLoadingTemplate\">\r\n    <div class=\"container\">\r\n      <div class=\"content-text\">\r\n        <span class=\"title\">NegociApp</span>\r\n        <span class=\"text\">Bienvenido a NegociApp</span>\r\n        <span class=\"text\">una gran comunidad de servicios y arriendos en tu ciudad</span>\r\n      </div>\r\n      <div class=\"form\">\r\n        <span class=\"text\">Ingresa tus datos personales</span>\r\n        <form [formGroup]=\"form\" (ngSubmit)=\"next()\">\r\n          <!-- Type identification -->\r\n          <ion-select placeholder=\"Tipo de identificación\" formControlName=\"typeId\" [ngClass]=\"{'invalid': validateinput('typeId')}\">\r\n            <ion-select-option [value]=\"type.value\" *ngFor=\"let type of identificationType\">{{type.name}}</ion-select-option>\r\n          </ion-select>\r\n          <!-- Identifiation number -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Número de identificación\" \r\n            type=\"number\" \r\n            (blur)=\"isLogged()\" \r\n            formControlName=\"num_ide\" \r\n            [ngClass]=\"{'invalid': validateinput('num_ide')}\"\r\n          />\r\n          <!-- Names -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Nombres y apellidos\" \r\n            formControlName=\"name\" \r\n            [ngClass]=\"{'invalid': validateinput('name')}\"\r\n          />\r\n          <!-- Email -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Email\" \r\n            type=\"email\" \r\n            formControlName=\"email\" \r\n            [ngClass]=\"{'invalid': validateinput('email')}\"\r\n          />\r\n          <!-- Number phone -->\r\n          <!-- <input \r\n            class=\"input\" \r\n            placeholder=\"Numero de Telefono\" \r\n            type=\"number\" \r\n            formControlName=\"tel\" \r\n            [ngClass]=\"{'invalid': validateinput('tel')}\"\r\n          /> -->\r\n          <!-- City -->\r\n          <ion-select placeholder=\"Ciudad\" formControlName=\"city\" [ngClass]=\"{'invalid': validateinput('city')}\">\r\n            <ion-select-option [value]=\"city.value\" *ngFor=\"let city of cities\">{{city.name}}</ion-select-option>\r\n          </ion-select>\r\n          <!-- Input File -->\r\n          <!-- <div class=\"input file\" [ngClass]=\"{'invalidImg': isValidImg}\">\r\n            <label for=\"foto1\">Seleccionar foto perfil</label>\r\n            <label class=\"text-file\">{{filePhoto?.name}}</label>\r\n            <input\r\n              id=\"foto1\" \r\n              style=\"display: none;\" \r\n              type=\"file\" \r\n              accept=\"image/*\" \r\n              (change)=\"selectImg($event)\"\r\n              />\r\n          </div> -->\r\n          <!-- Submit -->\r\n          <div class=\"submit\">\r\n            <ion-button \r\n              color=\"secondary\" \r\n              type=\"submit\" \r\n              shape=\"round\" \r\n              expand=\"full\" \r\n              [disabled]=\"form.invalid\"\r\n            >\r\n              Siguiente\r\n            </ion-button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </ng-container>\r\n  <ng-template #isLoadingTemplate>\r\n    <app-loading></app-loading>\r\n  </ng-template>\r\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen=\"true\" scroll-y=\"true\" scroll-x=\"false\">\r\n  <ng-container *ngIf=\"!isLoading; else isLoadingTemplate\">\r\n    <div class=\"container\">\r\n      <div class=\"content-text\">\r\n        <span class=\"title\">NegociApp</span>\r\n        <span class=\"text\">Bienvenido a NegociApp</span>\r\n        <span class=\"text\">una gran comunidad de servicios y arriendos en tu ciudad</span>\r\n      </div>\r\n      <div class=\"form\">\r\n        <span class=\"text\">Ingresa tus datos personales</span>\r\n        <form [formGroup]=\"form\" (ngSubmit)=\"next()\">\r\n          <!-- Type identification -->\r\n          <ion-select placeholder=\"Tipo de identificación\" formControlName=\"typeId\" [ngClass]=\"{'invalid': validateinput('typeId')}\">\r\n            <ion-select-option \r\n              [value]=\"type.value\" \r\n              *ngFor=\"let type of identificationType\">\r\n              {{type.name}}\r\n            </ion-select-option>\r\n          </ion-select>\r\n          <!-- Identifiation number -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Número de identificación\" \r\n            type=\"number\" \r\n            (blur)=\"isLogged()\" \r\n            formControlName=\"num_ide\" \r\n            [ngClass]=\"{'invalid': validateinput('num_ide')}\"\r\n          />\r\n          <!-- Names -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Nombres y apellidos\" \r\n            formControlName=\"name\" \r\n            [ngClass]=\"{'invalid': validateinput('name')}\"\r\n          />\r\n          <!-- Email -->\r\n          <input \r\n            class=\"input\" \r\n            placeholder=\"Email\" \r\n            type=\"email\" \r\n            formControlName=\"email\" \r\n            [ngClass]=\"{'invalid': validateinput('email')}\"\r\n          />\r\n          <!-- Number phone -->\r\n          <!-- <input \r\n            class=\"input\" \r\n            placeholder=\"Numero de Telefono\" \r\n            type=\"number\" \r\n            formControlName=\"tel\" \r\n            [ngClass]=\"{'invalid': validateinput('tel')}\"\r\n          /> -->\r\n          <!-- City -->\r\n          <ion-select placeholder=\"Ciudad\" formControlName=\"city\" [ngClass]=\"{'invalid': validateinput('city')}\">\r\n            <ion-select-option [value]=\"city.value\" *ngFor=\"let city of cities\">{{city.name}}</ion-select-option>\r\n          </ion-select>\r\n          <!-- Input File -->\r\n          <!-- <div class=\"input file\" [ngClass]=\"{'invalidImg': isValidImg}\">\r\n            <label for=\"foto1\">Seleccionar foto perfil</label>\r\n            <label class=\"text-file\">{{filePhoto?.name}}</label>\r\n            <input\r\n              id=\"foto1\" \r\n              style=\"display: none;\" \r\n              type=\"file\" \r\n              accept=\"image/*\" \r\n              (change)=\"selectImg($event)\"\r\n              />\r\n          </div> -->\r\n          <!-- Submit -->\r\n          <div class=\"submit\">\r\n            <ion-button \r\n              color=\"secondary\" \r\n              type=\"submit\" \r\n              shape=\"round\" \r\n              expand=\"full\" \r\n              [disabled]=\"form.invalid\"\r\n            >\r\n              Siguiente\r\n            </ion-button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </ng-container>\r\n  <ng-template #isLoadingTemplate>\r\n    <app-loading></app-loading>\r\n  </ng-template>\r\n</ion-content>");
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/ux/loading/loading.component.html":
-/*!*****************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/ux/loading/loading.component.html ***!
-  \*****************************************************************************************/
-/*! exports provided: default */
+/***/ "./src/app/constans/constans-global.ts":
+/*!*********************************************!*\
+  !*** ./src/app/constans/constans-global.ts ***!
+  \*********************************************/
+/*! exports provided: CITIES, TYPES_SERVICE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"loading-container\">\n  <ion-icon name=\"refresh-outline\"></ion-icon>\n</div>\n");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CITIES", function() { return CITIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPES_SERVICE", function() { return TYPES_SERVICE; });
+const CITIES = [
+    { name: 'Cartagena', value: 'Cartagena' },
+    { name: 'Barranquilla', value: 'Barranquilla' },
+    { name: 'Montería', value: 'Montería' },
+    { name: 'Santa Marta', value: 'Santa Marta' },
+    { name: 'Sincelejo', value: 'Sincelejo' },
+    { name: 'Riohacha', value: 'Riohacha' },
+    { name: 'Valledupar', value: 'Valledupar' }
+];
+const TYPES_SERVICE = [
+    { name: 'Especializado', value: 'Especializado' },
+    { name: 'Profesional', value: 'Profesional' },
+    { name: 'Tecnologo', value: 'Tecnologo' },
+    { name: 'Tecnico', value: 'Tecnico' },
+    { name: 'Independiente', value: 'Independiente' }
+];
+
 
 /***/ }),
 
@@ -111,6 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/home/home-routing.module.ts");
 /* harmony import */ var _ux_loading_loading_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ux/loading/loading.module */ "./src/app/ux/loading/loading.module.ts");
 /* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home.page */ "./src/app/home/home.page.ts");
+/* harmony import */ var _home_facade__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home.facade */ "./src/app/home/home.facade.ts");
+
 
 
 
@@ -131,7 +151,10 @@ HomePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _home_routing_module__WEBPACK_IMPORTED_MODULE_5__["HomePageRoutingModule"],
             _ux_loading_loading_module__WEBPACK_IMPORTED_MODULE_6__["LoadingModule"]
         ],
-        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_7__["HomePage"]]
+        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_7__["HomePage"]],
+        providers: [
+            _home_facade__WEBPACK_IMPORTED_MODULE_8__["HomeFacade"]
+        ]
     })
 ], HomePageModule);
 
@@ -170,9 +193,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
-/* harmony import */ var _constans_constans_global__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../constans/constans-global */ "./src/app/constans/constans-global.ts");
+/* harmony import */ var _models_home_mider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/home/mider */ "./src/app/models/home/mider.ts");
 /* harmony import */ var _entities_home_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./entities/home.types */ "./src/app/home/entities/home.types.ts");
-/* harmony import */ var _constans_localStorage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../constans/localStorage */ "./src/app/constans/localStorage.ts");
+/* harmony import */ var _constans_constans_global__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../constans/constans-global */ "./src/app/constans/constans-global.ts");
+/* harmony import */ var _constans_localStorage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../constans/localStorage */ "./src/app/constans/localStorage.ts");
+/* harmony import */ var _home_facade__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home.facade */ "./src/app/home/home.facade.ts");
+
+
 
 
 
@@ -184,27 +211,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const { Geolocation, Device } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
-const path = { name: '', path: '', url: '' };
 let HomePage = class HomePage {
-    constructor(router, formBuilder, firebaseService) {
+    constructor(router, formBuilder, firebaseService, homeFacade) {
         this.router = router;
         this.formBuilder = formBuilder;
         this.firebaseService = firebaseService;
-        this.identificationType = [
-            { name: 'Cedula de ciudadanía', value: 'Cedula' },
-            { name: 'Cedula extranjera', value: 'CedulaExtranjera' },
-            { name: 'Pasaporte', value: 'Pasaporte' }
-        ];
-        this.cities = _constans_constans_global__WEBPACK_IMPORTED_MODULE_7__["CITIES"];
+        this.homeFacade = homeFacade;
+        this.identificationType = [];
+        this.cities = _constans_constans_global__WEBPACK_IMPORTED_MODULE_9__["CITIES"];
         this.registerData = {
             uniqueid: null,
             prestador: true,
             service: true,
             rent: true,
             shop: true,
-            miders: { status: false, categories: [], typesService: [], cities: [], rut: path },
-            midera: { status: false, categories: [], typesService: [], cities: [], rut: path },
-            miderv: { status: false, categories: [], typesService: [], cities: [], rut: path },
             lat: null,
             lng: null,
             active: true,
@@ -219,18 +239,21 @@ let HomePage = class HomePage {
         this.initForm();
     }
     ngOnInit() {
-        this.isUserLogged = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].LOGGED));
-        if (this.isUserLogged) {
-            this.router.navigateByUrl('/inicio');
-        }
-        else {
-            this.isLoading = false;
-            this.obtenerCoordenadas();
-        }
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.identificationType = yield this.firebaseService.obtenerPromise('identification-types');
+            this.isUserLogged = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_10__["LOCALSTORAGE"].LOGGED));
+            if (this.isUserLogged) {
+                this.homeFacade.userAlreadylogged();
+            }
+            else {
+                this.isLoading = false;
+                this.obtenerCoordenadas();
+            }
+        });
     }
-    get isValidImg() {
-        return this.filePhoto === null ? true : false;
-    }
+    // get isValidImg(): boolean {
+    //   return this.filePhoto === null ? true : false;
+    // }
     initForm(data) {
         this.form = this.formBuilder.group({
             num_ide: [ false || (data === null || data === void 0 ? void 0 : data.id), [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('^[0-9]*$')]],
@@ -278,9 +301,8 @@ let HomePage = class HomePage {
                     sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Esta cuenta ya esta activa en otro dispositivo, por favor cierre la sesion para inicar en este dispositivo', 'warning');
                 }
                 else {
-                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER, JSON.stringify(user));
-                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].LOGGED, JSON.stringify(false));
-                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].RELOGGED, JSON.stringify(true));
+                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_10__["LOCALSTORAGE"].USER, JSON.stringify(user));
+                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_10__["LOCALSTORAGE"].LOGGED, JSON.stringify(false));
                     sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('', 'Ya te encontrabas registrado en nuestra plataforma. Bienvenido!', 'success');
                     this.form.reset();
                     this.router.navigateByUrl(`/home/bienvenida/${_entities_home_types__WEBPACK_IMPORTED_MODULE_8__["StatusUserLoggin"].RELOGGED}`);
@@ -330,10 +352,12 @@ let HomePage = class HomePage {
                     this.registerData.lat = coordinates.coords.latitude;
                     this.registerData.lng = coordinates.coords.longitude;
                     this.registerData.nameToSearch = this.registerData.name;
-                    this.registerData.onesignal = JSON.parse(localStorage.getItem('NEGOCIAPP_ONESIGNALUI'));
+                    this.registerData.miders = _models_home_mider__WEBPACK_IMPORTED_MODULE_7__["initialMider"];
+                    this.registerData.midera = _models_home_mider__WEBPACK_IMPORTED_MODULE_7__["initialMider"];
+                    this.registerData.miderv = _models_home_mider__WEBPACK_IMPORTED_MODULE_7__["initialMider"];
                     // await this.uploadImg();
                     const data = Object.assign(Object.assign({}, this.form.value), this.registerData);
-                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER, JSON.stringify(data));
+                    localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_10__["LOCALSTORAGE"].USER, JSON.stringify(data));
                     this.isLoading = false;
                     this.form.reset();
                     this.router.navigateByUrl(`/home/bienvenida/${_entities_home_types__WEBPACK_IMPORTED_MODULE_8__["StatusUserLoggin"].LOGGED}`);
@@ -345,7 +369,8 @@ let HomePage = class HomePage {
 HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"] },
-    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"] }
+    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"] },
+    { type: _home_facade__WEBPACK_IMPORTED_MODULE_11__["HomeFacade"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -355,90 +380,36 @@ HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"],
-        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"]])
+        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"],
+        _home_facade__WEBPACK_IMPORTED_MODULE_11__["HomeFacade"]])
 ], HomePage);
 
 
 
 /***/ }),
 
-/***/ "./src/app/ux/loading/loading.component.scss":
-/*!***************************************************!*\
-  !*** ./src/app/ux/loading/loading.component.scss ***!
-  \***************************************************/
-/*! exports provided: default */
+/***/ "./src/app/models/home/mider.ts":
+/*!**************************************!*\
+  !*** ./src/app/models/home/mider.ts ***!
+  \**************************************/
+/*! exports provided: initialMider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".loading-container {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: row;\n}\n.loading-container ion-icon {\n  font-size: 3rem;\n  color: var(--ion-color-light);\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXgvbG9hZGluZy9DOlxcRFxcSW9uaWNcXE5lZ29jaWFwcC1hbGxcXE5lZ29jaWFwcDIvc3JjXFxhcHBcXHV4XFxsb2FkaW5nXFxsb2FkaW5nLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC91eC9sb2FkaW5nL0M6XFxEXFxJb25pY1xcTmVnb2NpYXBwLWFsbFxcTmVnb2NpYXBwMi9zcmNcXHRoZW1lXFxtaXhpbi5zY3NzIiwic3JjL2FwcC91eC9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxhQUFBO0VBQ0EsV0FBQTtFQ0hBLGFBQUE7RUFDQSxtQkRHYztFQ0ZkLHVCREVzQjtFQ0R0QixtQkFKeUU7QUNPM0U7QUZERTtFQUNFLGVBQUE7RUFDQSw2QkFBQTtFQUNBLDBDQUFBO1VBQUEsa0NBQUE7QUVHSjtBRkNBO0VBQ0U7SUFDRSx1QkFBQTtFRUVGO0VGQ0E7SUFDRSx5QkFBQTtFRUNGO0FBQ0Y7QUZSQTtFQUNFO0lBQ0UsdUJBQUE7RUVFRjtFRkNBO0lBQ0UseUJBQUE7RUVDRjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvdXgvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uL3RoZW1lL21peGluLnNjc3NcIjtcclxuXHJcbi5sb2FkaW5nLWNvbnRhaW5lciB7XHJcbiAgaGVpZ2h0OiAxMDB2aDtcclxuICB3aWR0aDogMTAwJTtcclxuICBAaW5jbHVkZSBmbGV4KGNlbnRlciwgY2VudGVyKTtcclxuICBpb24taWNvbiB7XHJcbiAgICBmb250LXNpemU6IDNyZW07XHJcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLWxpZ2h0KTtcclxuICAgIGFuaW1hdGlvbjogc3BpbiAycyBsaW5lYXIgaW5maW5pdGU7XHJcbiAgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHNwaW4ge1xyXG4gIDAlIHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xyXG4gIH1cclxuXHJcbiAgMTAwJSB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xyXG4gIH1cclxufVxyXG4iLCJAbWl4aW4gZmxleCgkYWxpZ25JdGVtczogc3RyZXRjaCwgJGp1c3RpZnlDb250ZW50OiBmbGV4LXN0YXJ0LCAkZGlyZWN0aW9uOiByb3cpIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiAkYWxpZ25JdGVtcztcclxuICBqdXN0aWZ5LWNvbnRlbnQ6ICRqdXN0aWZ5Q29udGVudDtcclxuICBmbGV4LWRpcmVjdGlvbjogJGRpcmVjdGlvbjtcclxufVxyXG5cclxuQG1peGluIGJveC1zaGFkb3ctYmxhY2sge1xyXG4gIGJveC1zaGFkb3c6IDBweCAxcHggMnB4IDBweCB2YXIoLS1pb24tY29sb3ItZGFyayk7XHJcbn1cclxuXHJcbkBtaXhpbiBib3gtc2hhZG93LWNhcmQge1xyXG4gIGJveC1zaGFkb3c6IDBweCAwcHggNHB4IDBweCB2YXIoLS1pb24tY29sb3ItZGFyayk7XHJcbn1cclxuXHJcbkBtaXhpbiBib3gtc2hhZG93LWRldGFpbCB7XHJcbiAgYm94LXNoYWRvdzogMHB4IC0xcHggMXB4IDBweCB2YXIoLS1pb24tY29sb3ItbWVkaXVtKTtcclxufSIsIi5sb2FkaW5nLWNvbnRhaW5lciB7XG4gIGhlaWdodDogMTAwdmg7XG4gIHdpZHRoOiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbn1cbi5sb2FkaW5nLWNvbnRhaW5lciBpb24taWNvbiB7XG4gIGZvbnQtc2l6ZTogM3JlbTtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1saWdodCk7XG4gIGFuaW1hdGlvbjogc3BpbiAycyBsaW5lYXIgaW5maW5pdGU7XG59XG5cbkBrZXlmcmFtZXMgc3BpbiB7XG4gIDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcbiAgfVxuICAxMDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICB9XG59Il19 */");
-
-/***/ }),
-
-/***/ "./src/app/ux/loading/loading.component.ts":
-/*!*************************************************!*\
-  !*** ./src/app/ux/loading/loading.component.ts ***!
-  \*************************************************/
-/*! exports provided: LoadingComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingComponent", function() { return LoadingComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-
-let LoadingComponent = class LoadingComponent {
-    constructor() { }
-    ngOnInit() { }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialMider", function() { return initialMider; });
+;
+const initialMider = {
+    status: false,
+    categories: [],
+    typesService: [],
+    cities: [],
+    rut: {
+        name: '',
+        path: '',
+        url: ''
+    }
 };
-LoadingComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-loading',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./loading.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/ux/loading/loading.component.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./loading.component.scss */ "./src/app/ux/loading/loading.component.scss")).default]
-    }),
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [])
-], LoadingComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/ux/loading/loading.module.ts":
-/*!**********************************************!*\
-  !*** ./src/app/ux/loading/loading.module.ts ***!
-  \**********************************************/
-/*! exports provided: LoadingModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingModule", function() { return LoadingModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-/* harmony import */ var _loading_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loading.component */ "./src/app/ux/loading/loading.component.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-
-
-
-
-
-let LoadingModule = class LoadingModule {
-};
-LoadingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_loading_component__WEBPACK_IMPORTED_MODULE_3__["LoadingComponent"]],
-        imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"]
-        ],
-        exports: [_loading_component__WEBPACK_IMPORTED_MODULE_3__["LoadingComponent"]]
-    })
-], LoadingModule);
-
 
 
 /***/ })

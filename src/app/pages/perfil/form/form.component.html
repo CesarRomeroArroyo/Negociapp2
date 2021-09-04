@@ -1,68 +1,76 @@
-<form class="form" [formGroup]="form">
-  <!-- Name -->
-  <div class="item">
-    <div class="content-icon">
-      <ion-icon name="person-outline"></ion-icon>
+<ng-container *ngIf="form !== null; else loadingTemplate">
+  <form class="form" [formGroup]="form">
+    <!-- Name -->
+    <div class="item">
+      <div class="content-icon">
+        <ion-icon name="person-outline"></ion-icon>
+      </div>
+      <ion-input 
+        class="input"
+        [ngClass]="{'invalid': validateinput('name')}"
+        placeholder="Escribe tu nombre aquí"
+        formControlName="name">
+      </ion-input>
     </div>
-    <ion-input 
-      class="input"
-      [ngClass]="{'invalid': validateinput('name')}"
-      placeholder="Escribe tu nombre aquí"
-      formControlName="name">
-    </ion-input>
-  </div>
-  <!-- Email -->
-  <div class="item">
-    <div class="content-icon">
-      <ion-icon name="mail-outline"></ion-icon>
+    <!-- Email -->
+    <div class="item">
+      <div class="content-icon">
+        <ion-icon name="mail-outline"></ion-icon>
+      </div>
+      <ion-input 
+        class="input"
+        [ngClass]="{'invalid': validateinput('email')}"
+        placeholder="Escribe tu correo aquí"
+        formControlName="email">
+      </ion-input>
     </div>
-    <ion-input 
-      class="input"
-      [ngClass]="{'invalid': validateinput('email')}"
-      placeholder="Escribe tu correo aquí"
-      formControlName="email">
-    </ion-input>
-  </div>
-  <!-- City -->
-  <div class="item">
-    <div class="content-icon">
-      <ion-icon name="location-outline"></ion-icon>
+    <!-- City -->
+    <div class="item">
+      <div class="content-icon">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+      <ion-select
+        placeholder="Ciudad"
+        [ngClass]="{'invalid': validateinput('city')}"
+        formControlName="city">
+        <ion-select-option [value]="city.value" *ngFor="let city of cities">{{city.name}}</ion-select-option>
+      </ion-select>
     </div>
-    <ion-select
-      placeholder="Ciudad"
-      [ngClass]="{'invalid': validateinput('city')}"
-      formControlName="city">
-      <ion-select-option [value]="city" *ngFor="let city of cities">{{city}}</ion-select-option>
-    </ion-select>
-  </div>
-  <!-- Celphone -->
-  <div class="item">
-    <ng-container *ngIf="isOtherUser; else itemTelTemplate">
-      <ng-container [ngTemplateOutlet]="itemTelWhatsappTemplate"></ng-container>
-    </ng-container>
-    <ion-input
-      class="input"
-      [ngClass]="{'invalid': validateinput('tel')}"
-      placeholder="Número de contacto"
-      formControlName="tel">
-    </ion-input>
-  </div>
-  <div class="submit" *ngIf="!uniqueid">
-    <ion-button 
-      shape="round" 
-      (click)="emitUserForm()">
-      Actualizar
-    </ion-button>
-  </div>
-</form>
+    <!-- Celphone -->
+    <div class="item">
+      <ng-container *ngIf="isOtherUser; else itemTelTemplate">
+        <ng-container [ngTemplateOutlet]="itemTelWhatsappTemplate"></ng-container>
+      </ng-container>
+      <ion-input
+        class="input"
+        [ngClass]="{'invalid': validateinput('tel')}"
+        placeholder="Número de contacto"
+        formControlName="tel">
+      </ion-input>
+    </div>
+    <div class="submit" *ngIf="!uniqueid">
+      <ion-button 
+        shape="round" 
+        (click)="emitUserForm()">
+        Actualizar
+      </ion-button>
+    </div>
+  </form>
+  
+  <ng-template #itemTelWhatsappTemplate>
+    <a class="content-icon" [href]="goToWhatsapp()">
+      <ion-icon name="call-outline"></ion-icon>
+    </a>
+  </ng-template>
+  <ng-template #itemTelTemplate>
+    <div class="content-icon">
+      <ion-icon name="call-outline"></ion-icon>
+    </div>
+  </ng-template>
+</ng-container>
 
-<ng-template #itemTelWhatsappTemplate>
-  <a class="content-icon" [href]="goToWhatsapp()">
-    <ion-icon name="call-outline"></ion-icon>
-  </a>
-</ng-template>
-<ng-template #itemTelTemplate>
-  <div class="content-icon">
-    <ion-icon name="call-outline"></ion-icon>
+<ng-template #loadingTemplate>
+  <div class="container-loading">
+    <app-loading [height]="'auto'" [color]="'var(--ion-color-primary)'"></app-loading>
   </div>
 </ng-template>

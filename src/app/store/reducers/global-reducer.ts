@@ -33,7 +33,12 @@ const featureReducer = createReducer(
       ...state,
       midera
     }
-  })
+  }),
+  on(actions.updateUser, (state, { user }) => {
+    return {
+      ...user
+    }
+  }),
 );
 
 export const authReducer = (state: User, action: Action): User => {

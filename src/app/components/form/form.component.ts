@@ -268,9 +268,10 @@ export class FormComponent extends FormsAbstract implements OnInit, OnDestroy {
   }
 
   private resetForm(): void {
-    this.form.reset();
+    this.form?.reset();
     this.photosDataBD = [];
     this.notificationSend = false;
+    this.categories = [];
     this.state.setData({ photos: [] });
     this.state.setData({ photosDelete: [] });
   }

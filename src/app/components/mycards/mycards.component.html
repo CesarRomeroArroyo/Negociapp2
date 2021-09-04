@@ -1,63 +1,72 @@
-<div class="cards" *ngIf="list">
-  <div class="message" *ngIf="list.length === 0">
-    <h6 class="text">{{textWithoutItem | uppercase}}</h6>
-  </div>
-  <div class="card" *ngFor="let item of list; let i = index">
-    <div class="object-circle">
-      <div class="gradient"></div>
-      <div class="circle" *ngIf="item.offerit?.length > 0 && type === nameCardList">
-        {{item.offerit.length}}
-      </div>
-      <img 
-        class="img" 
-        [src]="item.photos[0].dataUrl"
-        *ngIf="item.photos.length > 0; else imgDefaultTemplate">
-      <ng-template #imgDefaultTemplate>
-        <img 
-          class="img"
-          [src]="imgDefault">
-      </ng-template>
+<ng-container *ngIf="list; else loadingTemplate">
+  <div class="cards">
+    <div class="message" *ngIf="list.length === 0">
+      <h6 class="text">{{textWithoutItem | uppercase}}</h6>
     </div>
-    <div class="content-text">
-      <span class="title">{{item.name}}</span>
-      <div class="lineTwo">
-        <span>
-          <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}
-        </span>
-        <span>
-          <ion-icon name="location"></ion-icon>
-          {{item.cities[0]}}
-        </span>
-        <ng-container *ngIf="category === service; else categoryTemplate">
-          <span>{{item.type}}</span>
-        </ng-container>
-        <ng-template #categoryTemplate>
-          <span>{{item.categories[0]}}</span>
+    <div class="card" *ngFor="let item of list; let i = index">
+      <div class="object-circle">
+        <div class="gradient"></div>
+        <div class="circle" *ngIf="item.offerit?.length > 0 && type === nameCardList"> 
+          {{item.offerit.length}}
+        </div>
+        <img 
+          class="img" 
+          [src]="item.photos[0].dataUrl"
+          *ngIf="item.photos.length > 0; else imgDefaultTemplate">
+        <ng-template #imgDefaultTemplate>
+          <img 
+            class="img"
+            [src]="imgDefault">
         </ng-template>
       </div>
+      <div class="content-text">
+        <span class="title">{{item.name}}</span>
+        <div class="lineTwo">
+          <span>
+            <strong>Valor: </strong>{{(item.value | currency:'':'symbol':'1.0-2')}}
+          </span>
+          <span>
+            <ion-icon name="location"></ion-icon>
+            {{item.cities[0]}}
+          </span>
+          <ng-container *ngIf="category === service; else categoryTemplate">
+            <span>{{item.type}}</span>
+          </ng-container>
+          <ng-template #categoryTemplate>
+            <span>{{item.categories[0]}}</span>
+          </ng-template>
+        </div>
+      </div>
+      <ng-container *ngIf="type === nameCardList">
+        <div class="buttons">
+          <div class="button" (click)="selectOffer(item, i)">Ofertas</div>
+          <div class="button" (click)="goToDetails(item)">Ver más</div>
+          <div class="button" (click)="goToDelete(item)">Eliminar</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="type === nameCardOffers || type === nameCardMyOffers">
+        <div class="buttons">
+          <div class="button isOffer" (click)="goToDetail(item)">Detalles</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="type === nameCardIsMyHistorial">
+        <div class="buttons">
+          <div class="button" [class.isOffer]="item.rate" (click)="goToDetailHistorial(item, i)">Detalles</div>
+          <div class="button isHistorial" *ngIf="!item.rate" (click)="goToDetailRate(item, i)">Calificar</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="type === nameCardIsMyHistorialOffers">
+        <div class="buttons">
+          <div class="button isOffer" (click)="goToDetailHistorial(item, i)">Detalles</div>
+        </div>
+      </ng-container>
     </div>
-    <ng-container *ngIf="type === nameCardList">
-      <div class="buttons">
-        <div class="button" (click)="selectOffer(item, i)">Ofertas</div>
-        <div class="button" (click)="goToDetails(item)">Ver más</div>
-        <div class="button" (click)="goToDelete(item)">Eliminar</div>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="type === nameCardOffers || type === nameCardMyOffers">
-      <div class="buttons">
-        <div class="button isOffer" (click)="goToDetail(item)">Detalles</div>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="type === nameCardIsMyHistorial">
-      <div class="buttons">
-        <div class="button" [class.isOffer]="item.rate" (click)="goToDetailHistorial(item, i)">Detalles</div>
-        <div class="button isHistorial" *ngIf="!item.rate" (click)="goToDetailRate(item, i)">Calificar</div>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="type === nameCardIsMyHistorialOffers">
-      <div class="buttons">
-        <div class="button isOffer" (click)="goToDetailHistorial(item, i)">Detalles</div>
-      </div>
-    </ng-container>
   </div>
-</div>
+</ng-container>
+
+
+<ng-template #loadingTemplate>
+  <div class="container-loading">
+    <app-loading [height]="'auto'" [color]="'var(--ion-color-primary)'"></app-loading>
+  </div>
+</ng-template>

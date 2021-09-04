@@ -50,15 +50,15 @@
 </ion-content>
 
 <app-categories-modal 
+  *ngIf="showModalCategories"
   [categories]="categories$ | async"
   [categoriesTem]="categories$ | async"
   [categoriesSelected]="categories"
   (showModal)="showModalCategories = $event"
-  (categoriesSelectedOutput)="categoriesSelectedModal($event)"
-  *ngIf="showModalCategories">
+  (categoriesSelectedOutput)="categoriesSelectedModal($event)">
 </app-categories-modal>
 
 <app-photos-modal
-  (showModal)="showModalPhotos = $event"
-  *ngIf="showModalPhotos">
+  *ngIf="showModalPhotos"
+  (showModal)="showModalPhotos = $event">
 </app-photos-modal>

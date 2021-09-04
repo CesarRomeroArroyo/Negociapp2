@@ -2,12 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
-import { FormsAbstract } from 'src/app/components/abstract/form.abstact';
-import { FirebaseService } from 'src/app/core/services/firebase.service';
-import { Ranking } from 'src/app/models/perfil.models';
-import { FileManagerService } from 'src/app/core/services/file-manager.service';
+import { FormsAbstract } from '@components/abstract/form.abstact';
+import { Ranking } from '@models/perfil.models';
+
+import { FirebaseService } from '@core/services/firebase.service';
+import { FileManagerService } from '@core/services/file-manager.service';
+
+import { User } from '@models/global/user.model';
+import { SelectType } from '@models/home/select-type';
+import { COLLECTIONS_BD } from '@models/data-base/bd.models';
+
+import { HomeFacade } from '@app/home/home.facade';
+import { ProfileFacade } from './perfil.facade';
 
 @Component({
   selector: 'app-perfil',
@@ -16,20 +25,14 @@ import { FileManagerService } from 'src/app/core/services/file-manager.service';
 })
 export class PerfilPage extends FormsAbstract implements OnInit {
 
-  public cities = [
-    'Cartagena',
-    'Barranquilla',
-    'Montería',
-    'Santa Marta',
-    'Sincelejo',
-    'Riohacha',
-    'Valledupar',
-  ];
+  public cities: SelectType[] = [];
   public stars = [5, 4, 3, 2, 1];
   public promedio: number;
   public tab: number = 1;
   public dataRanking: Ranking = { allBussiness: 0, recommended: 0, notRecommended: 0, satisfied: 0, notSatisfied: 0, };
   public filePhoto: File = null;
+  public subscriptions: Subscription[] = [];
+  public user: User;
 
 
   constructor(
@@ -37,29 +40,45 @@ export class PerfilPage extends FormsAbstract implements OnInit {
     private firebase: FirebaseService,
     private _location: Location,
     private storage: FileManagerService,
+    private homeFacade: HomeFacade,
+    private profileFacade: ProfileFacade
   ) { super(); }
 
   public async ngOnInit() {
+    this.cities = await this.firebase.obtenerPromise(COLLECTIONS_BD.CITIES);
     if (this.isOtherUser) {
       // Other user
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);
       this.user = user[0];
     } else {
       // My user
-      const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.user.uniqueid);
-      this.user = user[0];
+      this.subscriptions.push(
+        this.user$.subscribe(user => {
+          this.user = user;
+        })
+      );
     }
-    this.getDataRanking()
+    this.getDataRanking();
     this.promedio = this.starsPromedio();
   }
 
+  ionViewDidLeave(): void {
+    this.subscriptions?.forEach(subscription => {
+      subscription?.unsubscribe();
+    });
+  }
+
+  get user$(): Observable<User> {
+    return this.homeFacade.getUser$;
+  }
+
   get userImg(): string {
-    return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+    return this.user?.photoUrl?.length > 0 ? this.user?.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
   }
 
   get isOtherUser(): boolean {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
-    return this.uniqueid ? true: false;
+    return this.uniqueid ? true : false;
   }
 
   public async selectImg(file): Promise<void> {
@@ -88,22 +107,17 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   public update(event?: FormGroup): void {
-    if (event) {
-      this.user.name = event.get('name').value;
-      this.user.city = event.get('city').value;
-      this.user.tel = event.get('tel').value;
-      this.user.email = event.get('email').value;
+    const userData = {
+      ...this.user,
+      ...event.value
     }
-    localStorage.setItem('NEGOCIAPP_USER', JSON.stringify(this.user));
-    this.firebase.actualizarDatos('usuario-app', this.user, this.user.id).then(() => {
-      Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
-    });
+    this.profileFacade.updateUser(userData);
   }
 
   public starsPromedio(): number {
     let accumulator = 0;
     let quantity = 0;
-    this.user.rate.forEach(item => {
+    this.user?.rate?.forEach(item => {
       quantity++;
       accumulator = accumulator + item.service;
     });
@@ -112,16 +126,20 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   public getDataRanking(): void {
-    this.dataRanking.allBussiness = this.user?.rate.length;
-    this.dataRanking.recommended = this.user?.rate.filter(x => x.recommend === true).length;
-    this.dataRanking.notRecommended = this.user?.rate.filter(x => x.recommend === false).length;
-    this.dataRanking.satisfied = this.user?.rate.filter(x => x.satisfied === true).length;
-    this.dataRanking.notSatisfied = this.user?.rate.filter(x => x.satisfied === false).length;
+    this.subscriptions.push(
+      this.user$.subscribe(user => {
+        this.dataRanking.allBussiness = user?.rate?.length;
+        this.dataRanking.recommended = user?.rate?.filter(x => x.recommend === true).length;
+        this.dataRanking.notRecommended = user?.rate?.filter(x => x.recommend === false).length;
+        this.dataRanking.satisfied = user?.rate?.filter(x => x.satisfied === true).length;
+        this.dataRanking.notSatisfied = user?.rate?.filter(x => x.satisfied === false).length;
+      })
+    );
   }
 
   private async uploadImg(): Promise<void> {
     if (this.user.photoRef) {
-      await this.storage.deleteFilesFolder(this.user.photoRef);
+      this.storage.deleteFilesFolder(this.user.photoRef);
     }
     this.user.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
     await this.storage.upload(this.filePhoto, this.user.photoRef);

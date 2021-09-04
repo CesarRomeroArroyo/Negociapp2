@@ -45,6 +45,7 @@
 .object-circle {
   position: relative;
   height: 180px;
+  width: 100%;
 
   .gradient {
     &::after {

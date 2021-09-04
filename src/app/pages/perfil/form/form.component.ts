@@ -13,9 +13,9 @@ export class FormComponent implements OnInit {
   @Input() cities: string[] = [];
   @Input() user: User;
   @Input() isOtherUser: boolean;
-  @Output() updateUser: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
+  @Output() updateUser: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  public form: FormGroup;
+  public form: FormGroup = null;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -25,10 +25,10 @@ export class FormComponent implements OnInit {
 
   public initForm(data?: User): void {
     this.form = this.formBuilder.group({
-      name: ['' || data?.name, Validators.required],
-      city: ['' || data?.city, Validators.required],
-      tel: ['' || data?.tel, Validators.required],
-      email: ['' || data?.email, Validators.required],
+      name: [data?.name || '', Validators.required],
+      city: [data?.city || '', Validators.required],
+      tel: [data?.tel || '', Validators.required],
+      email: [data?.email || '', Validators.required],
     });
     if (this.uniqueid) {
       this.form.get('name').disable();
@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
 
   public emitUserForm() {
     if (this.validators()) {
-      this.updateUser.emit(this.form)
+      this.updateUser.emit(this.form);
     }
   }
 

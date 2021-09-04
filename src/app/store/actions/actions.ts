@@ -75,3 +75,14 @@ export const updateMideraSuccess = createAction(
 export const updateMideraFailure = createAction(
     '[Update Midera Failure] Update Midera Failure'
 );
+// UPDATE USER
+export const updateUser = createAction(
+    '[Update User] Update User',
+    props<{ user: User }>()
+);
+export const updateUserSuccess = createAction(
+    '[Update User Success] Update User Success'
+);
+export const updateUserFailure = createAction(
+    '[Update User Failure] Update User Failure'
+);

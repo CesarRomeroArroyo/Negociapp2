@@ -8,7 +8,7 @@ import * as actions from '@store/actions/actions';
 import { FirebaseService } from '@core/services/firebase.service';
 import { COLLECTIONS_BD } from '@models/data-base/bd.models';
 import { SelectType } from '@models/home/select-type';
-import { updateMiders } from '../actions/actions';
+import { updateMiders, updateMideraFailure } from '../actions/actions';
 import Swal from 'sweetalert2';
 
 @Injectable()
@@ -127,6 +127,24 @@ export class AuthenticationEffects {
           map((x) => {
             Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
             return actions.updateMideraSuccess();
+          }),
+          catchError(error => {
+            Swal.fire('Algo ha salido mal', '', 'warning');
+            return of(actions.updateMideraFailure());
+          })
+        )
+      })
+    ));
+
+    // UPDATE USER
+    updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.updateUser),
+      switchMap(({ user }) => {
+        return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
+          map((x) => {
+            Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+            return actions.updateUserSuccess();
           }),
           catchError(error => {
             Swal.fire('Algo ha salido mal', '', 'warning');

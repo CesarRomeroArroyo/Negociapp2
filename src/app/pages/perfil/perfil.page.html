@@ -1,5 +1,5 @@
 <ion-content fullscreen="true" scroll-y="true" scroll-x="false" >
-  <ng-container *ngIf="user">
+  <ng-container *ngIf="(user$ | async); else loadingTemplate">
     <div class="content">
       <div class="header">
         <div class="partOne">
@@ -49,7 +49,7 @@
       <ng-container *ngIf="tab === 2">
         <app-form 
           [uniqueid]="uniqueid" 
-          [user]="user" 
+          [user]="user$ | async" 
           [cities]="cities"
           [isOtherUser]="isOtherUser"
           (updateUser)="update($event)">
@@ -57,4 +57,10 @@
       </ng-container>
     </div>
   </ng-container>
+
+  <ng-template #loadingTemplate>
+    <div class="container-loading">
+      <app-loading [height]="'auto'" [color]="'var(--ion-color-primary)'"></app-loading>
+    </div>
+  </ng-template>
 </ion-content>

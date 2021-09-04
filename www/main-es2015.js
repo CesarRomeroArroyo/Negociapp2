@@ -526,7 +526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    [placeholder]=\"placeholderText\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let tipo of types\" \n      [value]=\"tipo.value\">\n      {{tipo.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Cities -->\n  <ion-select \n    formControlName=\"cities\"\n    multiple\n    placeholder=\"Seleccionar ciudades\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('cities')}\">\n    <ion-select-option \n      *ngFor=\"let city of cities\" \n      [value]=\"city.value\">\n      {{city.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n    type=\"number\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form [formGroup]=\"form\" *ngIf=\"form\">\n  <!-- Name -->\n  <ion-input \n    [ngClass]=\"{'invalid': validateinput('name')}\"\n    class=\"input\"\n    [placeholder]=\"placeholderText\"\n    formControlName=\"name\">\n  </ion-input>\n  <!-- Type -->\n  <ion-select \n    *ngIf=\"category === service\"\n    formControlName=\"type\"\n    placeholder=\"Seleccionar tipo de servicio\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('type')}\">\n    <ion-select-option \n      *ngFor=\"let type of specialties\" \n      [value]=\"type.value\">\n      {{type.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Cities -->\n  <ion-select \n    formControlName=\"cities\"\n    multiple\n    placeholder=\"Seleccionar ciudades\"\n    icon=\"caret-down-outline\"\n    [ngClass]=\"{'invalid': validateinput('cities')}\">\n    <ion-select-option \n      *ngFor=\"let city of cities\" \n      [value]=\"city.value\">\n      {{city.name}}\n    </ion-select-option>\n  </ion-select>\n  <!-- Quantity -->\n  <input \n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('quantity')}\"\n    class=\"input\"\n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Cantidad\"\n    formControlName=\"quantity\"\n    type=\"number\"\n  >\n  <!-- Time -->\n  <ion-input\n  *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('time')}\" \n    class=\"input\"\n    placeholder=\"tiempo\"\n    formControlName=\"time\">\n  </ion-input>\n  <!-- TimeFor -->\n  <ion-radio-group \n    *ngIf=\"category === rent\"\n    [ngClass]=\"{'invalid': validateinput('timeFor')}\" \n    class=\"radio-groud\" \n    formControlName=\"timeFor\">\n      <ion-item lines=\"none\" *ngFor=\"let item of timeForArray\">\n        <ion-label class=\"label\">{{item}}</ion-label>\n        <ion-radio \n          [value]=\"item\">\n        </ion-radio>\n      </ion-item>\n  </ion-radio-group>\n  <!-- State -->\n  <ion-list lines=\"none\" *ngIf=\"category === shop\">\n    <ion-radio-group formControlName=\"state\">\n      <ion-label>Estado del producto</ion-label>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Nuevo\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Nuevo\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-radio slot=\"start\" value=\"Usado\"></ion-radio>\n        <ion-input disabled=\"true\">\n          Usado\n        </ion-input>\n      </ion-item>\n    </ion-radio-group>\n  </ion-list>\n  <!-- Categories -->\n  <ion-button \n    type=\"button\"\n    fill=\"clear\"\n    class=\"input select button\"\n    (click)=\"showCategories.emit(true)\">\n      Agregar Categorias\n    <ion-icon name=\"caret-down-outline\"></ion-icon>\n  </ion-button>\n  <span class=\"span\" *ngIf=\"categories.length <= 0 && invalid\">Debe seleccionar una categoria al menos</span>\n  <div class=\"categories\" *ngIf=\"categories.length > 0\">\n    <div class=\"categories__options\">\n      <ion-chip *ngFor=\"let category of categories; let i = index\">\n        <ion-label>{{category}}</ion-label>\n      </ion-chip>\n    </div>\n  </div>\n  <!-- Photos -->\n  <ion-button \n    fill=\"clear\"\n    type=\"button\"\n    class=\"input button\" \n    (click)=\"showPhotos.emit(true)\">\n      Subir Fotos\n  </ion-button>\n  <!-- Description -->\n  <ion-textarea \n    [ngClass]=\"{'invalid': validateinput('description')}\"\n    type=\"text\" \n    class=\"text-area\" \n    placeholder=\"Indica tu necesidad\" \n    formControlName=\"description\">\n  </ion-textarea>\n  <!-- ValueMask -->\n  <input \n    [ngClass]=\"{'invalid': validateinput('valueMask')}\"\n    class=\"input\"\n    type=\"tel\" \n    [textMask]=\"{mask: numberMask}\"\n    placeholder=\"Valor dispuesto a pagar\" \n    name=\"valor\"\n    autocomplete=\"off\"\n    formControlName=\"valueMask\"\n  >\n  <!-- Buttons -->\n  <ng-container *ngIf=\"!idunique; else updateTemplate\">\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"create()\">\n          Crear\n      </ion-button>\n    </div>\n  </ng-container>\n  <ng-template #updateTemplate>\n    <div class=\"submit\">\n      <ion-button\n        type=\"submit\"\n        shape=\"round\"\n        (click)=\"update()\">\n          Actualizar\n      </ion-button>\n    </div>\n  </ng-template>\n</form>\n");
 
 /***/ }),
 
@@ -616,7 +616,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: 'home',
-        loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "./src/app/home/home.module.ts")).then(m => m.HomePageModule)
     },
     {
         path: 'inicio',
@@ -638,7 +638,7 @@ const routes = [
     },
     {
         path: 'mider',
-        loadChildren: () => Promise.all(/*! import() | pages-mider-mider-module */[__webpack_require__.e("default~form-form-module~pages-mider-mider-module"), __webpack_require__.e("pages-mider-mider-module")]).then(__webpack_require__.bind(null, /*! ./pages/mider/mider.module */ "./src/app/pages/mider/mider.module.ts")).then(m => m.MiderPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-mider-mider-module */[__webpack_require__.e("default~form-form-module~pages-mider-mider-module"), __webpack_require__.e("common"), __webpack_require__.e("pages-mider-mider-module")]).then(__webpack_require__.bind(null, /*! ./pages/mider/mider.module */ "./src/app/pages/mider/mider.module.ts")).then(m => m.MiderPageModule)
     },
     {
         path: '**',
@@ -694,6 +694,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
 /* harmony import */ var _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./core/services/sms.service */ "./src/app/core/services/sms.service.ts");
 /* harmony import */ var _constans_localStorage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./constans/localStorage */ "./src/app/constans/localStorage.ts");
+/* harmony import */ var _home_home_facade__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home/home.facade */ "./src/app/home/home.facade.ts");
+
 
 
 
@@ -706,13 +708,14 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Device } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let AppComponent = class AppComponent {
-    constructor(oneSignal, platform, router, oneSignalService, smsService, firebaseService) {
+    constructor(oneSignal, platform, router, oneSignalService, smsService, firebaseService, homeFacade) {
         this.oneSignal = oneSignal;
         this.platform = platform;
         this.router = router;
         this.oneSignalService = oneSignalService;
         this.smsService = smsService;
         this.firebaseService = firebaseService;
+        this.homeFacade = homeFacade;
         this.initializeApp();
     }
     ngOnInit() {
@@ -765,10 +768,17 @@ let AppComponent = class AppComponent {
     fetchUser() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let user = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER));
-            const users = yield this.firebaseService.obtenerPromise('usuario-app');
-            const dataUser = users.filter(x => (x === null || x === void 0 ? void 0 : x.uniqueid) === (user === null || user === void 0 ? void 0 : user.uniqueid));
-            user = dataUser[0];
-            localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER, JSON.stringify(user));
+            console.log(user);
+            if (user) {
+                const users = yield this.firebaseService.obtenerPromise('usuario-app');
+                const dataUser = users.filter(x => (x === null || x === void 0 ? void 0 : x.uniqueid) === (user === null || user === void 0 ? void 0 : user.uniqueid));
+                user = dataUser[0];
+                localStorage.setItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER, JSON.stringify(user));
+                const logged = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].LOGGED));
+                if (logged) {
+                    this.homeFacade.userAlreadylogged();
+                }
+            }
         });
     }
 };
@@ -778,7 +788,8 @@ AppComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"] },
     { type: _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"] },
-    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"] }
+    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"] },
+    { type: _home_home_facade__WEBPACK_IMPORTED_MODULE_10__["HomeFacade"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -791,7 +802,8 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
         _core_services_one_signal_service__WEBPACK_IMPORTED_MODULE_6__["OneSignalService"],
         _core_services_sms_service__WEBPACK_IMPORTED_MODULE_8__["SmsService"],
-        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"]])
+        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"],
+        _home_home_facade__WEBPACK_IMPORTED_MODULE_10__["HomeFacade"]])
 ], AppComponent);
 
 
@@ -802,11 +814,13 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule */
+/*! exports provided: REDUCER_TOKEN, metaReducers, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REDUCER_TOKEN", function() { return REDUCER_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "metaReducers", function() { return metaReducers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
@@ -824,6 +838,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 /* harmony import */ var _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/onesignal/ngx */ "./node_modules/@ionic-native/onesignal/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _components_components_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/components.module */ "./src/app/components/components.module.ts");
+/* harmony import */ var _store_reducers_index_global_reducers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @store/reducers/index-global-reducers */ "./src/app/store/reducers/index-global-reducers.ts");
+/* harmony import */ var _store_effects_effects__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @store/effects/effects */ "./src/app/store/effects/effects.ts");
+/* harmony import */ var _app_home_home_facade__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @app/home/home.facade */ "./src/app/home/home.facade.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
+/* harmony import */ var ngrx_store_freeze__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ngrx-store-freeze */ "./node_modules/ngrx-store-freeze/es6/index.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/__ivy_ngcc__/fesm2015/ngrx-effects.js");
+/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm2015/ngrx-store-devtools.js");
 
 
 
@@ -840,6 +861,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+const REDUCER_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["InjectionToken"]('Registered Reducers');
+const metaReducers = !_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].production ? [] : [ngrx_store_freeze__WEBPACK_IMPORTED_MODULE_20__["storeFreeze"]];
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -855,12 +885,29 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_fire_storage__WEBPACK_IMPORTED_MODULE_10__["AngularFireStorageModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"],
-            _components_components_module__WEBPACK_IMPORTED_MODULE_15__["ComponentsModule"]
+            _components_components_module__WEBPACK_IMPORTED_MODULE_15__["ComponentsModule"],
+            _ngrx_store__WEBPACK_IMPORTED_MODULE_19__["StoreModule"].forRoot(REDUCER_TOKEN, {
+                metaReducers
+            }),
+            _ngrx_effects__WEBPACK_IMPORTED_MODULE_21__["EffectsModule"].forRoot([_store_effects_effects__WEBPACK_IMPORTED_MODULE_17__["AuthenticationEffects"]]),
+            _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_22__["StoreDevtoolsModule"].instrument({
+                maxAge: 25,
+                logOnly: !_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].production,
+                autoPause: true,
+            })
         ],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
+            {
+                provide: REDUCER_TOKEN,
+                useValue: _store_reducers_index_global_reducers__WEBPACK_IMPORTED_MODULE_16__["globalReducers"]
+            },
+            {
+                provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
+                useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
+            },
             _angular_fire_auth__WEBPACK_IMPORTED_MODULE_11__["AngularFireAuth"],
-            _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_14__["OneSignal"]
+            _ionic_native_onesignal_ngx__WEBPACK_IMPORTED_MODULE_14__["OneSignal"],
+            _app_home_home_facade__WEBPACK_IMPORTED_MODULE_18__["HomeFacade"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
@@ -1273,34 +1320,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
-/* harmony import */ var src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/services/unique.service */ "./src/app/core/services/unique.service.ts");
-/* harmony import */ var src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
-/* harmony import */ var src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/state.service */ "./src/app/core/services/state.service.ts");
-/* harmony import */ var src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/core/services/file-manager.service */ "./src/app/core/services/file-manager.service.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/constans/constans-global */ "./src/app/constans/constans-global.ts");
-/* harmony import */ var src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/core/services/form.service */ "./src/app/core/services/form.service.ts");
-
-
-
-
-
-const { Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"];
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
+/* harmony import */ var _models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @models/data-base/bd.models */ "./src/app/models/data-base/bd.models.ts");
+/* harmony import */ var _core_services_unique_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @core/services/unique.service */ "./src/app/core/services/unique.service.ts");
+/* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
+/* harmony import */ var _core_services_state_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @core/services/state.service */ "./src/app/core/services/state.service.ts");
+/* harmony import */ var _core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @core/services/file-manager.service */ "./src/app/core/services/file-manager.service.ts");
+/* harmony import */ var _core_services_form_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @core/services/form.service */ "./src/app/core/services/form.service.ts");
 
 
 
 
 
 
+const { Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_5__["Plugins"];
 
 
 
-let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_6__["FormsAbstract"] {
+
+
+
+
+
+let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_7__["FormsAbstract"] {
     constructor(formBuilder, firebase, uniqueId, state, fileManager, loadingController, router, formSvc, route) {
         super();
         this.formBuilder = formBuilder;
@@ -1312,26 +1359,28 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.router = router;
         this.formSvc = formSvc;
         this.route = route;
+        this.categories = [];
         this.showCategories = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.showPhotos = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.showTabTwo = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.categories = [];
+        this.categoriesUpdate = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.photos = [];
         this.photosDataBD = [];
         this.photosDelete = [];
-        this.types = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__["TYPES_SERVICE"];
+        this.specialties = [];
         this.notificationSend = false;
-        this.cities = src_app_constans_constans_global__WEBPACK_IMPORTED_MODULE_12__["CITIES"];
+        this.cities = [];
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.initForm();
             this.idunique = this.route.snapshot.paramMap.get('idunique');
-            if (this.idunique)
+            this.specialties = yield this.firebase.obtenerPromise(_models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__["COLLECTIONS_BD"].SPECIALTIES);
+            this.cities = yield this.firebase.obtenerPromise(_models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__["COLLECTIONS_BD"].CITIES);
+            this.initForm();
+            if (this.idunique) {
                 this.getDataUpdate();
+            }
             this.subscription = this.state.getObservable().subscribe(data => {
-                if (data.categories)
-                    this.categories = data.categories;
                 if (data.photos)
                     this.photos = data.photos;
                 if (data.photosDelete)
@@ -1348,8 +1397,9 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const dataForm = yield this.firebase.obtenerUniqueIdPromise(this.collectionDataBD, this.idunique);
             const data = dataForm[0];
+            this.categories = data.categories;
+            this.categoriesUpdate.emit(this.categories);
             this.initForm(data);
-            this.state.setData({ categories: data.categories });
             this.state.setData({ photos: data.photos });
         });
     }
@@ -1428,12 +1478,12 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photosDataBD, value: price, uniqueid: this.uniqueId.uniqueId(), userRequest: this.user.uniqueid, offerit: [], userOffers: [], close: false, lat: this.coordinates.coords.latitude, lng: this.coordinates.coords.longitude, oneSignalRequest: this.user.onesignal });
             delete dataForm.valueMask;
             this.firebase.save(this.collectionDataBD, dataForm).then(() => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Datos almacenados correctamente', 'success');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('', 'Datos almacenados correctamente', 'success');
                 this.sendNotifications(dataForm.uniqueid);
                 this.showTabTwo.emit();
                 loading.dismiss();
             }).catch(err => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Error', err.message, 'error');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('Error', err.message, 'error');
             });
         });
     }
@@ -1482,12 +1532,12 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
             const dataForm = Object.assign(Object.assign({}, this.form.value), { categories: this.categories, photos: this.photos, value: price });
             delete dataForm.valueMask;
             this.firebase.actualizarDatos(this.collectionDataBD, dataForm, this.form.get('id').value).then(() => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Datos actualizados correctamente', 'success');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('', 'Datos actualizados correctamente', 'success');
                 this.resetForm();
                 this.router.navigate([`/category/${this.category}/form/`]);
                 loading.dismiss();
             }).catch(err => {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Error', err.message, 'error');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('Error', err.message, 'error');
             });
         }, 2000);
     }
@@ -1504,7 +1554,7 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
                 coord = false;
             }
             catch (_a) {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('', 'Debes tener el GPS activo', 'warning');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire('', 'Debes tener el GPS activo', 'warning');
             }
             this.categories.length === 0 ? this.invalid = true : this.invalid = false;
             return this.form.invalid || this.categories.length === 0 || coord ? false : true;
@@ -1521,22 +1571,30 @@ let FormComponent = class FormComponent extends _abstract_form_abstact__WEBPACK_
         this.form.reset();
         this.photosDataBD = [];
         this.notificationSend = false;
-        this.state.setData({ categories: [] });
+        this.categories = [];
         this.state.setData({ photos: [] });
         this.state.setData({ photosDelete: [] });
     }
 };
 FormComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
-    { type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__["FirebaseService"] },
-    { type: src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__["UniqueService"] },
-    { type: src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__["StateApp"] },
-    { type: src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__["FileManagerService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__["LoadingController"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-    { type: src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
+    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_10__["FirebaseService"] },
+    { type: _core_services_unique_service__WEBPACK_IMPORTED_MODULE_9__["UniqueService"] },
+    { type: _core_services_state_service__WEBPACK_IMPORTED_MODULE_11__["StateApp"] },
+    { type: _core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_12__["FileManagerService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
+    { type: _core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] }
 ];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+], FormComponent.prototype, "category", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Array)
+], FormComponent.prototype, "categories", void 0);
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
@@ -1549,22 +1607,26 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
 ], FormComponent.prototype, "showTabTwo", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)
+], FormComponent.prototype, "categoriesUpdate", void 0);
 FormComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-formComponent',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./form.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/form/form.component.html")).default,
-        providers: [src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"]],
+        providers: [_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"]],
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./form.component.scss */ "./src/app/components/form/form.component.scss")).default]
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-        src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_8__["FirebaseService"],
-        src_app_core_services_unique_service__WEBPACK_IMPORTED_MODULE_7__["UniqueService"],
-        src_app_core_services_state_service__WEBPACK_IMPORTED_MODULE_9__["StateApp"],
-        src_app_core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_10__["FileManagerService"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_11__["LoadingController"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        src_app_core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_10__["FirebaseService"],
+        _core_services_unique_service__WEBPACK_IMPORTED_MODULE_9__["UniqueService"],
+        _core_services_state_service__WEBPACK_IMPORTED_MODULE_11__["StateApp"],
+        _core_services_file_manager_service__WEBPACK_IMPORTED_MODULE_12__["FileManagerService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+        _core_services_form_service__WEBPACK_IMPORTED_MODULE_13__["FormService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]])
 ], FormComponent);
 
 
@@ -2107,37 +2169,6 @@ OffersReceivedComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 /***/ }),
 
-/***/ "./src/app/constans/constans-global.ts":
-/*!*********************************************!*\
-  !*** ./src/app/constans/constans-global.ts ***!
-  \*********************************************/
-/*! exports provided: CITIES, TYPES_SERVICE */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CITIES", function() { return CITIES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPES_SERVICE", function() { return TYPES_SERVICE; });
-const CITIES = [
-    { name: 'Cartagena', value: 'Cartagena' },
-    { name: 'Barranquilla', value: 'Barranquilla' },
-    { name: 'Montería', value: 'Montería' },
-    { name: 'Santa Marta', value: 'Santa Marta' },
-    { name: 'Sincelejo', value: 'Sincelejo' },
-    { name: 'Riohacha', value: 'Riohacha' },
-    { name: 'Valledupar', value: 'Valledupar' }
-];
-const TYPES_SERVICE = [
-    { name: 'Especializado', value: 'Especializado' },
-    { name: 'Profesional', value: 'Profesional' },
-    { name: 'Tecnologo', value: 'Tecnologo' },
-    { name: 'Tecnico', value: 'Tecnico' },
-    { name: 'Independiente', value: 'Independiente' }
-];
-
-
-/***/ }),
-
 /***/ "./src/app/constans/localStorage.ts":
 /*!******************************************!*\
   !*** ./src/app/constans/localStorage.ts ***!
@@ -2184,7 +2215,7 @@ let AuthGuard = class AuthGuard {
                 return true;
             }
             else {
-                this.router.navigateByUrl('/login');
+                this.router.navigateByUrl('/home');
             }
         });
     }
@@ -2463,30 +2494,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var src_app_components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/components/abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
+/* harmony import */ var _components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
 /* harmony import */ var _firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./firebase.service */ "./src/app/core/services/firebase.service.ts");
 /* harmony import */ var _one_signal_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./one-signal.service */ "./src/app/core/services/one-signal.service.ts");
+/* harmony import */ var _home_home_facade__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../home/home.facade */ "./src/app/home/home.facade.ts");
 
 
 
 
 
 
-let FormService = class FormService extends src_app_components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__["FormsAbstract"] {
-    constructor(firebase, oneSignal, route) {
+
+let FormService = class FormService extends _components_abstract_form_abstact__WEBPACK_IMPORTED_MODULE_3__["FormsAbstract"] {
+    constructor(firebase, oneSignal, route, homeFacade) {
         super();
         this.firebase = firebase;
         this.oneSignal = oneSignal;
         this.route = route;
+        this.homeFacade = homeFacade;
         this.category = this.route.snapshot.paramMap.get('category');
     }
+    get user$() { return this.homeFacade.getUser$; }
     sendNotification(cities, categories, typeService = null, itemUniqueid) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+        this.user$.subscribe((user) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log(user);
             const users = yield this.firebase.obtenerPromise('usuario-app');
             const usersSendNotications = [];
             users.forEach(usuario => {
                 var _a;
-                if (usuario.uniqueid !== this.user.uniqueid) {
+                if (usuario.uniqueid !== user.uniqueid) {
                     cities === null || cities === void 0 ? void 0 : cities.forEach(city => {
                         var _a;
                         if ((_a = usuario[this.userMider].cities) === null || _a === void 0 ? void 0 : _a.includes(city)) {
@@ -2502,24 +2538,26 @@ let FormService = class FormService extends src_app_components_abstract_form_abs
                         {}
                 }
             });
-            usersSendNotications.forEach(user => {
-                this.oneSignal.sendDirectMessage(user.onesignal, this.userMider === 'miders' ? `!Hay un nuevo servicio que concuerda con tus categorias!` :
+            usersSendNotications.forEach(x => {
+                this.oneSignal.sendDirectMessage(x.onesignal, this.userMider === 'miders' ? `!Hay un nuevo servicio que concuerda con tus categorias!` :
                     this.userMider === 'midera' ? `!Hay un nuevo Alquiler que concuerda con tus categorias!` :
                         `!Hay un nuevo producto que concuerda con tus categorias!`, { target: `category/${this.category}/list-offers/offer-detail/${itemUniqueid}`, type: 'redirect' });
             });
-        });
+        }));
     }
 };
 FormService.ctorParameters = () => [
     { type: _firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"] },
     { type: _one_signal_service__WEBPACK_IMPORTED_MODULE_5__["OneSignalService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _home_home_facade__WEBPACK_IMPORTED_MODULE_6__["HomeFacade"] }
 ];
 FormService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"],
         _one_signal_service__WEBPACK_IMPORTED_MODULE_5__["OneSignalService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _home_home_facade__WEBPACK_IMPORTED_MODULE_6__["HomeFacade"]])
 ], FormService);
 
 
@@ -2752,6 +2790,60 @@ UniqueService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/home/home.facade.ts":
+/*!*************************************!*\
+  !*** ./src/app/home/home.facade.ts ***!
+  \*************************************/
+/*! exports provided: HomeFacade */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeFacade", function() { return HomeFacade; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
+/* harmony import */ var _store_actions_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @store/actions/actions */ "./src/app/store/actions/actions.ts");
+/* harmony import */ var _constans_localStorage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @constans/localStorage */ "./src/app/constans/localStorage.ts");
+
+
+
+
+
+
+let HomeFacade = class HomeFacade {
+    constructor(store, router) {
+        this.store = store;
+        this.router = router;
+        this.getUser$ = this.store.select('authenticationUser');
+    }
+    registerUserNew(user) {
+        this.store.dispatch(_store_actions_actions__WEBPACK_IMPORTED_MODULE_4__["registerUser"]({ user }));
+    }
+    userRelogged(user) {
+        this.store.dispatch(_store_actions_actions__WEBPACK_IMPORTED_MODULE_4__["userRelogged"]({ user }));
+    }
+    userAlreadylogged() {
+        const user = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_5__["LOCALSTORAGE"].USER));
+        this.router.navigate(['/inicio']);
+        this.store.dispatch(_store_actions_actions__WEBPACK_IMPORTED_MODULE_4__["userAlreadylogged"]({ user }));
+    }
+};
+HomeFacade.ctorParameters = () => [
+    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
+HomeFacade = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+], HomeFacade);
+
+
+
+/***/ }),
+
 /***/ "./src/app/models/category.model.ts":
 /*!******************************************!*\
   !*** ./src/app/models/category.model.ts ***!
@@ -2804,6 +2896,33 @@ const dataTemplate = [
 
 /***/ }),
 
+/***/ "./src/app/models/data-base/bd.models.ts":
+/*!***********************************************!*\
+  !*** ./src/app/models/data-base/bd.models.ts ***!
+  \***********************************************/
+/*! exports provided: COLLECTIONS_BD */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COLLECTIONS_BD", function() { return COLLECTIONS_BD; });
+const COLLECTIONS_BD = {
+    USUARIO_APP: 'usuario-app',
+    SPECIALTIES: 'specialties',
+    SERVICES_TYPES: 'services-types',
+    INDENTIFICATION_TYPES: 'identification-types',
+    CONFIGURATIONS: 'configurations',
+    CITIES: 'cities',
+    SERVICES_ENDED: 'services_ended',
+    REQUEST_SERVICES: 'request-services',
+    CATEGORIES_SEVICES: 'categories-services',
+    CATEGORIES_RENT: 'categories-rent',
+    CATEGORIES_SHOP: 'categories-shop'
+};
+
+
+/***/ }),
+
 /***/ "./src/app/models/form.model.ts":
 /*!**************************************!*\
   !*** ./src/app/models/form.model.ts ***!
@@ -2851,6 +2970,272 @@ const nameCard = {
     IsOffers: 'isOffers',
     IsMyHistorial: 'isMyHistorial',
     IsMyHistorialOffers: 'isMyHistorialOffers',
+};
+
+
+/***/ }),
+
+/***/ "./src/app/store/actions/actions.ts":
+/*!******************************************!*\
+  !*** ./src/app/store/actions/actions.ts ***!
+  \******************************************/
+/*! exports provided: registerUser, registerUserSuccess, registerUserFailure, userRelogged, userReloggedSuccess, userAlreadylogged, fetchCategories, fetchCategoriesSuccess, fetchCategoriesFailure, updateMiders, updateMidersSuccess, updateMidersFailure, updateMiderv, updateMidervSuccess, updateMidervFailure, updateMidera, updateMideraSuccess, updateMideraFailure */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerUser", function() { return registerUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerUserSuccess", function() { return registerUserSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerUserFailure", function() { return registerUserFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userRelogged", function() { return userRelogged; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userReloggedSuccess", function() { return userReloggedSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userAlreadylogged", function() { return userAlreadylogged; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoriesSuccess", function() { return fetchCategoriesSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoriesFailure", function() { return fetchCategoriesFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMiders", function() { return updateMiders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMidersSuccess", function() { return updateMidersSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMidersFailure", function() { return updateMidersFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMiderv", function() { return updateMiderv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMidervSuccess", function() { return updateMidervSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMidervFailure", function() { return updateMidervFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMidera", function() { return updateMidera; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMideraSuccess", function() { return updateMideraSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMideraFailure", function() { return updateMideraFailure; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
+
+// Actions Module home
+const registerUser = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Register User Page] Register User', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const registerUserSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Register User Success Page] Register User Success');
+const registerUserFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Register User Success Page] Register User Success', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const userRelogged = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[User Relogged Page] User Relogged', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const userReloggedSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[User Relogged Success Page] User Relogged Success');
+const userAlreadylogged = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[User Already logged Page] User Already logged', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+// Actions Module Init
+const fetchCategories = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Fetch Categories] Fetch Categories');
+const fetchCategoriesSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Fetch Categories Success] Fetch Categories Success', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const fetchCategoriesFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Fetch Categories Failure] Fetch Categories Failure');
+// UPADTE MIDERv
+const updateMiders = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miderv] Update Miders', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const updateMidersSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miders Success] Update Miders Success');
+const updateMidersFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miders Failure] Update Miders Failure');
+// UPADTE MIDERV
+const updateMiderv = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miderv] Update Miderv', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const updateMidervSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miderv Success] Update Miderv Success');
+const updateMidervFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Miderv Failure] Update Miderv Failure');
+// UPADTE MIDERA
+const updateMidera = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Midera] Update Midera', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const updateMideraSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Midera Success] Update Midera Success');
+const updateMideraFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Midera Failure] Update Midera Failure');
+
+
+/***/ }),
+
+/***/ "./src/app/store/effects/effects.ts":
+/*!******************************************!*\
+  !*** ./src/app/store/effects/effects.ts ***!
+  \******************************************/
+/*! exports provided: AuthenticationEffects */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticationEffects", function() { return AuthenticationEffects; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/__ivy_ngcc__/fesm2015/ngrx-effects.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @store/actions/actions */ "./src/app/store/actions/actions.ts");
+/* harmony import */ var _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
+/* harmony import */ var _models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @models/data-base/bd.models */ "./src/app/models/data-base/bd.models.ts");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
+
+
+
+
+
+
+
+
+
+
+let AuthenticationEffects = class AuthenticationEffects {
+    constructor(actions$, firebase, router) {
+        this.actions$ = actions$;
+        this.firebase = firebase;
+        this.router = router;
+        // User
+        this.registerNewUser$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["registerUser"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.save('usuario-app', action.user)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((x) => {
+            this.router.navigate(['/inicio']);
+            return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["registerUserSuccess"]();
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["registerUserFailure"]({ error })))))));
+        this.userRelogged$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["userRelogged"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.actualizarDatos('usuario-app', action.user, action.user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((x) => {
+            this.router.navigate(['/inicio']);
+            return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["userReloggedSuccess"]();
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["registerUserFailure"]({ error })))))));
+        // Categories
+        this.fetchCategories$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["fetchCategories"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["flatMap"])(() => {
+            const categoriesServices$ = this.firebase.obtener(_models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__["COLLECTIONS_BD"].CATEGORIES_SEVICES);
+            const categoriesRent$ = this.firebase.obtener(_models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__["COLLECTIONS_BD"].CATEGORIES_RENT);
+            const categoriesShop$ = this.firebase.obtener(_models_data_base_bd_models__WEBPACK_IMPORTED_MODULE_8__["COLLECTIONS_BD"].CATEGORIES_SHOP);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["zip"])(categoriesServices$, categoriesRent$, categoriesShop$);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(([services, rents, shops]) => {
+            const servicesData = services.map((service) => {
+                return {
+                    name: service.name,
+                    value: service.value
+                };
+            });
+            const rentData = rents.map((rent) => {
+                return {
+                    name: rent.name,
+                    value: rent.value
+                };
+            });
+            const shopData = shops.map((shop) => {
+                return {
+                    name: shop.name,
+                    value: shop.value
+                };
+            });
+            return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["fetchCategoriesSuccess"]({
+                categoriesServices: servicesData,
+                categoriesRent: rentData,
+                categoriesShop: shopData
+            });
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["fetchCategoriesFailure"]()))));
+        // All Mider
+        this.updatedMiderService$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMiders"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(({ user }) => {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((x) => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+                return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMidersSuccess"]();
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Algo ha salido mal', '', 'warning');
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMidersFailure"]());
+            }));
+        })));
+        this.updatedMiderShop$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMiderv"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(({ user }) => {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((x) => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+                return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMidervSuccess"]();
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Algo ha salido mal', '', 'warning');
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMidervFailure"]());
+            }));
+        })));
+        this.updatedMiderRent$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMidera"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(({ user }) => {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((x) => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+                return _store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMideraSuccess"]();
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(error => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Algo ha salido mal', '', 'warning');
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateMideraFailure"]());
+            }));
+        })));
+    }
+};
+AuthenticationEffects.ctorParameters = () => [
+    { type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"] },
+    { type: _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+];
+AuthenticationEffects = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"],
+        _core_services_firebase_service__WEBPACK_IMPORTED_MODULE_7__["FirebaseService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+], AuthenticationEffects);
+
+
+
+/***/ }),
+
+/***/ "./src/app/store/reducers/categories.reducer.ts":
+/*!******************************************************!*\
+  !*** ./src/app/store/reducers/categories.reducer.ts ***!
+  \******************************************************/
+/*! exports provided: initialState, categoriesReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialState", function() { return initialState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoriesReducer", function() { return categoriesReducer; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
+/* harmony import */ var _store_actions_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @store/actions/actions */ "./src/app/store/actions/actions.ts");
+
+
+const initialState = {};
+const featureReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCategoriesSuccess"], (state, { categoriesServices, categoriesRent, categoriesShop }) => {
+    return {
+        categoriesServices,
+        categoriesRent,
+        categoriesShop
+    };
+}));
+const categoriesReducer = (state, action) => {
+    return featureReducer(state, action);
+};
+
+
+/***/ }),
+
+/***/ "./src/app/store/reducers/global-reducer.ts":
+/*!**************************************************!*\
+  !*** ./src/app/store/reducers/global-reducer.ts ***!
+  \**************************************************/
+/*! exports provided: initialState, authReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialState", function() { return initialState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authReducer", function() { return authReducer; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
+/* harmony import */ var _store_actions_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @store/actions/actions */ "./src/app/store/actions/actions.ts");
+
+
+const initialState = {};
+const featureReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["registerUser"], (state, { user }) => {
+    return Object.assign({}, user);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["userRelogged"], (state, { user }) => {
+    return Object.assign(Object.assign({}, user), { sessionActive: true });
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["userAlreadylogged"], (state, { user }) => {
+    return Object.assign(Object.assign({}, user), { sessionActive: true });
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateMiders"], (state, { miders }) => {
+    return Object.assign(Object.assign({}, state), { miders });
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateMiderv"], (state, { miderv }) => {
+    return Object.assign(Object.assign({}, state), { miderv });
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateMidera"], (state, { midera }) => {
+    return Object.assign(Object.assign({}, state), { midera });
+}));
+const authReducer = (state, action) => {
+    return featureReducer(state, action);
+};
+
+
+/***/ }),
+
+/***/ "./src/app/store/reducers/index-global-reducers.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/store/reducers/index-global-reducers.ts ***!
+  \*********************************************************/
+/*! exports provided: globalReducers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalReducers", function() { return globalReducers; });
+/* harmony import */ var _reducers_global_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/global-reducer */ "./src/app/store/reducers/global-reducer.ts");
+/* harmony import */ var _reducers_categories_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/categories.reducer */ "./src/app/store/reducers/categories.reducer.ts");
+
+
+const globalReducers = {
+    authenticationUser: _reducers_global_reducer__WEBPACK_IMPORTED_MODULE_0__["authReducer"],
+    categories: _reducers_categories_reducer__WEBPACK_IMPORTED_MODULE_1__["categoriesReducer"]
 };
 
 
