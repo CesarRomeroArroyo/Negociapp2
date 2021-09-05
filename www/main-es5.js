@@ -315,7 +315,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar [style.--background]=\"colorHeader\">\r\n    <ion-buttons slot=\"start\" class=\"home-element\">\r\n      <ng-container *ngIf=\"!menu; else menuPage\">\r\n        <ion-icon \r\n          *ngIf=\"!close; else closeM\"\r\n          [style.color]=\"colorBack\"\r\n          name=\"arrow-back\" \r\n          size=\"large\" \r\n          (click)=\"goToBack()\">\r\n        </ion-icon>\r\n        <ng-template #closeM>\r\n          <ion-icon \r\n            [style.color]=\"colorBack\" \r\n            size=\"large\" \r\n            name=\"close-outline\"\r\n            (click)=\"closeModal()\">\r\n          </ion-icon>\r\n        </ng-template>\r\n      </ng-container>\r\n      <ng-template #menuPage>\r\n        <ion-menu-button></ion-menu-button>\r\n      </ng-template>\r\n    </ion-buttons>\r\n    <ion-title [style.color]=\"colorText\">\r\n      {{text}}\r\n      <p>{{secondMessage}}</p>\r\n      <p>{{thirdMessage}}</p>\r\n    </ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button class=\"home-element\" [routerLink]=\"['/perfil']\">\r\n        <ion-img \r\n          [style.border]=\"colorBorderIcon\"\r\n          [src]=\"userImg\"\r\n          *ngIf=\"colorIconBlack\">\r\n        </ion-img>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar [style.--background]=\"colorHeader\">\r\n    <ion-buttons slot=\"start\" class=\"home-element\">\r\n      <ng-container *ngIf=\"!menu; else menuPage\">\r\n        <ion-icon \r\n          *ngIf=\"!close; else closeM\"\r\n          [style.color]=\"colorBack\"\r\n          name=\"arrow-back\" \r\n          size=\"large\" \r\n          (click)=\"goToBack()\">\r\n        </ion-icon>\r\n        <ng-template #closeM>\r\n          <ion-icon \r\n            [style.color]=\"colorBack\" \r\n            size=\"large\" \r\n            name=\"close-outline\"\r\n            (click)=\"closeModal()\">\r\n          </ion-icon>\r\n        </ng-template>\r\n      </ng-container>\r\n      <ng-template #menuPage>\r\n        <ion-menu-button></ion-menu-button>\r\n      </ng-template>\r\n    </ion-buttons>\r\n    <ion-title [style.color]=\"colorText\">\r\n      {{text}}\r\n      <p>{{secondMessage}}</p>\r\n      <p>{{thirdMessage}}</p>\r\n    </ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button class=\"home-element\" [routerLink]=\"['/perfil']\">\r\n        <ion-img \r\n          [style.border]=\"colorBorderIcon\"\r\n          [src]=\"(user$ | async).photoUrl\"\r\n          *ngIf=\"colorIconBlack\">\r\n        </ion-img>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>";
     /***/
   },
 
@@ -2435,13 +2435,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _constans_localStorage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../constans/localStorage */
     "./src/app/constans/localStorage.ts");
+    /* harmony import */
+
+
+    var _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @app/home/home.facade */
+    "./src/app/home/home.facade.ts");
 
     var HeaderComponent = /*#__PURE__*/function (_abstract_form_abstac3) {
       _inherits(HeaderComponent, _abstract_form_abstac3);
 
       var _super3 = _createSuper(HeaderComponent);
 
-      function HeaderComponent(router, menuController, firebaseService) {
+      function HeaderComponent(router, menuController, firebaseService, homeFacade) {
         var _this11;
 
         _classCallCheck(this, HeaderComponent);
@@ -2450,6 +2456,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this11.router = router;
         _this11.menuController = menuController;
         _this11.firebaseService = firebaseService;
+        _this11.homeFacade = homeFacade;
         _this11.text = 'NegociApp';
         _this11.secondMessage = '';
         _this11.thirdMessage = '';
@@ -2517,9 +2524,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "userImg",
+        key: "user$",
         get: function get() {
-          return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+          return this.homeFacade.getUser$;
         }
       }]);
 
@@ -2533,6 +2540,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"]
       }, {
         type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"]
+      }, {
+        type: _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__["HomeFacade"]
       }];
     };
 
@@ -2556,7 +2565,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
       /*! ./header.component.scss */
       "./src/app/components/header/header.component.scss"))["default"]]
-    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"], src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"]])], HeaderComponent);
+    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"], src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"], _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__["HomeFacade"]])], HeaderComponent);
     /***/
   },
 
@@ -5218,9 +5227,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var user = _ref15.user;
       return Object.assign({}, user);
     }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateUserPhoto"], function (state, _ref16) {
-      var user = _ref16.user,
-          photo = _ref16.photo;
-      return Object.assign(Object.assign({}, user), photo);
+      var user = _ref16.user;
+      return Object.assign({}, user);
     }));
 
     var authReducer = function authReducer(state, action) {

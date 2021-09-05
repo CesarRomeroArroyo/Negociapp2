@@ -539,7 +539,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar [style.--background]=\"colorHeader\">\r\n    <ion-buttons slot=\"start\" class=\"home-element\">\r\n      <ng-container *ngIf=\"!menu; else menuPage\">\r\n        <ion-icon \r\n          *ngIf=\"!close; else closeM\"\r\n          [style.color]=\"colorBack\"\r\n          name=\"arrow-back\" \r\n          size=\"large\" \r\n          (click)=\"goToBack()\">\r\n        </ion-icon>\r\n        <ng-template #closeM>\r\n          <ion-icon \r\n            [style.color]=\"colorBack\" \r\n            size=\"large\" \r\n            name=\"close-outline\"\r\n            (click)=\"closeModal()\">\r\n          </ion-icon>\r\n        </ng-template>\r\n      </ng-container>\r\n      <ng-template #menuPage>\r\n        <ion-menu-button></ion-menu-button>\r\n      </ng-template>\r\n    </ion-buttons>\r\n    <ion-title [style.color]=\"colorText\">\r\n      {{text}}\r\n      <p>{{secondMessage}}</p>\r\n      <p>{{thirdMessage}}</p>\r\n    </ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button class=\"home-element\" [routerLink]=\"['/perfil']\">\r\n        <ion-img \r\n          [style.border]=\"colorBorderIcon\"\r\n          [src]=\"userImg\"\r\n          *ngIf=\"colorIconBlack\">\r\n        </ion-img>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\r\n  <ion-toolbar [style.--background]=\"colorHeader\">\r\n    <ion-buttons slot=\"start\" class=\"home-element\">\r\n      <ng-container *ngIf=\"!menu; else menuPage\">\r\n        <ion-icon \r\n          *ngIf=\"!close; else closeM\"\r\n          [style.color]=\"colorBack\"\r\n          name=\"arrow-back\" \r\n          size=\"large\" \r\n          (click)=\"goToBack()\">\r\n        </ion-icon>\r\n        <ng-template #closeM>\r\n          <ion-icon \r\n            [style.color]=\"colorBack\" \r\n            size=\"large\" \r\n            name=\"close-outline\"\r\n            (click)=\"closeModal()\">\r\n          </ion-icon>\r\n        </ng-template>\r\n      </ng-container>\r\n      <ng-template #menuPage>\r\n        <ion-menu-button></ion-menu-button>\r\n      </ng-template>\r\n    </ion-buttons>\r\n    <ion-title [style.color]=\"colorText\">\r\n      {{text}}\r\n      <p>{{secondMessage}}</p>\r\n      <p>{{thirdMessage}}</p>\r\n    </ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button class=\"home-element\" [routerLink]=\"['/perfil']\">\r\n        <ion-img \r\n          [style.border]=\"colorBorderIcon\"\r\n          [src]=\"(user$ | async).photoUrl\"\r\n          *ngIf=\"colorIconBlack\">\r\n        </ion-img>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>");
 
 /***/ }),
 
@@ -1680,6 +1680,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/core/services/firebase.service */ "./src/app/core/services/firebase.service.ts");
 /* harmony import */ var _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../abstract/form.abstact */ "./src/app/components/abstract/form.abstact.ts");
 /* harmony import */ var _constans_localStorage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../constans/localStorage */ "./src/app/constans/localStorage.ts");
+/* harmony import */ var _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @app/home/home.facade */ "./src/app/home/home.facade.ts");
+
 
 
 
@@ -1688,11 +1690,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HeaderComponent = class HeaderComponent extends _abstract_form_abstact__WEBPACK_IMPORTED_MODULE_5__["FormsAbstract"] {
-    constructor(router, menuController, firebaseService) {
+    constructor(router, menuController, firebaseService, homeFacade) {
         super();
         this.router = router;
         this.menuController = menuController;
         this.firebaseService = firebaseService;
+        this.homeFacade = homeFacade;
         this.text = 'NegociApp';
         this.secondMessage = '';
         this.thirdMessage = '';
@@ -1709,8 +1712,8 @@ let HeaderComponent = class HeaderComponent extends _abstract_form_abstact__WEBP
     ngOnInit() {
         this.fetchUser();
     }
-    get userImg() {
-        return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+    get user$() {
+        return this.homeFacade.getUser$;
     }
     goToBack() {
         this.path.length > 0 ? this.router.navigate([this.path]) : window.history.back();
@@ -1734,7 +1737,8 @@ let HeaderComponent = class HeaderComponent extends _abstract_form_abstact__WEBP
 HeaderComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
-    { type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"] }
+    { type: src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"] },
+    { type: _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__["HomeFacade"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -1792,7 +1796,8 @@ HeaderComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     }),
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
-        src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"]])
+        src_app_core_services_firebase_service__WEBPACK_IMPORTED_MODULE_4__["FirebaseService"],
+        _app_home_home_facade__WEBPACK_IMPORTED_MODULE_7__["HomeFacade"]])
 ], HeaderComponent);
 
 
@@ -3265,8 +3270,8 @@ const featureReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createRe
     return Object.assign(Object.assign({}, state), { midera });
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateUser"], (state, { user }) => {
     return Object.assign({}, user);
-}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateUserPhoto"], (state, { user, photo }) => {
-    return Object.assign(Object.assign({}, user), photo);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["on"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_1__["updateUserPhoto"], (state, { user }) => {
+    return Object.assign({}, user);
 }));
 const authReducer = (state, action) => {
     return featureReducer(state, action);
