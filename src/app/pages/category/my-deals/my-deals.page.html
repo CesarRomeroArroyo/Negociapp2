@@ -17,14 +17,14 @@
           class="tab" 
           (click)="tab = 1" 
           [ngClass]="{'active': tab === 1}">
-            <p>Mis compras</p>
+            <p>{{messageTabOne}}</p>
             <img src="../../../assets/icon_servicios.png">
         </button>
         <button 
           class="tab" 
           [ngClass]="{'active' : tab === 2}"
           (click)="tab = 2">
-            <p>Mis ventas</p>
+            <p>{{messageTabTwo}}</p>
             <img src="../../../assets/mis_servicios.png">
         </button>
       </ion-col>

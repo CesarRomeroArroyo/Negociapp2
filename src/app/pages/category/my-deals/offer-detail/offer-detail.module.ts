@@ -10,6 +10,8 @@ import { OfferDetailPage } from './offer-detail.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { RouterModule } from '@angular/router';
 
+import { LoadingModule } from '@ux/loading/loading.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     ComponentsModule,
     RouterModule,
-    OfferDetailPageRoutingModule
+    OfferDetailPageRoutingModule,
+    LoadingModule
   ],
   declarations: [OfferDetailPage]
 })

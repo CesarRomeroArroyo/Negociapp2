@@ -7,6 +7,9 @@ import { User } from 'src/app/models/global/user.model';
 import { FormsAbstract } from '../abstract/form.abstact';
 import { LOCALSTORAGE } from '../../constans/localStorage';
 
+import { HomeFacade } from '@app/home/home.facade';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -32,15 +35,16 @@ export class HeaderComponent extends FormsAbstract implements OnInit {
   constructor(
     private router: Router,
     private menuController: MenuController,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private homeFacade: HomeFacade
   ) { super(); }
 
   ngOnInit() {
     this.fetchUser();
   }
 
-  get userImg(): string {
-    return this.user.photoUrl.length > 0 ? this.user.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+  get user$(): Observable<User> {
+    return this.homeFacade.getUser$;
   }
 
   public goToBack(): void {

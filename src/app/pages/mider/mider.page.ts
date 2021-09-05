@@ -209,7 +209,6 @@ export class MiderPage implements OnInit {
           ...this.user,
           miders
         }
-        console.log(user);
         this.miderFacade.updateMiders(miders, user);
         break;
       case 2:

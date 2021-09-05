@@ -17,6 +17,8 @@ import { COLLECTIONS_BD } from '@models/data-base/bd.models';
 
 import { HomeFacade } from '@app/home/home.facade';
 import { ProfileFacade } from './perfil.facade';
+import { PhotoObject } from '../../models/global/user.model';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-perfil',
@@ -33,6 +35,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   public filePhoto: File = null;
   public subscriptions: Subscription[] = [];
   public user: User;
+  public isloading: boolean = false;
 
 
   constructor(
@@ -45,16 +48,22 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   ) { super(); }
 
   public async ngOnInit() {
+    this.isloading = true;
     this.cities = await this.firebase.obtenerPromise(COLLECTIONS_BD.CITIES);
     if (this.isOtherUser) {
       // Other user
       const user = await this.firebase.obtenerUniqueIdPromise('usuario-app', this.uniqueid);
       this.user = user[0];
+      this.isloading = false;
     } else {
       // My user
       this.subscriptions.push(
-        this.user$.subscribe(user => {
-          this.user = user;
+        this.user$.pipe(take(1)).subscribe((user) => {
+          this.firebase.obtenerUniqueIdPromise('usuario-app', user.uniqueid).then((result) => {
+            this.user = result[0];
+            this.profileFacade.updateUser(this.user, false);
+            this.isloading = false;
+          });
         })
       );
     }
@@ -69,11 +78,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   get user$(): Observable<User> {
-    return this.homeFacade.getUser$;
-  }
-
-  get userImg(): string {
-    return this.user?.photoUrl?.length > 0 ? this.user?.photoUrl : 'assets/img/user_perfilxxxhdpi.png';
+    return this.homeFacade.getUser$.pipe(tap(user => { this.user = user; }));
   }
 
   get isOtherUser(): boolean {
@@ -95,7 +100,6 @@ export class PerfilPage extends FormsAbstract implements OnInit {
       reader.readAsDataURL(this.filePhoto);
       if (this.filePhoto !== null) {
         await this.uploadImg();
-        this.update();
       }
     } else {
       this.filePhoto = null;
@@ -109,7 +113,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   public update(event?: FormGroup): void {
     const userData = {
       ...this.user,
-      ...event.value
+      ...event?.value
     }
     this.profileFacade.updateUser(userData);
   }
@@ -139,11 +143,22 @@ export class PerfilPage extends FormsAbstract implements OnInit {
 
   private async uploadImg(): Promise<void> {
     if (this.user.photoRef) {
-      this.storage.deleteFilesFolder(this.user.photoRef);
+      await this.storage.deleteFilesFolder(this.user.photoRef).toPromise();
+      console.log('Imagen eliminada');
     }
-    this.user.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
-    await this.storage.upload(this.filePhoto, this.user.photoRef);
-    await this.storage.getUrlFileInfo(this.user.photoRef).then((url) => this.user.photoUrl = url);
+    // tslint:disable-next-line: prefer-const
+    let photo: PhotoObject = {
+      photoRef: '',
+      photoUrl: ''
+    };
+    photo.photoRef = `user-profile/${this.user.uniqueid}/foto/${this.filePhoto.name}`;
+    await this.storage.upload(this.filePhoto, photo.photoRef);
+    await this.storage.getUrlFileInfo(photo?.photoRef).then((url) => photo.photoUrl = url);
+    const dataUser = {
+      ...this.user,
+      ...photo
+    }
+    this.profileFacade.updateUserPhoto(dataUser);
   }
 
 }

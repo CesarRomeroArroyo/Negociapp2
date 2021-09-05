@@ -1,4 +1,4 @@
-@import '../../../theme/mixin.scss';
+@import "../../../theme/mixin.scss";
 
 .cards {
   width: 100%;
@@ -12,7 +12,8 @@
   }
 
   .card {
-    width: 100%;
+    width: 340px;
+    min-width: 340px;
     margin-bottom: 24px;
     background: var(--ion-color-light);
     border-radius: 10px;

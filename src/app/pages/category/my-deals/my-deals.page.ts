@@ -23,11 +23,39 @@ export class MyDealsPage extends FormsAbstract implements OnInit {
     this.uniqueid = this.route.snapshot.paramMap.get('uniqueid');
   }
 
+  get messageTabOne(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        return 'Mis Solicitudes';
+      }
+      case CategoryURL.Rent: {
+        return 'Mis Rentas';
+      }
+      case CategoryURL.Shop: {
+        return 'Mis Productos';
+      }
+    }
+  }
+
+  get messageTabTwo(): string {
+    switch (this.category) {
+      case CategoryURL.Service: {
+        return 'Mis Ofertas';
+      }
+      case CategoryURL.Rent: {
+        return 'Mis Compras';
+      }
+      case CategoryURL.Shop: {
+        return 'Mis Compras';
+      }
+    }
+  }
+
   get thirdMessage(): string {
     switch (this.category) {
       case CategoryURL.Service: {
-        if (this.tab === 1) return 'Mis Compras';
-        else return 'Mis Ventas'
+        if (this.tab === 1) return 'Mis Solicitudes';
+        else return 'Mis Ofertas'
       }
       case CategoryURL.Rent: {
         if (this.tab === 1) return 'Mis Compras';

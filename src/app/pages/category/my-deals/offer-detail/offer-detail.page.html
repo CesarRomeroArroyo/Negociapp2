@@ -8,46 +8,53 @@
   [colorIconBlack]="false">
 </app-header>
 
-<ion-content fullscreen="true" scroll-y="true" scroll-x="false" *ngIf="item">
-  <div class="content">
-    <span class="info">Negocio {{index + 1}}</span>
-    <div class="detail">
-      <span class="name">{{item.name}}</span>
-      <div class="second-content">
-        <div class="value">
-          <span>Valor: <span class="value-text">{{item.value | currency:'':'symbol':'1.0-2'}}</span></span>
-        </div>
-        <div class="date">
-          <span>Fecha: <span class="date-text">{{item.closeDate}}</span></span>
+<ion-content fullscreen="true" scroll-y="true" scroll-x="false">
+  <ng-container *ngIf="!isloading; else isLoadingTemplate">
+    <div class="content">
+      <span class="info">Negocio {{index + 1}}</span>
+      <div class="detail">
+        <span class="name">{{item.name}}</span>
+        <div class="second-content">
+          <div class="value">
+            <span>Valor: <span class="value-text">{{item.offerit[0].value | currency:'':'symbol':'1.0-2'}}</span></span>
+          </div>
+          <div class="date">
+            <span>Fecha: <span class="date-text">{{item.closeDate}}</span></span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="perfil">
-      <div class="content-icon-text">
-        <div class="icon-text" (click)="gotoPerfilUserRequest()">
-          <ion-icon name="person-circle-outline"></ion-icon>
+      <div class="perfil">
+        <div class="content-icon-text">
+          <div class="icon-text" (click)="gotoPerfilUserRequest()">
+            <ion-img [src]="userRequest.photoUrl"></ion-img>
+          </div>
+          <span class="primary">Solicitante</span>
         </div>
-        <span class="primary">Solicitante</span>
-      </div>
-      <div class="content-icon-text">
-        <div class="icon-text second" (click)="gotoPerfilUserOffer()">
-          <ion-icon name="person-circle-outline"></ion-icon>
+        <div class="content-icon-text">
+          <div class="icon-text second" (click)="gotoPerfilUserOffer()">
+            <ion-img [src]="item.offerit[0].user.photoUrl"></ion-img>
+          </div>
+          <span class="second-text">Ofertante</span>
         </div>
-        <span class="second-text">Ofertante</span>
+      </div>
+      <div class="status">
+        <span>Estado del negocio</span>
+        <div class="status-content">
+          <span class="reset isClose">Proceso</span>
+          <span class="reset">Cerrado</span>
+        </div>
+      </div>
+      <span class="info width-60" *ngIf="!isUserRequest" (click)="goToRate()">Calificacion recibida</span>
+      <span class="info width-60 secondary" *ngIf="isUserRequest" (click)="goToRate()">Calificacion dada</span>
+      <div class="detail center" *ngIf="false">
+        <span class="name">Comisión del negocio</span>
+        <span class="text-value">xxxxxxxx</span>
       </div>
     </div>
-    <div class="status">
-      <span>Estado del negocio</span>
-      <div class="status-content">
-        <span class="reset isClose">Cerrado</span>
-        <span class="reset">Proceso</span>
-      </div>
+  </ng-container>
+  <ng-template #isLoadingTemplate>
+    <div class="container-loading">
+      <app-loading [height]="'auto'" [color]="'var(--ion-color-primary)'"></app-loading>
     </div>
-    <span class="info width-60" *ngIf="!isUserRequest" (click)="goToRate()">Calificacion recibida</span>
-    <span class="info width-60 secondary" *ngIf="isUserRequest" (click)="goToRate()">Calificacion dada</span>
-    <div class="detail center" *ngIf="false">
-      <span class="name">Comisión del negocio</span>
-      <span class="text-value">xxxxxxxx</span>
-    </div>
-  </div>
+  </ng-template>
 </ion-content>

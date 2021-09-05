@@ -39,6 +39,11 @@ const featureReducer = createReducer(
       ...user
     }
   }),
+  on(actions.updateUserPhoto, (state, { user }) => {
+    return {
+      ...user
+    }
+  }),
 );
 
 export const authReducer = (state: User, action: Action): User => {

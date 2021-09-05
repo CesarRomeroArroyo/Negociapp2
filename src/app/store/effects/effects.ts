@@ -8,7 +8,6 @@ import * as actions from '@store/actions/actions';
 import { FirebaseService } from '@core/services/firebase.service';
 import { COLLECTIONS_BD } from '@models/data-base/bd.models';
 import { SelectType } from '@models/home/select-type';
-import { updateMiders, updateMideraFailure } from '../actions/actions';
 import Swal from 'sweetalert2';
 
 @Injectable()
@@ -38,8 +37,7 @@ export class AuthenticationEffects {
           map((x) => {
             this.router.navigate(['/inicio']);
             return actions.userReloggedSuccess();
-          }),
-          catchError(error => of(actions.registerUserFailure({ error })))
+          })
         )
       )
     )
@@ -90,7 +88,7 @@ export class AuthenticationEffects {
       ofType(actions.updateMiders),
       switchMap(({ user }) => {
         return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
-          map((x) => {
+          map(() => {
             Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
             return actions.updateMidersSuccess();
           }),
@@ -107,7 +105,7 @@ export class AuthenticationEffects {
       ofType(actions.updateMiderv),
       switchMap(({ user }) => {
         return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
-          map((x) => {
+          map(() => {
             Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
             return actions.updateMidervSuccess();
           }),
@@ -124,7 +122,7 @@ export class AuthenticationEffects {
       ofType(actions.updateMidera),
       switchMap(({ user }) => {
         return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
-          map((x) => {
+          map(() => {
             Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
             return actions.updateMideraSuccess();
           }),
@@ -140,15 +138,35 @@ export class AuthenticationEffects {
     updateUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.updateUser),
-      switchMap(({ user }) => {
+      switchMap(({ user, showMessage }) => {
         return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
-          map((x) => {
-            Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+          map(() => {
+            if (showMessage) {
+              Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+            }
             return actions.updateUserSuccess();
           }),
           catchError(error => {
             Swal.fire('Algo ha salido mal', '', 'warning');
-            return of(actions.updateMideraFailure());
+            return of(actions.updateUserFailure());
+          })
+        )
+      })
+    ));
+
+    // UPDATE USER
+    updateUserPhoto$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.updateUserPhoto),
+      switchMap(({ user }) => {
+        return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
+          map(() => {
+            Swal.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');
+            return actions.updateUserPhotoSuccess();
+          }),
+          catchError(error => {
+            Swal.fire('Algo ha salido mal', '', 'warning');
+            return of(actions.updateUserPhotoFailure());
           })
         )
       })

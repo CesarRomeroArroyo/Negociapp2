@@ -3,6 +3,7 @@ import { createAction, props } from '@ngrx/store';
 import { User } from '@models/global/user.model';
 import { SelectType } from '@app/models/home/select-type';
 import { Mider } from '@models/global/user.model';
+import { PhotoObject } from '@models/global/user.model';
 
 // Actions Module home
 export const registerUser = createAction(
@@ -75,10 +76,21 @@ export const updateMideraSuccess = createAction(
 export const updateMideraFailure = createAction(
     '[Update Midera Failure] Update Midera Failure'
 );
+// UPDATE PHOTO USER
+export const updateUserPhoto = createAction(
+    '[Update Photo User] Update Photo User',
+    props<{ user: User}>()
+);
+export const updateUserPhotoSuccess = createAction(
+    '[Update User Photo Success] Update Photo User Success'
+);
+export const updateUserPhotoFailure = createAction(
+    '[Update User Photo Failure] Update Photo User Failure'
+);
 // UPDATE USER
 export const updateUser = createAction(
     '[Update User] Update User',
-    props<{ user: User }>()
+    props<{ user: User, showMessage?: boolean }>()
 );
 export const updateUserSuccess = createAction(
     '[Update User Success] Update User Success'

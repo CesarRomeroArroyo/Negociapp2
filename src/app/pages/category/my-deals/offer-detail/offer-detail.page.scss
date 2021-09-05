@@ -1,4 +1,4 @@
-@import '../../../../../theme/mixin.scss';
+@import "../../../../../theme/mixin.scss";
 
 ion-content {
   --background: var(--ion-color-light);
@@ -92,31 +92,30 @@ ion-content {
 
     .icon-text {
       width: fit-content;
-      background: var(--ion-color-primary);
       border-radius: 30px;
       margin-bottom: 4px;
       @include flex(center, center);
 
-      &.second {
-        background: var(--ion-color-secondary);
-      }
-
-      &.second {
-        background: var(--ion-color-secondary);
-      }
-
-      ion-icon {
-        color: var(--ion-color-light);
-        font-size: 50px;
+      ion-img {
+        height: 80px;
+        width: 80px;
+        margin: 0px auto;
+        border-radius: 50%;
+        border: 2px solid var(--ion-color-secondary);
+        &::part(image) {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 50%;
+        }
       }
     }
 
     .second-text {
       color: var(--ion-color-secondary);
     }
-
   }
-
 }
 
 .status {
@@ -169,7 +168,7 @@ ion-content {
 }
 
 .primary {
-  color: var(--ion-color-primary)
+  color: var(--ion-color-primary);
 }
 
 .secondary {
