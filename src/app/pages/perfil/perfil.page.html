@@ -6,7 +6,8 @@
           <ion-icon name="arrow-back-outline" (click)="goBack()"></ion-icon>
           <span>NegociApp</span>
         </div>
-        <ion-img [src]="(user$ | async).photoUrl" ></ion-img>
+        <ion-img [src]="(user$ | async).photoUrl" *ngIf="!isOtherUser"></ion-img>
+        <ion-img [src]="user.photoUrl" *ngIf="isOtherUser"></ion-img>
         <ng-container *ngIf="!uniqueid">
           <div class="text-photo">
             <ion-chip>

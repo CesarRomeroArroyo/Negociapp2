@@ -1,4 +1,4 @@
-import { User } from './global/user.model'
+import { User } from './global/user.model';
 
 export const CollectionsBd = {
   Service: 'request-services',
@@ -34,6 +34,7 @@ export const nameCard = {
   IsMyHistorial: 'isMyHistorial',
   IsMyHistorialOffers: 'isMyHistorialOffers',
 }
+
 export interface DataForm {
   name?: string;
   type?: string;

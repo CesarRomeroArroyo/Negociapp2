@@ -796,17 +796,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context3.prev = _context3.next) {
                   case 0:
                     user = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER));
-                    console.log(user);
 
                     if (!user) {
-                      _context3.next = 11;
+                      _context3.next = 10;
                       break;
                     }
 
-                    _context3.next = 5;
+                    _context3.next = 4;
                     return this.firebaseService.obtenerPromise('usuario-app');
 
-                  case 5:
+                  case 4:
                     users = _context3.sent;
                     dataUser = users.filter(function (x) {
                       return (x === null || x === void 0 ? void 0 : x.uniqueid) === (user === null || user === void 0 ? void 0 : user.uniqueid);
@@ -819,7 +818,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.homeFacade.userAlreadylogged();
                     }
 
-                  case 11:
+                  case 10:
                   case "end":
                     return _context3.stop();
                 }
@@ -4570,11 +4569,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       INDENTIFICATION_TYPES: 'identification-types',
       CONFIGURATIONS: 'configurations',
       CITIES: 'cities',
-      SERVICES_ENDED: 'services_ended',
-      REQUEST_SERVICES: 'request-services',
       CATEGORIES_SEVICES: 'categories-services',
       CATEGORIES_RENT: 'categories-rent',
-      CATEGORIES_SHOP: 'categories-shop'
+      CATEGORIES_SHOP: 'categories-shop',
+      REQUEST_SERVICES: 'request-services',
+      SERVICES_ENDED: 'services_ended',
+      REQUEST_RENTS: 'request-rents',
+      RENTS_ENDED: 'rents-ended',
+      REQUEST_PRODUCTS: 'request-products',
+      PRODUCTS_ENDED: 'products-ended'
     };
     /***/
   },
@@ -4666,7 +4669,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/app/store/actions/actions.ts ***!
     \******************************************/
 
-  /*! exports provided: registerUser, registerUserSuccess, registerUserFailure, userRelogged, userReloggedSuccess, userAlreadylogged, fetchCategories, fetchCategoriesSuccess, fetchCategoriesFailure, updateMiders, updateMidersSuccess, updateMidersFailure, updateMiderv, updateMidervSuccess, updateMidervFailure, updateMidera, updateMideraSuccess, updateMideraFailure, updateUserPhoto, updateUserPhotoSuccess, updateUserPhotoFailure, updateUser, updateUserSuccess, updateUserFailure */
+  /*! exports provided: registerUser, registerUserSuccess, registerUserFailure, userRelogged, userReloggedSuccess, userAlreadylogged, fetchCategories, fetchCategoriesSuccess, fetchCategoriesFailure, updateMiders, updateMidersSuccess, updateMidersFailure, updateMiderv, updateMidervSuccess, updateMidervFailure, updateMidera, updateMideraSuccess, updateMideraFailure, updateUserPhoto, updateUserPhotoSuccess, updateUserPhotoFailure, updateUser, updateUserSuccess, updateUserFailure, updateProductsNegociappUser, updateProductsNegociappUserSuccess */
 
   /***/
   function srcAppStoreActionsActionsTs(module, __webpack_exports__, __webpack_require__) {
@@ -4817,6 +4820,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     __webpack_require__.d(__webpack_exports__, "updateUserFailure", function () {
       return updateUserFailure;
     });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "updateProductsNegociappUser", function () {
+      return updateProductsNegociappUser;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "updateProductsNegociappUserSuccess", function () {
+      return updateProductsNegociappUserSuccess;
+    });
     /* harmony import */
 
 
@@ -4854,7 +4869,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var updateUser = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User] Update User', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
     var updateUserSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User Success] Update User Success');
-    var updateUserFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User Failure] Update User Failure');
+    var updateUserFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User Failure] Update User Failure'); // UPDATE PRODUCTS NEGOCIAPP USER
+
+    var updateProductsNegociappUser = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Products Negociapp User] Update Products Negociapp User', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+    var updateProductsNegociappUserSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Products Negociapp User Success] Update Products Negociapp User Success');
     /***/
   },
 
@@ -5058,6 +5076,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return _this28.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateUser"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (_ref6) {
           var user = _ref6.user,
               showMessage = _ref6.showMessage;
+          // TODO: Actualizar colleciones de servicios, rentas y tienda donde se encuentra el usuario.
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(_this28.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function () {
             if (showMessage) {
               sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');

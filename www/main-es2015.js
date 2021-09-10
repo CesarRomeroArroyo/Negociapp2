@@ -781,7 +781,6 @@ let AppComponent = class AppComponent {
     fetchUser() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let user = JSON.parse(localStorage.getItem(_constans_localStorage__WEBPACK_IMPORTED_MODULE_9__["LOCALSTORAGE"].USER));
-            console.log(user);
             if (user) {
                 const users = yield this.firebaseService.obtenerPromise('usuario-app');
                 const dataUser = users.filter(x => (x === null || x === void 0 ? void 0 : x.uniqueid) === (user === null || user === void 0 ? void 0 : user.uniqueid));
@@ -2934,11 +2933,15 @@ const COLLECTIONS_BD = {
     INDENTIFICATION_TYPES: 'identification-types',
     CONFIGURATIONS: 'configurations',
     CITIES: 'cities',
-    SERVICES_ENDED: 'services_ended',
-    REQUEST_SERVICES: 'request-services',
     CATEGORIES_SEVICES: 'categories-services',
     CATEGORIES_RENT: 'categories-rent',
-    CATEGORIES_SHOP: 'categories-shop'
+    CATEGORIES_SHOP: 'categories-shop',
+    REQUEST_SERVICES: 'request-services',
+    SERVICES_ENDED: 'services_ended',
+    REQUEST_RENTS: 'request-rents',
+    RENTS_ENDED: 'rents-ended',
+    REQUEST_PRODUCTS: 'request-products',
+    PRODUCTS_ENDED: 'products-ended',
 };
 
 
@@ -3000,7 +3003,7 @@ const nameCard = {
 /*!******************************************!*\
   !*** ./src/app/store/actions/actions.ts ***!
   \******************************************/
-/*! exports provided: registerUser, registerUserSuccess, registerUserFailure, userRelogged, userReloggedSuccess, userAlreadylogged, fetchCategories, fetchCategoriesSuccess, fetchCategoriesFailure, updateMiders, updateMidersSuccess, updateMidersFailure, updateMiderv, updateMidervSuccess, updateMidervFailure, updateMidera, updateMideraSuccess, updateMideraFailure, updateUserPhoto, updateUserPhotoSuccess, updateUserPhotoFailure, updateUser, updateUserSuccess, updateUserFailure */
+/*! exports provided: registerUser, registerUserSuccess, registerUserFailure, userRelogged, userReloggedSuccess, userAlreadylogged, fetchCategories, fetchCategoriesSuccess, fetchCategoriesFailure, updateMiders, updateMidersSuccess, updateMidersFailure, updateMiderv, updateMidervSuccess, updateMidervFailure, updateMidera, updateMideraSuccess, updateMideraFailure, updateUserPhoto, updateUserPhotoSuccess, updateUserPhotoFailure, updateUser, updateUserSuccess, updateUserFailure, updateProductsNegociappUser, updateProductsNegociappUserSuccess */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3029,6 +3032,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserSuccess", function() { return updateUserSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserFailure", function() { return updateUserFailure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProductsNegociappUser", function() { return updateProductsNegociappUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProductsNegociappUserSuccess", function() { return updateProductsNegociappUserSuccess; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/__ivy_ngcc__/fesm2015/ngrx-store.js");
 
 // Actions Module home
@@ -3062,6 +3067,9 @@ const updateUserPhotoFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["
 const updateUser = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User] Update User', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 const updateUserSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User Success] Update User Success');
 const updateUserFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update User Failure] Update User Failure');
+// UPDATE PRODUCTS NEGOCIAPP USER
+const updateProductsNegociappUser = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Products Negociapp User] Update Products Negociapp User', Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+const updateProductsNegociappUserSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])('[Update Products Negociapp User Success] Update Products Negociapp User Success');
 
 
 /***/ }),
@@ -3172,6 +3180,7 @@ let AuthenticationEffects = class AuthenticationEffects {
         })));
         // UPDATE USER
         this.updateUser$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(() => this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_store_actions_actions__WEBPACK_IMPORTED_MODULE_6__["updateUser"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(({ user, showMessage }) => {
+            // TODO: Actualizar colleciones de servicios, rentas y tienda donde se encuentra el usuario.
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(() => {
                 if (showMessage) {
                     sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire('Bien Hecho', 'Datos actualizados correctamente', 'success');

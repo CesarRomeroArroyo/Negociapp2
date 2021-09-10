@@ -78,7 +78,7 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   }
 
   get user$(): Observable<User> {
-    return this.homeFacade.getUser$.pipe(tap(user => { this.user = user; }));
+    return this.homeFacade.getUser$;
   }
 
   get isOtherUser(): boolean {
@@ -94,15 +94,25 @@ export class PerfilPage extends FormsAbstract implements OnInit {
         Swal.fire({
           text: 'Imagen seleccionada',
           imageUrl: e.target.result,
-          imageAlt: 'The uploaded picture'
+          imageAlt: 'The uploaded picture',
+          showConfirmButton: true,
+          confirmButtonText: 'Sí, Actualizar!',
+          showCancelButton: true,
+          cancelButtonText: 'No',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (this.filePhoto !== null) {
+              this.uploadImg();
+            }
+          } else {
+            file.target.value = '';
+          }
         });
       };
       reader.readAsDataURL(this.filePhoto);
-      if (this.filePhoto !== null) {
-        await this.uploadImg();
-      }
     } else {
       this.filePhoto = null;
+      file.target.value = '';
     }
   }
 
@@ -144,7 +154,6 @@ export class PerfilPage extends FormsAbstract implements OnInit {
   private async uploadImg(): Promise<void> {
     if (this.user.photoRef) {
       await this.storage.deleteFilesFolder(this.user.photoRef).toPromise();
-      console.log('Imagen eliminada');
     }
     // tslint:disable-next-line: prefer-const
     let photo: PhotoObject = {

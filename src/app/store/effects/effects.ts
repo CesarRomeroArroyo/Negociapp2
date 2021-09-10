@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { catchError, map, switchMap, tap, flatMap } from 'rxjs/operators';
-import { of, zip, forkJoin, merge, concat } from 'rxjs';
+import { catchError, map, switchMap, flatMap } from 'rxjs/operators';
+import { of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 
 import * as actions from '@store/actions/actions';
@@ -134,11 +134,12 @@ export class AuthenticationEffects {
       })
     ));
 
-    // UPDATE USER
-    updateUser$ = createEffect(() =>
+  // UPDATE USER
+  updateUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.updateUser),
       switchMap(({ user, showMessage }) => {
+        // TODO: Actualizar colleciones de servicios, rentas y tienda donde se encuentra el usuario.
         return of(this.firebase.actualizarDatos('usuario-app', user, user.id)).pipe(
           map(() => {
             if (showMessage) {
@@ -154,8 +155,8 @@ export class AuthenticationEffects {
       })
     ));
 
-    // UPDATE USER
-    updateUserPhoto$ = createEffect(() =>
+  // UPDATE USER
+  updateUserPhoto$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.updateUserPhoto),
       switchMap(({ user }) => {

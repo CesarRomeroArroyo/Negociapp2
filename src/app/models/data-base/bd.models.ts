@@ -20,9 +20,13 @@ export const COLLECTIONS_BD = {
   INDENTIFICATION_TYPES: 'identification-types',
   CONFIGURATIONS: 'configurations',
   CITIES: 'cities',
-  SERVICES_ENDED: 'services_ended',
-  REQUEST_SERVICES: 'request-services',
   CATEGORIES_SEVICES: 'categories-services',
   CATEGORIES_RENT: 'categories-rent',
-  CATEGORIES_SHOP: 'categories-shop'
+  CATEGORIES_SHOP: 'categories-shop',
+  REQUEST_SERVICES: 'request-services',
+  SERVICES_ENDED: 'services_ended',
+  REQUEST_RENTS: 'request-rents',
+  RENTS_ENDED: 'rents-ended',
+  REQUEST_PRODUCTS: 'request-products',
+  PRODUCTS_ENDED: 'products-ended',
 }

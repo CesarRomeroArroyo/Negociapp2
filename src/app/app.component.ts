@@ -79,7 +79,6 @@ export class AppComponent implements OnInit {
 
   public async fetchUser(): Promise<void> {
     let user = JSON.parse(localStorage.getItem(LOCALSTORAGE.USER));
-    console.log(user);
     if (user) {
       const users: User[] = await this.firebaseService.obtenerPromise('usuario-app');
       const dataUser = users.filter(x => x?.uniqueid === user?.uniqueid)

@@ -22,10 +22,11 @@ import { COLLECTIONS_BD } from '../../../../models/data-base/bd.models';
 export class OfferDetailPage extends FormsAbstract implements OnInit {
 
   public item: DataForm;
-  public userRequest: User;
   public index: number;
   public isUserRequest: boolean;
   public isloading: boolean = false;
+  public userRequest: User;
+  public userOffer: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +47,9 @@ export class OfferDetailPage extends FormsAbstract implements OnInit {
       this.firebase.obtenerUniqueIdPromise(this.collectionBDFinalizate, this.uniqueid).then(async (result) => {
         const dataForm = result[0];
         this.item = dataForm;
+        const userOffer = await this.firebase.obtenerUniqueIdPromise(COLLECTIONS_BD.USUARIO_APP, this.item?.offerit[0]?.user?.uniqueid);
         const resultUserRequest = await this.firebase.obtenerUniqueIdPromise(COLLECTIONS_BD.USUARIO_APP, this.item.userRequest);
+        this.userOffer = userOffer[0];
         this.userRequest = resultUserRequest[0];
         this.isUserRequest = this.user.uniqueid === this.item.userRequest ? true : false;
         this.isloading = false;

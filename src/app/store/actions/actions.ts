@@ -79,7 +79,7 @@ export const updateMideraFailure = createAction(
 // UPDATE PHOTO USER
 export const updateUserPhoto = createAction(
     '[Update Photo User] Update Photo User',
-    props<{ user: User}>()
+    props<{ user: User }>()
 );
 export const updateUserPhotoSuccess = createAction(
     '[Update User Photo Success] Update Photo User Success'
@@ -98,3 +98,11 @@ export const updateUserSuccess = createAction(
 export const updateUserFailure = createAction(
     '[Update User Failure] Update User Failure'
 );
+// UPDATE PRODUCTS NEGOCIAPP USER
+export const updateProductsNegociappUser = createAction(
+    '[Update Products Negociapp User] Update Products Negociapp User',
+    props<{ user: User }>()
+)
+export const updateProductsNegociappUserSuccess = createAction(
+    '[Update Products Negociapp User Success] Update Products Negociapp User Success'
+)
