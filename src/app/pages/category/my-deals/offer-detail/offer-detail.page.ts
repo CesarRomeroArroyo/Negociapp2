@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { FormsAbstract } from '@components/abstract/form.abstact';
 
@@ -10,9 +12,7 @@ import { CategoryURL } from '@models/category.model';
 import { DataForm } from '@models/form.model';
 
 import { HomeFacade } from '@app/home/home.facade';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { COLLECTIONS_BD } from '../../../../models/data-base/bd.models';
+import { COLLECTIONS_BD } from '@models/data-base/bd.models';
 
 @Component({
   selector: 'app-offer-detail',
